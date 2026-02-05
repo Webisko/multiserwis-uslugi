@@ -1,0 +1,49 @@
+---
+// We'll manage generic head here or per page
+interface Props {
+  title: string;
+  description?: string;
+  noTopPadding?: boolean;
+}
+
+const { title, description, noTopPadding = false } = Astro.props;
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content={description || "Multiserwis Kutno - Usługi dla przemysłu"}
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <!-- Google Fonts used in the project -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@200..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Umami Analytics Placeholder -->
+    <!-- <script defer src="https://cloud.umami.is/script.js" data-website-id="YOUR-WEBSITE-ID"></script> -->
+  </head>
+  <body
+    class="min-h-screen bg-industrial-900 text-gray-100 font-sans selection:bg-industrial-accent selection:text-industrial-900 flex flex-col"
+  >
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /* Global Styles usually in index.css */
+  :root {
+    color-scheme: dark;
+  }
+</style>

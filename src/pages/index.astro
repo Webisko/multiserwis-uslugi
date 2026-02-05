@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { HomePage as HomeContent } from "../screens/HomePage";
+---
+
+<Layout
+  title="Multiserwis - Kompleksowe Usługi Przemysłowe"
+  description="Profesjonalne usługi dla przemysłu: wynajem maszyn, spawalnictwo, relokacja, konserwacja UDT, usługi elektryczne."
+>
+  <div>
+    <Navbar client:load />
+    {/* Navbar needs interaction */}
+    <main class="flex-grow">
+      <HomeContent client:visible />
+    </main>
+    <Footer client:visible />
+  </div>
+</Layout>

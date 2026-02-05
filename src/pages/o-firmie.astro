@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { AboutPage as Screen } from "../screens/AboutPage";
+---
+
+<Layout
+  title="O Firmie | Multiserwis Kutno"
+  description="Certyfikowana jakość (ISO 9001:2015). Poznaj naszą historię i wartości."
+>
+  <div>
+    <Navbar client:load />
+    <main class="flex-grow pt-[80px]">
+      <Screen client:load />
+    </main>
+    <Footer />
+  </div>
+</Layout>

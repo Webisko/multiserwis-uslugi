@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { RentalsPage } from "../screens/RentalsPage";
+---
+
+<Layout
+  title="Wynajem Maszyn Budowlanych | Multiserwis Kutno"
+  description="Oferujemy wynajem podnośników koszowych, żurawi do 90t, ładowarek teleskopowych i wózków widłowych."
+>
+  <div>
+    <Navbar client:load />
+    <main class="flex-grow pt-[80px]">
+      <RentalsPage client:load />
+    </main>
+    <Footer />
+  </div>
+</Layout>

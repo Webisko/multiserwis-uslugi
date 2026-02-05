@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { WeldingPage as Screen } from "../screens/WeldingPage";
+---
+
+<Layout
+  title="Usługi Spawalnicze | Multiserwis Kutno"
+  description="Profesjonalne spawanie (MIG/MAG, TIG), naprawy maszyn i konstrukcje stalowe."
+>
+  <div>
+    <Navbar client:load />
+    <main class="flex-grow pt-[80px]">
+      <Screen client:load />
+    </main>
+    <Footer />
+  </div>
+</Layout>

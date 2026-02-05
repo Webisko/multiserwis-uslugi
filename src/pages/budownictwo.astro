@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { ConstructionPage as Screen } from "../screens/ConstructionPage";
+---
+
+<Layout
+  title="Usługi Budowlane | Multiserwis Kutno"
+  description="Remonty i usługi budowlane dla przemysłu."
+>
+  <div>
+    <Navbar client:load />
+    <main class="flex-grow pt-[80px]">
+      <Screen client:load />
+    </main>
+    <Footer />
+  </div>
+</Layout>

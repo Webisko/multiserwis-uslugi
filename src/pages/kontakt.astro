@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { ContactPage as Screen } from "../screens/ContactPage";
+---
+
+<Layout
+  title="Kontakt | Multiserwis Kutno"
+  description="Skontaktuj się z nami. Dane kontaktowe, formularz, dojazd."
+>
+  <div>
+    <Navbar client:load />
+    <main class="flex-grow pt-[80px]">
+      <Screen client:load />
+    </main>
+    <Footer />
+  </div>
+</Layout>

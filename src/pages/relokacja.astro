@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { RelocationPage as Screen } from "../screens/RelocationPage";
+---
+
+<Layout
+  title="Relokacja Maszyn | Multiserwis Kutno"
+  description="Bezpieczne przenoszenie parku maszynowego i linii produkcyjnych."
+>
+  <div>
+    <Navbar client:load />
+    <main class="flex-grow pt-[80px]">
+      <Screen client:load />
+    </main>
+    <Footer />
+  </div>
+</Layout>

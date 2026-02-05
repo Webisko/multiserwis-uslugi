@@ -65,6 +65,8 @@ export const Hero: React.FC = () => {
       <div className="absolute inset-0 bg-black/30 z-10 pointer-events-none" />
       {/* Gradient from bottom */}
       <div className="absolute inset-0 bg-gradient-to-t from-industrial-900 via-industrial-900/40 to-transparent z-10 pointer-events-none" />
+      {/* Additional top gradient for brightness */}
+      <div className="absolute inset-0 bg-gradient-to-b from-industrial-900/30 via-transparent to-transparent z-10 pointer-events-none" />
 
       {/* 3. Main Content - STATIC (No x/y transforms) */}
       <div className="container mx-auto px-4 z-30 text-center relative perspective-1000">

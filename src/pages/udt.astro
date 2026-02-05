@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { UdtPage as Screen } from "../screens/UdtPage";
+---
+
+<Layout
+  title="Konserwacja UDT | Multiserwis Kutno"
+  description="Kompleksowa obsługa UDT: konserwacja, przeglądy, rejestracja urządzeń."
+>
+  <div>
+    <Navbar client:load />
+    <main class="flex-grow pt-[80px]">
+      <Screen client:load />
+    </main>
+    <Footer />
+  </div>
+</Layout>

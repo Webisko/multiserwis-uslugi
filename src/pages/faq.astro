@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { FaqPage as Screen } from "../screens/FaqPage";
+---
+
+<Layout
+  title="FAQ | Multiserwis Kutno"
+  description="Najczęściej zadawane pytania dotyczące naszych usług."
+>
+  <div>
+    <Navbar client:load />
+    <main class="flex-grow pt-[80px]">
+      <Screen client:load />
+    </main>
+    <Footer />
+  </div>
+</Layout>

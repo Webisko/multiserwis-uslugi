@@ -1,0 +1,19 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { ElectricalPage as Screen } from "../screens/ElectricalPage";
+---
+
+<Layout
+  title="Usługi Elektryczne | Multiserwis Kutno"
+  description="Pomiary, uruchomienia i instalacje elektryczne na obiektach przemysłowych."
+>
+  <div>
+    <Navbar client:load />
+    <main class="flex-grow pt-[80px]">
+      <Screen client:load />
+    </main>
+    <Footer />
+  </div>
+</Layout>
