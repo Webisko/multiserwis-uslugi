@@ -94,7 +94,7 @@ export const RentalsPage: React.FC = () => {
                 </div>
                 
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                  <a href="/kontakt" className="inline-flex items-center justify-center gap-2 bg-industrial-accent text-industrial-900 px-8 py-3 rounded font-bold hover:bg-industrial-accentHover transition-colors">
+                  <a href="/multiserwis-uslugi/kontakt" className="inline-flex items-center justify-center gap-2 bg-industrial-accent text-industrial-900 px-8 py-3 rounded font-bold hover:bg-industrial-accentHover transition-colors">
                     <Phone size={18} />
                     Zapytaj o dostępność
                   </a>

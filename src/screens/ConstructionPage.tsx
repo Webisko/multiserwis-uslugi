@@ -22,7 +22,7 @@ export const ConstructionPage: React.FC = () => {
                Jeśli jesteś zainteresowany remontem hali, fundamentami pod maszyny lub innymi pracami budowlanymi, 
                skontaktuj się z nami bezpośrednio.
              </p>
-             <a href="/kontakt" className="inline-block bg-industrial-accent text-industrial-900 px-8 py-3 rounded font-bold hover:bg-industrial-accentHover transition-colors">
+             <a href="/multiserwis-uslugi/kontakt" className="inline-block bg-industrial-accent text-industrial-900 px-8 py-3 rounded font-bold hover:bg-industrial-accentHover transition-colors">
                 Skontaktuj się z nami
              </a>
           </div>

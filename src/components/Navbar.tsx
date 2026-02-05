@@ -15,39 +15,42 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Base path for GitHub Pages
+  const basePath = '/multiserwis-uslugi';
+
   const navLinks = [
-    { name: 'Strona Główna', path: '/' },
+    { name: 'Strona Główna', path: `${basePath}/` },
     { 
       name: 'Wynajem Maszyn', 
-      path: '/wynajem',
+      path: `${basePath}/wynajem`,
       submenu: [
-        { name: 'Podesty i podnośniki', path: '/wynajem#podesty' },
-        { name: 'Żurawie', path: '/wynajem#zurawie' },
-        { name: 'Ładowarki i wózki', path: '/wynajem#ladowarki' },
-        { name: 'Sprzęt specjalistyczny', path: '/wynajem#specjalistyczne' },
+        { name: 'Podesty i podnośniki', path: `${basePath}/wynajem#podesty` },
+        { name: 'Żurawie', path: `${basePath}/wynajem#zurawie` },
+        { name: 'Ładowarki i wózki', path: `${basePath}/wynajem#ladowarki` },
+        { name: 'Sprzęt specjalistyczny', path: `${basePath}/wynajem#specjalistyczne` },
       ]
     },
     { 
       name: 'Usługi Techniczne', 
-      path: '/uslugi-techniczne', 
+      path: `${basePath}/uslugi-techniczne`, 
       dropdownOnly: true, 
       submenu: [
-        { name: 'Spawalnictwo', path: '/spawanie' },
-        { name: 'Konserwacja i UDT', path: '/udt' },
-        { name: 'Relokacja maszyn', path: '/relokacja' },
+        { name: 'Spawalnictwo', path: `${basePath}/spawanie` },
+        { name: 'Konserwacja i UDT', path: `${basePath}/udt` },
+        { name: 'Relokacja maszyn', path: `${basePath}/relokacja` },
       ]
     },
     {
       name: 'Budownictwo',
       dropdownOnly: true,
       submenu: [
-        { name: 'Usługi remontowo-budowlane', path: '/budownictwo' },
-        { name: 'Usługi elektryczne', path: '/elektryka' },
+        { name: 'Usługi remontowo-budowlane', path: `${basePath}/budownictwo` },
+        { name: 'Usługi elektryczne', path: `${basePath}/elektryka` },
       ]
     },
-    { name: 'O Firmie', path: '/o-firmie' },
+    { name: 'O Firmie', path: `${basePath}/o-firmie` },
     { name: 'Szkolenia', path: 'https://szkolenia-multiserwis.pl', external: true }, 
-    { name: 'FAQ', path: '/faq' },
+    { name: 'FAQ', path: `${basePath}/faq` },
   ];
 
   const handleDropdownEnter = (name: string) => {
@@ -62,7 +65,7 @@ export const Navbar: React.FC = () => {
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || isOpen ? 'bg-industrial-900/95 backdrop-blur-md shadow-lg py-4' : 'bg-transparent py-6'}`}>
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2 group">
+        <a href={`${basePath}/`} className="flex items-center gap-2 group">
           <div className="w-10 h-10 bg-industrial-accent rounded flex items-center justify-center font-display font-bold text-industrial-900 text-xl group-hover:bg-white transition-colors">
             IP
           </div>
@@ -123,7 +126,7 @@ export const Navbar: React.FC = () => {
             </div>
           ))}
           <a
-            href="/kontakt"
+            href={`${basePath}/kontakt`}
             className="px-5 py-2 bg-industrial-accent text-industrial-900 font-bold rounded hover:bg-industrial-accentHover transition-colors flex items-center gap-2"
           >
             <Phone size={16} />
@@ -182,7 +185,7 @@ export const Navbar: React.FC = () => {
              </div>
            ))}
            <a
-             href="/kontakt"
+             href={`${basePath}/kontakt`}
              className="mt-4 w-full text-center bg-industrial-accent text-industrial-900 font-bold py-3 rounded text-lg hover:bg-industrial-accentHover transition-colors"
            >
              Zamów Wycenę

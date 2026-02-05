@@ -20,7 +20,7 @@ export const Hero: React.FC = () => {
   // We use useMotionTemplate to combine styles cleanly if needed, 
   // but here we can pass x/y directly to the motion.img style prop.
   // Note: We need to combine ySpring (mouse) and yScroll (scroll).
-  const yCombined = useTransform([ySpring, yScroll], ([mY, sY]) => mY + sY);
+  const yCombined = useTransform([ySpring, yScroll], ([mY, sY]: any[]) => mY + sY);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!ref.current) return;
@@ -97,14 +97,14 @@ export const Hero: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <a
-              href="#wynajem"
+              href="/multiserwis-uslugi/wynajem"
               className="group relative px-10 py-5 bg-industrial-accent text-industrial-900 font-bold rounded text-xl overflow-hidden shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all hover:shadow-[0_0_40px_rgba(245,158,11,0.5)] hover:-translate-y-1"
             >
               <span className="relative z-10">Poznaj Ofertę Maszyn</span>
               <div className="absolute inset-0 h-full w-full bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
             </a>
             <a
-              href="#kontakt"
+              href="/multiserwis-uslugi/kontakt"
               className="px-10 py-5 bg-industrial-900/80 backdrop-blur-sm border border-gray-400 text-white font-bold rounded text-xl hover:bg-white/10 hover:border-white transition-all hover:-translate-y-1"
             >
               Skontaktuj się

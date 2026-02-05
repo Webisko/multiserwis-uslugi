@@ -58,7 +58,7 @@ export const RelocationPage: React.FC = () => {
                 </ul>
              </div>
              <div className="md:w-1/2 flex justify-center">
-                <a href="/kontakt" className="bg-industrial-accent text-industrial-900 px-8 py-4 rounded-lg font-bold hover:bg-industrial-accentHover transition-colors shadow-lg shadow-industrial-accent/20">
+                <a href="/multiserwis-uslugi/kontakt" className="bg-industrial-accent text-industrial-900 px-8 py-4 rounded-lg font-bold hover:bg-industrial-accentHover transition-colors shadow-lg shadow-industrial-accent/20">
                    Wyceń relokację
                 </a>
              </div>
