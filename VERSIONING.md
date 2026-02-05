@@ -44,4 +44,8 @@ Alternatively, if you have admin access to the repository settings:
 
 ## Future Tags
 
-This tag serves as v1 (OnePage backup). The next major version (Astro) should be tagged as v2.
+This repository uses a simple incremental major version scheme:
+- **v1**: OnePage version (current backup)
+- **v2**: Planned Astro version (future migration)
+
+Each major version represents a significant technology or architecture change.
