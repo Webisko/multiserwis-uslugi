@@ -8,6 +8,11 @@ This contains everything you need to run your app locally.
 
 View your app in AI Studio: https://ai.studio/apps/drive/1a_YFXcrZXhIlCig9Y4Uj_6WzerS1pXMQ
 
+## Versioning
+
+This repository uses git tags for version management:
+- **v1**: OnePage version (backup) - See [VERSIONING.md](VERSIONING.md) for details
+
 ## Run Locally
 
 **Prerequisites:**  Node.js
