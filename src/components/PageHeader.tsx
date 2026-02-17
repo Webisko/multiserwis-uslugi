@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 interface PageHeaderProps {
   title: string;
@@ -24,22 +23,12 @@ export const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, backgro
       </div>
 
       <div className="container mx-auto px-4 relative z-20 text-center pt-20 pb-14 md:pt-24 md:pb-20">
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="page-hero-title text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 uppercase tracking-tight drop-shadow-2xl"
-        >
+        <h1 className="page-hero-title text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-6 uppercase tracking-tight drop-shadow-2xl">
           {title}
-        </motion.h1>
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="page-hero-subtitle text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed bg-black/25 backdrop-blur-sm px-4 py-3 rounded-lg border border-white/10"
-        >
+        </h1>
+        <p className="page-hero-subtitle text-lg md:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed bg-black/25 backdrop-blur-sm px-4 py-3 rounded-lg border border-white/10">
           {subtitle}
-        </motion.p>
+        </p>
       </div>
 
       <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-industrial-950 to-transparent z-20" />
