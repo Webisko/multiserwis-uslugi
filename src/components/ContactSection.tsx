@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, Clock } from 'lucide-react';
 
 export const ContactSection: React.FC = () => {
   return (
@@ -63,29 +63,29 @@ export const ContactSection: React.FC = () => {
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-base font-medium text-gray-400 mb-2">Imię i Nazwisko *</label>
-                  <input required type="text" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="Jan Kowalski" />
+                  <label htmlFor="contact-fullname" className="block text-base font-medium text-gray-400 mb-2">Imię i Nazwisko *</label>
+                  <input id="contact-fullname" required type="text" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="Jan Kowalski" />
                 </div>
                 <div>
-                  <label className="block text-base font-medium text-gray-400 mb-2">Firma (opcjonalnie)</label>
-                  <input type="text" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="Nazwa firmy" />
+                  <label htmlFor="contact-company" className="block text-base font-medium text-gray-400 mb-2">Firma (opcjonalnie)</label>
+                  <input id="contact-company" type="text" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="Nazwa firmy" />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-base font-medium text-gray-400 mb-2">Telefon *</label>
-                  <input required type="tel" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="+48 ..." />
+                  <label htmlFor="contact-phone" className="block text-base font-medium text-gray-400 mb-2">Telefon *</label>
+                  <input id="contact-phone" required type="tel" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="+48 ..." />
                 </div>
                 <div>
-                  <label className="block text-base font-medium text-gray-400 mb-2">E-mail *</label>
-                  <input required type="email" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="email@firma.pl" />
+                  <label htmlFor="contact-email" className="block text-base font-medium text-gray-400 mb-2">E-mail *</label>
+                  <input id="contact-email" required type="email" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="email@firma.pl" />
                 </div>
               </div>
               
               <div>
-                <label className="block text-base font-medium text-gray-400 mb-2">Interesująca usługa</label>
-                <select className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors">
+                <label htmlFor="contact-service" className="block text-base font-medium text-gray-400 mb-2">Interesująca usługa</label>
+                <select id="contact-service" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors">
                   <option>Wynajem maszyn i sprzętu</option>
                   <option>Usługi spawalnicze</option>
                   <option>Relokacja maszyn</option>
@@ -98,8 +98,8 @@ export const ContactSection: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-base font-medium text-gray-400 mb-2">Wiadomość *</label>
-                <textarea required rows={4} className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="Opisz swoje potrzeby, termin, lokalizację..."></textarea>
+                <label htmlFor="contact-message" className="block text-base font-medium text-gray-400 mb-2">Wiadomość *</label>
+                <textarea id="contact-message" required rows={4} className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="Opisz swoje potrzeby, termin, lokalizację..."></textarea>
               </div>
 
               <div className="flex items-start gap-3">

@@ -5,7 +5,6 @@ import { Menu, X, Phone, ChevronDown } from 'lucide-react';
 export const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,7 +18,6 @@ export const Navbar: React.FC = () => {
   const basePath = '/multiserwis-uslugi';
 
   const navLinks = [
-    { name: 'Strona Główna', path: `${basePath}/` },
     { 
       name: 'Wynajem Maszyn', 
       path: `${basePath}/wynajem`,
@@ -49,16 +47,91 @@ export const Navbar: React.FC = () => {
       ]
     },
     { name: 'O Firmie', path: `${basePath}/o-firmie` },
+    { name: 'Realizacje', path: `${basePath}/realizacje` },
     { name: 'Szkolenia', path: 'https://szkolenia-multiserwis.pl', external: true }, 
     { name: 'FAQ', path: `${basePath}/faq` },
   ];
 
-  const handleDropdownEnter = (name: string) => {
-    setActiveDropdown(name);
+  const renderDesktopNavItem = (link: typeof navLinks[number]) => {
+    if (link.external) {
+      return (
+        <a 
+          href={link.path}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium text-gray-300 hover:text-industrial-accent transition-colors uppercase tracking-wider flex items-center gap-1 whitespace-nowrap"
+        >
+          {link.name}
+        </a>
+      );
+    }
+
+    if (link.dropdownOnly) {
+      return (
+        <button type="button" className="text-sm font-medium text-gray-300 hover:text-industrial-accent transition-colors uppercase tracking-wider flex items-center gap-1 whitespace-nowrap">
+          {link.name}
+          <ChevronDown size={14} />
+        </button>
+      );
+    }
+
+    return (
+      <a
+        href={link.path}
+        className="text-sm font-medium transition-colors uppercase tracking-wider flex items-center gap-1 text-gray-300 hover:text-industrial-accent whitespace-nowrap"
+      >
+        {link.name}
+        {link.submenu && <ChevronDown size={14} />}
+      </a>
+    );
   };
 
-  const handleDropdownLeave = () => {
-    setActiveDropdown(null);
+  const renderMobileNavItem = (link: typeof navLinks[number]) => {
+    if (link.external) {
+      return (
+        <a href={link.path} target="_blank" rel="noopener noreferrer" className="block py-3 text-lg font-medium text-gray-300 hover:text-industrial-accent transition-colors">{link.name}</a>
+      );
+    }
+
+    if (link.dropdownOnly) {
+      return (
+        <div className="py-2">
+          <div className="text-lg font-medium text-gray-300 mb-2">{link.name}</div>
+          {link.submenu && (
+            <div className="pl-4 flex flex-col gap-2 mb-2 border-l border-gray-700">
+              {link.submenu.map((subItem) => (
+                <a
+                  key={subItem.name}
+                  href={subItem.path}
+                  className="block py-2 text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  {subItem.name}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    return (
+      <div className="py-2">
+        <a href={link.path} className="block text-lg font-medium text-gray-300 hover:text-industrial-accent transition-colors">{link.name}</a>
+        {link.submenu && (
+          <div className="pl-4 mt-2 flex flex-col gap-2 border-l border-gray-700">
+            {link.submenu.map((subItem) => (
+              <a
+                key={subItem.name}
+                href={subItem.path}
+                className="block py-2 text-sm text-gray-400 hover:text-white transition-colors"
+              >
+                {subItem.name}
+              </a>
+            ))}
+          </div>
+        )}
+      </div>
+    );
   };
 
   return (
@@ -75,37 +148,13 @@ export const Navbar: React.FC = () => {
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
+        <div className="hidden xl:flex items-center gap-4 2xl:gap-6">
           {navLinks.map((link) => (
             <div 
               key={link.name} 
               className="relative group/menu"
-              onMouseEnter={() => link.submenu && handleDropdownEnter(link.name)}
-              onMouseLeave={handleDropdownLeave}
             >
-              {link.external ? (
-                <a 
-                  href={link.path}
-                   target="_blank"
-                   rel="noopener noreferrer"
-                  className="text-sm font-medium text-gray-300 hover:text-industrial-accent transition-colors uppercase tracking-wider flex items-center gap-1"
-                >
-                  {link.name}
-                </a>
-              ) : link.dropdownOnly ? (
-                 <button className="text-sm font-medium text-gray-300 hover:text-industrial-accent transition-colors uppercase tracking-wider flex items-center gap-1">
-                    {link.name}
-                    <ChevronDown size={14} />
-                 </button>
-              ) : (
-                <a
-                  href={link.path}
-                  className={`text-sm font-medium transition-colors uppercase tracking-wider flex items-center gap-1 text-gray-300 hover:text-industrial-accent`}
-                >
-                  {link.name}
-                  {link.submenu && <ChevronDown size={14} />}
-                </a>
-              )}
+              {renderDesktopNavItem(link)}
 
               {/* Dropdown */}
               {link.submenu && (
@@ -135,53 +184,17 @@ export const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <button onClick={() => setIsOpen(!isOpen)} className="lg:hidden text-white z-50">
+        <button onClick={() => setIsOpen(!isOpen)} className="xl:hidden text-white z-50" type="button" aria-label="Toggle navigation menu">
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Menu Dropdown (GitHub style) */}
       {isOpen && (
-        <div className="lg:hidden absolute top-full left-0 w-full bg-industrial-900 border-t border-gray-800 shadow-xl flex flex-col gap-2 p-4 animate-in slide-in-from-top-2 duration-200">
+        <div className="xl:hidden absolute top-full left-0 w-full bg-industrial-900 border-t border-gray-800 shadow-xl flex flex-col gap-2 p-4 animate-in slide-in-from-top-2 duration-200">
            {navLinks.map((link) => (
              <div key={link.name} className="border-b border-gray-800/50 last:border-0">
-                {link.external ? (
-                   <a href={link.path} target="_blank" rel="noopener noreferrer" className="block py-3 text-lg font-medium text-gray-300 hover:text-industrial-accent transition-colors">{link.name}</a>
-                ) : link.dropdownOnly ? (
-                   <div className="py-2">
-                      <div className="text-lg font-medium text-gray-300 mb-2">{link.name}</div>
-                      {link.submenu && (
-                        <div className="pl-4 flex flex-col gap-2 mb-2 border-l border-gray-700">
-                           {link.submenu.map((subItem) => (
-                             <a 
-                               key={subItem.name} 
-                               href={subItem.path}
-                               className="block py-2 text-sm text-gray-400 hover:text-white transition-colors"
-                             >
-                                {subItem.name}
-                             </a>
-                           ))}
-                        </div>
-                      )}
-                   </div>
-                ) : (
-                   <div className="py-2">
-                     <a href={link.path} className="block text-lg font-medium text-gray-300 hover:text-industrial-accent transition-colors">{link.name}</a>
-                      {link.submenu && (
-                        <div className="pl-4 mt-2 flex flex-col gap-2 border-l border-gray-700">
-                           {link.submenu.map((subItem) => (
-                             <a 
-                               key={subItem.name} 
-                               href={subItem.path}
-                               className="block py-2 text-sm text-gray-400 hover:text-white transition-colors"
-                             >
-                                {subItem.name}
-                             </a>
-                           ))}
-                        </div>
-                      )}
-                   </div>
-                )}
+               {renderMobileNavItem(link)}
              </div>
            ))}
            <a

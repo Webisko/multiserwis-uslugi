@@ -128,7 +128,7 @@ export const ServicesSection: React.FC = () => {
               {service.training && (
                 <div className="mt-4 p-5 border border-dashed border-gray-700 rounded-lg bg-industrial-900/50">
                     <p className="text-sm text-gray-400 mb-2">{service.training.text}</p>
-                    <a href="#" className="text-base font-bold text-industrial-accent hover:text-white flex items-center gap-1 transition-colors">
+                    <a href="https://szkolenia-multiserwis.pl" target="_blank" rel="noopener noreferrer" className="text-base font-bold text-industrial-accent hover:text-white flex items-center gap-1 transition-colors">
                         {service.training.linkText} <ExternalLink size={14} />
                     </a>
                 </div>

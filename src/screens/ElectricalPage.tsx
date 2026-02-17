@@ -7,11 +7,12 @@ export const ElectricalPage: React.FC = () => {
     <>
       <PageHeader 
         title="Usługi Elektryczne" 
-        subtitle="Uruchomienia, pomiary i wykonawstwo instalacji elektrycznych na obiektach przemysłowych i energetycznych."
+            subtitle="Uruchomienia, pomiary i modernizacje instalacji elektrycznych na obiektach przemysłowych i energetycznych."
+            backgroundImage="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&q=80&w=2000"
       />
 
-      <section className="py-20 bg-industrial-950">
-        <div className="container mx-auto px-4">
+         <section className="page-section">
+            <div className="page-container">
           
           {/* Section 1: Startup & Commissioning */}
           <div className="mb-20">
@@ -23,7 +24,7 @@ export const ElectricalPage: React.FC = () => {
              </div>
              
              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div className="bg-industrial-900/50 p-8 rounded-xl border border-gray-800">
+                <div className="offer-card-soft">
                    <h3 className="text-xl font-bold text-white mb-4">Prace Kontrolno-Pomiarowe</h3>
                    <ul className="space-y-3">
                       {[
@@ -42,7 +43,7 @@ export const ElectricalPage: React.FC = () => {
                    </ul>
                 </div>
                 
-                <div className="bg-industrial-900/50 p-8 rounded-xl border border-gray-800">
+                <div className="offer-card-soft">
                    <h3 className="text-xl font-bold text-white mb-4">Koordynacja z Technologią</h3>
                    <p className="text-gray-400 mb-6">
                       Zapewniamy skoordynowane podejście do rozruchu technologicznego, integrując rozdzielnice, stacje transformatorowe i automatykę. 
@@ -94,7 +95,7 @@ export const ElectricalPage: React.FC = () => {
           <div className="bg-industrial-900 border border-gray-800 rounded-xl p-8 flex flex-col items-center text-center">
              <h3 className="text-2xl font-bold text-white mb-2">Potrzebujesz uprawnień SEP?</h3>
              <p className="text-gray-400 mb-6 max-w-2xl">
-                Organizujemy kursy i egzaminy na uprawnienia energetyczne w grupach: G1 (elektryczne), G2 (cieplne) i G3 (gazowe).
+                Organizujemy kursy i egzaminy SEP: G1 (elektryczne), G2 (cieplne) i G3 (gazowe).
              </p>
              <a 
                href="https://szkolenia-multiserwis.pl"
@@ -102,7 +103,7 @@ export const ElectricalPage: React.FC = () => {
                rel="noopener noreferrer" 
                className="inline-flex items-center gap-2 text-industrial-accent font-bold hover:text-white transition-colors uppercase tracking-wider text-sm"
             >
-               Oferta szkoleń SEP <ArrowRight size={16} />
+                      Sprawdź szkolenia SEP <ArrowRight size={16} />
              </a>
           </div>
 

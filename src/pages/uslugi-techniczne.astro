@@ -10,30 +10,44 @@ import { Footer } from "../components/Footer";
 >
   <div>
     <Navbar client:load />
-    <main class="flex-grow pt-[80px] bg-industrial-950 min-h-screen py-20">
-      <div class="container mx-auto px-4">
-        <h1 class="text-4xl font-bold text-white mb-8">Usługi Techniczne</h1>
+    <main class="flex-grow pt-[80px] page-section min-h-screen">
+      <div class="page-container">
+        <div class="max-w-4xl mx-auto text-center mb-12">
+          <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">Usługi Techniczne</h1>
+          <p class="text-xl text-gray-300 leading-relaxed">
+            Kompleksowe wsparcie techniczne dla przemysłu: od spawalnictwa i konstrukcji,
+            przez relokacje maszyn, po formalności i serwis UDT.
+          </p>
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
           <a
             href="/multiserwis-uslugi/spawanie"
-            class="block bg-industrial-900 p-8 rounded border border-gray-800 hover:border-industrial-accent"
+            class="block offer-card"
           >
             <h2 class="text-2xl font-bold text-white mb-2">Spawalnictwo</h2>
-            <p class="text-gray-400">Usługi spawalnicze i konstrukcje.</p>
+            <p class="text-gray-300">Usługi spawalnicze i konstrukcje stalowe: od napraw po projekty niestandardowe.</p>
           </a>
           <a
             href="/multiserwis-uslugi/udt"
-            class="block bg-industrial-900 p-8 rounded border border-gray-800 hover:border-industrial-accent"
+            class="block offer-card"
           >
             <h2 class="text-2xl font-bold text-white mb-2">Konserwacja UDT</h2>
-            <p class="text-gray-400">Przeglądy i rejestracja urządzeń.</p>
+            <p class="text-gray-300">Przeglądy, formalności i doradztwo dla urządzeń podlegających dozorowi technicznemu.</p>
           </a>
           <a
             href="/multiserwis-uslugi/relokacja"
-            class="block bg-industrial-900 p-8 rounded border border-gray-800 hover:border-industrial-accent"
+            class="block offer-card"
           >
             <h2 class="text-2xl font-bold text-white mb-2">Relokacja Maszyn</h2>
-            <p class="text-gray-400">Transport i montaż linii produkcyjnych.</p>
+            <p class="text-gray-300">Demontaż, transport i uruchomienie maszyn oraz linii produkcyjnych.</p>
+          </a>
+        </div>
+
+        <div class="offer-cta mt-10 text-center">
+          <p class="text-lg text-gray-300 mb-5">Potrzebujesz wsparcia technicznego dopasowanego do Twojego zakładu?</p>
+          <a href="/multiserwis-uslugi/kontakt" class="inline-flex items-center justify-center bg-industrial-accent text-industrial-900 px-8 py-3 rounded-lg font-bold hover:bg-industrial-accentHover transition-colors">
+            Porozmawiajmy o zakresie usług
           </a>
         </div>
       </div>

@@ -13,15 +13,16 @@ export const UdtPage: React.FC = () => {
     <>
       <PageHeader 
         title="Konserwacja i Naprawa - UDT" 
-        subtitle="Zapewniamy bezpieczeństwo i pełną zgodność formalną Twoich urządzeń z wymogami Urzędu Dozoru Technicznego."
+        subtitle="Przejmujemy pełną obsługę UDT: formalności, przeglądy i wsparcie techniczne Twoich urządzeń."
+        backgroundImage="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=2000"
       />
 
-      <section className="py-20 bg-industrial-950">
-        <div className="container mx-auto px-4">
+      <section className="page-section">
+        <div className="page-container">
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 max-w-6xl mx-auto mb-20">
             {/* Service Column 1 */}
-            <div className="bg-industrial-900 p-8 rounded-xl border border-gray-800">
+            <div className="offer-card">
               <div className="w-12 h-12 bg-industrial-800 rounded-lg flex items-center justify-center text-industrial-accent mb-6">
                  <FileText size={24} />
               </div>
@@ -36,7 +37,7 @@ export const UdtPage: React.FC = () => {
             </div>
 
             {/* Service Column 2 */}
-            <div className="bg-industrial-900 p-8 rounded-xl border border-gray-800 relative overflow-hidden">
+            <div className="offer-card relative overflow-hidden">
                <div className="absolute top-0 right-0 w-20 h-20 bg-industrial-accent/10 rounded-full blur-2xl"></div>
               <div className="w-12 h-12 bg-industrial-800 rounded-lg flex items-center justify-center text-industrial-accent mb-6">
                  <Settings size={24} />
@@ -52,7 +53,7 @@ export const UdtPage: React.FC = () => {
             </div>
 
             {/* Service Column 3 */}
-            <div className="bg-industrial-900 p-8 rounded-xl border border-gray-800">
+            <div className="offer-card">
               <div className="w-12 h-12 bg-industrial-800 rounded-lg flex items-center justify-center text-industrial-accent mb-6">
                  <ShieldCheck size={24} />
               </div>
@@ -82,7 +83,7 @@ export const UdtPage: React.FC = () => {
           {/* Training CTA */}
           <div className="bg-gradient-to-r from-industrial-900 to-industrial-800 rounded-2xl p-8 md:p-12 border border-gray-800 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="max-w-2xl">
-               <h3 className="text-2xl font-bold text-white mb-4">Potrzebujesz uprawnień do obsługi tych urządzeń?</h3>
+               <h3 className="text-2xl font-bold text-white mb-4">Potrzebujesz uprawnień dla zespołu?</h3>
                <p className="text-gray-400">Prowadzimy certyfikowane szkolenia UDT na wózki, suwnice, żurawie i inne. Oferujemy również odnowienie uprawnień oraz szkolenia na maszyny budowlane (IMBIGS).</p>
             </div>
             <a 

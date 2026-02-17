@@ -1,0 +1,39 @@
+{
+  "recommendations": [
+    "astro-build.astro-vscode",
+    "bradlc.vscode-tailwindcss",
+    "github.copilot-chat",
+    "github.vscode-pull-request-github",
+    "github.vscode-github-actions",
+    "eamodio.gitlens",
+    "usernamehw.errorlens"
+  ],
+  "unwantedRecommendations": [
+    "alefragnani.project-manager",
+    "christian-kohler.path-intellisense",
+    "donjayamanne.githistory",
+    "ecmel.vscode-html-css",
+    "mhutchie.git-graph",
+    "ms-vscode.live-server",
+    "ms-vscode.powershell",
+    "patbenatar.advanced-new-file",
+    "pranaygp.vscode-css-peek",
+    "sleistner.vscode-fileutils",
+    "sonarsource.sonarlint-vscode",
+    "wordpresstoolbox.wordpress-toolbox",
+    "johnbillion.vscode-wordpress-hooks",
+    "bmewburn.vscode-intelephense-client",
+    "valeryanm.vscode-phpsab",
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-python.debugpy",
+    "ms-python.vscode-python-envs",
+    "cweijan.vscode-mysql-client2",
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-mysql",
+    "dotjoshjohnson.xml",
+    "pptxviewerpro.pptx-viewer-pro",
+    "mathematic.vscode-pdf",
+    "tomoki1207.pdf"
+  ]
+}

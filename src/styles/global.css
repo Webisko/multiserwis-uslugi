@@ -8,3 +8,67 @@
     color: #f4f4f5;
   }
 }
+
+@layer components {
+  .page-section {
+    @apply py-20 bg-industrial-950;
+  }
+
+  .page-container {
+    @apply container mx-auto px-4;
+  }
+
+  .offer-card {
+    @apply bg-industrial-900 border border-gray-800 rounded-xl p-8 transition-colors hover:border-industrial-accent/40;
+  }
+
+  .offer-card-soft {
+    @apply bg-industrial-900/50 border border-gray-800 rounded-xl p-8 transition-colors hover:border-industrial-accent/30;
+  }
+
+  .offer-cta {
+    @apply bg-industrial-900 rounded-2xl border border-gray-800 p-8 md:p-12;
+  }
+}
+
+@media (max-width: 390px) {
+  .page-section {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .page-container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .offer-card,
+  .offer-card-soft,
+  .offer-cta {
+    padding: 1.1rem;
+    border-radius: 0.75rem;
+  }
+
+  .page-hero {
+    min-height: 38vh;
+  }
+
+  .page-hero-title {
+    font-size: 1.9rem;
+    line-height: 1.1;
+    margin-bottom: 0.9rem;
+  }
+
+  .page-hero-subtitle {
+    font-size: 0.96rem;
+    line-height: 1.5;
+    padding: 0.65rem 0.75rem;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font-size: 16px;
+  }
+}

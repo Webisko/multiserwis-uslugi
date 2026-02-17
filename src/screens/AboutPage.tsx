@@ -20,11 +20,12 @@ export const AboutPage: React.FC = () => {
     <>
       <PageHeader 
         title="O Firmie" 
-        subtitle="Jakość potwierdzona certyfikatami. Doświadczenie budowane latami."
+            subtitle="Doświadczenie, certyfikowana jakość i odpowiedzialność za wynik każdej realizacji."
+            backgroundImage="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
       />
 
-      <section className="py-20 bg-industrial-950">
-        <div className="container mx-auto px-4">
+         <section className="page-section">
+            <div className="page-container">
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
              <div>

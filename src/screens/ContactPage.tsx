@@ -7,11 +7,12 @@ export const ContactPage: React.FC = () => {
     <>
       <PageHeader 
         title="Kontakt" 
-        subtitle="Jesteśmy do Twojej dyspozycji. Skontaktuj się z nami, aby omówić szczegóły współpracy."
+            subtitle="Skontaktuj się z nami i otrzymaj szybką odpowiedź oraz dopasowaną wycenę usług."
+            backgroundImage="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000"
       />
 
-      <section className="py-20 bg-industrial-950">
-        <div className="container mx-auto px-4">
+         <section className="page-section">
+            <div className="page-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 max-w-6xl mx-auto">
             
             {/* Contact Info */}
@@ -66,14 +67,14 @@ export const ContactPage: React.FC = () => {
                      <div>
                         <h4 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-1">Godziny Pracy</h4>
                         <p className="text-white">Poniedziałek - Piątek</p>
-                        <p className="text-gray-400">8:00 - 16:00</p>
+                        <p className="text-gray-400">8:00 - 16:00 (do potwierdzenia)</p>
                      </div>
                   </div>
                </div>
             </div>
 
             {/* Contact Form (Simple Variant A/D hybrid) */}
-            <div className="bg-industrial-900 p-8 rounded-2xl border border-gray-800">
+            <div className="offer-cta">
                <h3 className="text-2xl font-bold text-white mb-6">Napisz do nas</h3>
                <form className="space-y-4">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -118,7 +119,7 @@ export const ContactPage: React.FC = () => {
                   </div>
 
                   <button type="submit" className="w-full bg-industrial-accent text-industrial-900 font-bold py-4 rounded hover:bg-industrial-accentHover transition-colors mt-4">
-                     Wyślij Wiadomość
+                     Wyślij zapytanie
                   </button>
                </form>
             </div>

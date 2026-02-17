@@ -51,14 +51,15 @@ export const RentalsPage: React.FC = () => {
 
       <PageHeader 
         title="Wynajem Maszyn i Sprzętu" 
-        subtitle="Dostarczamy niezawodny sprzęt dźwigowy i budowlany, dopasowany do specyfiki Twoich prac."
+        subtitle="Niezawodny sprzęt dźwigowy i budowlany, gotowy do pracy dokładnie wtedy, gdy go potrzebujesz."
+        backgroundImage="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=2000"
       />
 
-      <section className="py-20 bg-industrial-950">
-        <div className="container mx-auto px-4">
+      <section className="page-section">
+        <div className="page-container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
             {categories.map((category) => (
-              <div key={category.id} id={category.id} className="bg-industrial-900 border border-gray-800 rounded-xl p-8 hover:border-industrial-accent/50 transition-colors">
+              <div key={category.id} id={category.id} className="offer-card">
                 <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
                   <span className="w-2 h-8 bg-industrial-accent rounded-sm"></span>
                   {category.title}
@@ -76,12 +77,12 @@ export const RentalsPage: React.FC = () => {
             ))}
           </div>
 
-          <div className="bg-industrial-900 rounded-2xl p-8 md:p-12 border border-gray-800 relative overflow-hidden">
+          <div className="offer-cta relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-industrial-accent/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative z-10">
               <div>
-                <h3 className="text-3xl font-bold text-white mb-6">Elastyczne Opcje Wynajmu</h3>
+                <h3 className="text-3xl font-bold text-white mb-6">Elastyczny model współpracy</h3>
                 <div className="space-y-4 text-gray-300">
                   <p className="flex items-start gap-3">
                     <span className="w-6 h-6 bg-industrial-800 rounded-full flex items-center justify-center text-industrial-accent font-bold shrink-0">1</span>
@@ -96,7 +97,7 @@ export const RentalsPage: React.FC = () => {
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
                   <a href="/multiserwis-uslugi/kontakt" className="inline-flex items-center justify-center gap-2 bg-industrial-accent text-industrial-900 px-8 py-3 rounded font-bold hover:bg-industrial-accentHover transition-colors">
                     <Phone size={18} />
-                    Zapytaj o dostępność
+                    Sprawdź dostępność
                   </a>
                 </div>
               </div>

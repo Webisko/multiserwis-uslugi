@@ -1,20 +1,36 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# multiserwis-uslugi
 
-# Run and deploy your AI Studio app
+Strona firmowa zbudowana na Astro + React + Tailwind, deployowana na GitHub Pages.
 
-This contains everything you need to run your app locally.
+## Stack
+- Astro 5
+- React 19
+- Tailwind CSS 3
+- TypeScript
 
-View your app in AI Studio: https://ai.studio/apps/drive/1a_YFXcrZXhIlCig9Y4Uj_6WzerS1pXMQ
+## Wymagania
+- Node.js 20 (zgodnie z `.nvmrc` i CI)
+- npm
 
-## Run Locally
+## Start lokalny
+1. Zainstaluj zależności:
+   - `npm ci`
+2. Uruchom dev server:
+   - Windows PowerShell: `npm.cmd run dev`
+   - Inne shelle: `npm run dev`
 
-**Prerequisites:**  Node.js
+## Komendy
+- `npm run check` – sprawdzenie typów i projektu Astro
+- `npm run build` – build produkcyjny
+- `npm run verify` – check + build (zalecane po zmianach)
+- `npm run preview` – podgląd builda lokalnie
 
+## Deploy
+- Deploy odbywa się przez GitHub Actions do GitHub Pages (branch `main`).
+- Konfiguracja `site` i `base` jest w `astro.config.mjs`.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Analityka
+- Konfiguracja Umami znajduje się w `UMAMI_SETUP.md`.
+
+## Tryb agentowy
+- Workflow i polityka rozszerzeń: `AGENT_WORKSPACE.md`.
