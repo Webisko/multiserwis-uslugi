@@ -1,7 +1,10 @@
 import React from 'react';
 import { Zap, Activity, Cable, CheckCircle2, GraduationCap, ArrowRight } from 'lucide-react';
+import { useCompanyData } from '../data/company';
 
 export const ElectricalSection: React.FC = () => {
+  const company = useCompanyData();
+
   return (
     <section id="elektryka" className="py-24 bg-industrial-800 border-t border-gray-700">
       <div className="container mx-auto px-4">
@@ -99,7 +102,7 @@ export const ElectricalSection: React.FC = () => {
                  <p className="text-gray-400 text-lg">Organizujemy kursy: G1 (Elektryczne), G2 (Energetyczne), G3 (Gazowe).</p>
               </div>
            </div>
-            <a href="https://szkolenia-multiserwis.pl" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-industrial-800 hover:bg-industrial-accent hover:text-industrial-900 text-white font-bold rounded-lg text-lg transition-colors flex items-center gap-3 whitespace-nowrap shadow-lg">
+            <a href={company.links.trainingSiteUrl} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-industrial-800 hover:bg-industrial-accent hover:text-industrial-900 text-white font-bold rounded-lg text-lg transition-colors flex items-center gap-3 whitespace-nowrap shadow-lg">
               Zobacz szkolenia SEP <ArrowRight size={20} />
            </a>
         </div>

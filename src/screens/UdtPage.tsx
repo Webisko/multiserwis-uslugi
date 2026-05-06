@@ -1,8 +1,15 @@
 import React from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { ShieldCheck, FileText, Settings, ArrowRight } from 'lucide-react';
+import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
+import { ServiceInquiryCta } from '../components/ServiceInquiryCta';
 
-export const UdtPage: React.FC = () => {
+type UdtPageProps = {
+  companyData?: CompanyData;
+};
+
+export const UdtPage: React.FC<UdtPageProps> = ({ companyData }) => {
+  const resolvedCompany = companyData ?? company;
   const devices = [
     'Wózki widłowe', 'Podesty ruchome', 'Żurawie samojezdne', 'Żurawie HDS i leśne',
     'Dźwigniki', 'Podnośniki warsztatowe', 'Naczepy do transportu pojazdów',
@@ -10,7 +17,7 @@ export const UdtPage: React.FC = () => {
   ];
 
   return (
-    <>
+    <SiteSettingsProvider value={resolvedCompany}>
       <PageHeader 
         title="Konserwacja i Naprawa - UDT" 
         subtitle="Przejmujemy pełną obsługę UDT: formalności, przeglądy i wsparcie techniczne Twoich urządzeń."
@@ -87,7 +94,7 @@ export const UdtPage: React.FC = () => {
                <p className="text-gray-400">Prowadzimy certyfikowane szkolenia UDT na wózki, suwnice, żurawie i inne. Oferujemy również odnowienie uprawnień oraz szkolenia na maszyny budowlane (IMBIGS).</p>
             </div>
             <a 
-               href="https://szkolenia-multiserwis.pl" 
+              href={resolvedCompany.links.trainingSiteUrl}
                target="_blank" 
                rel="noopener noreferrer"
                className="bg-white text-industrial-900 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition-colors flex items-center gap-2 whitespace-nowrap"
@@ -97,8 +104,18 @@ export const UdtPage: React.FC = () => {
             </a>
           </div>
 
+          <div className="mt-10">
+            <ServiceInquiryCta
+              title="Potrzebujesz przygotowania urządzenia do badań UDT albo przejęcia formalności?"
+              description="Możemy przejąć cały proces: od weryfikacji dokumentacji, przez przygotowanie techniczne, po organizację badania i dalszą obsługę konserwacyjną."
+              contactLabel="Poproś o obsługę UDT"
+              trainingTitle="Szkolenia operatorów i konserwatorów"
+              trainingDescription="Dla urządzeń objętych dozorem prowadzimy również szkolenia i odnowienia uprawnień na osobnej domenie szkoleniowej."
+            />
+          </div>
+
         </div>
       </section>
-    </>
+    </SiteSettingsProvider>
   );
 };

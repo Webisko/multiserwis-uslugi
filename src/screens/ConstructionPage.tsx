@@ -1,108 +1,85 @@
 import React from 'react';
 import { PageHeader } from '../components/PageHeader';
-import { HardHat, ArrowRight } from 'lucide-react';
+import { HardHat, Building2, Hammer, Ruler } from 'lucide-react';
+import { ServiceInquiryCta } from '../components/ServiceInquiryCta';
+import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
 
-export const ConstructionPage: React.FC = () => {
-  const scope = [
-    'Adaptacje i modernizacje hal przemysłowych',
-    'Fundamenty pod maszyny oraz przygotowanie pod montaż urządzeń',
-    'Prace wykończeniowe i remontowe na obiektach przemysłowych',
-    'Naprawy posadzek przemysłowych i elementów infrastruktury',
-    'Wsparcie realizacji technicznych we współpracy z działem elektrycznym i UDT',
-  ];
+type ConstructionPageProps = {
+  companyData?: CompanyData;
+};
 
-  const executionModel = [
+export const ConstructionPage: React.FC<ConstructionPageProps> = ({ companyData }) => {
+  const resolvedCompany = companyData ?? company;
+  const constructionAreas = [
     {
-      title: 'Analiza zakresu',
-      description: 'Wspólnie z klientem określamy zakres prac, harmonogram oraz wymagania obiektu.',
+      title: 'Prace remontowe w obiektach przemysłowych',
+      description:
+        'Realizujemy roboty wykończeniowe, odtworzeniowe i modernizacyjne w halach, zapleczach technicznych oraz obiektach pomocniczych.',
+      icon: <Hammer size={22} />,
+      items: ['remonty fragmentów hal i pomieszczeń technicznych', 'prace adaptacyjne pod nowe procesy', 'roboty odtworzeniowe po relokacjach i modernizacjach'],
     },
     {
-      title: 'Organizacja robót',
-      description: 'Planujemy etapy i organizację prac tak, aby zminimalizować wpływ na ciągłość działania zakładu.',
+      title: 'Fundamenty i przygotowanie pod maszyny',
+      description:
+        'Wspieramy przygotowanie przestrzeni pod montaż urządzeń, linii i wyposażenia technologicznego.',
+      icon: <Ruler size={22} />,
+      items: ['fundamenty i bazy pod urządzenia', 'przygotowanie stanowisk roboczych', 'koordynacja z pracami relokacyjnymi i elektrycznymi'],
     },
     {
-      title: 'Realizacja i odbiór',
-      description: 'Prowadzimy prace wykonawcze, raportujemy postęp i przygotowujemy obiekt do odbioru.',
+      title: 'Prace towarzyszące dla inwestycji przemysłowych',
+      description:
+        'Obsługujemy roboty pomocnicze i wykonawcze tam, gdzie liczy się sprawna współpraca kilku branż jednocześnie.',
+      icon: <Building2 size={22} />,
+      items: ['roboty budowlane przy modernizacjach obiektów', 'przygotowanie przestrzeni dla nowych instalacji', 'prace uzgadniane indywidualnie pod zakres inwestycji'],
     },
   ];
 
   return (
-    <>
+    <SiteSettingsProvider value={resolvedCompany}>
       <PageHeader 
         title="Usługi Remontowo-Budowlane" 
-        subtitle="Prace remontowo-budowlane dla przemysłu i obiektów technicznych, realizowane sprawnie i bezpiecznie."
-        backgroundImage="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=2000"
+        subtitle="Realizujemy prace budowlane w obiektach przemysłowych, magazynowych i użyteczności publicznej."
       />
 
-      <section className="page-section">
-        <div className="page-container">
-          <div className="max-w-5xl mx-auto text-center mb-14">
-            <p className="text-xl text-gray-300 leading-relaxed">
-              Sekcja budownictwa została przygotowana w wersji roboczej na podstawie obecnych ustaleń.
-              Finalny zakres i opisy realizacji uzupełnimy po doprecyzowaniu informacji od klienta.
+      <section className="py-20 bg-industrial-950">
+        <div className="container mx-auto px-4">
+          <div className="mx-auto mb-14 max-w-3xl text-center">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-industrial-900 text-industrial-accent">
+              <HardHat size={32} />
+            </div>
+            <h2 className="mb-4 text-3xl font-bold text-white">Zakres prac budowlanych dla przemysłu</h2>
+            <p className="text-lg leading-relaxed text-gray-300">
+              Obsługujemy prace budowlane jako uzupełnienie modernizacji, relokacji i przygotowania przestrzeni pod nowe urządzenia. Zakres każdorazowo dopasowujemy do obiektu, harmonogramu i wymagań inwestora.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-            <article className="offer-card rounded-2xl">
-              <div className="w-14 h-14 bg-industrial-800 rounded-xl flex items-center justify-center text-industrial-accent mb-6">
-                <HardHat size={30} />
+          <div className="mb-10 grid grid-cols-1 gap-8 lg:grid-cols-3">
+            {constructionAreas.map((area) => (
+              <div key={area.title} className="rounded-2xl border border-gray-800 bg-industrial-900/70 p-8">
+                <div className="mb-5 inline-flex rounded-xl bg-industrial-800 p-3 text-industrial-accent">
+                  {area.icon}
+                </div>
+                <h3 className="mb-3 text-xl font-bold text-white">{area.title}</h3>
+                <p className="mb-5 text-sm leading-relaxed text-gray-400">{area.description}</p>
+                <ul className="space-y-3 text-sm text-gray-300">
+                  {area.items.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-industrial-accent"></span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <h2 className="text-3xl font-bold text-white mb-6">Zakres usług</h2>
-              <ul className="space-y-4 text-gray-300">
-                {scope.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="mt-2 w-2 h-2 rounded-full bg-industrial-accent" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-
-            <article className="offer-card rounded-2xl">
-              <h2 className="text-3xl font-bold text-white mb-6">Model realizacji</h2>
-              <div className="space-y-6">
-                {executionModel.map((step, index) => (
-                  <div key={step.title} className="border-l-2 border-industrial-accent/60 pl-5">
-                    <p className="text-industrial-accent font-display font-bold text-lg mb-2">0{index + 1}. {step.title}</p>
-                    <p className="text-gray-300">{step.description}</p>
-                  </div>
-                ))}
-              </div>
-            </article>
+            ))}
           </div>
 
-          <div className="offer-cta mb-10">
-            <h3 className="text-2xl font-bold text-white mb-4">Do potwierdzenia z klientem</h3>
-            <ul className="space-y-3 text-gray-300">
-              <li>• Szczegółowe specjalizacje remontowo-budowlane i priorytetowe typy zleceń</li>
-              <li>• Przykładowe realizacje (zdjęcia, zakres, efekty, terminy)</li>
-              <li>• Informacja o obszarze działania (lokalnie / Polska / zagranica)</li>
-            </ul>
-          </div>
-
-          <div className="bg-industrial-900/60 border border-dashed border-gray-700 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
-            <div>
-              <h4 className="text-2xl font-bold text-white mb-2">Potrzebujesz uprawnień na maszyny budowlane?</h4>
-              <p className="text-gray-400">Prowadzimy szkolenia IMBIGS dla operatorów maszyn i urządzeń.</p>
-            </div>
-            <a
-              href="https://szkolenia-multiserwis.pl"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-industrial-800 text-white rounded-lg font-bold hover:bg-industrial-accent hover:text-industrial-900 transition-colors"
-            >
-              Zobacz szkolenia IMBIGS <ArrowRight size={18} />
-            </a>
-          </div>
-
-          <div className="text-center">
-            <a href="/multiserwis-uslugi/kontakt" className="inline-block bg-industrial-accent text-industrial-900 px-8 py-3 rounded font-bold hover:bg-industrial-accentHover transition-colors">
-              Zamów wycenę prac budowlanych
-            </a>
-          </div>
+          <ServiceInquiryCta
+            title="Masz zakres budowlany do skoordynowania z pracami technicznymi lub relokacją?"
+            description="Opisz obiekt, rodzaj prac i termin realizacji. Ustalimy, czy potrzebujesz osobnej ekipy budowlanej, czy pakietu łączącego budownictwo z elektryką, relokacją albo przygotowaniem pod urządzenia."
+            contactLabel="Skonsultuj zakres budowlany"
+          />
         </div>
       </section>
-    </>
+    </SiteSettingsProvider>
   );
 };

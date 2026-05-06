@@ -1,7 +1,15 @@
 import React from 'react';
 import { Phone, Mail, Clock } from 'lucide-react';
+import { useCompanyData } from '../data/company';
+import { ContactForm } from './ContactForm';
 
-export const ContactSection: React.FC = () => {
+type ContactSectionProps = {
+  serviceOptions?: string[];
+};
+
+export const ContactSection: React.FC<ContactSectionProps> = ({ serviceOptions }) => {
+  const company = useCompanyData();
+
   return (
     <section id="kontakt" className="py-24 bg-industrial-800 border-t border-gray-700">
       <div className="container mx-auto px-4">
@@ -25,8 +33,8 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <h3 className="text-white font-bold text-xl md:text-2xl mb-1">Zadzwoń do nas</h3>
                   <p className="text-gray-400 mb-2 text-lg">Dział handlowy / Wynajem</p>
-                  <a href="tel:+48123456789" className="text-2xl md:text-3xl font-display font-bold text-white hover:text-industrial-accent transition-colors">
-                    +48 123 456 789
+                  <a href={company.phones.services.href} className="text-2xl md:text-3xl font-display font-bold text-white hover:text-industrial-accent transition-colors">
+                    {company.phones.services.value}
                   </a>
                 </div>
               </div>
@@ -38,8 +46,8 @@ export const ContactSection: React.FC = () => {
                 <div>
                   <h3 className="text-white font-bold text-xl md:text-2xl mb-1">Napisz wiadomość</h3>
                   <p className="text-gray-400 mb-2 text-lg">Odpowiadamy w ciągu 24h</p>
-                  <a href="mailto:kontakt@industrialpro.pl" className="text-xl md:text-2xl text-white hover:text-industrial-accent transition-colors">
-                    kontakt@industrialpro.pl
+                  <a href={`mailto:${company.email}`} className="text-xl md:text-2xl text-white hover:text-industrial-accent transition-colors">
+                    {company.email}
                   </a>
                 </div>
               </div>
@@ -50,70 +58,21 @@ export const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="text-white font-bold text-xl md:text-2xl mb-1">Godziny pracy</h3>
-                  <p className="text-gray-400 text-lg">Poniedziałek - Piątek: 7:00 - 17:00</p>
-                  <p className="text-gray-400 text-lg">Serwis awaryjny 24/7 (dla stałych klientów)</p>
+                  <p className="text-gray-400 text-lg">{company.openingHours.days}: {company.openingHours.details}</p>
+                  <p className="text-gray-400 text-lg">{company.emergencyNote}</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Form - Wariant A (Universal) */}
-          <div className="bg-industrial-900 p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-700">
-            <h3 className="text-3xl font-display font-bold text-white mb-8">Formularz kontaktowy</h3>
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="contact-fullname" className="block text-base font-medium text-gray-400 mb-2">Imię i Nazwisko *</label>
-                  <input id="contact-fullname" required type="text" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="Jan Kowalski" />
-                </div>
-                <div>
-                  <label htmlFor="contact-company" className="block text-base font-medium text-gray-400 mb-2">Firma (opcjonalnie)</label>
-                  <input id="contact-company" type="text" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="Nazwa firmy" />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="contact-phone" className="block text-base font-medium text-gray-400 mb-2">Telefon *</label>
-                  <input id="contact-phone" required type="tel" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="+48 ..." />
-                </div>
-                <div>
-                  <label htmlFor="contact-email" className="block text-base font-medium text-gray-400 mb-2">E-mail *</label>
-                  <input id="contact-email" required type="email" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="email@firma.pl" />
-                </div>
-              </div>
-              
-              <div>
-                <label htmlFor="contact-service" className="block text-base font-medium text-gray-400 mb-2">Interesująca usługa</label>
-                <select id="contact-service" className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors">
-                  <option>Wynajem maszyn i sprzętu</option>
-                  <option>Usługi spawalnicze</option>
-                  <option>Relokacja maszyn</option>
-                  <option>Konserwacja i UDT</option>
-                  <option>Usługi elektryczne</option>
-                  <option>Remonty budowlane</option>
-                  <option>Szkolenia (UDT, SEP, inne)</option>
-                  <option>Inne</option>
-                </select>
-              </div>
-
-              <div>
-                <label htmlFor="contact-message" className="block text-base font-medium text-gray-400 mb-2">Wiadomość *</label>
-                <textarea id="contact-message" required rows={4} className="w-full bg-industrial-800 border border-gray-700 rounded-lg p-4 text-white text-lg focus:outline-none focus:border-industrial-accent transition-colors" placeholder="Opisz swoje potrzeby, termin, lokalizację..."></textarea>
-              </div>
-
-              <div className="flex items-start gap-3">
-                 <input type="checkbox" required id="rodo" className="mt-1.5 w-5 h-5 accent-industrial-accent rounded" />
-                 <label htmlFor="rodo" className="text-sm text-gray-500 leading-snug">
-                    Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania. (Wymagane)
-                 </label>
-              </div>
-
-              <button className="w-full bg-industrial-accent text-industrial-900 font-bold py-5 rounded-lg hover:bg-industrial-accentHover transition-colors uppercase tracking-wide text-xl mt-4 shadow-lg hover:shadow-xl">
-                Wyślij Zapytanie
-              </button>
-            </form>
-          </div>
+          <ContactForm
+            title="Formularz kontaktowy"
+            contextLabel="home-contact"
+            serviceOptions={serviceOptions}
+            cardClassName="bg-industrial-900 p-8 md:p-12 rounded-3xl shadow-2xl border border-gray-700"
+            fieldClassName="w-full rounded-lg border bg-industrial-800 p-4 text-lg text-white focus:outline-none transition-colors"
+            submitButtonClassName="w-full bg-industrial-accent text-industrial-900 font-bold py-5 rounded-lg hover:bg-industrial-accentHover transition-colors uppercase tracking-wide text-xl mt-4 shadow-lg hover:shadow-xl"
+          />
 
         </div>
       </div>

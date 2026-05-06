@@ -3,6 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { AboutPage as Screen } from "../screens/AboutPage";
+import { defaultCompany } from "../data/company";
+import { getSiteSettings } from "../lib/siteSettings";
+
+const companyData = (await getSiteSettings())?.company ?? defaultCompany;
 ---
 
 <Layout
@@ -10,10 +14,10 @@ import { AboutPage as Screen } from "../screens/AboutPage";
   description="Certyfikowana jakość (ISO 9001:2015). Poznaj naszą historię i wartości."
 >
   <div>
-    <Navbar client:load />
+    <Navbar client:load companyData={companyData} />
     <main class="flex-grow pt-[80px]">
-      <Screen />
+      <Screen companyData={companyData} />
     </main>
-    <Footer />
+    <Footer companyData={companyData} />
   </div>
 </Layout>

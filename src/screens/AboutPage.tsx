@@ -1,8 +1,15 @@
 import React from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { Check, Star, Award } from 'lucide-react';
+import { ServiceInquiryCta } from '../components/ServiceInquiryCta';
+import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
 
-export const AboutPage: React.FC = () => {
+type AboutPageProps = {
+   companyData?: CompanyData;
+};
+
+export const AboutPage: React.FC<AboutPageProps> = ({ companyData }) => {
+   const resolvedCompany = companyData ?? company;
   const accreditationScope = [
     'Szkolenia dla operatorów UTB i maszyn budowlanych',
     'Szkolenia spawalnicze i energetyczne (SEP)',
@@ -17,7 +24,7 @@ export const AboutPage: React.FC = () => {
   ];
 
   return (
-    <>
+      <SiteSettingsProvider value={resolvedCompany}>
       <PageHeader 
         title="O Firmie" 
             subtitle="Doświadczenie, certyfikowana jakość i odpowiedzialność za wynik każdej realizacji."
@@ -94,8 +101,16 @@ export const AboutPage: React.FC = () => {
              </div>
           </div>
 
+               <ServiceInquiryCta
+                  title="Szukasz partnera, który połączy kilka obszarów usług w jednym projekcie?"
+                  description="Jeżeli potrzebujesz wykonawcy do wynajmu sprzętu, relokacji, UDT, elektryki lub prac budowlanych, prześlij krótki opis zadania. Dobierzemy właściwy zespół i zaproponujemy sposób realizacji."
+                  contactLabel="Porozmawiajmy o współpracy"
+                  trainingTitle="Szkolenia dla zespołów technicznych"
+                  trainingDescription="Poza usługami operacyjnymi wspieramy też rozwój kwalifikacji operatorów, konserwatorów, elektryków i spawaczy na osobnej stronie szkoleniowej."
+               />
+
         </div>
       </section>
-    </>
+      </SiteSettingsProvider>
   );
 };

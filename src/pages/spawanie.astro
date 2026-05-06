@@ -3,6 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { WeldingPage as Screen } from "../screens/WeldingPage";
+import { defaultCompany } from "../data/company";
+import { getSiteSettings } from "../lib/siteSettings";
+
+const companyData = (await getSiteSettings())?.company ?? defaultCompany;
 ---
 
 <Layout
@@ -10,10 +14,10 @@ import { WeldingPage as Screen } from "../screens/WeldingPage";
   description="Profesjonalne spawanie (MIG/MAG, TIG), naprawy maszyn i konstrukcje stalowe."
 >
   <div>
-    <Navbar client:load />
+    <Navbar client:load companyData={companyData} />
     <main class="flex-grow pt-[80px]">
-      <Screen />
+      <Screen companyData={companyData} />
     </main>
-    <Footer />
+    <Footer companyData={companyData} />
   </div>
 </Layout>

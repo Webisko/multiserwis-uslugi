@@ -3,6 +3,12 @@ import Layout from "../layouts/Layout.astro";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { FaqPage as Screen } from "../screens/FaqPage";
+import { defaultCompany } from "../data/company";
+import { getSiteSettings } from "../lib/siteSettings";
+import { getSiteContent } from "../lib/siteContent";
+
+const [siteSettings, siteContent] = await Promise.all([getSiteSettings(), getSiteContent()]);
+const companyData = siteSettings?.company ?? defaultCompany;
 ---
 
 <Layout
@@ -10,10 +16,15 @@ import { FaqPage as Screen } from "../screens/FaqPage";
   description="Najczęściej zadawane pytania dotyczące naszych usług."
 >
   <div>
-    <Navbar client:load />
+    <Navbar client:load companyData={companyData} />
     <main class="flex-grow pt-[80px]">
-      <Screen client:load />
+      <Screen
+        client:visible
+        companyData={companyData}
+        faqItems={siteContent.faqs.items}
+        categories={siteContent.faqs.categories}
+      />
     </main>
-    <Footer />
+    <Footer companyData={companyData} />
   </div>
 </Layout>

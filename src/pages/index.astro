@@ -3,6 +3,12 @@ import Layout from "../layouts/Layout.astro";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { HomePage as HomeContent } from "../screens/HomePage";
+import { defaultCompany } from "../data/company";
+import { getSiteSettings } from "../lib/siteSettings";
+import { getSiteContent } from "../lib/siteContent";
+
+const [siteSettings, siteContent] = await Promise.all([getSiteSettings(), getSiteContent()]);
+const companyData = siteSettings?.company ?? defaultCompany;
 ---
 
 <Layout
@@ -10,11 +16,17 @@ import { HomePage as HomeContent } from "../screens/HomePage";
   description="Profesjonalne usługi dla przemysłu: wynajem maszyn, spawalnictwo, relokacja, konserwacja UDT, usługi elektryczne."
 >
   <div>
-    <Navbar client:load />
+    <Navbar client:load companyData={companyData} />
     {/* Navbar needs interaction */}
     <main class="flex-grow">
-      <HomeContent client:visible />
+      <HomeContent
+        client:visible
+        companyData={companyData}
+        faqGroups={siteContent.faqs.featuredGroups}
+        services={siteContent.services.items}
+        contactOptions={siteContent.services.contactOptions}
+      />
     </main>
-    <Footer />
+    <Footer companyData={companyData} />
   </div>
 </Layout>

@@ -1,7 +1,10 @@
 import React from 'react';
 import { ClipboardCheck, ShieldCheck, FileText, Settings, BookOpen, ArrowRight } from 'lucide-react';
+import { useCompanyData } from '../data/company';
 
 export const UdtSection: React.FC = () => {
+  const company = useCompanyData();
+
   const categories = [
     {
       title: "Obsługiwane Urządzenia",
@@ -64,7 +67,7 @@ export const UdtSection: React.FC = () => {
                 <p className="text-base text-gray-400 mb-6 leading-relaxed">
                     Organizujemy szkolenia dla operatorów i konserwatorów: wózki, suwnice, żurawie i inne.
                 </p>
-                <a href="https://szkolenia-multiserwis.pl" target="_blank" rel="noopener noreferrer" className="text-industrial-accent text-lg font-bold hover:text-white flex items-center gap-2 transition-colors">
+                <a href={company.links.trainingSiteUrl} target="_blank" rel="noopener noreferrer" className="text-industrial-accent text-lg font-bold hover:text-white flex items-center gap-2 transition-colors">
                     Pełna oferta szkoleń <ArrowRight size={18}/>
                 </a>
             </div>

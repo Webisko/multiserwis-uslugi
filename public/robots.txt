@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://webisko.github.io/multiserwis-uslugi/sitemap-index.xml

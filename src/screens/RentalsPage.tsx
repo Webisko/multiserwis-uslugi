@@ -1,8 +1,16 @@
 import React from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { Phone, CheckCircle, ArrowRight } from 'lucide-react';
+import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
+import { ServiceInquiryCta } from '../components/ServiceInquiryCta';
 
-export const RentalsPage: React.FC = () => {
+type RentalsPageProps = {
+  companyData?: CompanyData;
+};
+
+export const RentalsPage: React.FC<RentalsPageProps> = ({ companyData }) => {
+  const resolvedCompany = companyData ?? company;
+  const basePath = resolvedCompany.links.basePath;
   const categories = [
     {
       id: 'podesty',
@@ -47,7 +55,7 @@ export const RentalsPage: React.FC = () => {
   ];
 
   return (
-    <>
+    <SiteSettingsProvider value={resolvedCompany}>
 
       <PageHeader 
         title="Wynajem Maszyn i Sprzętu" 
@@ -95,7 +103,7 @@ export const RentalsPage: React.FC = () => {
                 </div>
                 
                 <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                  <a href="/multiserwis-uslugi/kontakt" className="inline-flex items-center justify-center gap-2 bg-industrial-accent text-industrial-900 px-8 py-3 rounded font-bold hover:bg-industrial-accentHover transition-colors">
+                  <a href={`${basePath}/kontakt`} className="inline-flex items-center justify-center gap-2 bg-industrial-accent text-industrial-900 px-8 py-3 rounded font-bold hover:bg-industrial-accentHover transition-colors">
                     <Phone size={18} />
                     Sprawdź dostępność
                   </a>
@@ -111,7 +119,7 @@ export const RentalsPage: React.FC = () => {
                   Zdobądź kwalifikacje u nas!
                 </p>
                 <a 
-                  href="https://szkolenia-multiserwis.pl" 
+                  href={resolvedCompany.links.trainingSiteUrl}
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-white font-medium hover:text-industrial-accent transition-colors group"
@@ -122,8 +130,18 @@ export const RentalsPage: React.FC = () => {
               </div>
             </div>
           </div>
+
+          <div className="mt-10">
+            <ServiceInquiryCta
+              title="Potrzebujesz szybkiej wyceny wynajmu lub sprzętu z operatorem?"
+              description="Przygotujemy dobór sprzętu, termin dostępności i warunki realizacji pod konkretne zadanie. Możemy też od razu wskazać wymagane uprawnienia dla operatora lub zespołu klienta."
+              contactLabel="Poproś o wycenę wynajmu"
+              trainingTitle="Szkolenia UDT dla operatorów"
+              trainingDescription="Jeśli Twój zespół potrzebuje uprawnień na wózki, żurawie, ładowarki lub podesty, przejdź do dedykowanej oferty szkoleniowej."
+            />
+          </div>
         </div>
       </section>
-    </>
+    </SiteSettingsProvider>
   );
 };

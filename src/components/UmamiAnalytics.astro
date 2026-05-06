@@ -1,0 +1,20 @@
+---
+const analyticsEnabled = import.meta.env.PUBLIC_ENABLE_ANALYTICS === 'true';
+const scriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL;
+const websiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+
+const loaderScript =
+  analyticsEnabled && scriptUrl && websiteId
+    ? `(() => {
+        if (document.querySelector('script[data-umami-loader="true"]')) return;
+        const script = document.createElement('script');
+        script.defer = true;
+        script.src = ${JSON.stringify(scriptUrl)};
+        script.setAttribute('data-website-id', ${JSON.stringify(websiteId)});
+        script.setAttribute('data-umami-loader', 'true');
+        document.head.appendChild(script);
+      })();`
+    : '';
+---
+
+{loaderScript ? <script is:inline set:html={loaderScript}></script> : null}

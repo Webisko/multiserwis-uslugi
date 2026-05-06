@@ -6,10 +6,21 @@ import { UdtSection } from '../components/UdtSection';
 import { CertificatesSection } from '../components/CertificatesSection';
 import { FaqSection } from '../components/FaqSection';
 import { ContactSection } from '../components/ContactSection';
+import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
+import type { FaqGroupPayload, ServiceOfferingPayload } from '../lib/siteContent';
 
-export const HomePage: React.FC = () => {
+type HomePageProps = {
+  companyData?: CompanyData;
+  faqGroups?: FaqGroupPayload[];
+  services?: ServiceOfferingPayload[];
+  contactOptions?: string[];
+};
+
+export const HomePage: React.FC<HomePageProps> = ({ companyData, faqGroups, services, contactOptions }) => {
+  const resolvedCompany = companyData ?? company;
+
   return (
-    <>
+    <SiteSettingsProvider value={resolvedCompany}>
       <Hero />
       
       {/* Why Us Intro */}
@@ -41,7 +52,7 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      <ServicesSection />
+      <ServicesSection services={services} />
       
       <ElectricalSection />
 
@@ -49,9 +60,9 @@ export const HomePage: React.FC = () => {
       
       <CertificatesSection />
 
-      <FaqSection />
+      <FaqSection faqGroups={faqGroups} />
       
-      <ContactSection />
-    </>
+      <ContactSection serviceOptions={contactOptions} />
+    </SiteSettingsProvider>
   );
 };

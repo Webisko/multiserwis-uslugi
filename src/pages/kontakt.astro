@@ -3,6 +3,12 @@ import Layout from "../layouts/Layout.astro";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { ContactPage as Screen } from "../screens/ContactPage";
+import { defaultCompany } from "../data/company";
+import { getSiteSettings } from "../lib/siteSettings";
+import { getSiteContent } from "../lib/siteContent";
+
+const [siteSettings, siteContent] = await Promise.all([getSiteSettings(), getSiteContent()]);
+const companyData = siteSettings?.company ?? defaultCompany;
 ---
 
 <Layout
@@ -10,10 +16,10 @@ import { ContactPage as Screen } from "../screens/ContactPage";
   description="Skontaktuj się z nami. Dane kontaktowe, formularz, dojazd."
 >
   <div>
-    <Navbar client:load />
+    <Navbar client:load companyData={companyData} />
     <main class="flex-grow pt-[80px]">
-      <Screen />
+      <Screen client:visible companyData={companyData} serviceOptions={siteContent.services.contactOptions} />
     </main>
-    <Footer />
+    <Footer companyData={companyData} />
   </div>
 </Layout>

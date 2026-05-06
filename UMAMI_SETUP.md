@@ -9,16 +9,11 @@ Umami to **open-source** narzędzie analityczne, które:
 - ✅ Daje pełną kontrolę nad danymi
 - ✅ Jest lekkie i szybkie
 
-## Opcje Wdrożenia
+## Rekomendowany wariant
 
-### Opcja 1: Umami Cloud (Najszybsza)
+W tym projekcie rekomendowany jest wariant **self-hosted**, zgodny z założeniem pełnej kontroli nad infrastrukturą i danymi.
 
-1. Przejdź na https://umami.is/
-2. Załóż darmowe konto (do 100k pageviews/miesiąc)
-3. Dodaj nową stronę
-4. Skopiuj **Website ID**
-
-### Opcja 2: Self-hosted (Pełna Kontrola)
+### Self-hosted Umami (rekomendacja)
 
 Wymaga: VPS (np. Hetzner, DigitalOcean) + Docker
 
@@ -40,52 +35,51 @@ docker-compose up -d
 # Login: admin / umami
 ```
 
-## Aktywacja na Stronie
+## Aktywacja na stronie
 
-Po uzyskaniu **Website ID**:
+Repo zawiera teraz przykładowe zmienne środowiskowe w `.env.example`:
 
-1. Otwórz plik: `src/layouts/Layout.astro`
-2. Znajdź zakomentowaną linię:
+- `PUBLIC_ENABLE_ANALYTICS`
+- `PUBLIC_CONTACT_API_URL`
+- `PUBLIC_UMAMI_SCRIPT_URL`
+- `PUBLIC_UMAMI_WEBSITE_ID`
 
-```html
-<!-- <script defer src="https://cloud.umami.is/script.js" data-website-id="YOUR-WEBSITE-ID"></script> -->
+Przykład dla self-hosted:
+
+```env
+PUBLIC_ENABLE_ANALYTICS=true
+PUBLIC_UMAMI_SCRIPT_URL=https://analytics.twoja-domena.pl/script.js
+PUBLIC_UMAMI_WEBSITE_ID=abc123-twoje-id
 ```
 
-3. Odkomentuj i wklej swoje ID:
+Mechanizm aktywacji jest już w repo i działa tylko wtedy, gdy:
 
-```html
-<script
-  defer
-  src="https://cloud.umami.is/script.js"
-  data-website-id="abc123-twoje-id"
-></script>
-```
+- `PUBLIC_ENABLE_ANALYTICS=true`
+- ustawione są oba parametry Umami
 
-4. Jeśli używasz self-hosted, zmień URL:
+Rekomendacja środowiskowa:
 
-```html
-<script
-  defer
-  src="https://analytics.twoja-domena.pl/script.js"
-  data-website-id="abc123"
-></script>
-```
+- preview / GitHub Pages: `PUBLIC_ENABLE_ANALYTICS=false`
+- produkcja: `PUBLIC_ENABLE_ANALYTICS=true`
+
+Dzięki temu nie zbierasz przypadkowo ruchu testowego z preview.
 
 ## Weryfikacja
 
-1. Uruchom stronę: `npm run dev`
+1. Uruchom stronę: `npm.cmd run dev`
 2. Otwórz w przeglądarce
 3. Sprawdź panel Umami - powinieneś zobaczyć wizytę w czasie rzeczywistym
 
 ## Zalety vs Google Analytics
 
-| Cecha           | Umami               | Google Analytics  |
-| --------------- | ------------------- | ----------------- |
-| Prywatność      | ✅ Pełna            | ❌ Dane u Google  |
-| RODO            | ✅ Nie wymaga zgody | ⚠️ Wymaga bannera |
-| Szybkość        | ✅ ~2KB             | ❌ ~45KB          |
-| Własność danych | ✅ Twoje            | ❌ Google         |
-| Koszty          | ✅ Darmowe          | ✅ Darmowe        |
+| Cecha           | Umami self-hosted     | Google Analytics  |
+| --------------- | --------------------- | ----------------- |
+| Prywatność      | ✅ Pełna              | ❌ Dane u Google  |
+| RODO            | ✅ Prostsze wdrożenie | ⚠️ Wymaga analizy bannera |
+| Szybkość        | ✅ Lekki skrypt       | ❌ Cięższy skrypt |
+| Własność danych | ✅ Twoje              | ❌ Google         |
+| Koszty          | ✅ W ramach VPS       | ✅ Darmowe        |
+
 
 ## Wsparcie
 

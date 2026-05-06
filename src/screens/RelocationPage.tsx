@@ -1,7 +1,16 @@
 import React from 'react';
 import { PageHeader } from '../components/PageHeader';
+import { Truck, Package, Move } from 'lucide-react';
+import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
+import { ServiceInquiryCta } from '../components/ServiceInquiryCta';
 
-export const RelocationPage: React.FC = () => {
+type RelocationPageProps = {
+  companyData?: CompanyData;
+};
+
+export const RelocationPage: React.FC<RelocationPageProps> = ({ companyData }) => {
+   const resolvedCompany = companyData ?? company;
+   const basePath = resolvedCompany.links.basePath;
   const steps = [
     { title: 'Demontaż', desc: 'Fachowy demontaż maszyn z zachowaniem procedur bezpieczeństwa.' },
     { title: 'Załadunek', desc: 'Wykorzystujemy własny sprzęt dźwigowy i wózki.' },
@@ -12,15 +21,14 @@ export const RelocationPage: React.FC = () => {
   ];
 
   return (
-    <>
+      <SiteSettingsProvider value={resolvedCompany}>
       <PageHeader 
         title="Relokacja Maszyn" 
-            subtitle="Kompleksowa relokacja parku maszynowego — od pojedynczych urządzeń po całe linie produkcyjne."
-            backgroundImage="https://images.unsplash.com/photo-1581092583537-20d51b4b4f1b?auto=format&fit=crop&q=80&w=2000"
+        subtitle="Bezpieczne przenoszenie parku maszynowego. Od pojedynczych urządzeń po całe linie produkcyjne."
       />
 
-         <section className="page-section">
-            <div className="page-container">
+      <section className="py-20 bg-industrial-950">
+        <div className="container mx-auto px-4">
           
           <div className="max-w-4xl mx-auto mb-20 text-center">
              <p className="text-xl text-gray-300 leading-relaxed">
@@ -31,7 +39,7 @@ export const RelocationPage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
              {steps.map((step, index) => (
-                <div key={step.title} className="offer-card p-6">
+                <div key={index} className="bg-industrial-900 border border-gray-800 p-6 rounded-xl hover:border-industrial-accent/30 transition-colors">
                    <div className="text-4xl font-display font-bold text-industrial-800 mb-4">{index + 1}</div>
                    <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
                    <p className="text-gray-400 text-sm">{step.desc}</p>
@@ -39,7 +47,7 @@ export const RelocationPage: React.FC = () => {
              ))}
           </div>
 
-          <div className="offer-cta flex flex-col md:flex-row items-center gap-8">
+          <div className="bg-industrial-900 rounded-2xl p-8 border border-gray-800 flex flex-col md:flex-row items-center gap-8">
              <div className="md:w-1/2">
                 <h3 className="text-2xl font-bold text-white mb-4">Dlaczego my?</h3>
                 <ul className="space-y-4">
@@ -58,14 +66,22 @@ export const RelocationPage: React.FC = () => {
                 </ul>
              </div>
              <div className="md:w-1/2 flex justify-center">
-                <a href="/multiserwis-uslugi/kontakt" className="bg-industrial-accent text-industrial-900 px-8 py-4 rounded-lg font-bold hover:bg-industrial-accentHover transition-colors shadow-lg shadow-industrial-accent/20">
-                   Zamów wycenę relokacji
+                        <a href={`${basePath}/kontakt`} className="bg-industrial-accent text-industrial-900 px-8 py-4 rounded-lg font-bold hover:bg-industrial-accentHover transition-colors shadow-lg shadow-industrial-accent/20">
+                   Wyceń relokację
                 </a>
              </div>
           </div>
 
+               <div className="mt-10">
+                  <ServiceInquiryCta
+                     title="Planujesz relokację linii, maszyny albo całego obszaru produkcyjnego?"
+                     description="Prześlij zakres prac, lokalizację i oczekiwany termin. Przygotujemy plan działań, dobór sprzętu i wycenę relokacji z uwzględnieniem demontażu, transportu i rozruchu."
+                     contactLabel="Poproś o wycenę relokacji"
+                  />
+               </div>
+
         </div>
       </section>
-    </>
+      </SiteSettingsProvider>
   );
 };

@@ -1,11 +1,80 @@
 ---
 // We'll manage generic head here or per page
+import { defaultCompany } from '../data/company';
+import { getDefaultSeo, getSiteSettings } from '../lib/siteSettings';
+import UmamiAnalytics from '../components/UmamiAnalytics.astro';
+
 interface Props {
   title: string;
   description?: string;
+  noTopPadding?: boolean;
 }
 
-const { title, description } = Astro.props;
+const { title, description, noTopPadding = false } = Astro.props;
+const siteSettings = await getSiteSettings();
+const company = siteSettings?.company ?? defaultCompany;
+const seo = siteSettings?.seo ?? getDefaultSeo();
+const pageDescription = description || seo.defaultDescription;
+const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
+const resolvedOgImagePath = seo.ogImageUrl.startsWith('http')
+  ? seo.ogImageUrl
+  : seo.ogImageUrl.startsWith('/')
+    ? seo.ogImageUrl
+    : `/${seo.ogImageUrl}`;
+const ogImageUrl = Astro.site
+  ? new URL(resolvedOgImagePath, Astro.site).toString()
+  : resolvedOgImagePath.startsWith('http')
+    ? resolvedOgImagePath
+    : `${Astro.url.origin}${resolvedOgImagePath}`;
+const websiteUrl = Astro.site
+  ? new URL(`${company.links.basePath}/`, Astro.site).toString()
+  : `${Astro.url.origin}${company.links.basePath}/`;
+const runtimeSettingsScript = siteSettings
+  ? `window.__MULTISERWIS_SITE_SETTINGS__ = ${JSON.stringify(siteSettings)};`
+  : '';
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'LocalBusiness',
+      '@id': `${websiteUrl}#organization`,
+      name: company.name,
+      url: websiteUrl,
+      email: company.email,
+      telephone: company.phones.services.href.replace('tel:', ''),
+      image: ogImageUrl,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: company.address.street,
+        postalCode: company.address.postalCode,
+        addressLocality: company.address.city,
+        addressCountry: 'PL',
+      },
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          opens: '08:00',
+          closes: '16:00',
+        },
+      ],
+      sameAs: [company.links.trainingSiteUrl],
+      areaServed: 'Polska',
+      description: pageDescription,
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${websiteUrl}#website`,
+      url: websiteUrl,
+      name: company.name,
+      description: seo.defaultDescription,
+      inLanguage: 'pl-PL',
+      publisher: {
+        '@id': `${websiteUrl}#organization`,
+      },
+    },
+  ],
+};
 import "../styles/global.css";
 ---
 
@@ -15,27 +84,34 @@ import "../styles/global.css";
     <meta charset="UTF-8" />
     <meta
       name="description"
-      content={description || "Multiserwis Kutno - Usługi dla przemysłu"}
+      content={pageDescription}
     />
+    <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="canonical" href={canonicalUrl} />
     <link
       rel="icon"
       type="image/svg+xml"
-      href="/multiserwis-uslugi/favicon.svg"
+      href={`${company.links.basePath}/favicon.svg`}
     />
     <meta name="generator" content={Astro.generator} />
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={seo.siteName} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+    {runtimeSettingsScript ? <script is:inline set:html={runtimeSettingsScript}></script> : null}
     <title>{title}</title>
 
-    <!-- Google Fonts used in the project -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@200..700&display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- Umami Analytics Placeholder -->
-    <!-- <script defer src="https://cloud.umami.is/script.js" data-website-id="YOUR-WEBSITE-ID"></script> -->
+    <UmamiAnalytics />
   </head>
   <body
     class="min-h-screen bg-industrial-900 text-gray-100 font-sans selection:bg-industrial-accent selection:text-industrial-900 flex flex-col"

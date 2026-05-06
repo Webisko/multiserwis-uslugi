@@ -1,0 +1,297 @@
+{
+    "faqs": {
+        "items": [
+            {
+                "id": "1",
+                "question": "Na jakim obszarze działacie?",
+                "answer": "Realizujemy zlecenia na terenie całej Polski, a w przypadku relokacji maszyn i dużych projektów elektroinstalacyjnych również za granicą.",
+                "category": "Ogólne",
+                "sortOrder": 10,
+                "isFeatured": true
+            },
+            {
+                "id": "2",
+                "question": "Czy obsługujecie klientów indywidualnych?",
+                "answer": "Tak, obsługujemy zarówno duże zakłady przemysłowe, jak i mniejsze firmy oraz klientów indywidualnych.",
+                "category": "Ogólne",
+                "sortOrder": 20,
+                "isFeatured": true
+            },
+            {
+                "id": "3",
+                "question": "Czy sprzęt można wynająć z operatorem?",
+                "answer": "Tak, podnośniki koszowe, żurawie i ładowarki teleskopowe wynajmujemy z doświadczonym operatorem. Wózki widłowe również na życzenie klienta.",
+                "category": "Wynajem",
+                "sortOrder": 30,
+                "isFeatured": true
+            },
+            {
+                "id": "4",
+                "question": "Czy transport sprzętu jest w cenie?",
+                "answer": "Koszt transportu ustalany jest indywidualnie w zależności od odległości i gabarytów maszyny.",
+                "category": "Wynajem",
+                "sortOrder": 40,
+                "isFeatured": true
+            },
+            {
+                "id": "5",
+                "question": "Czy pomożecie w rejestracji urządzenia w UDT bez dokumentacji?",
+                "answer": "Tak. Oferujemy odtworzenie dokumentacji i pełną obsługę formalną, aż do uzyskania decyzji zezwalającej na eksploatację.",
+                "category": "UDT",
+                "sortOrder": 50,
+                "isFeatured": true
+            },
+            {
+                "id": "6",
+                "question": "Jak często trzeba robić przeglądy UDT?",
+                "answer": "Zależy to od typu urządzenia. Zazwyczaj konserwacja odbywa się cyklicznie, a badania okresowe raz w roku.",
+                "category": "UDT",
+                "sortOrder": 60,
+                "isFeatured": true
+            },
+            {
+                "id": "7",
+                "question": "Czy wykonujecie prace na czynnych obiektach?",
+                "answer": "Tak, specjalizujemy się w pracach na ruchu. Możemy pracować zmianowo, aby ograniczyć wpływ na produkcję.",
+                "category": "Elektryka i Spawanie",
+                "sortOrder": 70,
+                "isFeatured": true
+            },
+            {
+                "id": "8",
+                "question": "Czy spawacie u klienta?",
+                "answer": "Tak, posiadamy mobilny sprzęt spawalniczy i wykonujemy prace bezpośrednio na terenie zakładu klienta.",
+                "category": "Elektryka i Spawanie",
+                "sortOrder": 80,
+                "isFeatured": true
+            },
+            {
+                "id": "9",
+                "question": "Czy realizujecie relokacje tylko wewnątrz zakładu?",
+                "answer": "Nie. Obsługujemy zarówno przemieszczenia wewnątrzzakładowe, jak i relokacje do nowych lokalizacji, wraz z demontażem, transportem i rozruchem.",
+                "category": "Relokacja",
+                "sortOrder": 90,
+                "isFeatured": false
+            },
+            {
+                "id": "10",
+                "question": "Czy wykonujecie prace budowlane przy modernizacji hali lub pod nowe maszyny?",
+                "answer": "Tak, obsługujemy zakresy budowlane związane z przygotowaniem przestrzeni pod urządzenia, pracami odtworzeniowymi i modernizacyjnymi.",
+                "category": "Budownictwo",
+                "sortOrder": 100,
+                "isFeatured": false
+            },
+            {
+                "id": "11",
+                "question": "Jak szybko odpowiadacie na zapytania?",
+                "answer": "Odpowiadamy na zapytania w ciągu 24 godzin w dni robocze. W pilnych sprawach prosimy o kontakt telefoniczny.",
+                "category": "Kontakt",
+                "sortOrder": 110,
+                "isFeatured": false
+            }
+        ],
+        "categories": [
+            "Wszystkie",
+            "Ogólne",
+            "Wynajem",
+            "UDT",
+            "Elektryka i Spawanie",
+            "Relokacja",
+            "Budownictwo",
+            "Kontakt"
+        ],
+        "featuredGroups": [
+            {
+                "category": "Ogólne",
+                "questions": [
+                    {
+                        "id": "1",
+                        "q": "Na jakim obszarze działacie?",
+                        "a": "Realizujemy zlecenia na terenie całej Polski, a w przypadku relokacji maszyn i dużych projektów elektroinstalacyjnych również za granicą."
+                    },
+                    {
+                        "id": "2",
+                        "q": "Czy obsługujecie klientów indywidualnych?",
+                        "a": "Tak, obsługujemy zarówno duże zakłady przemysłowe, jak i mniejsze firmy oraz klientów indywidualnych."
+                    }
+                ]
+            },
+            {
+                "category": "Wynajem",
+                "questions": [
+                    {
+                        "id": "3",
+                        "q": "Czy sprzęt można wynająć z operatorem?",
+                        "a": "Tak, podnośniki koszowe, żurawie i ładowarki teleskopowe wynajmujemy z doświadczonym operatorem. Wózki widłowe również na życzenie klienta."
+                    },
+                    {
+                        "id": "4",
+                        "q": "Czy transport sprzętu jest w cenie?",
+                        "a": "Koszt transportu ustalany jest indywidualnie w zależności od odległości i gabarytów maszyny."
+                    }
+                ]
+            },
+            {
+                "category": "UDT",
+                "questions": [
+                    {
+                        "id": "5",
+                        "q": "Czy pomożecie w rejestracji urządzenia w UDT bez dokumentacji?",
+                        "a": "Tak. Oferujemy odtworzenie dokumentacji i pełną obsługę formalną, aż do uzyskania decyzji zezwalającej na eksploatację."
+                    },
+                    {
+                        "id": "6",
+                        "q": "Jak często trzeba robić przeglądy UDT?",
+                        "a": "Zależy to od typu urządzenia. Zazwyczaj konserwacja odbywa się cyklicznie, a badania okresowe raz w roku."
+                    }
+                ]
+            },
+            {
+                "category": "Elektryka i Spawanie",
+                "questions": [
+                    {
+                        "id": "7",
+                        "q": "Czy wykonujecie prace na czynnych obiektach?",
+                        "a": "Tak, specjalizujemy się w pracach na ruchu. Możemy pracować zmianowo, aby ograniczyć wpływ na produkcję."
+                    },
+                    {
+                        "id": "8",
+                        "q": "Czy spawacie u klienta?",
+                        "a": "Tak, posiadamy mobilny sprzęt spawalniczy i wykonujemy prace bezpośrednio na terenie zakładu klienta."
+                    }
+                ]
+            }
+        ]
+    },
+    "services": {
+        "items": [
+            {
+                "id": "1",
+                "slug": "relokacja",
+                "title": "Relokacja Maszyn",
+                "description": "Kompleksowe przenoszenie linii produkcyjnych.",
+                "items": [
+                    "Demontaż maszyn i urządzeń",
+                    "Załadunek i transport specjalistyczny",
+                    "Relokacje na terenie zakładu i zewnętrzne",
+                    "Ponowny montaż i poziomowanie",
+                    "Rozruch technologiczny po relokacji"
+                ],
+                "pagePath": "/relokacja",
+                "contactLabel": "Relokacja Maszyn",
+                "training": null,
+                "isFeatured": true,
+                "sortOrder": 10
+            },
+            {
+                "id": "2",
+                "slug": "wynajem",
+                "title": "Wynajem Maszyn",
+                "description": "Profesjonalny sprzęt z możliwością wynajmu z operatorem.",
+                "items": [
+                    "Podesty: nożycowe (do 18m), przegubowe, teleskopowe",
+                    "Żurawie samochodowe (35t, 45t, 60t, 90t)",
+                    "Ładowarki teleskopowe i wózki widłowe",
+                    "Specjalistyczny sprzęt (np. VersaLift)",
+                    "Podnośniki koszowe na pojazdach"
+                ],
+                "pagePath": "/wynajem",
+                "contactLabel": "Wynajem Maszyn",
+                "training": {
+                    "text": "Potrzebujesz uprawnień UDT na wózki lub żurawie?",
+                    "linkText": "Oferta szkoleń UDT"
+                },
+                "isFeatured": true,
+                "sortOrder": 20
+            },
+            {
+                "id": "3",
+                "slug": "spawanie",
+                "title": "Usługi Spawalnicze",
+                "description": "Naprawy bieżące i konstrukcje stalowe.",
+                "items": [
+                    "Naprawy: maszyn, zbiorników, rurociągów",
+                    "Konstrukcje: hale, antresole, podesty",
+                    "Spawanie wszystkich gatunków stali",
+                    "Wszystkie metody (MIG/MAG, TIG, Elektryczne)",
+                    "Doradztwo przy nietypowych zleceniach"
+                ],
+                "pagePath": "/spawanie",
+                "contactLabel": "Usługi Spawalnicze",
+                "training": {
+                    "text": "Szkolimy spawaczy (MIG/MAG, TIG).",
+                    "linkText": "Kursy spawalnicze"
+                },
+                "isFeatured": true,
+                "sortOrder": 30
+            },
+            {
+                "id": "4",
+                "slug": "budownictwo",
+                "title": "Remonty Budowlane",
+                "description": "Usługi remontowo-budowlane dla przemysłu.",
+                "items": [
+                    "Adaptacje hal przemysłowych",
+                    "Fundamenty pod maszyny",
+                    "Prace wykończeniowe i modernizacyjne",
+                    "Naprawy posadzek przemysłowych",
+                    "Infrastruktura techniczna"
+                ],
+                "pagePath": "/budownictwo",
+                "contactLabel": "Remonty Budowlane",
+                "training": {
+                    "text": "Szkolenia IMBIGS na maszyny budowlane.",
+                    "linkText": "Szkolenia IMBIGS"
+                },
+                "isFeatured": true,
+                "sortOrder": 40
+            },
+            {
+                "id": "5",
+                "slug": "udt",
+                "title": "Konserwacja i UDT",
+                "description": "Konserwacja, formalności i przygotowanie urządzeń do badań.",
+                "items": [
+                    "Rejestracja urządzeń w UDT",
+                    "Obsługa formalności i dokumentacji",
+                    "Konserwacja UTB",
+                    "Przygotowanie do badań i odbiorów",
+                    "Doradztwo techniczne"
+                ],
+                "pagePath": "/udt",
+                "contactLabel": "Konserwacja i UDT",
+                "training": null,
+                "isFeatured": false,
+                "sortOrder": 50
+            },
+            {
+                "id": "6",
+                "slug": "elektryka",
+                "title": "Usługi Elektryczne",
+                "description": "Uruchomienia, pomiary i wykonawstwo instalacji elektrycznych.",
+                "items": [
+                    "Pomiary transformatorów, silników i kabli",
+                    "Testy rozdzielnic nn oraz SN",
+                    "Instalacje kablowe i trasy kablowe",
+                    "Oświetlenie i instalacje słaboprądowe",
+                    "Wsparcie rozruchowe na obiektach przemysłowych"
+                ],
+                "pagePath": "/elektryka",
+                "contactLabel": "Usługi Elektryczne",
+                "training": null,
+                "isFeatured": false,
+                "sortOrder": 60
+            }
+        ],
+        "contactOptions": [
+            "Relokacja Maszyn",
+            "Wynajem Maszyn",
+            "Usługi Spawalnicze",
+            "Remonty Budowlane",
+            "Konserwacja i UDT",
+            "Usługi Elektryczne",
+            "Szkolenia",
+            "Inne"
+        ]
+    }
+}

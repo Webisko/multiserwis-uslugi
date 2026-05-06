@@ -1,19 +1,96 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import { Navbar } from "../components/Navbar";
-import { Footer } from "../components/Footer";
-import { TermsPage as Screen } from "../screens/TermsPage";
+import Layout from '../layouts/Layout.astro';
+import { Navbar } from '../components/Navbar';
+import { Footer } from '../components/Footer';
+import { defaultCompany } from '../data/company';
+import { getSiteSettings } from '../lib/siteSettings';
+
+const companyData = (await getSiteSettings())?.company ?? defaultCompany;
 ---
 
 <Layout
   title="Regulamin | Multiserwis Kutno"
-  description="Regulamin korzystania ze strony internetowej i zasad kontaktu ofertowego."
+  description="Podstawowe warunki korzystania z serwisu Multiserwis Kutno."
 >
   <div>
-    <Navbar client:load />
+    <Navbar client:load companyData={companyData} />
     <main class="flex-grow pt-[80px]">
-      <Screen />
+      <section class="bg-industrial-950 py-20">
+        <div class="container mx-auto max-w-4xl px-4">
+          <h1 class="mb-6 text-4xl font-display font-bold text-white md:text-5xl">Regulamin serwisu</h1>
+          <p class="mb-10 rounded-xl border border-amber-500/30 bg-amber-500/10 px-5 py-4 text-sm leading-relaxed text-amber-100">
+            Dokument ma charakter roboczy i powinien zostać dopracowany przed publikacją produkcyjną,
+            ale już teraz porządkuje podstawowe zasady korzystania z serwisu informacyjno-ofertowego.
+          </p>
+
+          <div class="space-y-10 text-base leading-relaxed text-gray-300">
+            <section>
+              <h2 class="mb-3 text-2xl font-bold text-white">1. Postanowienia ogólne</h2>
+              <p>
+                Serwis ma charakter informacyjno-ofertowy i prezentuje zakres usług świadczonych przez
+                <strong class="text-white"> {companyData.name}</strong>.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="mb-3 text-2xl font-bold text-white">2. Zakres działania serwisu</h2>
+              <p>
+                Za pośrednictwem strony użytkownik może zapoznać się z ofertą firmy, skontaktować się w sprawie usług
+                oraz przesłać zapytanie ofertowe.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="mb-3 text-2xl font-bold text-white">3. Zasady kontaktu i zapytań</h2>
+              <p>
+                Wysłanie formularza kontaktowego lub wiadomości e-mail nie oznacza automatycznego zawarcia umowy.
+                Odpowiedź na zapytanie i dalsze warunki współpracy są ustalane indywidualnie.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="mb-3 text-2xl font-bold text-white">4. Wymagania techniczne</h2>
+              <p>
+                Do prawidłowego korzystania z serwisu wymagane jest urządzenie z dostępem do internetu oraz aktualna
+                przeglądarka internetowa obsługująca nowoczesne standardy HTML, CSS i JavaScript.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="mb-3 text-2xl font-bold text-white">5. Odpowiedzialność</h2>
+              <p>
+                Administrator dokłada starań, aby informacje publikowane w serwisie były aktualne i rzetelne,
+                jednak zastrzega możliwość zmian oferty, zakresu usług oraz danych publikowanych na stronie.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="mb-3 text-2xl font-bold text-white">6. Linki zewnętrzne i usługi powiązane</h2>
+              <p>
+                Serwis może zawierać odnośniki do zewnętrznych stron powiązanych z działalnością firmy, w szczególności
+                do serwisu szkoleniowego. Korzystanie z tych stron odbywa się zgodnie z zasadami obowiązującymi u ich operatorów.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="mb-3 text-2xl font-bold text-white">7. Prawa autorskie</h2>
+              <p>
+                Treści, układ strony oraz materiały graficzne publikowane w serwisie podlegają ochronie prawnej.
+                Ich wykorzystanie wymaga uprzedniej zgody właściciela serwisu lub uprawnionych podmiotów.
+              </p>
+            </section>
+
+            <section>
+              <h2 class="mb-3 text-2xl font-bold text-white">8. Postanowienia końcowe</h2>
+              <p>
+                Ostateczna wersja regulaminu powinna zostać dostosowana do docelowego sposobu działania formularzy,
+                backendu i polityki przetwarzania danych po wdrożeniu produkcyjnym.
+              </p>
+            </section>
+          </div>
+        </div>
+      </section>
     </main>
-    <Footer />
+    <Footer companyData={companyData} />
   </div>
 </Layout>

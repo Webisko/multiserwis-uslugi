@@ -1,10 +1,17 @@
 import React from 'react';
 import { PageHeader } from '../components/PageHeader';
 import { Zap, CheckCircle, ArrowRight } from 'lucide-react';
+import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
+import { ServiceInquiryCta } from '../components/ServiceInquiryCta';
 
-export const ElectricalPage: React.FC = () => {
+type ElectricalPageProps = {
+   companyData?: CompanyData;
+};
+
+export const ElectricalPage: React.FC<ElectricalPageProps> = ({ companyData }) => {
+   const resolvedCompany = companyData ?? company;
   return (
-    <>
+      <SiteSettingsProvider value={resolvedCompany}>
       <PageHeader 
         title="Usługi Elektryczne" 
             subtitle="Uruchomienia, pomiary i modernizacje instalacji elektrycznych na obiektach przemysłowych i energetycznych."
@@ -98,7 +105,7 @@ export const ElectricalPage: React.FC = () => {
                 Organizujemy kursy i egzaminy SEP: G1 (elektryczne), G2 (cieplne) i G3 (gazowe).
              </p>
              <a 
-               href="https://szkolenia-multiserwis.pl"
+                      href={resolvedCompany.links.trainingSiteUrl}
                target="_blank"
                rel="noopener noreferrer" 
                className="inline-flex items-center gap-2 text-industrial-accent font-bold hover:text-white transition-colors uppercase tracking-wider text-sm"
@@ -107,8 +114,18 @@ export const ElectricalPage: React.FC = () => {
              </a>
           </div>
 
+               <div className="mt-10">
+                  <ServiceInquiryCta
+                     title="Potrzebujesz rozruchu, pomiarów albo wykonawstwa instalacji na obiekcie przemysłowym?"
+                     description="Opisz zakres instalacji, rodzaj obiektu i termin realizacji. Przygotujemy wycenę prac kontrolno-pomiarowych, wykonawczych lub rozruchowych dla Twojego zakładu."
+                     contactLabel="Poproś o wycenę prac elektrycznych"
+                     trainingTitle="Szkolenia SEP"
+                     trainingDescription="Jeżeli zespół potrzebuje uprawnień energetycznych G1, G2 lub G3, przejdź do osobnej oferty szkoleniowej."
+                  />
+               </div>
+
         </div>
       </section>
-    </>
+      </SiteSettingsProvider>
   );
 };

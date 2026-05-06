@@ -3,6 +3,10 @@ import Layout from "../layouts/Layout.astro";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { RelocationPage as Screen } from "../screens/RelocationPage";
+import { defaultCompany } from "../data/company";
+import { getSiteSettings } from "../lib/siteSettings";
+
+const companyData = (await getSiteSettings())?.company ?? defaultCompany;
 ---
 
 <Layout
@@ -10,10 +14,10 @@ import { RelocationPage as Screen } from "../screens/RelocationPage";
   description="Bezpieczne przenoszenie parku maszynowego i linii produkcyjnych."
 >
   <div>
-    <Navbar client:load />
+    <Navbar client:load companyData={companyData} />
     <main class="flex-grow pt-[80px]">
-      <Screen />
+      <Screen companyData={companyData} />
     </main>
-    <Footer />
+    <Footer companyData={companyData} />
   </div>
 </Layout>

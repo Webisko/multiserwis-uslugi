@@ -1,8 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import { useCompanyData } from '../data/company';
 
 export const Hero: React.FC = () => {
+  const company = useCompanyData();
+  const basePath = company.links.basePath;
   const { scrollY } = useScroll();
   // Scroll effect: Background moves down slower than foreground
   const yScroll = useTransform(scrollY, [0, 500], [0, 150]);
@@ -22,30 +25,27 @@ export const Hero: React.FC = () => {
   // Note: We need to combine ySpring (mouse) and yScroll (scroll).
   const yCombined = useTransform([ySpring, yScroll], ([mY, sY]: any[]) => mY + sY);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!ref.current) return;
-      const { left, top, width, height } = ref.current.getBoundingClientRect();
-      const x = e.clientX - (left + width / 2);
-      const y = e.clientY - (top + height / 2);
-
-      mouseX.set(x * 0.02);
-      mouseY.set(y * 0.02);
-    };
-
-    globalThis.addEventListener('mousemove', handleMouseMove);
-    return () => globalThis.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX, mouseY]);
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!ref.current) return;
+    const { width, height } = ref.current.getBoundingClientRect();
+    const x = e.clientX - width / 2;
+    const y = e.clientY - height / 2;
+    
+    // Calculate movement values
+    mouseX.set(x * 0.02); 
+    mouseY.set(y * 0.02);
+  };
 
   return (
     <section 
       ref={ref}
+      onMouseMove={handleMouseMove}
       className="relative h-screen flex items-center justify-center overflow-hidden bg-industrial-900"
     >
       
-      {/* 1. Background Image Layer - THIS IS THE ONLY THING THAT MOVES */}
+      {/* 1. Background Layer - THIS IS THE ONLY THING THAT MOVES */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <motion.img
+        <motion.div
           style={{ x: xSpring, y: yCombined }}
           initial={{ scale: 1.1 }} // Start slightly larger to avoid gaps when moving
           animate={{ scale: 1.15 }} // Breathing animation
@@ -57,10 +57,20 @@ export const Hero: React.FC = () => {
               repeatType: "mirror" 
             }
           }}
-          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070&auto=format&fit=crop"
-          alt="Maszyny budowlane w tle"
-          className="w-full h-full object-cover"
-        />
+          className="h-full w-full"
+          aria-hidden="true"
+        >
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                'linear-gradient(135deg, rgba(10,17,29,0.95) 0%, rgba(18,30,45,0.82) 38%, rgba(83,59,17,0.58) 100%), radial-gradient(circle at 20% 20%, rgba(245,158,11,0.22), transparent 35%), radial-gradient(circle at 78% 30%, rgba(148,163,184,0.18), transparent 32%), repeating-linear-gradient(115deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 2px, transparent 2px, transparent 38px), repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 56px)',
+            }}
+          />
+          <div className="absolute inset-x-[10%] bottom-[-12%] h-[38%] rounded-full bg-industrial-accent/20 blur-3xl" />
+          <div className="absolute left-[12%] top-[18%] h-40 w-40 rounded-full border border-white/10 bg-white/5 blur-2xl" />
+          <div className="absolute right-[14%] top-[22%] h-56 w-56 rounded-full border border-industrial-accent/10 bg-industrial-accent/10 blur-3xl" />
+        </motion.div>
       </div>
 
       {/* 2. Static Overlays - THESE DO NOT MOVE */}
@@ -86,31 +96,32 @@ export const Hero: React.FC = () => {
              </div>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-8 tracking-tight leading-none drop-shadow-2xl">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-white mb-8 tracking-tight leading-none drop-shadow-2xl">
             SIŁA <span className="text-transparent bg-clip-text bg-gradient-to-r from-industrial-accent to-yellow-200">
               PRECYZJI
             </span><br />
             W PRZEMYŚLE
           </h1>
           
-          <p className="max-w-3xl mx-auto text-gray-100 text-base sm:text-xl md:text-2xl mb-10 sm:mb-12 font-light leading-relaxed drop-shadow-lg bg-black/40 p-4 sm:p-6 rounded-xl backdrop-blur-sm border border-white/10">
-            Wynajem maszyn, relokacje linii produkcyjnych, serwis UDT i wsparcie techniczne —
-            wszystko w jednym miejscu, z terminową realizacją i pełną odpowiedzialnością za wynik.
+          <p className="max-w-3xl mx-auto text-gray-100 text-xl md:text-2xl mb-12 font-light leading-relaxed drop-shadow-lg bg-black/40 p-6 rounded-xl backdrop-blur-sm border border-white/10">
+            Obsługujemy zakłady przemysłowe w obszarach wynajmu maszyn, relokacji linii,
+            UDT, elektryki i prac technicznych. Jeden partner do realizacji wymagających zadań
+            na produkcji, budowie i w utrzymaniu ruchu.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <a
-              href="/multiserwis-uslugi/wynajem"
-              className="group relative px-7 sm:px-10 py-4 sm:py-5 bg-industrial-accent text-industrial-900 font-bold rounded text-base sm:text-xl overflow-hidden shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all hover:shadow-[0_0_40px_rgba(245,158,11,0.5)] hover:-translate-y-1"
+              href={`${basePath}/uslugi-techniczne`}
+              className="group relative px-10 py-5 bg-industrial-accent text-industrial-900 font-bold rounded text-xl overflow-hidden shadow-[0_0_20px_rgba(245,158,11,0.3)] transition-all hover:shadow-[0_0_40px_rgba(245,158,11,0.5)] hover:-translate-y-1"
             >
-              <span className="relative z-10">Zobacz ofertę</span>
+              <span className="relative z-10">Zobacz zakres usług</span>
               <div className="absolute inset-0 h-full w-full bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
             </a>
             <a
-              href="/multiserwis-uslugi/kontakt"
-              className="px-7 sm:px-10 py-4 sm:py-5 bg-industrial-900/80 backdrop-blur-sm border border-gray-400 text-white font-bold rounded text-base sm:text-xl hover:bg-white/10 hover:border-white transition-all hover:-translate-y-1"
+              href={`${basePath}/kontakt`}
+              className="px-10 py-5 bg-industrial-900/80 backdrop-blur-sm border border-gray-400 text-white font-bold rounded text-xl hover:bg-white/10 hover:border-white transition-all hover:-translate-y-1"
             >
-              Zamów wycenę
+              Poproś o wycenę
             </a>
           </div>
         </motion.div>

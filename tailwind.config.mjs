@@ -21,8 +21,8 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['Oswald', 'sans-serif'],
+        sans: ['Inter', 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', 'sans-serif'],
+        display: ['Oswald', 'Bahnschrift SemiCondensed', 'Arial Narrow', 'Franklin Gothic Medium', 'sans-serif'],
       },
     },
   },
