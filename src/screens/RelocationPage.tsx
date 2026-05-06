@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageHeader } from '../components/PageHeader';
-import { Truck, Package, Move } from 'lucide-react';
+import { Truck, Move } from 'lucide-react';
 import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
 import { ServiceInquiryCta } from '../components/ServiceInquiryCta';
 
