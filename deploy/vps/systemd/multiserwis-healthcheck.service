@@ -1,0 +1,13 @@
+[Unit]
+Description=Multiserwis HTTP healthcheck
+After=network-online.target
+
+[Service]
+Type=oneshot
+Environment=FRONTEND_URL=https://<PRIMARY_DOMAIN>/healthz
+Environment=API_URL=https://api.<PRIMARY_DOMAIN>/api/v1/site-settings
+Environment=ADMIN_URL=https://admin.<PRIMARY_DOMAIN>/admin/login
+ExecStart=/var/www/multiserwis/deploy/vps/scripts/healthcheck.sh
+
+[Install]
+WantedBy=multi-user.target

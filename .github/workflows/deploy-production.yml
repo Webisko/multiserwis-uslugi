@@ -1,0 +1,102 @@
+name: Deploy Production to VPS
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: Publiczny adres produkcyjny frontendu
+        required: true
+        default: https://multiserwis.example.com
+      app_root:
+        description: Katalog bazowy aplikacji na VPS
+        required: true
+        default: /var/www/multiserwis
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      RELEASE_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+      APP_ROOT: ${{ inputs.app_root }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          tools: composer:v2
+          coverage: none
+          extensions: mbstring, intl, sqlite3, pdo_sqlite, curl, fileinfo, openssl, zip
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Build production frontend
+        run: npm run build:production
+        env:
+          SITE_ENVIRONMENT: production
+          PUBLIC_SITE_URL: ${{ inputs.site_url }}
+          PUBLIC_SITE_BASE_PATH: /
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: composer install --no-dev --optimize-autoloader --no-interaction
+
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.VPS_SSH_PRIVATE_KEY }}
+
+      - name: Add server to known hosts
+        run: ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+
+      - name: Prepare release directories on server
+        run: |
+          ssh "$VPS_SSH_USER@$VPS_HOST" "mkdir -p '$APP_ROOT/frontend/releases/$RELEASE_ID' '$APP_ROOT/backend/releases/$RELEASE_ID' '$APP_ROOT/deploy/vps/scripts'"
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_USER: ${{ secrets.VPS_SSH_USER }}
+
+      - name: Upload deployment scripts
+        run: |
+          rsync -az --delete deploy/vps/ "$VPS_SSH_USER@$VPS_HOST:$APP_ROOT/deploy/vps/"
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_USER: ${{ secrets.VPS_SSH_USER }}
+
+      - name: Upload frontend release
+        run: |
+          rsync -az --delete dist/ "$VPS_SSH_USER@$VPS_HOST:$APP_ROOT/frontend/releases/$RELEASE_ID/dist/"
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_USER: ${{ secrets.VPS_SSH_USER }}
+
+      - name: Upload backend release
+        run: |
+          rsync -az --delete \
+            --exclude '.env' \
+            --exclude 'database/database.sqlite' \
+            backend/ "$VPS_SSH_USER@$VPS_HOST:$APP_ROOT/backend/releases/$RELEASE_ID/backend/"
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_USER: ${{ secrets.VPS_SSH_USER }}
+
+      - name: Activate release on server
+        run: |
+          ssh "$VPS_SSH_USER@$VPS_HOST" "chmod +x '$APP_ROOT/deploy/vps/scripts/'*.sh; APP_ROOT='$APP_ROOT' '$APP_ROOT/deploy/vps/scripts/activate-release.sh' '$RELEASE_ID'"
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_USER: ${{ secrets.VPS_SSH_USER }}

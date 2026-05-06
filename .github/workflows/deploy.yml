@@ -1,8 +1,10 @@
-name: Deploy to GitHub Pages
+name: Deploy Preview to GitHub Pages
 
 on:
   push:
     branches: [main]
+  repository_dispatch:
+    types: [preview-rebuild]
   workflow_dispatch:
 
 permissions:
@@ -30,11 +32,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Set Vite base path
-        run: echo "VITE_BASE=/${{ github.event.repository.name }}/" >> $GITHUB_ENV
-
-      - name: Build
-        run: npm run build
+      - name: Build preview site
+        run: npm run build:preview
+        env:
+          SITE_ENVIRONMENT: preview
+          PUBLIC_SITE_URL: https://webisko.github.io
+          PUBLIC_SITE_BASE_PATH: /${{ github.event.repository.name }}
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

@@ -1,0 +1,12 @@
+[Unit]
+Description=Multiserwis sqlite backup
+After=network-online.target
+
+[Service]
+Type=oneshot
+Environment=APP_ROOT=/var/www/multiserwis/backend/current/backend
+Environment=BACKUP_DIR=/var/backups/multiserwis
+ExecStart=/var/www/multiserwis/deploy/vps/scripts/backup-sqlite.sh
+
+[Install]
+WantedBy=multi-user.target

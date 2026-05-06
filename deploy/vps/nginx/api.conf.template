@@ -1,0 +1,48 @@
+server {
+    listen 80;
+    listen [::]:80;
+    server_name api.<PRIMARY_DOMAIN>;
+
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name api.<PRIMARY_DOMAIN>;
+
+    root /var/www/multiserwis/backend/current/backend/public;
+    index index.php;
+
+    # Uzupełnij ścieżki certyfikatów po wdrożeniu TLS.
+    ssl_certificate /etc/letsencrypt/live/api.<PRIMARY_DOMAIN>/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.<PRIMARY_DOMAIN>/privkey.pem;
+
+    add_header X-Frame-Options SAMEORIGIN always;
+    add_header X-Content-Type-Options nosniff always;
+    add_header Referrer-Policy strict-origin-when-cross-origin always;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ^~ /admin {
+        return 404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+        fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+    }
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+
+    location = /healthz {
+        access_log off;
+        return 200 'ok';
+        add_header Content-Type text/plain;
+    }
+}
