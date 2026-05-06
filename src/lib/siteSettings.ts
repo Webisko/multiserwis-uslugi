@@ -4,7 +4,7 @@ import { readJsonSnapshot } from './previewSnapshots';
 const defaultSeo: SiteSeoData = {
   defaultTitle: 'Multiserwis - Kompleksowe Usługi Przemysłowe',
   defaultDescription:
-    'Profesjonalne usługi dla przemysłu: wynajem maszyn, spawalnictwo, relokacja, konserwacja UDT, usługi elektryczne.',
+    'Profesjonalne usługi dla przemysłu: wynajem maszyn, spawalnictwo, relokacja, UDT, hydraulika przemysłowa i usługi elektryczne.',
   siteName: 'Multiserwis Kutno',
   ogImageUrl: `${defaultCompany.links.basePath}/og-image.svg`,
 };

@@ -11,16 +11,16 @@ type UdtPageProps = {
 export const UdtPage: React.FC<UdtPageProps> = ({ companyData }) => {
   const resolvedCompany = companyData ?? company;
   const devices = [
-    'Wózki widłowe', 'Podesty ruchome', 'Żurawie samojezdne', 'Żurawie HDS i leśne',
-    'Dźwigniki', 'Podnośniki warsztatowe', 'Naczepy do transportu pojazdów',
+    'Wózki widłowe', 'Podesty ruchome / zwyżki', 'Żurawie samojezdne', 'Żurawie HDS i leśne',
+    'Windy załadowcze (windy samochodowe)', 'Dźwigniki', 'Podnośniki warsztatowe', 'Naczepy do transportu pojazdów',
     'Hakowce i bramowce', 'Suwnice', 'Wciągarki i wciągniki'
   ];
 
   return (
     <SiteSettingsProvider value={resolvedCompany}>
       <PageHeader 
-        title="Konserwacja i Naprawa - UDT" 
-        subtitle="Przejmujemy pełną obsługę UDT: formalności, przeglądy i wsparcie techniczne Twoich urządzeń."
+        title="Konserwacja, Serwis i UDT" 
+        subtitle="Przejmujemy pełną obsługę UDT: formalności, przeglądy, diagnostykę i wsparcie techniczne Twoich urządzeń."
         backgroundImage="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&q=80&w=2000"
       />
 
@@ -49,13 +49,13 @@ export const UdtPage: React.FC<UdtPageProps> = ({ companyData }) => {
               <div className="w-12 h-12 bg-industrial-800 rounded-lg flex items-center justify-center text-industrial-accent mb-6">
                  <Settings size={24} />
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">Konserwacja i Przeglądy</h3>
-              <p className="text-gray-400 mb-4">Regularna opieka techniczna:</p>
+              <h3 className="text-xl font-bold text-white mb-4">Konserwacja, Serwis i Diagnostyka</h3>
+              <p className="text-gray-400 mb-4">Regularna opieka techniczna i usuwanie awarii:</p>
               <ul className="space-y-2 text-gray-500 text-sm">
-                <li>• Przeglądy konserwacyjne (UTB)</li>
-                <li>• Dzienniki konserwacji</li>
-                <li>• Naprawy hydrauliki siłowej</li>
-                <li>• Naprawy maszyn budowlanych</li>
+                <li>• Przeglądy konserwacyjne i dokumentacja</li>
+                <li>• Diagnostyka mechaniczna, hydrauliczna i elektryczna</li>
+                <li>• Wymiana zużytych podzespołów i usuwanie awarii</li>
+                <li>• Przywracanie sprawności układów sterowania</li>
               </ul>
             </div>
 

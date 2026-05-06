@@ -4,7 +4,7 @@
             {
                 "id": "1",
                 "question": "Na jakim obszarze działacie?",
-                "answer": "Realizujemy zlecenia na terenie całej Polski, a w przypadku relokacji maszyn i dużych projektów elektroinstalacyjnych również za granicą.",
+                "answer": "Zakres terytorialny ustalamy indywidualnie dla każdej usługi. Przy większych relokacjach i pracach specjalistycznych potwierdzamy go na etapie oferty.",
                 "category": "Ogólne",
                 "sortOrder": 10,
                 "isFeatured": true
@@ -44,7 +44,7 @@
             {
                 "id": "6",
                 "question": "Jak często trzeba robić przeglądy UDT?",
-                "answer": "Zależy to od typu urządzenia. Zazwyczaj konserwacja odbywa się cyklicznie, a badania okresowe raz w roku.",
+                "answer": "Częstotliwość przeglądów zależy od rodzaju urządzenia i jest określona przez UDT. Najlepiej weryfikować ją dla konkretnego typu urządzenia i sposobu eksploatacji.",
                 "category": "UDT",
                 "sortOrder": 60,
                 "isFeatured": true
@@ -75,9 +75,9 @@
             },
             {
                 "id": "10",
-                "question": "Czy wykonujecie prace budowlane przy modernizacji hali lub pod nowe maszyny?",
-                "answer": "Tak, obsługujemy zakresy budowlane związane z przygotowaniem przestrzeni pod urządzenia, pracami odtworzeniowymi i modernizacyjnymi.",
-                "category": "Budownictwo",
+                "question": "Czy wykonujecie prace hydrauliczne i montażowo-konstrukcyjne w czynnych zakładach?",
+                "answer": "Tak. Realizujemy modernizacje rurociągów, wymianę armatury, konstrukcje wsporcze i prace montażowe przy urządzeniach również na czynnych obiektach przemysłowych.",
+                "category": "Hydraulika i Montaż",
                 "sortOrder": 100,
                 "isFeatured": false
             },
@@ -97,7 +97,7 @@
             "UDT",
             "Elektryka i Spawanie",
             "Relokacja",
-            "Budownictwo",
+            "Hydraulika i Montaż",
             "Kontakt"
         ],
         "featuredGroups": [
@@ -107,7 +107,7 @@
                     {
                         "id": "1",
                         "q": "Na jakim obszarze działacie?",
-                        "a": "Realizujemy zlecenia na terenie całej Polski, a w przypadku relokacji maszyn i dużych projektów elektroinstalacyjnych również za granicą."
+                        "a": "Zakres terytorialny ustalamy indywidualnie dla każdej usługi. Przy większych relokacjach i pracach specjalistycznych potwierdzamy go na etapie oferty."
                     },
                     {
                         "id": "2",
@@ -142,7 +142,7 @@
                     {
                         "id": "6",
                         "q": "Jak często trzeba robić przeglądy UDT?",
-                        "a": "Zależy to od typu urządzenia. Zazwyczaj konserwacja odbywa się cyklicznie, a badania okresowe raz w roku."
+                        "a": "Częstotliwość przeglądów zależy od rodzaju urządzenia i jest określona przez UDT. Najlepiej weryfikować ją dla konkretnego typu urządzenia i sposobu eksploatacji."
                     }
                 ]
             },
@@ -169,10 +169,11 @@
                 "id": "1",
                 "slug": "relokacja",
                 "title": "Relokacja Maszyn",
-                "description": "Kompleksowe przenoszenie linii produkcyjnych.",
+                "description": "Kompleksowe przenoszenie linii produkcyjnych z własnym zapleczem sprzętowym.",
                 "items": [
                     "Demontaż maszyn i urządzeń",
                     "Załadunek i transport specjalistyczny",
+                    "Relokacje wspierane własnym sprzętem dźwigowym i transportowym",
                     "Relokacje na terenie zakładu i zewnętrzne",
                     "Ponowny montaż i poziomowanie",
                     "Rozruch technologiczny po relokacji"
@@ -187,18 +188,18 @@
                 "id": "2",
                 "slug": "wynajem",
                 "title": "Wynajem Maszyn",
-                "description": "Profesjonalny sprzęt z możliwością wynajmu z operatorem.",
+                "description": "Sprzęt dobierany do konkretnego zadania, z opcją operatora dla wybranych grup maszyn.",
                 "items": [
-                    "Podesty: nożycowe (do 18m), przegubowe, teleskopowe",
+                    "Podesty nożycowe do 18 m oraz podnośniki koszowe na pojeździe",
                     "Żurawie samochodowe (35t, 45t, 60t, 90t)",
                     "Ładowarki teleskopowe i wózki widłowe",
                     "Specjalistyczny sprzęt (np. VersaLift)",
-                    "Podnośniki koszowe na pojazdach"
+                    "Osprzęt pomocniczy dobierany do zakresu usługi"
                 ],
                 "pagePath": "/wynajem",
                 "contactLabel": "Wynajem Maszyn",
                 "training": {
-                    "text": "Potrzebujesz uprawnień UDT na wózki lub żurawie?",
+                    "text": "Potrzebujesz uprawnień UDT na wózki, żurawie lub podesty?",
                     "linkText": "Oferta szkoleń UDT"
                 },
                 "isFeatured": true,
@@ -208,13 +209,13 @@
                 "id": "3",
                 "slug": "spawanie",
                 "title": "Usługi Spawalnicze",
-                "description": "Naprawy bieżące i konstrukcje stalowe.",
+                "description": "Naprawy bieżące, konstrukcje stalowe i wykonawstwo specjalistyczne.",
                 "items": [
-                    "Naprawy: maszyn, zbiorników, rurociągów",
-                    "Konstrukcje: hale, antresole, podesty",
-                    "Spawanie wszystkich gatunków stali",
-                    "Wszystkie metody (MIG/MAG, TIG, Elektryczne)",
-                    "Doradztwo przy nietypowych zleceniach"
+                    "Naprawy maszyn, zbiorników, rurociągów i kontenerów",
+                    "Antresole, podesty serwisowe, hale i wiaty",
+                    "Suwnice, uchwyty, ramy oraz wsporniki",
+                    "Ramy pod wentylatory, kanały i rurociągi",
+                    "Spawanie wszystkich gatunków stali i dobór technologii"
                 ],
                 "pagePath": "/spawanie",
                 "contactLabel": "Usługi Spawalnicze",
@@ -228,21 +229,18 @@
             {
                 "id": "4",
                 "slug": "budownictwo",
-                "title": "Remonty Budowlane",
-                "description": "Usługi remontowo-budowlane dla przemysłu.",
+                "title": "Usługi Hydrauliczne i Montażowo-Konstrukcyjne",
+                "description": "Rurociągi przemysłowe, armatura i konstrukcje wsporcze dla zakładów przemysłowych.",
                 "items": [
-                    "Adaptacje hal przemysłowych",
-                    "Fundamenty pod maszyny",
-                    "Prace wykończeniowe i modernizacyjne",
-                    "Naprawy posadzek przemysłowych",
-                    "Infrastruktura techniczna"
+                    "Modernizacja i naprawa rurociągów przemysłowych",
+                    "Montaż konstrukcji wsporczych i tras rurociągowych",
+                    "Wymiana armatury oraz przebudowy pod nowe urządzenia",
+                    "Konstrukcje stalowe pod maszyny, pompy i wentylatory",
+                    "Prace montażowo-konstrukcyjne na czynnych obiektach"
                 ],
                 "pagePath": "/budownictwo",
-                "contactLabel": "Remonty Budowlane",
-                "training": {
-                    "text": "Szkolenia IMBIGS na maszyny budowlane.",
-                    "linkText": "Szkolenia IMBIGS"
-                },
+                "contactLabel": "Hydraulika i Montaż",
+                "training": null,
                 "isFeatured": true,
                 "sortOrder": 40
             },
@@ -250,13 +248,13 @@
                 "id": "5",
                 "slug": "udt",
                 "title": "Konserwacja i UDT",
-                "description": "Konserwacja, formalności i przygotowanie urządzeń do badań.",
+                "description": "Konserwacja, diagnostyka i formalności dla urządzeń objętych dozorem.",
                 "items": [
-                    "Rejestracja urządzeń w UDT",
-                    "Obsługa formalności i dokumentacji",
-                    "Konserwacja UTB",
-                    "Przygotowanie do badań i odbiorów",
-                    "Doradztwo techniczne"
+                    "Kompleksowa organizacja badań UDT",
+                    "Rejestracja urządzeń i odtwarzanie dokumentacji",
+                    "Przeglądy konserwacyjne i dokumentacja",
+                    "Serwis, diagnostyka i usuwanie awarii",
+                    "Doradztwo techniczne i analiza obowiązków dozoru"
                 ],
                 "pagePath": "/udt",
                 "contactLabel": "Konserwacja i UDT",
@@ -287,7 +285,7 @@
             "Relokacja Maszyn",
             "Wynajem Maszyn",
             "Usługi Spawalnicze",
-            "Remonty Budowlane",
+            "Hydraulika i Montaż",
             "Konserwacja i UDT",
             "Usługi Elektryczne",
             "Szkolenia",

@@ -48,7 +48,10 @@ export const WeldingPage: React.FC<WeldingPageProps> = ({ companyData }) => {
                   <li>• Antresole i podesty magazynowe</li>
                   <li>• Podesty serwisowe</li>
                   <li>• Konstrukcje hal i wiat</li>
-                  <li>• Konstrukcje wsporcze</li>
+                  <li>• Suwnice, uchwyty, ramy i wsporniki</li>
+                  <li>• Ramy i podstawy pod wentylatory przemysłowe</li>
+                  <li>• Wsporniki i mocowania dla kanałów oraz rurociągów</li>
+                  <li>• Konstrukcje stalowe specjalnego przeznaczenia i zabudowy akustyczne</li>
                 </ul>
               </div>
             </div>

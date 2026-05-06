@@ -34,7 +34,7 @@ export const HomePage: React.FC<HomePageProps> = ({ companyData, faqGroups, serv
               <div className="group p-6 bg-industrial-900/50 rounded-xl border border-gray-800 shadow-xl hover:border-industrial-accent transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
                   <div className="text-5xl font-display font-bold text-industrial-accent mb-4 group-hover:text-white transition-colors duration-300">01</div>
                   <h4 className="text-xl font-bold text-white mb-3 group-hover:text-industrial-accent transition-colors duration-300">Synergia Działań</h4>
-                  <p className="text-lg text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">Łączymy relokację maszyn z ich podłączeniem elektrycznym i dozorem UDT. Oszczędzasz czas na koordynacji firm.</p>
+                  <p className="text-lg text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">Łączymy wynajem, relokację, UDT, spawalnictwo i montaż przemysłowy. Oszczędzasz czas na koordynacji kilku wykonawców.</p>
               </div>
               {/* Card 02 */}
               <div className="group p-6 bg-industrial-900/50 rounded-xl border border-gray-800 shadow-xl hover:border-industrial-accent transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
@@ -45,8 +45,8 @@ export const HomePage: React.FC<HomePageProps> = ({ companyData, faqGroups, serv
               {/* Card 03 */}
               <div className="group p-6 bg-industrial-900/50 rounded-xl border border-gray-800 shadow-xl hover:border-industrial-accent transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
                   <div className="text-5xl font-display font-bold text-industrial-accent mb-4 group-hover:text-white transition-colors duration-300">03</div>
-                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-industrial-accent transition-colors duration-300">Jakość ISO 9001</h4>
-                  <p className="text-lg text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">Posiadamy certyfikowane procesy zarządzania jakością, co gwarantuje bezpieczeństwo i terminowość.</p>
+                  <h4 className="text-xl font-bold text-white mb-3 group-hover:text-industrial-accent transition-colors duration-300">Jakość i Terminowość</h4>
+                  <p className="text-lg text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors duration-300">Pracujemy według uporządkowanych procesów i standardów jakości, co ułatwia bezpieczną realizację i terminowe oddanie prac.</p>
               </div>
             </div>
         </div>

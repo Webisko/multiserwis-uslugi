@@ -28,7 +28,7 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ services = fal
             NASZE <span className="text-industrial-accent">USŁUGI</span>
           </h2>
           <p className="text-gray-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            Dostarczamy rozwiązania dla przemysłu ciężkiego, logistyki i budownictwa.
+            Dostarczamy rozwiązania dla przemysłu, logistyki i utrzymania ruchu.
             Wybierz interesujący Cię obszar, aby dowiedzieć się więcej.
           </p>
         </div>

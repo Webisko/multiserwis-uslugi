@@ -10,8 +10,9 @@ export const UdtSection: React.FC = () => {
       title: "Obsługiwane Urządzenia",
       items: [
         "Wózki widłowe",
-        "Podesty ruchome",
+        "Podesty ruchome / zwyżki",
         "Żurawie samojezdne, HDS i leśne",
+        "Windy załadowcze (windy samochodowe)",
         "Dźwigniki i podnośniki warsztatowe",
         "Naczepy do transportu pojazdów",
         "Hakowce i bramowce",
@@ -96,10 +97,10 @@ export const UdtSection: React.FC = () => {
             {/* Hydraulics Box */}
             <div className="md:col-span-2 bg-industrial-800 rounded-xl p-10 border border-gray-700 hover:border-industrial-accent/30 transition-colors mt-6">
                 <h3 className="text-2xl font-display font-bold text-white mb-4">
-                    Hydraulika Siłowa i Maszyny Budowlane
+                Kompleksowy serwis i diagnostyka
                 </h3>
                 <p className="text-gray-300 text-lg leading-relaxed">
-                    Poza dozorem UDT, oferujemy profesjonalne naprawy hydrauliki siłowej oraz serwis maszyn budowlanych.
+                Poza dozorem UDT przejmujemy również diagnostykę usterek mechanicznych, hydraulicznych i elektrycznych oraz usuwanie awarii urządzeń technicznych.
                 </p>
             </div>
           </div>

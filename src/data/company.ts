@@ -19,13 +19,15 @@ export const defaultCompany = {
   phones: {
     services: {
       label: 'Usługi',
-      value: '730 202 000',
-      href: 'tel:+48730202000',
+      value: '730 101 000',
+      href: 'tel:+48730101000',
+      secondaryValue: '733 929 100',
+      secondaryHref: 'tel:+48733929100',
     },
     training: {
       label: 'Szkolenia',
-      value: '730 101 000',
-      href: 'tel:+48730101000',
+      value: 'numer do uzupełnienia',
+      href: '',
     },
   },
   email: 'multiserwis.kutno@gmail.com',
@@ -81,4 +83,14 @@ export function SiteSettingsProvider({ value, children }: SiteSettingsProviderPr
 
 export function useCompanyData(): CompanyData {
   return useContext(CompanyDataContext);
+}
+
+export function getWhatsAppUrl(phoneHref?: string, fallbackValue?: string): string | null {
+  const raw = (phoneHref || fallbackValue || '').replace(/tel:/, '').replace(/\D/g, '');
+
+  if (!raw) {
+    return null;
+  }
+
+  return `https://wa.me/${raw}`;
 }

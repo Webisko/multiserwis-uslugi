@@ -19,9 +19,21 @@
 - Ładowarki teleskopowe
 - Wózki widłowe
 
-### 1.4 Osprzęt i sprzęt specjalistyczny
-- Osprzęt dźwigowy
+**Najczęściej wynajmowany / najczęściej zamawiany sprzęt do pokazania w widocznym miejscu na stronie:**
+- Podesty nożycowe do 18 m
+- Podnośniki koszowe montowane na pojeździe
+- Żurawie 35t, 45t, 60t, 90t
+- Ładowarki teleskopowe
+- Wózki widłowe
+
+**Ważny komunikat sprzedażowy:**
+- Poza najpopularniejszym sprzętem możemy zaoferować również inne urządzenia dobrane do konkretnego zadania klienta.
+
+### 1.4 Sprzęt specjalistyczny i zaplecze pomocnicze
 - Specjalistyczny sprzęt (np. VersaLift)
+- Przy realizacji usług korzystamy także z osprzętu pomocniczego, np. trawersów, rolek transportowych, przedłużek do wideł i podobnych rozwiązań.
+- Osprzęt pomocniczy nie stanowi osobnej pozycji wynajmu. Dobieramy go do zakresu usługi i wykorzystujemy przy realizacji prac.
+- [DO UZUPEŁNIENIA - dokładna lista osprzętu od Kamila: np. zawiesia, trawersy, stemple, rolki transportowe]
 
 **Opcje wynajmu:**
 - Podnośniki koszowe, żurawie, ładowarki teleskopowe z operatorem
@@ -54,8 +66,14 @@
   - Antresole
   - Podesty serwisowe
   - Konstrukcje hal
+  - Suwnice i elementy infrastruktury towarzyszącej
+  - Uchwyty, ramy i wsporniki
+  - Ramy i podstawy pod wentylatory przemysłowe
+  - Wsporniki i mocowania dla kanałów oraz rurociągów
+  - Konstrukcje stalowe specjalnego przeznaczenia
+  - Zabudowy akustyczne
 
-### 2.3 Technologie spawania
+### 2.3 Technologie spawania i zakres materiałowy
 - Spawanie wszystkimi metodami
 - Praca na wszystkich gatunkach stali
 
@@ -75,6 +93,7 @@
 ### Zakres usługi:
 - Relokacja na terenie zakładu
 - Relokacja ze zmianą lokalizacji
+- Relokacja wspierana własnym parkiem maszynowym i zapleczem sprzętowym
 
 ### Pełen proces:
 1. Demontaż maszyn
@@ -84,11 +103,28 @@
 5. Ponowny montaż
 6. Rozruch technologiczny
 
+**Powiązanie sprzedażowe na stronie:**
+- W sekcji relokacji warto dodać link do wynajmu maszyn i podkreślić, że korzystamy również z własnego sprzętu.
+- W sekcji wynajmu warto dodać link zwrotny do kompleksowej relokacji dla klientów szukających nie tylko maszyny, ale pełnej obsługi zadania.
+
 ---
 
-## 4. USŁUGI REMONTOWO-BUDOWLANE
+## 4. USŁUGI HYDRAULICZNE I PRACE MONTAŻOWO-KONSTRUKCYJNE
 
-*(Sekcja do uzupełnienia szczegółami od klienta)*
+### 4.1 Instalacje i rurociągi przemysłowe
+- Modernizacja i naprawa rurociągów spawanych, zgrzewanych i skręcanych - w całości lub na wskazanych odcinkach
+- Montaż konstrukcji wsporczych i tras rurociągowych
+- Wymiana odcinków rurociągów w czynnych zakładach
+- Wymiana armatury przemysłowej (zawory, zasuwy, przepustnice)
+- Przebudowy rurociągów pod nowe urządzenia
+- Izolacje termiczne
+- Praca na czynnych obiektach, dobór materiałów i technologii wykonania do warunków obiektu
+
+### 4.2 Prace konstrukcyjne i montażowe przy urządzeniach
+- Wykonywanie konstrukcji stalowych pod maszyny i urządzenia
+- Konstrukcje wsporcze pod silniki, pompy, wentylatory i rurociągi
+- Dostosowanie, wykonanie i montaż konstrukcji do wymiany maszyn
+- Prace konstrukcyjne i mechaniczne przy montażu, wymianie oraz modernizacji maszyn przemysłowych
 
 ---
 
@@ -96,9 +132,10 @@
 
 ### 5.1 Urządzenia objęte usługą:
 - Wózki widłowe
-- Podesty ruchome
+- Podesty ruchome / zwyżki
 - Żurawie samojezdne
 - Żurawie HDS i leśne
+- Windy załadowcze (windy samochodowe)
 - Dźwigniki
 - Podnośniki warsztatowe
 - Naczepy do transportu pojazdów
@@ -129,9 +166,27 @@
 - Szkolenia na maszyny budowlane (IMBIGS)
 - [Zobacz pełną ofertę szkoleń →]
 
-### 5.3 Naprawy hydrauliki i maszyn budowlanych
-- Naprawy hydrauliki siłowej
-- Naprawy maszyn budowlanych
+### 5.3 Kompleksowy serwis i diagnostyka maszyn oraz urządzeń technicznych
+- Diagnostyka usterek mechanicznych, hydraulicznych i elektrycznych
+- Naprawy bieżące oraz usuwanie awarii
+- Wymiana zużytych i uszkodzonych podzespołów
+- Dobór i zamawianie części zamiennych
+- Regeneracje elementów instalacji
+- Naprawa i wymiana siłowników hydraulicznych
+- Wymiana przewodów i uszczelnień
+- Usuwanie wycieków i spadków ciśnienia
+- Diagnostyka układów hydrauliki siłowej
+- Diagnostyka usterek elektrycznych
+- Wymiana czujników, przekaźników i elementów sterowania
+- Przywracanie sprawności układów sterowania
+- Renowacje maszyn, zabezpieczenia i odnowa powierzchni (przygotowanie pod malowanie, szlifowanie, czyszczenie, malowanie konstrukcji, zabezpieczenia antykorozyjne, odświeżanie powłok ochronnych)
+
+**Obsługiwane urządzenia - opcjonalnie do pokazania w tej sekcji:**
+- Wózki widłowe
+- Podesty ruchome / zwyżki
+- Ładowarki teleskopowe
+- Windy samochodowe
+- Żurawie HDS
 
 ---
 
@@ -301,11 +356,12 @@ Przyciski/kafelki do wyboru:
 (dynamiczne pola w zależności od wybranej kategorii)
 
 **Dla "Wynajem maszyn":**
-- Rodzaj sprzętu (lista wielokrotnego wyboru)
+- Rodzaj sprzętu* (lista wielokrotnego wyboru)
 - Planowana data rozpoczęcia
 - Przewidywany czas wynajmu (dni/tygodnie/miesiące)
-- Czy z operatorem? (tak/nie)
+- Czy z operatorem? (tak/nie; pole aktywne tylko dla wybranych grup sprzętu)
 - Lokalizacja (pole tekstowe)
+- Krótki opis prac* (np. waga ładunku, odległość podania, wysokość pracy, warunki na obiekcie)
 - Dodatkowe uwagi
 
 **Dla "Usługi techniczne/Spawalnictwo":**
@@ -351,7 +407,8 @@ Każda kategoria usług ma **własny, dedykowany formularz** z polami dostosowan
 - Data rozpoczęcia wynajmu*
 - Czas trwania*
 - Lokalizacja*
-- Czy z operatorem? (tak/nie)
+- Czy z operatorem? (tak/nie; tylko dla wybranych typów sprzętu)
+- Krótki opis prac* (np. waga ładunku, zasięg podania, wysokość, warunki pracy)
 - Uwagi dodatkowe
 
 **📋 Formularz: Usługi spawalnicze**
@@ -412,7 +469,7 @@ Każda kategoria usług ma **własny, dedykowany formularz** z polami dostosowan
 │                             │
 │ [  Wyślij zapytanie  ]     │
 │                             │
-│ Lub zadzwoń: 730 202 000   │
+│ Lub zadzwoń: 730 101 000   │
 └─────────────────────────────┘
 ```
 
@@ -424,7 +481,7 @@ Każda kategoria usług ma **własny, dedykowany formularz** z polami dostosowan
 
 **Dla podstron usług:** WARIANT C (dedykowane formularze per kategoria)
 
-**Dla bardziej interaktywnego UX:** WARIANT B (wielokrokowy)
+**Dla bardziej interaktywnego UX:** WARIANT B (wielokrokowy) - to obecnie preferowany kierunek po feedbacku klienta
 
 **Dodatkowe elementy warte rozważenia:**
 - ✅ Przycisk "Zadzwoń teraz" (click-to-call na mobile)
@@ -437,7 +494,7 @@ Każda kategoria usług ma **własny, dedykowany formularz** z polami dostosowan
 
 ---
 
-## 8. DANE KONTAKTOWE
+## 9. DANE KONTAKTOWE
 
 ### Kontakt główny
 **Adres:**  
@@ -447,20 +504,24 @@ Kutno, ul. Siemieradzkiego 18
 multiserwis.kutno@gmail.com
 
 **Telefon - Usługi:**  
-📞 730 202 000
+📞 730 101 000  
+📞 733 929 100
 
 **Telefon - Szkolenia:**  
-📞 730 101 000
+📞 [DO UZUPEŁNIENIA - osobny numer do szkoleń]
 
 ### Godziny pracy biura
-[DO UZUPEŁNIENIA]
+8:00-16:00
+
+### Dodatkowe kanały kontaktu
+- WhatsApp do numerów usług wskazanych powyżej
 
 ### Lokalizacja
 [Mapa Google Maps z pinezką na adresie]
 
 ---
 
-## 9. SEKCJA FAQ - NAJCZĘŚCIEJ ZADAWANE PYTANIA
+## 10. SEKCJA FAQ - NAJCZĘŚCIEJ ZADAWANE PYTANIA
 
 ### FAQ OGÓLNE (dla strony głównej)
 
@@ -508,7 +569,7 @@ A: Tak, oferujemy kompleksową obsługę formalną – od przygotowania dokument
 A: Dozorowi podlegają m.in.: wózki widłowe, suwnice, żurawie, podesty ruchome, wciągarki, dźwigniki i inne urządzenia transportu bliskiego. Jeśli masz wątpliwości, skontaktuj się z nami – pomożemy ustalić, czy Twoje urządzenie wymaga rejestracji.
 
 **Q: Jak często należy wykonywać przeglądy UDT?**
-A: Częstotliwość przeglądów zależy od rodzaju urządzenia i jest określona przez UDT. Zazwyczaj jest to raz w roku, ale niektóre urządzenia wymagają częstszych kontroli. Przypomnimy Ci o zbliżającym się terminie przeglądu.
+A: Częstotliwość przeglądów zależy od rodzaju urządzenia i jest określona przez UDT. Najlepiej weryfikować ją dla konkretnego typu urządzenia i sposobu eksploatacji.
 
 **Q: Czy oferujecie szkolenia dla operatorów urządzeń UDT?**
 A: Tak! Prowadzimy szkolenia UDT dla operatorów wszystkich kategorii urządzeń. Więcej informacji znajdziesz na naszej stronie szkoleń. [link do domeny szkoleń]
@@ -551,11 +612,6 @@ A: Tak, oferujemy kompleksową usługę relokacji: demontaż, transport, rozład
 
 **Q: Czy możecie przenieść linię produkcyjną bez zatrzymywania produkcji?**
 A: Tak, planujemy relokacje w sposób minimalizujący przestoje. W wielu przypadkach możliwe jest przeniesienie etapami lub w weekendy/nocne zmiany.
-
-**Q: Czy ubezpieczacie przewożone maszyny?**
-A: [DO UZUPEŁNIENIA - szczegóły dotyczące ubezpieczenia]
-
----
 
 #### 📞 Kontakt i współpraca
 
@@ -639,7 +695,7 @@ odpowiedzi pod każdym pytaniem
 
 ---
 
-## 10. PEŁNA LISTA SZKOLEŃ (OSOBNA DOMENA)
+## 11. PEŁNA LISTA SZKOLEŃ (OSOBNA DOMENA)
 
 ### Szkolenia UDT
 - Wózki widłowe (UDT)
@@ -680,7 +736,7 @@ odpowiedzi pod każdym pytaniem
 
 ---
 
-## 11. UWAGI STRATEGICZNE:
+## 12. UWAGI STRATEGICZNE:
 
 **Miejsca, gdzie należy wspomnieć o szkoleniach na stronie usług:**
 
@@ -692,7 +748,7 @@ odpowiedzi pod każdym pytaniem
 
 ---
 
-## 12. REKOMENDACJA STRUKTURY MENU STRONY:
+## 13. REKOMENDACJA STRUKTURY MENU STRONY:
 
 ```
 STRONA GŁÓWNA
@@ -752,27 +808,22 @@ STRONA GŁÓWNA | USŁUGI | O FIRMIE | SZKOLENIA | REALIZACJE | FAQ | KONTAKT
 
 ---
 
-## 13. ELEMENTY DO UZUPEŁNIENIA / WYJAŚNIENIA Z KLIENTEM:
+## 14. ELEMENTY DO UZUPEŁNIENIA / WYJAŚNIENIA Z KLIENTEM:
 
-1. ✅ Szczegóły usług remontowo-budowlanych (Sekcja 4)
-2. ✅ Dokładna treść usług elektrycznych - przeredagowane i uzupełnione
-3. ✅ Certyfikaty i akredytacje firmy - dodana sekcja z ISO 9001:2015 i pełnym zakresem
-4. ✅ Formularz kontaktowy - zaproponowano 4 warianty (A-D) + rekomendacje
-5. ✅ Sekcja FAQ - przygotowano pytania i odpowiedzi + propozycje formatowania
-6. ✅ Dane kontaktowe - telefony, email, adres uzupełnione
-7. ❓ Godziny pracy biura
-8. ❓ Zdjęcia / galeria realizacji
-9. ❓ Zasięg działania (lokalnie/regionalnie/w całej Polsce/zagranica) - DO UZUPEŁNIENIA W FAQ
-10. ❓ Ubezpieczenie przewożonych maszyn - DO UZUPEŁNIENIA W FAQ
-11. ❓ Przykładowe realizacje dla każdej kategorii usług (case studies)
-12. ✅ URL domeny ze szkoleniami (do linkowania)
-13. ❓ Który wariant formularza kontaktowego najbardziej odpowiada potrzebom?
-14. ❓ Który format FAQ preferujecie? (accordion/zakładki/wyszukiwarka/prosta lista)
-15. ❓ Czy wszystkie linki do szkoleń mają przekierowywać na główną stronę szkoleń, czy na konkretne podstrony?
-16. ❓ Czy logo/grafika certyfikatu ISO ma być widoczna na stronie głównej czy tylko w sekcji "O firmie"?
-17. ❓ Czy są jakieś inne certyfikaty, uprawnienia branżowe lub członkostwa w organizacjach?
-18. ❓ Czy firma chce używać dodatkowych kanałów kontaktu: WhatsApp Business, Messenger, czat na żywo?
-19. ❓ Czy są pytania w FAQ, które wymagają modyfikacji lub dodatkowych informacji?
+1. ✅ Sekcja 4 została doprecyzowana w kierunku usług hydraulicznych i prac montażowo-konstrukcyjnych.
+2. ❓ Sekcja 6 (usługi elektryczne) nadal wymaga weryfikacji merytorycznej Kamila.
+3. ✅ Godziny pracy biura: 8:00-16:00.
+4. ❓ Zasięg działania (lokalnie/regionalnie/w całej Polsce/zagranica) nadal wymaga doprecyzowania w FAQ i na podstronach usług.
+5. ❓ Dokładna lista osprzętu pomocniczego do sekcji 1.4 nadal czeka na dopisanie przez Kamila.
+6. ❓ Przykładowe realizacje / case studies dla poszczególnych kategorii usług nadal są do uzupełnienia.
+7. ❓ Czy są inne certyfikaty, uprawnienia branżowe lub członkostwa w organizacjach poza już wpisanymi?
+8. ⚠️ Numery usług zostały uzupełnione, ale osobny numer do szkoleń nadal nie został podany.
+9. ✅ WhatsApp ma być dostępny pod numerami usług.
+10. ✅ FAQ zostało skorygowane: usunięto błędny dopisek o przypomnieniach UDT i pytanie o ubezpieczenie przewożonych maszyn.
+11. ✅ Preferowany kierunek formularza: wariant B.
+12. ❓ Nadal trzeba ustalić preferowany format FAQ na stronie (accordion / zakładki / wyszukiwarka / prosta lista).
+13. ❓ Nadal trzeba ustalić, czy linki do szkoleń mają prowadzić do strony głównej szkoleń czy do konkretnych podstron.
+14. ❓ Nadal trzeba ustalić, czy certyfikat ISO ma być eksponowany na stronie głównej czy tylko w sekcji "O firmie".
 
 ---
 

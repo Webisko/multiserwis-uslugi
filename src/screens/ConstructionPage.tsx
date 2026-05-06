@@ -12,33 +12,33 @@ export const ConstructionPage: React.FC<ConstructionPageProps> = ({ companyData 
   const resolvedCompany = companyData ?? company;
   const constructionAreas = [
     {
-      title: 'Prace remontowe w obiektach przemysłowych',
+      title: 'Instalacje i rurociągi przemysłowe',
       description:
-        'Realizujemy roboty wykończeniowe, odtworzeniowe i modernizacyjne w halach, zapleczach technicznych oraz obiektach pomocniczych.',
+        'Modernizujemy i naprawiamy instalacje rurociągowe oraz układy przesyłowe w zakładach przemysłowych.',
       icon: <Hammer size={22} />,
-      items: ['remonty fragmentów hal i pomieszczeń technicznych', 'prace adaptacyjne pod nowe procesy', 'roboty odtworzeniowe po relokacjach i modernizacjach'],
+      items: ['modernizacja i naprawa rurociągów spawanych, zgrzewanych i skręcanych', 'montaż konstrukcji wsporczych i tras rurociągowych', 'wymiana armatury, przebudowy rurociągów i izolacje termiczne'],
     },
     {
-      title: 'Fundamenty i przygotowanie pod maszyny',
+      title: 'Prace konstrukcyjne pod maszyny i urządzenia',
       description:
-        'Wspieramy przygotowanie przestrzeni pod montaż urządzeń, linii i wyposażenia technologicznego.',
+        'Wykonujemy konstrukcje stalowe i elementy wsporcze pod nowe lub modernizowane urządzenia.',
       icon: <Ruler size={22} />,
-      items: ['fundamenty i bazy pod urządzenia', 'przygotowanie stanowisk roboczych', 'koordynacja z pracami relokacyjnymi i elektrycznymi'],
+      items: ['konstrukcje pod maszyny, pompy, wentylatory i rurociągi', 'dostosowanie i montaż konstrukcji do wymiany maszyn', 'prace konstrukcyjne i mechaniczne przy montażu oraz modernizacji urządzeń'],
     },
     {
-      title: 'Prace towarzyszące dla inwestycji przemysłowych',
+      title: 'Realizacja na czynnych obiektach przemysłowych',
       description:
-        'Obsługujemy roboty pomocnicze i wykonawcze tam, gdzie liczy się sprawna współpraca kilku branż jednocześnie.',
+        'Dobieramy technologię i harmonogram do warunków zakładu, aby ograniczyć wpływ prac na produkcję.',
       icon: <Building2 size={22} />,
-      items: ['roboty budowlane przy modernizacjach obiektów', 'przygotowanie przestrzeni dla nowych instalacji', 'prace uzgadniane indywidualnie pod zakres inwestycji'],
+      items: ['prace na czynnych instalacjach i obiektach', 'koordynacja z relokacją, wymianą urządzeń i elektryką', 'zakres dopasowywany indywidualnie do obiektu i harmonogramu inwestycji'],
     },
   ];
 
   return (
     <SiteSettingsProvider value={resolvedCompany}>
       <PageHeader 
-        title="Usługi Remontowo-Budowlane" 
-        subtitle="Realizujemy prace budowlane w obiektach przemysłowych, magazynowych i użyteczności publicznej."
+        title="Usługi Hydrauliczne i Montażowo-Konstrukcyjne" 
+        subtitle="Rurociągi przemysłowe, armatura i konstrukcje wsporcze realizowane z myślą o pracy zakładów przemysłowych."
       />
 
       <section className="py-20 bg-industrial-950">
@@ -47,9 +47,9 @@ export const ConstructionPage: React.FC<ConstructionPageProps> = ({ companyData 
             <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-industrial-900 text-industrial-accent">
               <HardHat size={32} />
             </div>
-            <h2 className="mb-4 text-3xl font-bold text-white">Zakres prac budowlanych dla przemysłu</h2>
+            <h2 className="mb-4 text-3xl font-bold text-white">Zakres prac hydraulicznych i montażowo-konstrukcyjnych</h2>
             <p className="text-lg leading-relaxed text-gray-300">
-              Obsługujemy prace budowlane jako uzupełnienie modernizacji, relokacji i przygotowania przestrzeni pod nowe urządzenia. Zakres każdorazowo dopasowujemy do obiektu, harmonogramu i wymagań inwestora.
+              Obsługujemy modernizacje rurociągów, wymianę armatury, konstrukcje wsporcze oraz prace montażowe przy urządzeniach. Zakres każdorazowo dopasowujemy do obiektu, harmonogramu i wymagań inwestora.
             </p>
           </div>
 
@@ -74,9 +74,9 @@ export const ConstructionPage: React.FC<ConstructionPageProps> = ({ companyData 
           </div>
 
           <ServiceInquiryCta
-            title="Masz zakres budowlany do skoordynowania z pracami technicznymi lub relokacją?"
-            description="Opisz obiekt, rodzaj prac i termin realizacji. Ustalimy, czy potrzebujesz osobnej ekipy budowlanej, czy pakietu łączącego budownictwo z elektryką, relokacją albo przygotowaniem pod urządzenia."
-            contactLabel="Skonsultuj zakres budowlany"
+            title="Potrzebujesz przebudowy rurociągów, armatury albo konstrukcji pod nowe urządzenie?"
+            description="Opisz obiekt, rodzaj prac i termin realizacji. Ustalimy zakres hydrauliki przemysłowej i prac montażowo-konstrukcyjnych, także wtedy, gdy trzeba go skoordynować z relokacją lub elektryką."
+            contactLabel="Skonsultuj hydraulikę i montaż"
           />
         </div>
       </section>

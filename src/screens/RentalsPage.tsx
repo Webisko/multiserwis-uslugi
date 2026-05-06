@@ -45,12 +45,13 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({ companyData }) => {
     },
     {
       id: 'specjalistyczne',
-      title: 'Osprzęt i sprzęt specjalistyczny',
+      title: 'Sprzęt specjalistyczny i zaplecze pomocnicze',
       items: [
-        'Osprzęt dźwigowy',
         'Specjalistyczny sprzęt (np. VersaLift)',
+        'Trawersy i rolki transportowe',
+        'Przedłużki do wideł i osprzęt pomocniczy',
       ],
-      description: 'Rozwiązania do zadań nietypowych i wymagających precyzji.',
+      description: 'Rozwiązania do zadań nietypowych i wymagających precyzji, dobierane do zakresu konkretnej usługi.',
     }
   ];
 
@@ -65,6 +66,20 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({ companyData }) => {
 
       <section className="page-section">
         <div className="page-container">
+          <div className="mb-12 rounded-2xl border border-gray-800 bg-industrial-900/70 p-8">
+            <p className="mb-4 text-sm font-bold uppercase tracking-[0.18em] text-industrial-accent">Najczęściej zamawiany sprzęt</p>
+            <div className="grid gap-4 text-gray-300 md:grid-cols-2 xl:grid-cols-5">
+              <span>Podesty nożycowe do 18 m</span>
+              <span>Podnośniki koszowe na pojeździe</span>
+              <span>Żurawie 35t, 45t, 60t, 90t</span>
+              <span>Ładowarki teleskopowe</span>
+              <span>Wózki widłowe</span>
+            </div>
+            <p className="mt-4 text-gray-400">
+              Poza najpopularniejszym sprzętem dobieramy również inne urządzenia do konkretnego zadania klienta.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
             {categories.map((category) => (
               <div key={category.id} id={category.id} className="offer-card">
@@ -94,11 +109,11 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({ companyData }) => {
                 <div className="space-y-4 text-gray-300">
                   <p className="flex items-start gap-3">
                     <span className="w-6 h-6 bg-industrial-800 rounded-full flex items-center justify-center text-industrial-accent font-bold shrink-0">1</span>
-                    <span><strong>Z operatorem:</strong> Podnośniki koszowe, żurawie, ładowarki teleskopowe. Nasi operatorzy to doświadczeni fachowcy.</span>
+                    <span><strong>Z operatorem:</strong> Podnośniki koszowe i żurawie. Dla pozostałych grup sprzętu model realizacji ustalamy indywidualnie.</span>
                   </p>
                   <p className="flex items-start gap-3">
                     <span className="w-6 h-6 bg-industrial-800 rounded-full flex items-center justify-center text-industrial-accent font-bold shrink-0">2</span>
-                    <span><strong>Bez operatora:</strong> Wózki widłowe i inne urządzenia dostępne również do samodzielnej obsługi (wymagane uprawnienia).</span>
+                    <span><strong>Bez operatora:</strong> Wózki widłowe i wybrane urządzenia dostępne również do samodzielnej obsługi przy wymaganych uprawnieniach.</span>
                   </p>
                 </div>
                 
@@ -115,7 +130,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({ companyData }) => {
                   💡 Potrzebujesz uprawnień?
                 </h4>
                 <p className="text-gray-300 mb-6">
-                  Oferujemy kompleksowe szkolenia UDT na wózki widłowe, ładowarki, żurawie i podesty ruchome. 
+                  Oferujemy kompleksowe szkolenia UDT na wózki widłowe, ładowarki, żurawie i podesty ruchome / zwyżki. 
                   Zdobądź kwalifikacje u nas!
                 </p>
                 <a 
@@ -127,6 +142,13 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({ companyData }) => {
                   Zobacz ofertę szkoleń
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </a>
+                <a
+                  href={`${basePath}/relokacja`}
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-gray-300 transition-colors hover:text-white"
+                >
+                  Potrzebujesz nie tylko sprzętu? Zobacz relokację maszyn
+                  <ArrowRight size={14} />
+                </a>
               </div>
             </div>
           </div>
@@ -134,7 +156,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({ companyData }) => {
           <div className="mt-10">
             <ServiceInquiryCta
               title="Potrzebujesz szybkiej wyceny wynajmu lub sprzętu z operatorem?"
-              description="Przygotujemy dobór sprzętu, termin dostępności i warunki realizacji pod konkretne zadanie. Możemy też od razu wskazać wymagane uprawnienia dla operatora lub zespołu klienta."
+              description="Przygotujemy dobór sprzętu, termin dostępności i warunki realizacji pod konkretne zadanie. Jeśli potrzebujesz pełniejszego wsparcia, połączymy wynajem z relokacją lub pracami technicznymi."
               contactLabel="Poproś o wycenę wynajmu"
               trainingTitle="Szkolenia UDT dla operatorów"
               trainingDescription="Jeśli Twój zespół potrzebuje uprawnień na wózki, żurawie, ładowarki lub podesty, przejdź do dedykowanej oferty szkoleniowej."

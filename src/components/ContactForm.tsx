@@ -5,6 +5,7 @@ const PREVIEW_SUCCESS_MESSAGE =
 const API_FALLBACK_ERROR_MESSAGE =
   'Nie udało się wysłać zapytania. Spróbuj ponownie za chwilę lub skontaktuj się telefonicznie.';
 const contactApiUrl = import.meta.env.PUBLIC_CONTACT_API_URL?.trim();
+const RENTAL_SERVICE_LABEL = 'Wynajem Maszyn';
 
 const fallbackServiceOptions = [
   'Wynajem Maszyn',
@@ -12,7 +13,7 @@ const fallbackServiceOptions = [
   'Relokacja Maszyn',
   'Konserwacja i UDT',
   'Usługi Elektryczne',
-  'Remonty Budowlane',
+  'Hydraulika i Montaż',
   'Szkolenia',
   'Inne',
 ];
@@ -34,6 +35,11 @@ type FormState = {
   phone: string;
   email: string;
   service: string;
+  rentalEquipment: string;
+  rentalLocation: string;
+  rentalStartDate: string;
+  rentalDuration: string;
+  rentalOperator: string;
   message: string;
   consent: boolean;
   website: string;
@@ -45,6 +51,11 @@ const initialState: FormState = {
   phone: '',
   email: '',
   service: '',
+  rentalEquipment: '',
+  rentalLocation: '',
+  rentalStartDate: '',
+  rentalDuration: '',
+  rentalOperator: '',
   message: '',
   consent: false,
   website: '',
@@ -73,6 +84,10 @@ type SubmitResult = {
   fieldErrors?: FormErrors;
 };
 
+function isRentalInquiry(state: Pick<FormState, 'service'>) {
+  return state.service === RENTAL_SERVICE_LABEL;
+}
+
 function validateForm(state: FormState): FormErrors {
   const errors: FormErrors = {};
   const digits = state.phone.replace(/\D/g, '');
@@ -83,6 +98,9 @@ function validateForm(state: FormState): FormErrors {
   if (digits.length < 9) errors.phone = 'Podaj poprawny numer telefonu.';
   if (!emailPattern.test(state.email.trim())) errors.email = 'Podaj poprawny adres e-mail.';
   if (!state.service) errors.service = 'Wybierz interesującą usługę.';
+  if (isRentalInquiry(state) && state.rentalEquipment.trim().length < 2) {
+    errors.rentalEquipment = 'Wskaż potrzebny sprzęt lub maszynę.';
+  }
   if (state.message.trim().length < 20) errors.message = 'Wiadomość powinna mieć co najmniej 20 znaków.';
   if (!state.consent) errors.consent = 'Zgoda na przetwarzanie danych jest wymagana.';
 
@@ -94,12 +112,37 @@ async function submitPreviewLead(): Promise<string> {
   return PREVIEW_SUCCESS_MESSAGE;
 }
 
+function buildMessageContent(formState: FormState) {
+  if (!isRentalInquiry(formState)) {
+    return formState.message.trim();
+  }
+
+  const rentalDetails = [
+    `Sprzęt / maszyna: ${formState.rentalEquipment.trim() || 'nie podano'}`,
+    formState.rentalLocation.trim() ? `Lokalizacja: ${formState.rentalLocation.trim()}` : null,
+    formState.rentalStartDate ? `Planowana data rozpoczęcia: ${formState.rentalStartDate}` : null,
+    formState.rentalDuration.trim() ? `Przewidywany czas wynajmu: ${formState.rentalDuration.trim()}` : null,
+    formState.rentalOperator ? `Operator: ${formState.rentalOperator}` : null,
+  ].filter(Boolean);
+
+  return ['Zapytanie dotyczące wynajmu maszyn.', ...rentalDetails, '', 'Krótki opis prac:', formState.message.trim()].join(
+    '\n'
+  );
+}
+
 function buildLeadPayload(formState: FormState, contextLabel: string): LeadPayload {
   const currentUrl = window.location.href;
   const url = new URL(currentUrl);
 
   return {
-    ...formState,
+    fullName: formState.fullName,
+    company: formState.company,
+    phone: formState.phone,
+    email: formState.email,
+    service: formState.service,
+    message: buildMessageContent(formState),
+    consent: formState.consent,
+    website: formState.website,
     source: {
       page: url.pathname,
       context: contextLabel,
@@ -202,6 +245,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [feedback, setFeedback] = useState('');
+  const isRentalSelected = isRentalInquiry(formState);
 
   const handleFieldChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -209,7 +253,21 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     const { name, value, type } = event.target;
     const nextValue = type === 'checkbox' ? (event.target as HTMLInputElement).checked : value;
 
-    setFormState((current) => ({ ...current, [name]: nextValue }));
+    setFormState((current) => {
+      if (name === 'service' && nextValue !== RENTAL_SERVICE_LABEL) {
+        return {
+          ...current,
+          service: nextValue as string,
+          rentalEquipment: '',
+          rentalLocation: '',
+          rentalStartDate: '',
+          rentalDuration: '',
+          rentalOperator: '',
+        };
+      }
+
+      return { ...current, [name]: nextValue };
+    });
 
     if (errors[name as keyof FormErrors]) {
       setErrors((current) => ({ ...current, [name]: undefined }));
@@ -286,7 +344,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             <label className="mb-2 block text-sm font-medium text-gray-400">{compact ? 'Telefon *' : 'Firma (opcjonalnie)'}</label>
             {compact ? (
               <>
-                <input name="phone" value={formState.phone} onChange={handleFieldChange} type="tel" autoComplete="tel" className={fieldClasses('phone')} placeholder="123 456 789" aria-invalid={Boolean(errors.phone)} />
+                <input name="phone" value={formState.phone} onChange={handleFieldChange} type="tel" inputMode="tel" autoComplete="tel" className={fieldClasses('phone')} placeholder="123 456 789" aria-invalid={Boolean(errors.phone)} />
                 {errors.phone && <p className="mt-2 text-sm text-red-300">{errors.phone}</p>}
               </>
             ) : (
@@ -305,7 +363,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
               <label className="mb-2 block text-sm font-medium text-gray-400">Telefon *</label>
-              <input name="phone" value={formState.phone} onChange={handleFieldChange} type="tel" autoComplete="tel" className={fieldClasses('phone')} placeholder="+48 123 456 789" aria-invalid={Boolean(errors.phone)} />
+              <input name="phone" value={formState.phone} onChange={handleFieldChange} type="tel" inputMode="tel" autoComplete="tel" className={fieldClasses('phone')} placeholder="+48 123 456 789" aria-invalid={Boolean(errors.phone)} />
               {errors.phone && <p className="mt-2 text-sm text-red-300">{errors.phone}</p>}
             </div>
             <div>
@@ -327,16 +385,88 @@ export const ContactForm: React.FC<ContactFormProps> = ({
           {errors.service && <p className="mt-2 text-sm text-red-300">{errors.service}</p>}
         </div>
 
+        {isRentalSelected && (
+          <div className={`grid grid-cols-1 ${compact ? 'gap-4' : 'gap-6 md:grid-cols-2'}`}>
+            <div>
+              <label className="mb-2 block text-sm font-medium text-gray-400">Sprzęt lub maszyna *</label>
+              <input
+                name="rentalEquipment"
+                value={formState.rentalEquipment}
+                onChange={handleFieldChange}
+                type="text"
+                className={fieldClasses('rentalEquipment')}
+                placeholder="Np. żuraw 45t, podest nożycowy, wózek widłowy"
+                aria-invalid={Boolean(errors.rentalEquipment)}
+              />
+              {errors.rentalEquipment && <p className="mt-2 text-sm text-red-300">{errors.rentalEquipment}</p>}
+            </div>
+
+            <div>
+              <label className="mb-2 block text-sm font-medium text-gray-400">Lokalizacja realizacji</label>
+              <input
+                name="rentalLocation"
+                value={formState.rentalLocation}
+                onChange={handleFieldChange}
+                type="text"
+                className={fieldClasses('rentalLocation')}
+                placeholder="Miasto / zakład / adres"
+              />
+            </div>
+
+            <div>
+              <label className="mb-2 block text-sm font-medium text-gray-400">Planowana data rozpoczęcia</label>
+              <input
+                name="rentalStartDate"
+                value={formState.rentalStartDate}
+                onChange={handleFieldChange}
+                type="date"
+                className={fieldClasses('rentalStartDate')}
+              />
+            </div>
+
+            <div>
+              <label className="mb-2 block text-sm font-medium text-gray-400">Przewidywany czas wynajmu</label>
+              <input
+                name="rentalDuration"
+                value={formState.rentalDuration}
+                onChange={handleFieldChange}
+                type="text"
+                className={fieldClasses('rentalDuration')}
+                placeholder="Np. 2 dni, 1 tydzień, 3 miesiące"
+              />
+            </div>
+
+            <div className={compact ? '' : 'md:col-span-2'}>
+              <label className="mb-2 block text-sm font-medium text-gray-400">Czy z operatorem?</label>
+              <select
+                name="rentalOperator"
+                value={formState.rentalOperator}
+                onChange={handleFieldChange}
+                className={fieldClasses('rentalOperator')}
+              >
+                <option value="">Do ustalenia</option>
+                <option value="Z operatorem">Z operatorem</option>
+                <option value="Bez operatora">Bez operatora</option>
+              </select>
+              <p className="mt-2 text-xs text-gray-500">
+                Pole dotyczy wybranych grup sprzętu, np. żurawi i podnośników. Ostateczny model realizacji potwierdzimy po analizie zapytania.
+              </p>
+            </div>
+          </div>
+        )}
+
         <div>
-          <label className="mb-2 block text-sm font-medium text-gray-400">Wiadomość *</label>
-          <textarea name="message" value={formState.message} onChange={handleFieldChange} rows={4} className={fieldClasses('message')} placeholder={compact ? 'Opisz, czego potrzebujesz...' : 'Opisz swoje potrzeby, termin i lokalizację.'} aria-invalid={Boolean(errors.message)} />
+          <label className="mb-2 block text-sm font-medium text-gray-400">
+            {isRentalSelected ? 'Krótki opis prac *' : 'Wiadomość *'}
+          </label>
+          <textarea name="message" value={formState.message} onChange={handleFieldChange} rows={4} className={fieldClasses('message')} placeholder={isRentalSelected ? 'Np. wysokość pracy, waga ładunku, zasięg podania, warunki na obiekcie.' : compact ? 'Opisz, czego potrzebujesz...' : 'Opisz swoje potrzeby, termin i lokalizację.'} aria-invalid={Boolean(errors.message)} />
           {errors.message && <p className="mt-2 text-sm text-red-300">{errors.message}</p>}
         </div>
 
         <div className="space-y-2">
-          <div className="flex items-start gap-3">
-            <input name="consent" checked={formState.consent} onChange={handleFieldChange} type="checkbox" className="mt-1.5 h-5 w-5 rounded accent-industrial-accent" />
-            <label className="text-sm leading-snug text-gray-400">Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania. *</label>
+          <div className="flex items-start gap-3 rounded-lg border border-transparent p-1">
+            <input id={`consent-${contextLabel}`} name="consent" checked={formState.consent} onChange={handleFieldChange} type="checkbox" className="mt-1.5 h-5 w-5 shrink-0 rounded accent-industrial-accent" />
+            <label htmlFor={`consent-${contextLabel}`} className="flex-1 cursor-pointer text-sm leading-snug text-gray-400">Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania. *</label>
           </div>
           {errors.consent && <p className="text-sm text-red-300">{errors.consent}</p>}
         </div>

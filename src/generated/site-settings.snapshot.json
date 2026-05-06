@@ -18,16 +18,18 @@
         "phones": {
             "services": {
                 "label": "Usługi",
-                "value": "730 202 000",
-                "href": "tel:+48730202000"
+                "value": "730 101 000",
+                "href": "tel:+48730101000",
+                "secondaryValue": "733 929 100",
+                "secondaryHref": "tel:+48733929100"
             },
             "training": {
                 "label": "Szkolenia",
-                "value": "730 101 000",
-                "href": "tel:+48730101000"
+                "value": "numer do uzupełnienia",
+                "href": ""
             }
         },
-        "email": "kontakt+panel@multiserwis.test",
+        "email": "multiserwis.kutno@gmail.com",
         "openingHours": {
             "days": "Poniedziałek - Piątek",
             "details": "8:00 - 16:00"
@@ -41,7 +43,7 @@
     },
     "seo": {
         "defaultTitle": "Multiserwis - Kompleksowe Usługi Przemysłowe",
-        "defaultDescription": "Testowy opis SEO z panelu ustawień backendu.",
+        "defaultDescription": "Profesjonalne usługi dla przemysłu: wynajem maszyn, spawalnictwo, relokacja, UDT, hydraulika przemysłowa i usługi elektryczne.",
         "siteName": "Multiserwis Kutno",
         "ogImageUrl": "/multiserwis-uslugi/og-image.svg"
     }
