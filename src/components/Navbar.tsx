@@ -11,7 +11,6 @@ export const Navbar: React.FC<NavbarProps> = ({ companyData }) => {
   const resolvedCompany = companyData ?? company;
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,13 +70,7 @@ export const Navbar: React.FC<NavbarProps> = ({ companyData }) => {
     { name: 'FAQ', path: `${basePath}/faq` },
   ];
 
-  const handleDropdownEnter = (name: string) => {
-    setActiveDropdown(name);
-  };
 
-  const handleDropdownLeave = () => {
-    setActiveDropdown(null);
-  };
 
   const closeMobileMenu = () => {
     setIsOpen(false);
@@ -102,8 +95,6 @@ export const Navbar: React.FC<NavbarProps> = ({ companyData }) => {
             <div 
               key={link.name} 
               className="relative group/menu"
-              onMouseEnter={() => link.submenu && handleDropdownEnter(link.name)}
-              onMouseLeave={handleDropdownLeave}
             >
               {link.external ? (
                 <a 

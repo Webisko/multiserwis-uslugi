@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageHeader } from '../components/PageHeader';
-import { Truck, Move } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
 import { ServiceInquiryCta } from '../components/ServiceInquiryCta';
 
@@ -70,6 +70,26 @@ export const RelocationPage: React.FC<RelocationPageProps> = ({ companyData }) =
                    Wyceń relokację
                 </a>
              </div>
+          </div>
+
+          {/* Rentals CTA */}
+          <div className="mt-12 bg-industrial-900/50 p-8 rounded-xl border border-dashed border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="max-w-2xl text-left">
+              <h4 className="text-xl font-bold text-industrial-accent mb-2 flex items-center gap-2">
+                🏗️ Potrzebujesz samego sprzętu?
+              </h4>
+              <p className="text-gray-300 text-sm">
+                Dysponujemy bogatym, własnym parkiem maszynowym (żurawie do 90t, podesty nożycowe, ładowarki, wózki). 
+                Możesz wynająć u nas maszyny również jako osobną usługę – na życzenie z operatorem.
+              </p>
+            </div>
+            <a 
+              href={`${basePath}/wynajem`}
+              className="inline-flex items-center gap-2 bg-industrial-800 hover:bg-industrial-700 text-white font-medium px-6 py-3 rounded transition-colors group shrink-0 border border-gray-700 hover:border-industrial-accent"
+            >
+              Zobacz ofertę wynajmu
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </a>
           </div>
 
                <div className="mt-10">

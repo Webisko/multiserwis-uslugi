@@ -7,10 +7,9 @@ import UmamiAnalytics from '../components/UmamiAnalytics.astro';
 interface Props {
   title: string;
   description?: string;
-  noTopPadding?: boolean;
 }
 
-const { title, description, noTopPadding = false } = Astro.props;
+const { title, description } = Astro.props;
 const siteSettings = await getSiteSettings();
 const company = siteSettings?.company ?? defaultCompany;
 const seo = siteSettings?.seo ?? getDefaultSeo();
@@ -103,12 +102,17 @@ import "../styles/global.css";
     <meta property="og:site_name" content={seo.siteName} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
     {runtimeSettingsScript ? <script is:inline set:html={runtimeSettingsScript}></script> : null}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
     <title>{title}</title>
 
     <UmamiAnalytics />

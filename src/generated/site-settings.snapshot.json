@@ -11,7 +11,7 @@
             "trainingSiteUrl": "https://szkolenia-multiserwis.pl/"
         },
         "address": {
-            "street": "ul. Siemieradzkiego 18",
+            "street": "ul. Przemysłowa 2",
             "postalCode": "99-300",
             "city": "Kutno"
         },
@@ -25,8 +25,8 @@
             },
             "training": {
                 "label": "Szkolenia",
-                "value": "numer do uzupełnienia",
-                "href": ""
+                "value": "730 202 000",
+                "href": "tel:+48730202000"
             }
         },
         "email": "multiserwis.kutno@gmail.com",
@@ -36,14 +36,14 @@
         },
         "emergencyNote": "Serwis awaryjny 24/7 (dla stałych klientów)",
         "map": {
-            "query": "Multiserwis Kutno, ul. Siemieradzkiego 18, 99-300 Kutno",
-            "embedUrl": "https://www.google.com/maps?q=Multiserwis%20Kutno%2C%20ul.%20Siemieradzkiego%2018%2C%2099-300%20Kutno&output=embed",
-            "directionsUrl": "https://www.google.com/maps/search/?api=1&query=Multiserwis%20Kutno%2C%20ul.%20Siemieradzkiego%2018%2C%2099-300%20Kutno"
+            "query": "Multiserwis Kutno, ul. Przemysłowa 2, 99-300 Kutno",
+            "embedUrl": "https://www.google.com/maps?q=Multiserwis%20Kutno%2C%20ul.%20Przemys%C5%82owa%202%2C%2099-300%20Kutno&output=embed",
+            "directionsUrl": "https://www.google.com/maps/search/?api=1&query=Multiserwis%20Kutno%2C%20ul.%20Przemys%C5%82owa%202%2C%2099-300%20Kutno"
         }
     },
     "seo": {
         "defaultTitle": "Multiserwis - Kompleksowe Usługi Przemysłowe",
-        "defaultDescription": "Profesjonalne usługi dla przemysłu: wynajem maszyn, spawalnictwo, relokacja, UDT, hydraulika przemysłowa i usługi elektryczne.",
+        "defaultDescription": "Profesjonalne usługi dla przemysłu: wynajem maszyn, spawalnictwo, relokacja, konserwacja UDT, usługi elektryczne.",
         "siteName": "Multiserwis Kutno",
         "ogImageUrl": "/multiserwis-uslugi/og-image.svg"
     }

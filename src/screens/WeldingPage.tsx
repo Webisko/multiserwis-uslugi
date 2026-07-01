@@ -1,6 +1,6 @@
 import React from 'react';
 import { PageHeader } from '../components/PageHeader';
-import { Wrench, Phone, ArrowRight } from 'lucide-react';
+import { Wrench, ArrowRight } from 'lucide-react';
 import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
 import { ServiceInquiryCta } from '../components/ServiceInquiryCta';
 

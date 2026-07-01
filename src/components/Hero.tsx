@@ -58,25 +58,28 @@ export const Hero: React.FC = () => {
               repeatType: "mirror" 
             }
           }}
-          className="h-full w-full"
+          className="h-full w-full relative bg-industrial-900"
           aria-hidden="true"
         >
+          <img
+            src={`${basePath}/hero-bg.png`}
+            alt="Dźwigi i podnośniki w tle"
+            className="absolute inset-0 h-full w-full object-cover opacity-55 filter brightness-[0.7] contrast-[1.05]"
+          />
+          {/* Subtle colored overlay elements for depth */}
           <div
             className="absolute inset-0"
             style={{
               backgroundImage:
-                'linear-gradient(135deg, rgba(10,17,29,0.95) 0%, rgba(18,30,45,0.82) 38%, rgba(83,59,17,0.58) 100%), radial-gradient(circle at 20% 20%, rgba(245,158,11,0.22), transparent 35%), radial-gradient(circle at 78% 30%, rgba(148,163,184,0.18), transparent 32%), repeating-linear-gradient(115deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 2px, transparent 2px, transparent 38px), repeating-linear-gradient(0deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 56px)',
+                'linear-gradient(135deg, rgba(10,17,29,0.7) 0%, rgba(18,30,45,0.4) 45%, rgba(10,17,29,0.8) 100%), radial-gradient(circle at 20% 20%, rgba(245,158,11,0.18), transparent 35%)',
             }}
           />
-          <div className="absolute inset-x-[10%] bottom-[-12%] h-[38%] rounded-full bg-industrial-accent/20 blur-3xl" />
-          <div className="absolute left-[12%] top-[18%] h-40 w-40 rounded-full border border-white/10 bg-white/5 blur-2xl" />
-          <div className="absolute right-[14%] top-[22%] h-56 w-56 rounded-full border border-industrial-accent/10 bg-industrial-accent/10 blur-3xl" />
+          <div className="absolute inset-x-[10%] bottom-[-12%] h-[38%] rounded-full bg-industrial-accent/15 blur-3xl" />
+          <div className="absolute right-[14%] top-[22%] h-56 w-56 rounded-full border border-industrial-accent/10 bg-industrial-accent/5 blur-3xl" />
         </motion.div>
       </div>
 
       {/* 2. Static Overlays - THESE DO NOT MOVE */}
-      {/* Lighter overlay (30%) so image is visible */}
-      <div className="absolute inset-0 bg-black/30 z-10 pointer-events-none" />
       {/* Gradient from bottom */}
       <div className="absolute inset-0 bg-gradient-to-t from-industrial-900 via-industrial-900/40 to-transparent z-10 pointer-events-none" />
       {/* Additional top gradient for brightness */}

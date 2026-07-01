@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+import { defaultCompany } from "../data/company";
+import { getSiteSettings } from "../lib/siteSettings";
+
+const companyData = (await getSiteSettings())?.company ?? defaultCompany;
+const basePath = companyData.links.basePath;
+---
+
+<Layout
+  title="Strona nie odnaleziona (404) | Multiserwis Kutno"
+  description="Błąd 404. Przepraszamy, szukana strona nie istnieje. Sprawdź naszą ofertę usług przemysłowych."
+>
+  <div class="flex flex-col min-h-screen">
+    <Navbar client:load companyData={companyData} />
+    <main class="flex-grow pt-[80px] flex items-center justify-center bg-industrial-950 py-20">
+      <div class="container mx-auto px-4 text-center max-w-2xl">
+        <div class="mb-6 inline-flex h-24 w-24 items-center justify-center rounded-full bg-industrial-900 text-industrial-accent border border-gray-800">
+          <span class="text-4xl font-display font-bold">404</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">Strona nie została odnaleziona</h1>
+        <p class="text-lg text-gray-300 mb-10 leading-relaxed">
+          Przepraszamy, szukana strona nie istnieje lub została przeniesiona. 
+          Sprawdź nasze główne usługi lub wróć na stronę główną, aby kontynuować przeglądanie oferty.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href={`${basePath}/`}
+            class="px-8 py-3 bg-industrial-accent text-industrial-900 font-bold rounded hover:bg-industrial-accentHover transition-colors text-center"
+          >
+            Strona główna
+          </a>
+          <a
+            href={`${basePath}/kontakt`}
+            class="px-8 py-3 border border-gray-700 text-white font-medium rounded hover:border-industrial-accent hover:text-industrial-accent transition-colors text-center"
+          >
+            Skontaktuj się
+          </a>
+        </div>
+      </div>
+    </main>
+    <Footer companyData={companyData} />
+  </div>
+</Layout>

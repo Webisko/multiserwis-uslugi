@@ -51,7 +51,7 @@ const defaultFaqItems: FaqItemPayload[] = [
     id: 'faq-1',
     question: 'Na jakim obszarze działacie?',
     answer:
-      'Zakres terytorialny ustalamy indywidualnie dla każdej usługi. Przy większych relokacjach i pracach specjalistycznych potwierdzamy go na etapie oferty.',
+      'Realizujemy zlecenia na terenie całej Polski oraz na obszarze Europy (w tym m.in. w Wielkiej Brytanii, gdzie regularnie realizujemy projekty instalacyjne i relokacje maszyn).',
     category: 'Ogólne',
     sortOrder: 10,
     isFeatured: true,

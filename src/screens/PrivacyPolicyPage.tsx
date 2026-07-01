@@ -20,7 +20,7 @@ export const PrivacyPolicyPage: React.FC = () => {
             <article>
               <h2 className="text-2xl font-bold text-white mb-3">1. Administrator danych</h2>
               <p>
-                Administratorem danych jest MULTISERWIS, ul. Siemieradzkiego 18, 99-300 Kutno,
+                Administratorem danych jest MULTISERWIS, ul. Przemysłowa 2, 99-300 Kutno,
                 e-mail: multiserwis.kutno@gmail.com.
               </p>
             </article>

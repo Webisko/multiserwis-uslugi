@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('services_phone_label', 40);
             $table->string('services_phone_value', 40);
             $table->string('services_phone_href', 60);
+            $table->string('services_secondary_phone_value', 40)->nullable();
+            $table->string('services_secondary_phone_href', 60)->nullable();
             $table->string('training_phone_label', 40);
             $table->string('training_phone_value', 40);
             $table->string('training_phone_href', 60);

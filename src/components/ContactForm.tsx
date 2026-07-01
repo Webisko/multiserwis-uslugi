@@ -63,7 +63,10 @@ const initialState: FormState = {
 
 type FormErrors = Partial<Record<keyof FormState, string>>;
 
-type LeadPayload = FormState & {
+type LeadPayload = Pick<
+  FormState,
+  'fullName' | 'company' | 'phone' | 'email' | 'service' | 'message' | 'consent' | 'website'
+> & {
   source: {
     page: string;
     context: string;

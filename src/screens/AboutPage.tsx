@@ -72,27 +72,27 @@ export const AboutPage: React.FC<AboutPageProps> = ({ companyData }) => {
              </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-10 md:p-16 text-industrial-900 mb-20">
+          <div className="bg-industrial-900 border border-gray-800 rounded-2xl p-10 md:p-16 text-gray-100 mb-20">
              <div className="flex flex-col md:flex-row items-center gap-10">
                 <div className="shrink-0 mb-6 md:mb-0">
                    <Award size={100} className="text-industrial-accent" />
                 </div>
                 <div>
-                   <h2 className="text-3xl font-bold mb-4">Certyfikat ISO 9001:2015</h2>
-                   <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                   <h2 className="text-3xl font-bold mb-4 text-white">Certyfikat ISO 9001:2015</h2>
+                   <p className="text-lg text-gray-300 mb-6 leading-relaxed">
                       Posiadamy Certyfikat Polskiego Centrum Akredytacji (PCA) AC 136, potwierdzający zgodność naszego Systemu Zarządzania Jakością z normą PN-EN ISO 9001:2015.
                    </p>
-                   <p className="text-gray-600">
+                   <p className="text-gray-400">
                       Standard ten gwarantuje, że nasze procesy są stale monitorowane, a jakość usług jest powtarzalna i na najwyższym poziomie.
                    </p>
                 </div>
              </div>
              
-             <div className="mt-12 pt-10 border-t border-gray-200">
-                <h3 className="text-xl font-bold mb-6">Zakres naszej akredytacji obejmuje:</h3>
+             <div className="mt-12 pt-10 border-t border-gray-800">
+                <h3 className="text-xl font-bold mb-6 text-white">Zakres naszej akredytacji obejmuje:</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                    {accreditationScope.map((item, idx) => (
-                      <div key={idx} className="flex items-start gap-2 text-sm text-gray-700">
+                      <div key={idx} className="flex items-start gap-2 text-sm text-gray-300">
                          <div className="w-1.5 h-1.5 rounded-full bg-industrial-accent mt-1.5 shrink-0"></div>
                          {item}
                       </div>

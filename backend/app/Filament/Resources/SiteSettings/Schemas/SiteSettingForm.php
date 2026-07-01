@@ -50,6 +50,12 @@ class SiteSettingForm
                 TextInput::make('services_phone_href')
                     ->label('Link tel usług')
                     ->required(),
+                TextInput::make('services_secondary_phone_value')
+                    ->label('Drugi telefon usług')
+                    ->nullable(),
+                TextInput::make('services_secondary_phone_href')
+                    ->label('Link drugiego tel usług')
+                    ->nullable(),
                 TextInput::make('training_phone_label')
                     ->label('Etykieta telefonu szkoleń')
                     ->required(),

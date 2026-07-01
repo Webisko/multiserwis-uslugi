@@ -53,7 +53,7 @@ class FaqItem extends Model
         return [
             [
                 'question' => 'Na jakim obszarze działacie?',
-                'answer' => 'Realizujemy zlecenia na terenie całej Polski, a w przypadku relokacji maszyn i dużych projektów elektroinstalacyjnych również za granicą.',
+                'answer' => 'Realizujemy zlecenia na terenie całej Polski oraz na obszarze Europy (w tym m.in. w Wielkiej Brytanii, gdzie regularnie realizujemy projekty instalacyjne i relokacje maszyn).',
                 'category' => 'Ogólne',
                 'sort_order' => 10,
                 'is_active' => true,

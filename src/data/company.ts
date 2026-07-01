@@ -12,7 +12,7 @@ export const defaultCompany = {
     trainingSiteUrl: 'https://szkolenia-multiserwis.pl/',
   },
   address: {
-    street: 'ul. Siemieradzkiego 18',
+    street: 'ul. Przemysłowa 2',
     postalCode: '99-300',
     city: 'Kutno',
   },
@@ -26,8 +26,8 @@ export const defaultCompany = {
     },
     training: {
       label: 'Szkolenia',
-      value: 'numer do uzupełnienia',
-      href: '',
+      value: '730 202 000',
+      href: 'tel:+48730202000',
     },
   },
   email: 'multiserwis.kutno@gmail.com',
@@ -37,11 +37,11 @@ export const defaultCompany = {
   },
   emergencyNote: 'Serwis awaryjny 24/7 (dla stałych klientów)',
   map: {
-    query: 'Multiserwis Kutno, ul. Siemieradzkiego 18, 99-300 Kutno',
+    query: 'Multiserwis Kutno, ul. Przemysłowa 2, 99-300 Kutno',
     embedUrl:
-      'https://www.google.com/maps?q=Multiserwis%20Kutno%2C%20ul.%20Siemieradzkiego%2018%2C%2099-300%20Kutno&output=embed',
+      'https://www.google.com/maps?q=Multiserwis%20Kutno%2C%20ul.%20Przemys%C5%82owa%202%2C%2099-300%20Kutno&output=embed',
     directionsUrl:
-      'https://www.google.com/maps/search/?api=1&query=Multiserwis%20Kutno%2C%20ul.%20Siemieradzkiego%2018%2C%2099-300%20Kutno',
+      'https://www.google.com/maps/search/?api=1&query=Multiserwis%20Kutno%2C%20ul.%20Przemys%C5%82owa%202%2C%2099-300%20Kutno',
   },
 } as const;
 

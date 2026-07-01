@@ -6,6 +6,7 @@ Marketingowa strona usługowa dla firmy z branży przemysłowej. Projekt jest pr
 
 - Repozytorium GitHub: https://github.com/Webisko/multiserwis-uslugi
 - Podgląd GitHub Pages: https://webisko.github.io/multiserwis-uslugi/
+- Aktualna (stara) strona klienta (referencyjna): https://multiserwis.kutno.pl/
 - Powiązana strona szkoleniowa klienta: https://szkolenia-multiserwis.pl/
 
 ## Aktualny stack
@@ -150,7 +151,7 @@ Konfiguracja jest w [astro.config.mjs](astro.config.mjs).
 
 ## Struktura projektu
 
-- [src/pages](src/pages) - routing Astro
+- [src/pages](src/pages) - routing Astro (w tym dedykowana strona 404)
 - [src/screens](src/screens) - widoki stron w React
 - [src/components](src/components) - sekcje i komponenty współdzielone
 - [src/layouts](src/layouts) - layout Astro
@@ -183,14 +184,14 @@ Status etapu początkowego:
 
 Co jest gotowe:
 
-- główna architektura frontendu i routing
-- działający build produkcyjny
+- główna architektura frontendu i routing (w tym spójna strona błędu 404)
+- działający build produkcyjny oraz integracja czcionek Google Fonts (*Inter* i *Oswald*) dla estetyki premium
 - automatyczny deploy na GitHub Pages
-- główna treść usług i sekcji sprzedażowych
+- główna treść usług, sekcji sprzedażowych i powiązań cross-sellingowych (np. CTA do wynajmu na stronie relokacji)
 - ujednolicone dane kontaktowe i branding
 - strony prawne, robots.txt i sitemap
-- schema.org, meta OG/Twitter i self-hosted assety social/favicons
-- formularz kontaktowy gotowy pod `PUBLIC_CONTACT_API_URL` z bezpiecznym fallbackiem preview
+- schema.org, meta OG/Twitter (wraz z wymiarami obrazu dla podglądu linków) i self-hosted assety social/favicons
+- rozbudowany formularz kontaktowy z dynamicznymi polami dla wynajmu maszyn, gotowy pod `PUBLIC_CONTACT_API_URL` z bezpiecznym fallbackiem preview i honeypotem
 - Umami aktywowane przez env bez zbierania ruchu z preview
 - CTA i domknięcia kontaktowe na najważniejszych podstronach usługowych i informacyjnych
 - działający backend Laravel MVP w `backend/` z endpointem `POST /api/v1/leads`
