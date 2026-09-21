@@ -1,0 +1,20 @@
+# Cache-Control headers for LiteSpeed / Apache
+<IfModule mod_headers.c>
+    # Do not cache HTML files - always fetch latest version
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires 0
+    </FilesMatch>
+
+    # Long-term caching for hashed assets
+    <FilesMatch "\.(js|css|woff2|woff|ttf|svg|png|jpg|jpeg|webp|avif|ico)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
+    </FilesMatch>
+</IfModule>
+
+# Prevent directory listings
+Options -Indexes
+
+# Custom 404 handler
+ErrorDocument 404 /404.html
