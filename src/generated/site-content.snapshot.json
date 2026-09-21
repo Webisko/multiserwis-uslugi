@@ -228,21 +228,18 @@
             {
                 "id": "4",
                 "slug": "budownictwo",
-                "title": "Remonty Budowlane",
-                "description": "Usługi remontowo-budowlane dla przemysłu.",
+                "title": "Hydraulika i Montaż Przemysłowy",
+                "description": "Rurociągi przemysłowe, konstrukcje wsporcze i instalacje technologiczne.",
                 "items": [
-                    "Adaptacje hal przemysłowych",
-                    "Fundamenty pod maszyny",
-                    "Prace wykończeniowe i modernizacyjne",
-                    "Naprawy posadzek przemysłowych",
-                    "Infrastruktura techniczna"
+                    "Rurociągi przemysłowe (spawane, zgrzewane, skręcane)",
+                    "Montaż konstrukcji wsporczych pod rurociągi",
+                    "Montaż armatury przemysłowej i osprzętu",
+                    "Modernizacje instalacji na czynnych obiektach",
+                    "Współpraca z nadzorami branżowymi"
                 ],
                 "pagePath": "/budownictwo",
-                "contactLabel": "Remonty Budowlane",
-                "training": {
-                    "text": "Szkolenia IMBIGS na maszyny budowlane.",
-                    "linkText": "Szkolenia IMBIGS"
-                },
+                "contactLabel": "Hydraulika i Montaż Przemysłowy",
+                "training": null,
                 "isFeatured": true,
                 "sortOrder": 40
             },
@@ -287,7 +284,7 @@
             "Relokacja Maszyn",
             "Wynajem Maszyn",
             "Usługi Spawalnicze",
-            "Remonty Budowlane",
+            "Hydraulika i Montaż Przemysłowy",
             "Konserwacja i UDT",
             "Usługi Elektryczne",
             "Szkolenia",
