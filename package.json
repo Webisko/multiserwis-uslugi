@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "node scripts/serve-dev.mjs",
     "check": "astro check",
     "verify": "npm run check && npm run build",
     "check:ui-pages": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/check-page-consistency.ps1",

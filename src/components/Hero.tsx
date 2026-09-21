@@ -41,7 +41,7 @@ export const Hero: React.FC = () => {
     <section 
       ref={ref}
       onMouseMove={handleMouseMove}
-      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-industrial-900 px-0 pb-12 pt-24 sm:pb-16 sm:pt-28 md:h-screen md:pt-0"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-industrial-900 px-4 pt-36 pb-20 sm:pt-40 sm:pb-24 md:pt-44 md:pb-28 lg:pt-48 lg:pb-32"
     >
       
       {/* 1. Background Layer - THIS IS THE ONLY THING THAT MOVES */}
