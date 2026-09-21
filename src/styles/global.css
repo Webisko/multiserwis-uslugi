@@ -1,6 +1,23 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-industrial-50: #f4f4f5;
+  --color-industrial-100: #e4e4e7;
+  --color-industrial-200: #d4d4d8;
+  --color-industrial-300: #a1a1aa;
+  --color-industrial-400: #71717a;
+  --color-industrial-500: #52525b;
+  --color-industrial-600: #3f3f46;
+  --color-industrial-700: #27272a;
+  --color-industrial-800: #1F2937;
+  --color-industrial-900: #111827;
+  --color-industrial-950: #030712;
+  --color-industrial-accent: #F59E0B;
+  --color-industrial-accentHover: #D97706;
+
+  --font-sans: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-display: 'Oswald', 'Bahnschrift SemiCondensed', 'Arial Narrow', 'Franklin Gothic Medium', sans-serif;
+}
 
 @layer base {
   html {

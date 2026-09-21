@@ -1,7 +1,7 @@
 $pagesDir = Join-Path (Get-Location) 'src/pages'
 $requiredPatterns = @(
-  '<Navbar client:load />',
-  '<Footer />'
+  '<Navbar client:load',
+  '<Footer'
 )
 
 $exclude = @(

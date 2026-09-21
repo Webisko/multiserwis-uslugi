@@ -1,7 +1,7 @@
 ---
 // We'll manage generic head here or per page
 import { defaultCompany } from '../data/company';
-import { getDefaultSeo, getSiteSettings } from '../lib/siteSettings';
+import { getDefaultSeo, getSiteSettings, getEffectiveBasePath } from '../lib/siteSettings';
 import UmamiAnalytics from '../components/UmamiAnalytics.astro';
 
 interface Props {
@@ -11,7 +11,13 @@ interface Props {
 
 const { title, description } = Astro.props;
 const siteSettings = await getSiteSettings();
-const company = siteSettings?.company ?? defaultCompany;
+const company = siteSettings?.company ?? {
+  ...defaultCompany,
+  links: {
+    ...defaultCompany.links,
+    basePath: getEffectiveBasePath(defaultCompany.links.basePath),
+  },
+};
 const seo = siteSettings?.seo ?? getDefaultSeo();
 const pageDescription = description || seo.defaultDescription;
 const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
@@ -108,7 +114,7 @@ import "../styles/global.css";
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={pageDescription} />
     <meta name="twitter:image" content={ogImageUrl} />
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
     {runtimeSettingsScript ? <script is:inline set:html={runtimeSettingsScript}></script> : null}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

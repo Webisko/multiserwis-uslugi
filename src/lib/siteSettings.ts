@@ -1,12 +1,34 @@
 import { defaultCompany, type CompanyData, type SiteSeoData, type SiteSettingsData } from '../data/company';
 import { readJsonSnapshot } from './previewSnapshots';
 
+export function getEffectiveBasePath(fallbackPath: string = defaultCompany.links.basePath): string {
+  const envBasePath = import.meta.env.PUBLIC_SITE_BASE_PATH?.trim();
+  if (envBasePath !== undefined) {
+    return envBasePath === '/' || envBasePath === '' ? '' : `/${envBasePath.replace(/^\/+|\/+$/g, '')}`;
+  }
+  const siteEnv = import.meta.env.SITE_ENVIRONMENT?.trim();
+  if (siteEnv === 'production') {
+    return '';
+  }
+  return fallbackPath === '/' ? '' : fallbackPath;
+}
+
+function resolveCompanyWithBasePath(company: CompanyData): CompanyData {
+  return {
+    ...company,
+    links: {
+      ...company.links,
+      basePath: getEffectiveBasePath(company.links.basePath),
+    },
+  };
+}
+
 const defaultSeo: SiteSeoData = {
   defaultTitle: 'Multiserwis - Kompleksowe Usługi Przemysłowe',
   defaultDescription:
     'Profesjonalne usługi dla przemysłu: wynajem maszyn, spawalnictwo, relokacja, UDT, hydraulika przemysłowa i usługi elektryczne.',
   siteName: 'Multiserwis Kutno',
-  ogImageUrl: `${defaultCompany.links.basePath}/og-image.svg`,
+  ogImageUrl: `${getEffectiveBasePath(defaultCompany.links.basePath)}/og-image.svg`,
 };
 
 function getSiteSettingsApiUrl() {
@@ -58,7 +80,7 @@ export async function getSiteSettings(): Promise<SiteSettingsData | null> {
 
           if (isCompanyData(companyData) && isSeoData(seoData)) {
             return {
-              company: companyData,
+              company: resolveCompanyWithBasePath(companyData),
               seo: seoData,
             };
           }
@@ -75,7 +97,12 @@ export async function getSiteSettings(): Promise<SiteSettingsData | null> {
     return null;
   }
 
-  return isCompanyData(snapshot.company) && isSeoData(snapshot.seo) ? snapshot : null;
+  return isCompanyData(snapshot.company) && isSeoData(snapshot.seo)
+    ? {
+        company: resolveCompanyWithBasePath(snapshot.company),
+        seo: snapshot.seo,
+      }
+    : null;
 }
 
 export function getDefaultSeo(): SiteSeoData {

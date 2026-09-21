@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 
 function normalizeSiteUrl(siteUrl) {
   return siteUrl.replace(/\/$/, '');
@@ -31,7 +31,10 @@ const basePath = normalizeBasePath(
 export default defineConfig({
   site: siteUrl,
   base: basePath,
-  integrations: [react(), tailwind(), sitemap()],
+  integrations: [react(), sitemap()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   server: {
     port: 3000,
     host: '0.0.0.0'

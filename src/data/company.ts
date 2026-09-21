@@ -45,7 +45,12 @@ export const defaultCompany = {
   },
 } as const;
 
-export type CompanyData = typeof defaultCompany;
+export type CompanyData = Omit<typeof defaultCompany, 'links'> & {
+  links: {
+    basePath: string;
+    trainingSiteUrl: string;
+  };
+};
 
 export type SiteSeoData = {
   defaultTitle: string;

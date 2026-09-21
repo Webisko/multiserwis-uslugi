@@ -13,7 +13,9 @@
     "release:gate": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/release-gate.ps1",
     "build": "node scripts/run-astro-build.mjs preview",
     "build:preview": "node scripts/run-astro-build.mjs preview",
+    "build:staging": "node scripts/run-astro-build.mjs staging",
     "build:production": "node scripts/run-astro-build.mjs production",
+    "deploy:staging": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/deploy-staging-seohost.ps1",
     "preview": "astro preview",
     "astro": "astro",
     "backend:serve": "node scripts/run-backend-php.mjs -S 127.0.0.1:8081 -t public",
@@ -22,21 +24,21 @@
     "backend:export-preview": "node scripts/run-backend-php.mjs artisan preview:export-snapshots"
   },
   "dependencies": {
-    "@astrojs/react": "^4.4.2",
-    "@astrojs/sitemap": "^3.7.2",
-    "@astrojs/tailwind": "^6.0.2",
-    "astro": "^5.17.1",
-    "framer-motion": "^12.29.2",
+    "@astrojs/react": "^6.0.6",
+    "@astrojs/sitemap": "^3.7.4",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.3",
+    "framer-motion": "^12.43.0",
     "lucide-react": "^0.563.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "tailwindcss": "^3.4.19"
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.9",
-    "@types/node": "^22.14.0",
-    "@vitejs/plugin-react": "^5.0.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^22.20.4",
+    "@vitejs/plugin-react": "^5.2.0",
+    "typescript": "~5.8.3",
+    "vite": "^6.4.3"
   }
 }

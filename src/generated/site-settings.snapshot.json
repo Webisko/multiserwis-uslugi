@@ -1,6 +1,6 @@
 {
     "company": {
-        "name": "Multiserwis Kutno",
+        "name": "Multiserwis Industrial",
         "brand": {
             "mark": "MS",
             "primary": "MULTISERWIS",
@@ -29,7 +29,7 @@
                 "href": "tel:+48730202000"
             }
         },
-        "email": "multiserwis.kutno@gmail.com",
+        "email": "kontakt@multiserwis.test",
         "openingHours": {
             "days": "Poniedziałek - Piątek",
             "details": "8:00 - 16:00"
@@ -42,7 +42,7 @@
         }
     },
     "seo": {
-        "defaultTitle": "Multiserwis - Kompleksowe Usługi Przemysłowe",
+        "defaultTitle": "Nowy tytuł SEO",
         "defaultDescription": "Profesjonalne usługi dla przemysłu: wynajem maszyn, spawalnictwo, relokacja, konserwacja UDT, usługi elektryczne.",
         "siteName": "Multiserwis Kutno",
         "ogImageUrl": "/multiserwis-uslugi/og-image.svg"

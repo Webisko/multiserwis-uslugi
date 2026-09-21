@@ -282,7 +282,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     }
   };
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const validationErrors = validateForm(formState);
