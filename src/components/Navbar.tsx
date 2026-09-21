@@ -66,6 +66,10 @@ export const Navbar: React.FC<NavbarProps> = ({ companyData }) => {
     },
     { name: 'O Firmie', path: `${basePath}/o-firmie` },
     { name: 'Szkolenia', path: resolvedCompany.links.trainingSiteUrl, external: true }, 
+  ];
+
+  const mobileNavLinks = [
+    ...navLinks,
     { name: 'FAQ', path: `${basePath}/faq` },
   ];
 
@@ -75,9 +79,9 @@ export const Navbar: React.FC<NavbarProps> = ({ companyData }) => {
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled || isOpen ? 'bg-industrial-900/95 backdrop-blur-md shadow-lg py-3.5' : 'bg-transparent py-5 lg:py-6'}`}>
-      <div className="container mx-auto px-4 flex justify-between items-center gap-4">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center gap-6">
         {/* Logo */}
-        <a href={`${basePath}/`} className="flex items-center gap-2 group shrink-0" aria-label={`${resolvedCompany.name} - Strona Główna`}>
+        <a href={`${basePath}/`} className="flex items-center gap-2.5 group shrink-0" aria-label={`${resolvedCompany.name} - Strona Główna`}>
           <div className="w-10 h-10 bg-industrial-accent rounded flex items-center justify-center font-display font-bold text-industrial-900 text-xl group-hover:bg-white transition-colors">
             {resolvedCompany.brand.mark}
           </div>
@@ -87,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({ companyData }) => {
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-3.5 xl:gap-6 2xl:gap-8">
+        <div className="hidden lg:flex items-center gap-4 xl:gap-7 2xl:gap-9">
           {navLinks.map((link) => (
             <div 
               key={link.name} 
@@ -160,7 +164,7 @@ export const Navbar: React.FC<NavbarProps> = ({ companyData }) => {
       {/* Mobile Menu Dropdown (GitHub style) */}
       {isOpen && (
         <div id="mobile-navigation" className="absolute left-0 top-full flex w-full flex-col gap-2 border-t border-gray-800 bg-industrial-900 p-4 shadow-xl animate-in slide-in-from-top-2 duration-200 lg:hidden max-h-[calc(100svh-72px)] overflow-y-auto">
-           {navLinks.map((link) => (
+           {mobileNavLinks.map((link) => (
              <div key={link.name} className="border-b border-gray-800/50 last:border-0">
                 {link.external ? (
                <a href={link.path} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu} className="block py-3 text-lg font-medium text-gray-300 hover:text-industrial-accent transition-colors">{link.name}</a>
