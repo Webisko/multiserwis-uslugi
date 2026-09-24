@@ -12,6 +12,7 @@
     "perf:baseline": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/perf-baseline.ps1",
     "release:gate": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/release-gate.ps1",
     "generate:og": "node scripts/capture-og.mjs",
+    "generate:favicons": "node scripts/generate-favicons.mjs",
     "build": "node scripts/run-astro-build.mjs preview",
     "build:preview": "node scripts/run-astro-build.mjs preview",
     "build:staging": "node scripts/run-astro-build.mjs staging",

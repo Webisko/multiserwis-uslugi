@@ -1,4 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+import fs from 'fs';
+import path from 'path';
+import sharp from 'sharp';
+
+const projectRoot = path.resolve('.');
+
+// Exact MultiSerwis Emblem with #F59E0B Yellow/Amber background and rounded corners
+const yellowFaviconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
   <!-- Yellow/Amber Background with modern rounding (#F59E0B) -->
   <rect width="256" height="256" rx="44" fill="#F59E0B"/>
 
@@ -13,4 +20,36 @@
     <path stroke-linecap="round" transform="matrix(-0.0224359, 0.747059, -0.747059, -0.0224359, 215.48332, 59.708109)" fill="none" stroke-linejoin="miter" d="M 21.352238 22.081857 C 49.704086 14.631591 78.055025 14.637675 106.410437 22.105175" stroke="#ffffff" stroke-width="32" />
     <path stroke-linecap="round" transform="matrix(0.549434, -0.506678, 0.506678, 0.549434, 91.588072, 151.143562)" fill="none" stroke-linejoin="miter" d="M 16.502923 16.50019 L 31.212682 16.500169" stroke="#ffffff" stroke-width="32" />
   </g>
-</svg>
+</svg>`;
+
+async function run() {
+  console.log('Generating yellow/amber favicons...');
+
+  const publicDir = path.join(projectRoot, 'public');
+
+  // 1. Write favicon.svg
+  fs.writeFileSync(path.join(publicDir, 'favicon.svg'), yellowFaviconSvg, 'utf8');
+  console.log('✓ Saved public/favicon.svg');
+
+  const svgBuffer = Buffer.from(yellowFaviconSvg);
+
+  // 2. Generate PNG sizes
+  await sharp(svgBuffer).resize(32, 32).png().toFile(path.join(publicDir, 'favicon-32x32.png'));
+  console.log('✓ Generated public/favicon-32x32.png');
+
+  await sharp(svgBuffer).resize(180, 180).png().toFile(path.join(publicDir, 'apple-touch-icon.png'));
+  console.log('✓ Generated public/apple-touch-icon.png');
+
+  await sharp(svgBuffer).resize(192, 192).png().toFile(path.join(publicDir, 'favicon-192x192.png'));
+  console.log('✓ Generated public/favicon-192x192.png');
+
+  await sharp(svgBuffer).resize(48, 48).png().toFile(path.join(publicDir, 'favicon.ico'));
+  console.log('✓ Generated public/favicon.ico');
+
+  console.log('All favicon assets generated successfully!');
+}
+
+run().catch((err) => {
+  console.error('Error generating favicons:', err);
+  process.exit(1);
+});
