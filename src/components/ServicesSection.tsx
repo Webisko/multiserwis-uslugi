@@ -67,10 +67,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ services = fal
 
                 <a
                   href={service.pagePath ? `${company.links.basePath}${service.pagePath}` : '#kontakt'}
+                  aria-label={`Dowiedz się więcej o usłudze: ${service.title}`}
                   className="relative z-10 mt-auto pt-4 flex justify-between items-center group/btn"
                 >
-                  <span className="text-base font-bold text-gray-400 group-hover:text-white transition-colors">Dowiedz się więcej</span>
-                  <div className="p-3 rounded-full bg-industrial-900 group-hover:bg-industrial-accent group-hover:text-industrial-900 transition-colors duration-300">
+                  <span className="text-base font-bold text-gray-200 group-hover:text-white transition-colors">
+                    Dowiedz się więcej <span className="sr-only">o usłudze {service.title}</span>
+                  </span>
+                  <div className="p-3 rounded-full bg-industrial-900 group-hover:bg-industrial-accent group-hover:text-industrial-900 transition-colors duration-300" aria-hidden="true">
                      <ArrowRight size={20} className="transform group-hover/btn:translate-x-1 transition-transform" />
                   </div>
                 </a>
@@ -80,9 +83,15 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ services = fal
               {/* Training Cross-sell Box */}
               {service.training && (
                 <div className="mt-4 p-5 border border-dashed border-gray-700 rounded-lg bg-industrial-900/50">
-                    <p className="text-sm text-gray-400 mb-2">{service.training.text}</p>
-                    <a href={company.links.trainingSiteUrl} target="_blank" rel="noopener noreferrer" className="text-base font-bold text-industrial-accent hover:text-white flex items-center gap-1 transition-colors">
-                        {service.training.linkText} <ExternalLink size={14} />
+                    <p className="text-sm text-gray-300 mb-2">{service.training.text}</p>
+                    <a
+                      href={company.links.trainingSiteUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${service.training.linkText} - ${service.title}`}
+                      className="text-base font-bold text-industrial-accent hover:text-white flex items-center gap-1 transition-colors"
+                    >
+                        {service.training.linkText} <ExternalLink size={14} aria-hidden="true" />
                     </a>
                 </div>
               )}

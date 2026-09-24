@@ -15,7 +15,7 @@ export const Footer: React.FC<FooterProps> = ({ companyData }) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-industrial-950 border-t border-industrial-800 text-industrial-400">
+    <footer className="bg-industrial-950 border-t border-industrial-800 text-gray-300">
       {/* Main Footer Grid */}
       <div className="container mx-auto px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12">
@@ -26,7 +26,7 @@ export const Footer: React.FC<FooterProps> = ({ companyData }) => {
               <BrandMark subtitle="PROFESJONALNE USŁUGI" />
             </a>
 
-            <p className="text-sm text-industrial-300 leading-relaxed mb-6">
+            <p className="text-sm text-gray-300 leading-relaxed mb-6">
               Kompleksowe usługi dla przemysłu: wynajem specjalistycznych maszyn, precyzyjne spawalnictwo, 
               relokacje linii technologicznych, dozór UDT, hydraulika siłowa oraz instalacje elektryczne.
             </p>
@@ -39,7 +39,7 @@ export const Footer: React.FC<FooterProps> = ({ companyData }) => {
               <ShieldCheck className="h-5 w-5 text-industrial-accent shrink-0 group-hover:scale-110 transition-transform" />
               <div>
                 <div className="text-xs font-semibold text-white tracking-wide">CERTYFIKAT ISO 9001:2015</div>
-                <div className="text-[11px] text-industrial-400">Akredytacja PCA AC 136</div>
+                <div className="text-[11px] text-gray-300">Akredytacja PCA AC 136</div>
               </div>
             </a>
           </div>
@@ -51,32 +51,32 @@ export const Footer: React.FC<FooterProps> = ({ companyData }) => {
             </h3>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <a href={`${basePath}/wynajem`} className="hover:text-industrial-accent transition-colors">
+                <a href={`${basePath}/wynajem`} className="text-gray-300 hover:text-industrial-accent transition-colors">
                   Wynajem Maszyn i Podestów
                 </a>
               </li>
               <li>
-                <a href={`${basePath}/relokacja`} className="hover:text-industrial-accent transition-colors">
+                <a href={`${basePath}/relokacja`} className="text-gray-300 hover:text-industrial-accent transition-colors">
                   Relokacja Maszyn i Linii
                 </a>
               </li>
               <li>
-                <a href={`${basePath}/udt`} className="hover:text-industrial-accent transition-colors">
+                <a href={`${basePath}/udt`} className="text-gray-300 hover:text-industrial-accent transition-colors">
                   Konserwacja i Dozór UDT
                 </a>
               </li>
               <li>
-                <a href={`${basePath}/spawanie`} className="hover:text-industrial-accent transition-colors">
+                <a href={`${basePath}/spawanie`} className="text-gray-300 hover:text-industrial-accent transition-colors">
                   Usługi Spawalnicze i Konstrukcje
                 </a>
               </li>
               <li>
-                <a href={`${basePath}/budownictwo`} className="hover:text-industrial-accent transition-colors">
+                <a href={`${basePath}/budownictwo`} className="text-gray-300 hover:text-industrial-accent transition-colors">
                   Hydraulika i Montaż Przemysłowy
                 </a>
               </li>
               <li>
-                <a href={`${basePath}/elektryka`} className="hover:text-industrial-accent transition-colors">
+                <a href={`${basePath}/elektryka`} className="text-gray-300 hover:text-industrial-accent transition-colors">
                   Pomiary i Usługi Elektryczne
                 </a>
               </li>
@@ -90,22 +90,22 @@ export const Footer: React.FC<FooterProps> = ({ companyData }) => {
             </h3>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <a href={`${basePath}/o-firmie`} className="hover:text-industrial-accent transition-colors">
+                <a href={`${basePath}/o-firmie`} className="text-gray-300 hover:text-industrial-accent transition-colors">
                   O Firmie
                 </a>
               </li>
               <li>
-                <a href={`${basePath}/realizacje`} className="hover:text-industrial-accent transition-colors">
+                <a href={`${basePath}/realizacje`} className="text-gray-300 hover:text-industrial-accent transition-colors">
                   Realizacje
                 </a>
               </li>
               <li>
-                <a href={`${basePath}/faq`} className="hover:text-industrial-accent transition-colors">
+                <a href={`${basePath}/faq`} className="text-gray-300 hover:text-industrial-accent transition-colors">
                   Centrum Pomocy FAQ
                 </a>
               </li>
               <li>
-                <a href={`${basePath}/kontakt`} className="hover:text-industrial-accent transition-colors">
+                <a href={`${basePath}/kontakt`} className="text-gray-300 hover:text-industrial-accent transition-colors">
                   Kontakt i Wycena
                 </a>
               </li>
@@ -131,7 +131,7 @@ export const Footer: React.FC<FooterProps> = ({ companyData }) => {
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2.5">
                 <MapPin className="h-4 w-4 text-industrial-accent shrink-0 mt-0.5" />
-                <span>
+                <span className="text-gray-300">
                   {resolvedCompany.address.street},<br />
                   {resolvedCompany.address.postalCode} {resolvedCompany.address.city}
                 </span>
@@ -139,11 +139,11 @@ export const Footer: React.FC<FooterProps> = ({ companyData }) => {
               <li className="flex items-start gap-2.5">
                 <Phone className="h-4 w-4 text-industrial-accent shrink-0 mt-0.5" />
                 <div className="flex flex-col">
-                  <a href={resolvedCompany.phones.services.href} className="hover:text-white transition-colors font-medium text-white">
+                  <a href={resolvedCompany.phones.services.href} className="hover:text-industrial-accent transition-colors font-medium text-white">
                     {resolvedCompany.phones.services.value}
                   </a>
                   {resolvedCompany.phones.services.secondaryValue ? (
-                    <a href={resolvedCompany.phones.services.secondaryHref} className="hover:text-white transition-colors text-industrial-300 text-xs">
+                    <a href={resolvedCompany.phones.services.secondaryHref} className="hover:text-white transition-colors text-gray-400 text-xs">
                       {resolvedCompany.phones.services.secondaryValue}
                     </a>
                   ) : null}
@@ -155,22 +155,22 @@ export const Footer: React.FC<FooterProps> = ({ companyData }) => {
                   href={`https://wa.me/48${resolvedCompany.phones.services.value.replace(/\s+/g, '')}`} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:text-green-400 transition-colors"
+                  className="text-gray-300 hover:text-green-400 transition-colors"
                 >
                   Napisz na WhatsApp
                 </a>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="h-4 w-4 text-industrial-accent shrink-0" />
-                <a href={`mailto:${resolvedCompany.email}`} className="hover:text-white transition-colors break-all">
+                <a href={`mailto:${resolvedCompany.email}`} className="text-gray-300 hover:text-white transition-colors break-all">
                   {resolvedCompany.email}
                 </a>
               </li>
-              <li className="flex items-start gap-2.5 pt-1 text-xs text-industrial-400">
-                <Clock className="h-3.5 w-3.5 text-industrial-500 shrink-0 mt-0.5" />
+              <li className="flex items-start gap-2.5 pt-1 text-xs text-gray-300">
+                <Clock className="h-3.5 w-3.5 text-industrial-accent shrink-0 mt-0.5" />
                 <div>
                   <div>Biuro: {resolvedCompany.openingHours.details} ({resolvedCompany.openingHours.days})</div>
-                  <div className="text-industrial-500 mt-0.5">{resolvedCompany.emergencyNote}</div>
+                  <div className="text-gray-400 mt-0.5">{resolvedCompany.emergencyNote}</div>
                 </div>
               </li>
             </ul>
@@ -181,15 +181,15 @@ export const Footer: React.FC<FooterProps> = ({ companyData }) => {
 
       {/* Bottom Sub-footer */}
       <div className="border-t border-industrial-900 bg-black/60 py-6">
-        <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-industrial-500">
+        <div className="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-400">
           <div>
             &copy; {currentYear} {resolvedCompany.name}. Wszelkie prawa zastrzeżone.
           </div>
           <div className="flex gap-6">
-            <a href={`${basePath}/polityka-prywatnosci`} className="hover:text-industrial-300 transition-colors">
+            <a href={`${basePath}/polityka-prywatnosci`} className="text-gray-400 hover:text-white transition-colors">
               Polityka Prywatności
             </a>
-            <a href={`${basePath}/regulamin`} className="hover:text-industrial-300 transition-colors">
+            <a href={`${basePath}/regulamin`} className="text-gray-400 hover:text-white transition-colors">
               Regulamin
             </a>
           </div>

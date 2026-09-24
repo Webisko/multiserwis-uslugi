@@ -37,7 +37,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ serviceOptions }
                 </div>
                 <div>
                   <h3 className="mb-1 text-lg font-bold text-white sm:text-xl md:text-2xl">Zadzwoń do nas</h3>
-                  <p className="mb-2 text-base text-gray-400 md:text-lg">Dział handlowy / Wynajem</p>
+                  <p className="mb-2 text-base text-gray-300 md:text-lg">Dział handlowy / Wynajem</p>
                   <div className="flex flex-col gap-1">
                     <a href={company.phones.services.href} className="font-display text-xl font-bold text-white transition-colors hover:text-industrial-accent sm:text-2xl md:text-3xl">
                       {company.phones.services.value}
@@ -50,7 +50,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ serviceOptions }
                         {company.phones.services.secondaryValue}
                       </a>
                     ) : null}
-                    <p className="text-sm text-gray-500">WhatsApp dostępny na numerach usług.</p>
+                    <p className="text-sm text-gray-400">WhatsApp dostępny na numerach usług.</p>
                     {primaryWhatsAppUrl ? (
                       <a
                         href={primaryWhatsAppUrl}
@@ -72,7 +72,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ serviceOptions }
                 </div>
                 <div>
                   <h3 className="mb-1 text-lg font-bold text-white sm:text-xl md:text-2xl">Napisz wiadomość</h3>
-                  <p className="mb-2 text-base text-gray-400 md:text-lg">Odpowiadamy w ciągu 24h</p>
+                  <p className="mb-2 text-base text-gray-300 md:text-lg">Odpowiadamy w ciągu 24h</p>
                   <a href={`mailto:${company.email}`} className="text-lg text-white transition-colors hover:text-industrial-accent sm:text-xl md:text-2xl break-all">
                     {company.email}
                   </a>
@@ -85,8 +85,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ serviceOptions }
                 </div>
                 <div>
                   <h3 className="mb-1 text-lg font-bold text-white sm:text-xl md:text-2xl">Godziny pracy</h3>
-                  <p className="text-base text-gray-400 md:text-lg">{company.openingHours.days}: {company.openingHours.details}</p>
-                  <p className="text-base text-gray-400 md:text-lg">{company.emergencyNote}</p>
+                  <p className="text-base text-gray-300 md:text-lg">{company.openingHours.days}: {company.openingHours.details}</p>
+                  <p className="text-base text-gray-300 md:text-lg">{company.emergencyNote}</p>
                 </div>
               </div>
             </div>

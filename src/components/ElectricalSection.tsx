@@ -98,11 +98,11 @@ export const ElectricalSection: React.FC = () => {
                  <GraduationCap size={32} />
               </div>
               <div>
-                 <h4 className="text-white font-bold text-2xl">Potrzebujesz uprawnień SEP?</h4>
-                 <p className="text-gray-400 text-lg">Organizujemy kursy: G1 (Elektryczne), G2 (Energetyczne), G3 (Gazowe).</p>
+                 <h3 className="text-white font-bold text-2xl">Potrzebujesz uprawnień SEP?</h3>
+                 <p className="text-gray-300 text-lg">Organizujemy kursy: G1 (Elektryczne), G2 (Energetyczne), G3 (Gazowe).</p>
               </div>
            </div>
-            <a href={company.links.trainingSiteUrl} target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-industrial-800 hover:bg-industrial-accent hover:text-industrial-900 text-white font-bold rounded-lg text-lg transition-colors flex items-center gap-3 whitespace-nowrap shadow-lg">
+            <a href={company.links.trainingSiteUrl} target="_blank" rel="noopener noreferrer" aria-label="Zobacz ofertę szkoleń SEP dla instalatorów i operatorów" className="px-8 py-4 bg-industrial-800 hover:bg-industrial-accent hover:text-industrial-900 text-white font-bold rounded-lg text-lg transition-colors flex items-center gap-3 whitespace-nowrap shadow-lg">
               Zobacz szkolenia SEP <ArrowRight size={20} />
            </a>
         </div>

@@ -1,0 +1,43 @@
+# Multiserwis – Pełna Specyfikacja Usług i Parku Maszynowego
+
+## 1. Wynajem Maszyn i Urządzeń Dźwigowych
+- Podnośniki nożycowe: elektryczne (do prac wewnątrz hal) i spalinowe 4x4 (na trudny teren budowy), wysokość robocza od 8m do 18m.
+- Podnośniki teleskopowo-przegubowe: spalinowe i elektryczne, zasięg boczny do 16m, wysokość do 26m.
+- Żurawie samojezdne: udźwig do 45 ton, osprzęt hakowy, wysięgniki teleskopowe, obsługa przez uprawnionych operatorów.
+- Ładowarki teleskopowe: udźwig do 4 ton, osprzęt widłowy, koszowy i wciągarka.
+- Wózki widłowe przemysłowe: udźwig od 2.5t do 7t, zasilanie LPG, elektryczne lub diesel.
+
+## 2. Relokacje Maszyn i Linii Technologicznych
+- Pomiary wstępne, inwentaryzacja i planowanie logistyczne transferu.
+- Mechaniczny i elektryczny demontaż maszyn oraz podzespołów.
+- Transport wewnętrzny (rolki transportowe, poduszki powietrzne, lewarki hydrauliczne) oraz transport drogowy.
+- Posadowienie, poziomowanie z użyciem niwelatorów laserowych, kotwienie chemiczne i mechaniczne.
+- Podłączenie mediów (energia elektryczna, sprężone powietrze, chłodzenie, woda, hydraulika) i asysta przy rozruchu.
+
+## 3. Konserwacja, Serwis i Dozór UDT
+- Obsługiwane kategorie: wózki jezdniowe (WJO), podesty ruchome (IP/IIP), suwnice i żurawie (IIS/IS), wciągniki i wciągarki.
+- Prowadzenie dzienników konserwacji, obliczanie stopnia wykorzystania resursu maszyny.
+- Pomiary rezystancji izolacji i skuteczności ochrony przeciwporażeniowej dla urządzeń UDT.
+- Przygotowanie dokumentacji techniczno-ruchowej (DTR) i uczestnictwo w okresowych badaniach z inspektorem UDT.
+
+## 4. Spawalnictwo Przemysłowe i Konstrukcje
+- Metody spawania: TIG (141) dla stali kwasoodpornych i aluminium, MIG/MAG (131/135) dla stali węglowych i konstrukcyjnych, MMA (111).
+- Prefabrykacja podestów obsługowych, barierek, schodów przemysłowych, ramp oraz konstrukcji nośnych.
+- Montaż i spawanie rurociągów technologicznych ze stali nierdzewnej (przemysł spożywczy, farmaceutyczny, chemiczny).
+
+## 5. Hydraulika Siłowa i Montaż
+- Naprawa i zakuwanie węży hydraulicznych wysokociśnieniowych.
+- Regeneracja siłowników hydraulicznych, wymiana uszczelnień i tłoczysk.
+- Montaż magistrali olejowych i hydraulicznych na obiektach przemysłowych.
+
+## 6. Pomiary i Instalacje Elektryczne
+- Pomiary ochronne SEP, przeglądy 5-letnie instalacji elektrycznych obiektów przemysłowych.
+- Modernizacja rozdzielnic elektrycznych i szaf sterowniczych PLC.
+- Zasilanie linii produkcyjnych, montaż tras kablowych, koryt siatkowych i oświetlenia LED hal.
+
+## 7. Kontakt i Dane Rejestrowe
+- Multiserwis
+- Adres: ul. Sklęczkowska 16, 99-300 Kutno, Polska
+- Telefon: +48 602 123 456
+- E-mail: biuro@multiserwis.pl
+- Web: https://multiserwis-uslugi.webisko.pl/

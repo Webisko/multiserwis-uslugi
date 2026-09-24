@@ -104,14 +104,12 @@ export const BrandMark: React.FC<BrandMarkProps> = ({
       </div>
       <div className="flex flex-col justify-center">
         <span
-          className="text-xl sm:text-2xl font-black text-white leading-none tracking-tight whitespace-nowrap"
-          style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 900 }}
+          className="text-xl sm:text-2xl font-black text-white leading-none tracking-tight whitespace-nowrap font-sans"
         >
           MULTI<span className="text-industrial-accent">SERWIS</span>
         </span>
         <span
-          className="text-[9.5px] sm:text-[11px] text-slate-300 font-semibold tracking-[0.2em] uppercase leading-none mt-1"
-          style={{ fontFamily: "'Montserrat', sans-serif" }}
+          className="text-[9.5px] sm:text-[11px] text-slate-300 font-semibold tracking-[0.2em] uppercase leading-none mt-1 font-sans"
         >
           {subtitle}
         </span>

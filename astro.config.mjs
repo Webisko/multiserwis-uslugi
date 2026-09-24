@@ -31,6 +31,9 @@ const basePath = normalizeBasePath(
 export default defineConfig({
   site: siteUrl,
   base: basePath,
+  build: {
+    inlineStylesheets: 'always',
+  },
   integrations: [react(), sitemap()],
   vite: {
     plugins: [tailwindcss()],

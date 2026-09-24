@@ -327,7 +327,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   return (
     <div className={cardClassName}>
       <h3 className={titleClassName}>{title}</h3>
-      <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+      <form
+        className="space-y-6"
+        onSubmit={handleSubmit}
+        noValidate
+        // @ts-ignore - WebMCP declarative attributes for AI agent browsing
+        toolname="send_contact_inquiry"
+        tooldescription="Wyślij zapytanie ofertowe dotyczące usług przemysłowych (wynajem maszyn, relokacja, UDT, spawalnictwo, montaż, instalacje elektryczne) do Multiserwis Kutno"
+        toolautosubmit="true"
+      >
         {isPreviewMode && (
           <div className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm leading-relaxed text-amber-100">
             Tryb podglądu: formularz pokazuje pełny przebieg walidacji, ale nie zapisuje jeszcze leada w backendzie.
@@ -338,48 +346,127 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
         <div className={`grid grid-cols-1 ${compact ? 'md:grid-cols-2 gap-4' : 'md:grid-cols-2 gap-6'}`}>
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-400">Imię i nazwisko *</label>
-            <input name="fullName" value={formState.fullName} onChange={handleFieldChange} type="text" autoComplete="name" className={fieldClasses('fullName')} placeholder="Jan Kowalski" aria-invalid={Boolean(errors.fullName)} />
+            <label htmlFor={`${contextLabel}-fullName`} className="mb-2 block text-sm font-medium text-gray-300">Imię i nazwisko *</label>
+            <input
+              id={`${contextLabel}-fullName`}
+              name="fullName"
+              value={formState.fullName}
+              onChange={handleFieldChange}
+              type="text"
+              autoComplete="name"
+              className={fieldClasses('fullName')}
+              placeholder="Jan Kowalski"
+              aria-invalid={Boolean(errors.fullName)}
+              aria-required="true"
+            />
             {errors.fullName && <p className="mt-2 text-sm text-red-300">{errors.fullName}</p>}
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-400">{compact ? 'Telefon *' : 'Firma (opcjonalnie)'}</label>
+            <label htmlFor={compact ? `${contextLabel}-phone` : `${contextLabel}-company`} className="mb-2 block text-sm font-medium text-gray-300">
+              {compact ? 'Telefon *' : 'Firma (opcjonalnie)'}
+            </label>
             {compact ? (
               <>
-                <input name="phone" value={formState.phone} onChange={handleFieldChange} type="tel" inputMode="tel" autoComplete="tel" className={fieldClasses('phone')} placeholder="123 456 789" aria-invalid={Boolean(errors.phone)} />
+                <input
+                  id={`${contextLabel}-phone`}
+                  name="phone"
+                  value={formState.phone}
+                  onChange={handleFieldChange}
+                  type="tel"
+                  inputMode="tel"
+                  autoComplete="tel"
+                  className={fieldClasses('phone')}
+                  placeholder="123 456 789"
+                  aria-invalid={Boolean(errors.phone)}
+                  aria-required="true"
+                />
                 {errors.phone && <p className="mt-2 text-sm text-red-300">{errors.phone}</p>}
               </>
             ) : (
-              <input name="company" value={formState.company} onChange={handleFieldChange} type="text" autoComplete="organization" className={fieldClasses('company')} placeholder="Nazwa firmy" />
+              <input
+                id={`${contextLabel}-company`}
+                name="company"
+                value={formState.company}
+                onChange={handleFieldChange}
+                type="text"
+                autoComplete="organization"
+                className={fieldClasses('company')}
+                placeholder="Nazwa firmy"
+              />
             )}
           </div>
         </div>
 
         {compact ? (
           <div>
-            <label className="mb-2 block text-sm font-medium text-gray-400">E-mail *</label>
-            <input name="email" value={formState.email} onChange={handleFieldChange} type="email" autoComplete="email" className={fieldClasses('email')} placeholder="adres@email.com" aria-invalid={Boolean(errors.email)} />
+            <label htmlFor={`${contextLabel}-email`} className="mb-2 block text-sm font-medium text-gray-300">E-mail *</label>
+            <input
+              id={`${contextLabel}-email`}
+              name="email"
+              value={formState.email}
+              onChange={handleFieldChange}
+              type="email"
+              autoComplete="email"
+              className={fieldClasses('email')}
+              placeholder="adres@email.com"
+              aria-invalid={Boolean(errors.email)}
+              aria-required="true"
+            />
             {errors.email && <p className="mt-2 text-sm text-red-300">{errors.email}</p>}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-400">Telefon *</label>
-              <input name="phone" value={formState.phone} onChange={handleFieldChange} type="tel" inputMode="tel" autoComplete="tel" className={fieldClasses('phone')} placeholder="+48 123 456 789" aria-invalid={Boolean(errors.phone)} />
+              <label htmlFor={`${contextLabel}-phone`} className="mb-2 block text-sm font-medium text-gray-300">Telefon *</label>
+              <input
+                id={`${contextLabel}-phone`}
+                name="phone"
+                value={formState.phone}
+                onChange={handleFieldChange}
+                type="tel"
+                inputMode="tel"
+                autoComplete="tel"
+                className={fieldClasses('phone')}
+                placeholder="+48 123 456 789"
+                aria-invalid={Boolean(errors.phone)}
+                aria-required="true"
+              />
               {errors.phone && <p className="mt-2 text-sm text-red-300">{errors.phone}</p>}
             </div>
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-400">E-mail *</label>
-              <input name="email" value={formState.email} onChange={handleFieldChange} type="email" autoComplete="email" className={fieldClasses('email')} placeholder="email@firma.pl" aria-invalid={Boolean(errors.email)} />
+              <label htmlFor={`${contextLabel}-email`} className="mb-2 block text-sm font-medium text-gray-300">E-mail *</label>
+              <input
+                id={`${contextLabel}-email`}
+                name="email"
+                value={formState.email}
+                onChange={handleFieldChange}
+                type="email"
+                autoComplete="email"
+                className={fieldClasses('email')}
+                placeholder="email@firma.pl"
+                aria-invalid={Boolean(errors.email)}
+                aria-required="true"
+              />
               {errors.email && <p className="mt-2 text-sm text-red-300">{errors.email}</p>}
             </div>
           </div>
         )}
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-gray-400">{compact ? 'Temat' : 'Interesująca usługa *'}</label>
-          <select name="service" value={formState.service} onChange={handleFieldChange} className={fieldClasses('service')} aria-invalid={Boolean(errors.service)}>
+          <label htmlFor={`${contextLabel}-service`} className="mb-2 block text-sm font-medium text-gray-300">
+            {compact ? 'Temat' : 'Interesująca usługa *'}
+          </label>
+          <select
+            id={`${contextLabel}-service`}
+            name="service"
+            value={formState.service}
+            onChange={handleFieldChange}
+            className={fieldClasses('service')}
+            aria-invalid={Boolean(errors.service)}
+            aria-label={compact ? 'Wybierz temat zapytania' : 'Wybierz interesującą usługę'}
+            aria-required="true"
+          >
             <option value="">{compact ? 'Wybierz temat...' : 'Wybierz usługę...'}</option>
             {resolvedServiceOptions.map((option) => (
               <option key={option} value={option}>{option}</option>
@@ -391,8 +478,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         {isRentalSelected && (
           <div className={`grid grid-cols-1 ${compact ? 'gap-4' : 'gap-6 md:grid-cols-2'}`}>
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-400">Sprzęt lub maszyna *</label>
+              <label htmlFor={`${contextLabel}-rentalEquipment`} className="mb-2 block text-sm font-medium text-gray-300">Sprzęt lub maszyna *</label>
               <input
+                id={`${contextLabel}-rentalEquipment`}
                 name="rentalEquipment"
                 value={formState.rentalEquipment}
                 onChange={handleFieldChange}
@@ -400,13 +488,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 className={fieldClasses('rentalEquipment')}
                 placeholder="Np. żuraw 45t, podest nożycowy, wózek widłowy"
                 aria-invalid={Boolean(errors.rentalEquipment)}
+                aria-required="true"
               />
               {errors.rentalEquipment && <p className="mt-2 text-sm text-red-300">{errors.rentalEquipment}</p>}
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-400">Lokalizacja realizacji</label>
+              <label htmlFor={`${contextLabel}-rentalLocation`} className="mb-2 block text-sm font-medium text-gray-300">Lokalizacja realizacji</label>
               <input
+                id={`${contextLabel}-rentalLocation`}
                 name="rentalLocation"
                 value={formState.rentalLocation}
                 onChange={handleFieldChange}
@@ -417,8 +507,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-400">Planowana data rozpoczęcia</label>
+              <label htmlFor={`${contextLabel}-rentalStartDate`} className="mb-2 block text-sm font-medium text-gray-300">Planowana data rozpoczęcia</label>
               <input
+                id={`${contextLabel}-rentalStartDate`}
                 name="rentalStartDate"
                 value={formState.rentalStartDate}
                 onChange={handleFieldChange}
@@ -428,8 +519,9 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             </div>
 
             <div>
-              <label className="mb-2 block text-sm font-medium text-gray-400">Przewidywany czas wynajmu</label>
+              <label htmlFor={`${contextLabel}-rentalDuration`} className="mb-2 block text-sm font-medium text-gray-300">Przewidywany czas wynajmu</label>
               <input
+                id={`${contextLabel}-rentalDuration`}
                 name="rentalDuration"
                 value={formState.rentalDuration}
                 onChange={handleFieldChange}
@@ -440,18 +532,20 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             </div>
 
             <div className={compact ? '' : 'md:col-span-2'}>
-              <label className="mb-2 block text-sm font-medium text-gray-400">Czy z operatorem?</label>
+              <label htmlFor={`${contextLabel}-rentalOperator`} className="mb-2 block text-sm font-medium text-gray-300">Czy z operatorem?</label>
               <select
+                id={`${contextLabel}-rentalOperator`}
                 name="rentalOperator"
                 value={formState.rentalOperator}
                 onChange={handleFieldChange}
                 className={fieldClasses('rentalOperator')}
+                aria-label="Wybór obsługi z operatorem lub bez"
               >
                 <option value="">Do ustalenia</option>
                 <option value="Z operatorem">Z operatorem</option>
                 <option value="Bez operatora">Bez operatora</option>
               </select>
-              <p className="mt-2 text-xs text-gray-500">
+              <p className="mt-2 text-xs text-gray-400">
                 Pole dotyczy wybranych grup sprzętu, np. żurawi i podnośników. Ostateczny model realizacji potwierdzimy po analizie zapytania.
               </p>
             </div>
@@ -459,17 +553,27 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         )}
 
         <div>
-          <label className="mb-2 block text-sm font-medium text-gray-400">
+          <label htmlFor={`${contextLabel}-message`} className="mb-2 block text-sm font-medium text-gray-300">
             {isRentalSelected ? 'Krótki opis prac *' : 'Wiadomość *'}
           </label>
-          <textarea name="message" value={formState.message} onChange={handleFieldChange} rows={4} className={fieldClasses('message')} placeholder={isRentalSelected ? 'Np. wysokość pracy, waga ładunku, zasięg podania, warunki na obiekcie.' : compact ? 'Opisz, czego potrzebujesz...' : 'Opisz swoje potrzeby, termin i lokalizację.'} aria-invalid={Boolean(errors.message)} />
+          <textarea
+            id={`${contextLabel}-message`}
+            name="message"
+            value={formState.message}
+            onChange={handleFieldChange}
+            rows={4}
+            className={fieldClasses('message')}
+            placeholder={isRentalSelected ? 'Np. wysokość pracy, waga ładunku, zasięg podania, warunki na obiekcie.' : compact ? 'Opisz, czego potrzebujesz...' : 'Opisz swoje potrzeby, termin i lokalizację.'}
+            aria-invalid={Boolean(errors.message)}
+            aria-required="true"
+          />
           {errors.message && <p className="mt-2 text-sm text-red-300">{errors.message}</p>}
         </div>
 
         <div className="space-y-2">
           <div className="flex items-start gap-3 rounded-lg border border-transparent p-1">
-            <input id={`consent-${contextLabel}`} name="consent" checked={formState.consent} onChange={handleFieldChange} type="checkbox" className="mt-1.5 h-5 w-5 shrink-0 rounded accent-industrial-accent" />
-            <label htmlFor={`consent-${contextLabel}`} className="flex-1 cursor-pointer text-sm leading-snug text-gray-400">Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania. *</label>
+            <input id={`consent-${contextLabel}`} name="consent" checked={formState.consent} onChange={handleFieldChange} type="checkbox" className="mt-1.5 h-5 w-5 shrink-0 rounded accent-industrial-accent" aria-required="true" />
+            <label htmlFor={`consent-${contextLabel}`} className="flex-1 cursor-pointer text-sm leading-snug text-gray-300">Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania. *</label>
           </div>
           {errors.consent && <p className="text-sm text-red-300">{errors.consent}</p>}
         </div>

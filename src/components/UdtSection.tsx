@@ -50,10 +50,10 @@ export const UdtSection: React.FC = () => {
             </p>
             
             <div className="p-8 bg-industrial-800 rounded-xl border-l-4 border-industrial-accent mb-8">
-              <h4 className="text-white text-lg font-bold mb-3 flex items-center gap-3">
+              <h3 className="text-white text-lg font-bold mb-3 flex items-center gap-3">
                 <FileText size={24} className="text-industrial-accent"/>
                 Brak dokumentacji?
-              </h4>
+              </h3>
               <p className="text-base text-gray-300 leading-relaxed">
                 Odtwarzamy dokumentację i zgłaszamy urządzenie do UDT w Twoim imieniu. Pełna obsługa formalna.
               </p>
@@ -61,11 +61,11 @@ export const UdtSection: React.FC = () => {
 
             {/* Training Link Sidebar */}
             <div className="p-8 border border-gray-700 rounded-xl bg-gradient-to-br from-industrial-800 to-industrial-900">
-                <h4 className="text-white text-xl font-bold mb-3 flex items-center gap-3">
+                <h3 className="text-white text-xl font-bold mb-3 flex items-center gap-3">
                     <BookOpen size={24} className="text-industrial-accent"/>
                     Szkolenia UDT
-                </h4>
-                <p className="text-base text-gray-400 mb-6 leading-relaxed">
+                </h3>
+                <p className="text-base text-gray-300 mb-6 leading-relaxed">
                     Organizujemy szkolenia dla operatorów i konserwatorów: wózki, suwnice, żurawie i inne.
                 </p>
                 <a href={company.links.trainingSiteUrl} target="_blank" rel="noopener noreferrer" className="text-industrial-accent text-lg font-bold hover:text-white flex items-center gap-2 transition-colors">

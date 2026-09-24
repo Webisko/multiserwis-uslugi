@@ -11,25 +11,31 @@ interface AccordionItemProps {
   a: string;
 }
 
-const AccordionItem: React.FC<AccordionItemProps> = ({ q, a }) => {
+const AccordionItem: React.FC<AccordionItemProps> = ({ id, q, a }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="border-b border-gray-700 last:border-0">
       <button
+        type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex justify-between items-center w-full py-5 text-left group"
+        aria-expanded={isOpen}
+        aria-controls={`faq-answer-${id}`}
+        className="flex justify-between items-center w-full py-5 text-left group cursor-pointer"
       >
-        <span className={`font-medium text-lg md:text-xl transition-colors ${isOpen ? 'text-industrial-accent' : 'text-gray-200 group-hover:text-white'}`}>
+        <span id={`faq-question-${id}`} className={`font-medium text-lg md:text-xl transition-colors ${isOpen ? 'text-industrial-accent' : 'text-gray-200 group-hover:text-white'}`}>
           {q}
         </span>
-        <span className={`p-1.5 rounded-full border transition-colors ${isOpen ? 'border-industrial-accent text-industrial-accent' : 'border-gray-600 text-gray-400 group-hover:border-white'}`}>
+        <span className={`p-1.5 rounded-full border transition-colors ${isOpen ? 'border-industrial-accent text-industrial-accent' : 'border-gray-600 text-gray-400 group-hover:border-white'}`} aria-hidden="true">
           {isOpen ? <Minus size={18} /> : <Plus size={18} />}
         </span>
       </button>
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id={`faq-answer-${id}`}
+            role="region"
+            aria-labelledby={`faq-question-${id}`}
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}

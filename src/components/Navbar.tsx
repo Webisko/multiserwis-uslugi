@@ -210,18 +210,18 @@ export const Navbar: React.FC<NavbarProps> = ({ companyData }) => {
            {mobileNavLinks.map((link) => (
              <div key={link.name} className="border-b border-gray-800/50 last:border-0">
                 {link.external ? (
-               <a href={link.path} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu} className="block py-3 text-lg font-medium text-gray-300 hover:text-industrial-accent transition-colors">{link.name}</a>
+               <a href={link.path} target="_blank" rel="noopener noreferrer" onClick={closeMobileMenu} className="flex items-center min-h-[48px] py-3 text-lg font-medium text-gray-200 hover:text-industrial-accent transition-colors">{link.name}</a>
                 ) : link.dropdownOnly ? (
                    <div className="py-2">
-                      <div className="text-lg font-medium text-gray-300 mb-2">{link.name}</div>
+                      <div className="text-lg font-medium text-gray-200 mb-2">{link.name}</div>
                       {link.submenu && (
-                        <div className="pl-4 flex flex-col gap-2 mb-2 border-l border-gray-700">
+                        <div className="pl-4 flex flex-col gap-1 mb-2 border-l border-gray-700">
                            {link.submenu.map((subItem) => (
                              <a 
                                key={subItem.name} 
                                href={subItem.path}
-                       onClick={closeMobileMenu}
-                               className="block py-2 text-sm text-gray-400 hover:text-white transition-colors"
+                               onClick={closeMobileMenu}
+                               className="flex items-center min-h-[48px] py-3 text-base text-gray-200 hover:text-white transition-colors"
                              >
                                 {subItem.name}
                              </a>
@@ -231,15 +231,15 @@ export const Navbar: React.FC<NavbarProps> = ({ companyData }) => {
                    </div>
                 ) : (
                    <div className="py-2">
-                     <a href={link.path} onClick={closeMobileMenu} className="block text-lg font-medium text-gray-300 hover:text-industrial-accent transition-colors">{link.name}</a>
+                     <a href={link.path} onClick={closeMobileMenu} className="flex items-center min-h-[48px] py-3 text-lg font-medium text-gray-200 hover:text-industrial-accent transition-colors">{link.name}</a>
                       {link.submenu && (
-                        <div className="pl-4 mt-2 flex flex-col gap-2 border-l border-gray-700">
+                        <div className="pl-4 mt-1 flex flex-col gap-1 border-l border-gray-700">
                            {link.submenu.map((subItem) => (
                              <a 
                                key={subItem.name} 
                                href={subItem.path}
                                onClick={closeMobileMenu}
-                               className="block py-2 text-sm text-gray-400 hover:text-white transition-colors"
+                               className="flex items-center min-h-[48px] py-3 text-base text-gray-200 hover:text-white transition-colors"
                              >
                                 {subItem.name}
                              </a>

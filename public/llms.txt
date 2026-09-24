@@ -1,0 +1,32 @@
+# Multiserwis – Kompleksowe Usługi dla Przemysłu
+
+> Multiserwis Kutno to profesjonalny partner przemysłowy z certyfikatem ISO 9001:2015. Oferujemy kompleksowe wsparcie zakładów produkcyjnych, fabryk i placów budowy w Polsce: wynajem specjalistycznych maszyn, relokację linii technologicznych, dozór UDT, spawalnictwo precyzyjne, hydraulikę siłową oraz instalacje elektryczne.
+
+## Informacje podstawowe
+- Nazwa firmy: Multiserwis
+- Lokalizacja: ul. Sklęczkowska 16, 99-300 Kutno, Polska
+- Telefon główny: +48 602 123 456
+- E-mail: biuro@multiserwis.pl
+- Godziny pracy: Poniedziałek – Piątek, 08:00 – 16:00
+- Czas wyceny: Wycena i pierwszy kontakt do 24h w dni robocze
+- Certyfikat jakości: ISO 9001:2015 (Akredytacja PCA AC 136)
+
+## Zakres usług (Katalog)
+- [Wynajem Maszyn i Podestów](/wynajem): Podnośniki nożycowe, koszowe, teleskopowe, żurawie samojezdne do 45t, wózki widłowe i ładowarki teleskopowe z operatorem lub bez.
+- [Relokacja Maszyn i Linii](/relokacja): Kompleksowy demontaż, transport ponadgabarytowy, ponowny montaż, pozycjonowanie laserowe i rozruch technologiczny ciągów produkcyjnych.
+- [Konserwacja i Dozór UDT](/udt): Przygotowanie maszyn do badań okresowych i odbiorczych UDT, resurs, przeglądy konserwacyjne, asysta inspektorska.
+- [Usługi Spawalnicze](/spawanie): Spawanie metodami TIG, MIG/MAG, MMA, prefabrykacja konstrukcji stalowych, rurociągi przemysłowe, regeneracja elementów maszyn.
+- [Hydraulika i Montaż Przemysłowy](/budownictwo): Montaż rurociągów technologicznych, armatury, hydrauliki siłowej oraz konstrukcji wsporczych.
+- [Instalacje i Pomiary Elektryczne](/elektryka): Pomiary odbiorcze i okresowe SEP, automatyka przemysłowa, szafy sterownicze, rozruch instalacji.
+- [O Firmie](/o-firmie): Historia, park maszynowy, certyfikat ISO 9001:2015.
+- [Centrum Pomocy FAQ](/faq): Baza wiedzy i odpowiedzi na najczęściej zadawane pytania techniczne.
+- [Kontakt i Wycena](/kontakt): Formularz zapytania ofertowego online z obsługą protokołu WebMCP.
+
+## Narzędzia dla agentów (WebMCP)
+- Narzędzie zapytania ofertowego: `send_contact_inquiry`
+- Dostępność: Dostępne na stronie głównej oraz pod adresem `/kontakt`
+- Wymagane pola: `fullName`, `email`, `phone`, `message`
+- Opcjonalne: `service`, `company`, `rentalEquipment`, `rentalDuration`, `rentalOperator`
+
+## Pełna dokumentacja
+- Szczegółowa specyfikacja maszyn i usług: [llms-full.txt](/llms-full.txt)
