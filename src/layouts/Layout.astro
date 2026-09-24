@@ -21,16 +21,19 @@ const company = siteSettings?.company ?? {
 const seo = siteSettings?.seo ?? getDefaultSeo();
 const pageDescription = description || seo.defaultDescription;
 const canonicalUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site) : Astro.url;
-const resolvedOgImagePath = seo.ogImageUrl.startsWith('http')
-  ? seo.ogImageUrl
-  : seo.ogImageUrl.startsWith('/')
-    ? seo.ogImageUrl
-    : `/${seo.ogImageUrl}`;
-const ogImageUrl = Astro.site
-  ? new URL(resolvedOgImagePath, Astro.site).toString()
-  : resolvedOgImagePath.startsWith('http')
-    ? resolvedOgImagePath
-    : `${Astro.url.origin}${resolvedOgImagePath}`;
+const rawOgImage = seo.ogImageUrl || 'og-image.png';
+const isAbsoluteOg = rawOgImage.startsWith('http://') || rawOgImage.startsWith('https://');
+const normalizedOgPath = rawOgImage
+  .replace(/^https?:\/\/[^\/]+/, '')
+  .replace(/^\/multiserwis-uslugi(\/|$)/, '$1')
+  .replace(/^\/+/, '');
+const effectiveBase = company.links.basePath.replace(/^\/+|\/+$/g, '');
+const relativeOgPath = effectiveBase ? `/${effectiveBase}/${normalizedOgPath}` : `/${normalizedOgPath}`;
+const ogImageUrl = isAbsoluteOg
+  ? rawOgImage
+  : Astro.site
+    ? new URL(relativeOgPath, Astro.site).toString()
+    : `${Astro.url.origin}${relativeOgPath}`;
 const websiteUrl = Astro.site
   ? new URL(`${company.links.basePath}/`, Astro.site).toString()
   : `${Astro.url.origin}${company.links.basePath}/`;
@@ -123,9 +126,11 @@ import "../styles/global.css";
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content={seo.siteName} />
     <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:secure_url" content={ogImageUrl} />
     <meta property="og:image:type" content={ogImageUrl.endsWith('.svg') ? 'image/svg+xml' : 'image/png'} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={pageDescription} />

@@ -16,5 +16,11 @@
 # Prevent directory listings
 Options -Indexes
 
+# Redirect legacy / preview basePath requests to root
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^multiserwis-uslugi/(.*)$ /$1 [R=301,L]
+</IfModule>
+
 # Custom 404 handler
 ErrorDocument 404 /404.html
