@@ -78,10 +78,10 @@ class SiteSetting extends Model
             'map_query' => 'Multiserwis Kutno, ul. Przemysłowa 2, 99-300 Kutno',
             'map_embed_url' => 'https://www.google.com/maps?q=Multiserwis%20Kutno%2C%20ul.%20Przemys%C5%82owa%202%2C%2099-300%20Kutno&output=embed',
             'map_directions_url' => 'https://www.google.com/maps/search/?api=1&query=Multiserwis%20Kutno%2C%20ul.%20Przemys%C5%82owa%202%2C%2099-300%20Kutno',
-            'seo_default_title' => 'Multiserwis - Kompleksowe Usługi Przemysłowe',
-            'seo_default_description' => 'Profesjonalne usługi dla przemysłu: wynajem maszyn, spawalnictwo, relokacja, konserwacja UDT, usługi elektryczne.',
+            'seo_default_title' => 'Multiserwis – Kompleksowe Usługi dla Przemysłu | Kutno',
+            'seo_default_description' => 'Kompleksowe usługi dla przemysłu: wynajem maszyn, relokacje linii, dozór UDT, spawalnictwo i elektryka. Szybka wycena w 24h. Sprawdź ofertę Multiserwis Kutno!',
             'seo_site_name' => 'Multiserwis Kutno',
-            'seo_og_image_url' => '/multiserwis-uslugi/og-image.svg',
+            'seo_og_image_url' => '/multiserwis-uslugi/og-image.png',
         ];
     }
 

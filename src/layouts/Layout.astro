@@ -107,7 +107,7 @@ import "../styles/global.css";
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content={seo.siteName} />
     <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:type" content={ogImageUrl.endsWith('.svg') ? 'image/svg+xml' : 'image/png'} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />

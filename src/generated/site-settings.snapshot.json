@@ -42,9 +42,9 @@
         }
     },
     "seo": {
-        "defaultTitle": "Multiserwis - Kompleksowe Usługi Przemysłowe",
-        "defaultDescription": "Profesjonalne usługi dla przemysłu: wynajem maszyn, spawalnictwo, relokacja, konserwacja UDT, usługi elektryczne.",
+        "defaultTitle": "Multiserwis – Kompleksowe Usługi dla Przemysłu | Kutno",
+        "defaultDescription": "Kompleksowe usługi dla przemysłu: wynajem maszyn, relokacje linii, dozór UDT, spawalnictwo i elektryka. Szybka wycena w 24h. Sprawdź ofertę Multiserwis Kutno!",
         "siteName": "Multiserwis Kutno",
-        "ogImageUrl": "/multiserwis-uslugi/og-image.svg"
+        "ogImageUrl": "/multiserwis-uslugi/og-image.png"
     }
 }

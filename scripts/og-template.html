@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Multiserwis OG Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800;900&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 1200px;
+      height: 630px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #0B1220;
+      font-family: 'Inter', sans-serif;
+      color: #FFFFFF;
+    }
+    #card {
+      position: relative;
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 44px 54px 34px 54px;
+    }
+    .bg-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1200px;
+      height: 630px;
+      object-fit: cover;
+      filter: brightness(0.55) contrast(1.15);
+      z-index: 1;
+    }
+    .overlay-grad {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 1200px;
+      height: 630px;
+      background: linear-gradient(135deg, rgba(11, 18, 32, 0.90) 0%, rgba(17, 24, 39, 0.72) 45%, rgba(11, 18, 32, 0.94) 100%),
+                  radial-gradient(circle at 18% 25%, rgba(245, 158, 11, 0.26) 0%, transparent 45%),
+                  radial-gradient(circle at 82% 80%, rgba(245, 158, 11, 0.14) 0%, transparent 40%);
+      z-index: 2;
+    }
+    .ambient-glow {
+      position: absolute;
+      bottom: -40px;
+      left: 20%;
+      width: 720px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(245, 158, 11, 0.16);
+      filter: blur(70px);
+      z-index: 3;
+      pointer-events: none;
+    }
+    .header {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .emblem-box {
+      width: 58px;
+      height: 58px;
+      background-color: #F59E0B;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      box-shadow: 0 10px 25px -4px rgba(245, 158, 11, 0.4);
+    }
+    .brand-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: #FFFFFF;
+    }
+    .brand-accent {
+      color: #F59E0B;
+    }
+    .brand-subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: #CBD5E1;
+      line-height: 1;
+      margin-top: 6px;
+    }
+    .location-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 20px;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(12px);
+    }
+    .pulse-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #F59E0B;
+      box-shadow: 0 0 12px #F59E0B;
+    }
+    .location-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #E2E8F0;
+    }
+    .content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: auto 0;
+    }
+    .badge {
+      display: inline-flex;
+      padding: 8px 26px;
+      border-radius: 9999px;
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      background: rgba(17, 24, 39, 0.85);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+      margin-bottom: 16px;
+    }
+    .badge-text {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13.5px;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #F59E0B;
+    }
+    .heading {
+      font-family: 'Oswald', sans-serif;
+      font-size: 80px;
+      font-weight: 700;
+      line-height: 1.02;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
+      margin-bottom: 18px;
+    }
+    .heading-gold {
+      background: linear-gradient(90deg, #F59E0B 0%, #FBBF24 50%, #FDE68A 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .desc-box {
+      max-width: 980px;
+      background: rgba(11, 18, 32, 0.70);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 16px;
+      padding: 16px 30px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.55);
+    }
+    .desc-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 18.5px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #F1F5F9;
+    }
+    .footer {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      padding-top: 18px;
+    }
+    .pillar {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #E2E8F0;
+    }
+    .dot-amber {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #F59E0B;
+    }
+    .pillar-highlight {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+    .dot-emerald {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #34D399;
+      box-shadow: 0 0 10px #34D399;
+    }
+  </style>
+</head>
+<body>
+  <div id="card">
+    <img src="../public/hero-bg.png" alt="Tło" class="bg-img">
+    <div class="overlay-grad"></div>
+    <div class="ambient-glow"></div>
+
+    <header class="header">
+      <div class="brand">
+        <div class="emblem-box">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215.25 213" style="width:100%;height:100%;" fill="none">
+            <path stroke-linecap="round" transform="matrix(0.746388, 0.0387904, -0.0387904, 0.746388, 22.667593, -4.308565)" stroke-linejoin="miter" d="M 23.70514 61.062752 C 88.201608 1.617793 152.695967 1.646833 217.198386 61.144111" stroke="#ffffff" stroke-width="32"/>
+            <path stroke-linecap="round" transform="matrix(0.572096, 0.480943, -0.480943, 0.572096, 39.832766, 27.664762)" stroke-linejoin="miter" d="M 16.498401 16.499856 L 262.297368 16.498863" stroke="#ffffff" stroke-width="32"/>
+            <path stroke-linecap="round" transform="matrix(-0.747097, -0.0211284, 0.0211284, -0.747097, 195.863611, 216.068173)" stroke-linejoin="miter" d="M 23.693011 64.961328 C 89.360518 0.319538 155.026848 0.34474 220.697519 65.047236" stroke="#ffffff" stroke-width="32"/>
+            <path stroke-linecap="round" transform="matrix(0.572399, 0.480583, -0.480583, 0.572399, 15.864842, 58.787771)" stroke-linejoin="miter" d="M 16.497529 16.498899 L 174.894069 16.502823" stroke="#ffffff" stroke-width="32"/>
+            <path stroke-linecap="round" transform="matrix(0.578067, -0.47375, 0.47375, 0.578067, 141.691865, 104.468184)" stroke-linejoin="miter" d="M 16.501648 16.49805 L 81.315506 16.502295" stroke="#ffffff" stroke-width="32"/>
+            <path stroke-linecap="round" transform="matrix(-0.0335867, -0.746641, 0.746641, -0.0335867, 2.676521, 156.398469)" stroke-linejoin="miter" d="M 21.302331 22.130225 C 50.148174 14.617523 78.990668 14.622718 107.829577 22.151032" stroke="#ffffff" stroke-width="32"/>
+            <path stroke-linecap="round" transform="matrix(-0.0224359, 0.747059, -0.747059, -0.0224359, 215.48332, 59.708109)" stroke-linejoin="miter" d="M 21.352238 22.081857 C 49.704086 14.631591 78.055025 14.637675 106.410437 22.105175" stroke="#ffffff" stroke-width="32"/>
+            <path stroke-linecap="round" transform="matrix(0.549434, -0.506678, 0.506678, 0.549434, 91.588072, 151.143562)" stroke-linejoin="miter" d="M 16.502923 16.50019 L 31.212682 16.500169" stroke="#ffffff" stroke-width="32"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">MULTI<span class="brand-accent">SERWIS</span></div>
+          <div class="brand-subtitle">PROFESJONALNE USŁUGI</div>
+        </div>
+      </div>
+
+      <div class="location-pill">
+        <span class="pulse-dot"></span>
+        <span class="location-text">Kutno • Cała Polska</span>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="badge">
+        <span class="badge-text">Kompleksowe Wsparcie Przemysłu</span>
+      </div>
+
+      <h1 class="heading">
+        SIŁA <span class="heading-gold">PRECYZJI</span><br>
+        W PRZEMYŚLE
+      </h1>
+
+      <div class="desc-box">
+        <p class="desc-text">
+          Obsługujemy zakłady przemysłowe w obszarach wynajmu maszyn, relokacji linii,
+          UDT, elektryki, spawalnictwa i hydrauliki przemysłowej. Jeden partner do realizacji
+          wymagających zadań na produkcji, budowie i w utrzymaniu ruchu.
+        </p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="pillar">
+        <span class="dot-amber"></span>
+        <span>Wynajem Maszyn i Podestów</span>
+      </div>
+      <div class="pillar">
+        <span class="dot-amber"></span>
+        <span>Relokacja i Montaż Linii</span>
+      </div>
+      <div class="pillar">
+        <span class="dot-amber"></span>
+        <span>Konserwacja i Dozór UDT</span>
+      </div>
+      <div class="pillar">
+        <span class="dot-amber"></span>
+        <span>Spawalnictwo i Hydraulika</span>
+      </div>
+      <div class="pillar-highlight">
+        <span class="dot-emerald"></span>
+        <span>Wycena w 24h</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

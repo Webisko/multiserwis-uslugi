@@ -24,11 +24,11 @@ function resolveCompanyWithBasePath(company: CompanyData): CompanyData {
 }
 
 const defaultSeo: SiteSeoData = {
-  defaultTitle: 'Multiserwis - Kompleksowe Usługi Przemysłowe',
+  defaultTitle: 'Multiserwis – Kompleksowe Usługi dla Przemysłu | Kutno',
   defaultDescription:
-    'Profesjonalne usługi dla przemysłu: wynajem maszyn, spawalnictwo, relokacja, UDT, hydraulika przemysłowa i usługi elektryczne.',
+    'Kompleksowe usługi dla przemysłu: wynajem maszyn, relokacje linii, dozór UDT, spawalnictwo i elektryka. Szybka wycena w 24h. Sprawdź ofertę Multiserwis Kutno!',
   siteName: 'Multiserwis Kutno',
-  ogImageUrl: `${getEffectiveBasePath(defaultCompany.links.basePath)}/og-image.svg`,
+  ogImageUrl: `${getEffectiveBasePath(defaultCompany.links.basePath)}/og-image.png`,
 };
 
 function getSiteSettingsApiUrl() {
