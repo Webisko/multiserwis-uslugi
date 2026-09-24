@@ -1,7 +1,15 @@
 import React from 'react';
 import { PageHeader } from '../components/PageHeader';
+import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
 
-export const PortfolioPage: React.FC = () => {
+type PortfolioPageProps = {
+  companyData?: CompanyData;
+};
+
+export const PortfolioPage: React.FC<PortfolioPageProps> = ({ companyData }) => {
+  const resolvedCompany = companyData ?? company;
+  const basePath = resolvedCompany.links.basePath;
+
   const categories = [
     {
       title: 'Wynajem maszyn i sprzętu',
@@ -34,7 +42,7 @@ export const PortfolioPage: React.FC = () => {
   ];
 
   return (
-    <>
+    <SiteSettingsProvider value={resolvedCompany}>
       <PageHeader
         title="Realizacje"
         subtitle="Przykładowe realizacje pokazujące nasz zakres kompetencji dla przemysłu i budownictwa."
@@ -77,7 +85,7 @@ export const PortfolioPage: React.FC = () => {
 
           <div className="text-center">
             <a
-              href="/multiserwis-uslugi/kontakt"
+              href={`${basePath}/kontakt`}
               className="inline-flex items-center justify-center bg-industrial-accent text-industrial-900 px-8 py-4 rounded-lg font-bold hover:bg-industrial-accentHover transition-colors"
             >
               Zapytaj o podobną realizację
@@ -85,6 +93,6 @@ export const PortfolioPage: React.FC = () => {
           </div>
         </div>
       </section>
-    </>
+    </SiteSettingsProvider>
   );
 };

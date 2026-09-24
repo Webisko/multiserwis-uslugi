@@ -1,18 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
-  <title id="title">Multiserwis Kutno favicon</title>
-  <desc id="desc">Monogram MS w przemysłowym znaku marki</desc>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#111827" />
-      <stop offset="100%" stop-color="#030712" />
-    </linearGradient>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#F59E0B" />
-      <stop offset="100%" stop-color="#D97706" />
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="url(#bg)" />
-  <rect x="6" y="6" width="52" height="52" rx="10" fill="none" stroke="#374151" stroke-width="2" />
-  <path d="M16 46V18h8l8 14 8-14h8v28h-7V29l-9 15-9-15v17z" fill="#F3F4F6" />
-  <path d="M46 18h2v28h-2z" fill="url(#accent)" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img">
+  <title>Multiserwis Kutno</title>
+  <rect width="64" height="64" rx="12" fill="#F59E0B" />
+  <g transform="translate(10, 10) scale(0.2044)">
+    <path stroke-linecap="round" transform="matrix(0.746388, 0.0387904, -0.0387904, 0.746388, 22.667593, -4.308565)" fill="none" stroke-linejoin="miter" d="M 23.70514 61.062752 C 88.201608 1.617793 152.695967 1.646833 217.198386 61.144111" stroke="#ffffff" stroke-width="32"/>
+    <path stroke-linecap="round" transform="matrix(0.572096, 0.480943, -0.480943, 0.572096, 39.832766, 27.664762)" fill="none" stroke-linejoin="miter" d="M 16.498401 16.499856 L 262.297368 16.498863" stroke="#ffffff" stroke-width="32"/>
+    <path stroke-linecap="round" transform="matrix(-0.747097, -0.0211284, 0.0211284, -0.747097, 195.863611, 216.068173)" fill="none" stroke-linejoin="miter" d="M 23.693011 64.961328 C 89.360518 0.319538 155.026848 0.34474 220.697519 65.047236" stroke="#ffffff" stroke-width="32"/>
+    <path stroke-linecap="round" transform="matrix(0.572399, 0.480583, -0.480583, 0.572399, 15.864842, 58.787771)" fill="none" stroke-linejoin="miter" d="M 16.497529 16.498899 L 174.894069 16.502823" stroke="#ffffff" stroke-width="32"/>
+    <path stroke-linecap="round" transform="matrix(0.578067, -0.47375, 0.47375, 0.578067, 141.691865, 104.468184)" fill="none" stroke-linejoin="miter" d="M 16.501648 16.49805 L 81.315506 16.502295" stroke="#ffffff" stroke-width="32"/>
+    <path stroke-linecap="round" transform="matrix(-0.0335867, -0.746641, 0.746641, -0.0335867, 2.676521, 156.398469)" fill="none" stroke-linejoin="miter" d="M 21.302331 22.130225 C 50.148174 14.617523 78.990668 14.622718 107.829577 22.151032" stroke="#ffffff" stroke-width="32"/>
+    <path stroke-linecap="round" transform="matrix(-0.0224359, 0.747059, -0.747059, -0.0224359, 215.48332, 59.708109)" fill="none" stroke-linejoin="miter" d="M 21.352238 22.081857 C 49.704086 14.631591 78.055025 14.637675 106.410437 22.105175" stroke="#ffffff" stroke-width="32"/>
+    <path stroke-linecap="round" transform="matrix(0.549434, -0.506678, 0.506678, 0.549434, 91.588072, 151.143562)" fill="none" stroke-linejoin="miter" d="M 16.502923 16.50019 L 31.212682 16.500169" stroke="#ffffff" stroke-width="32"/>
+  </g>
 </svg>

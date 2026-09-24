@@ -2,6 +2,7 @@ import React from 'react';
 import { Phone, Mail, MapPin, Clock, ShieldCheck, ExternalLink } from 'lucide-react';
 import { company, type CompanyData } from '../data/company';
 import { WhatsAppIcon } from './WhatsAppIcon';
+import { BrandMark } from './BrandMark';
 
 type FooterProps = {
   companyData?: CompanyData;
@@ -21,16 +22,8 @@ export const Footer: React.FC<FooterProps> = ({ companyData }) => {
           
           {/* Col 1: Brand & ISO (4 cols) */}
           <div className="lg:col-span-4 flex flex-col">
-            <a href={`${basePath}/`} className="flex items-center gap-2 group mb-4">
-              <div className="w-10 h-10 bg-industrial-accent rounded flex items-center justify-center font-display font-bold text-industrial-900 text-xl group-hover:bg-white transition-colors">
-                {resolvedCompany.brand.mark}
-              </div>
-              <span className="text-xl sm:text-2xl font-display font-bold tracking-tight text-white leading-none">
-                {resolvedCompany.brand.primary}
-                <span className="text-industrial-accent group-hover:text-white transition-colors">
-                  {' '}{resolvedCompany.brand.accent}
-                </span>
-              </span>
+            <a href={`${basePath}/`} className="mb-4 inline-block" aria-label={`${resolvedCompany.name} - Strona Główna`}>
+              <BrandMark subtitle="PROFESJONALNE USŁUGI" />
             </a>
 
             <p className="text-sm text-industrial-300 leading-relaxed mb-6">

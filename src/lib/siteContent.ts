@@ -394,10 +394,12 @@ function normalizeFaqContent(payload: { data?: unknown } | null): SiteContentDat
     return null;
   }
 
-  const categories =
+  const rawCategories =
     'categories' in data && Array.isArray(data.categories)
-      ? ['Wszystkie', ...data.categories.filter((category): category is string => typeof category === 'string' && category.length > 0)]
-      : ['Wszystkie', ...Array.from(new Set(items.map((item) => item.category)))];
+      ? data.categories.filter((category): category is string => typeof category === 'string' && category.trim().length > 0)
+      : items.map((item) => item.category);
+
+  const categories = ['Wszystkie', ...Array.from(new Set(rawCategories.filter((cat) => cat !== 'Wszystkie')))];
 
   const featuredGroups =
     'featuredGroups' in data && Array.isArray(data.featuredGroups)

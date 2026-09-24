@@ -38,6 +38,10 @@ export const FaqPage: React.FC<FaqPageProps> = ({
     return matchesSearch && matchesCategory;
   });
 
+  const sanitizedCategories = Array.from(
+    new Set(['Wszystkie', ...categories.filter((cat) => Boolean(cat) && cat !== 'Wszystkie')])
+  );
+
   return (
     <SiteSettingsProvider value={resolvedCompany}>
       <PageHeader 
@@ -62,7 +66,7 @@ export const FaqPage: React.FC<FaqPageProps> = ({
              </div>
 
              <div className="flex flex-wrap gap-2 justify-center">
-                {categories.map(cat => (
+                {sanitizedCategories.map(cat => (
                    <button
                      key={cat}
                      onClick={() => setActiveCategory(cat)}
@@ -92,7 +96,7 @@ export const FaqPage: React.FC<FaqPageProps> = ({
                             {openItems[item.id] ? <Minus size={20} /> : <Plus size={20} />}
                          </div>
                       </button>
-                      <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openItems[item.id] ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+                      <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openItems[item.id] ? 'max-h-[1200px] opacity-100' : 'max-h-0 opacity-0'}`}>
                          <div className="px-6 pb-6 text-gray-400 leading-relaxed border-t border-gray-800/50 pt-4">
                             {item.answer}
                          </div>

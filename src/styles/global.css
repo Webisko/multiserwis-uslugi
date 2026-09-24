@@ -16,6 +16,7 @@
   --color-industrial-accentHover: #D97706;
 
   --font-sans: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --font-heading: 'Montserrat', sans-serif;
   --font-display: 'Oswald', 'Bahnschrift SemiCondensed', 'Arial Narrow', 'Franklin Gothic Medium', sans-serif;
 }
 
@@ -48,21 +49,21 @@
   }
 }
 
-@media (max-width: 390px) {
+@media (max-width: 639px) {
   .page-section {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
   }
 
   .page-container {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
   }
 
   .offer-card,
   .offer-card-soft,
   .offer-cta {
-    padding: 1.1rem;
+    padding: 1.25rem;
     border-radius: 0.75rem;
   }
 
@@ -87,5 +88,18 @@
   textarea,
   button {
     font-size: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .page-container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .offer-card,
+  .offer-card-soft,
+  .offer-cta {
+    padding: 1rem;
   }
 }
