@@ -1,98 +1,126 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PageHeader } from '../components/PageHeader';
+import { MapPin } from 'lucide-react';
 import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
+import { ServiceInquiryCta } from '../components/ServiceInquiryCta';
+import {
+  fetchLivePortfolioItems,
+  getDefaultSiteContent,
+  type PortfolioItemPayload,
+} from '../lib/siteContent';
+import { CheckMarkIcon } from '../components/icons/IndustrialIcons';
 
 type PortfolioPageProps = {
   companyData?: CompanyData;
+  portfolioItems?: PortfolioItemPayload[];
 };
 
-export const PortfolioPage: React.FC<PortfolioPageProps> = ({ companyData }) => {
-  const resolvedCompany = companyData ?? company;
-  const basePath = resolvedCompany.links.basePath;
+const defaultPortfolioItems = getDefaultSiteContent().portfolio.items;
 
-  const categories = [
-    {
-      title: 'Wynajem maszyn i sprzętu',
-      items: [
-        'Projekty wsparcia prac na wysokości i transportu ciężkiego',
-        'Wynajem żurawi i podestów z operatorem',
-      ],
-    },
-    {
-      title: 'Relokacje maszyn',
-      items: [
-        'Demontaż, transport i ponowny montaż urządzeń',
-        'Uruchomienia po relokacji i wsparcie techniczne',
-      ],
-    },
-    {
-      title: 'UDT i serwis',
-      items: [
-        'Obsługa formalna rejestracji urządzeń',
-        'Przeglądy konserwacyjne i przygotowanie do badań',
-      ],
-    },
-    {
-      title: 'Spawalnictwo i konstrukcje',
-      items: [
-        'Naprawy bieżące elementów stalowych',
-        'Wykonawstwo konstrukcji od projektu po montaż',
-      ],
-    },
-  ];
+const PortfolioContent: React.FC<{ initialItems: PortfolioItemPayload[] }> = ({ initialItems }) => {
+  const [items, setItems] = useState<PortfolioItemPayload[]>(initialItems);
+
+  useEffect(() => {
+    void fetchLivePortfolioItems().then((fresh) => {
+      if (fresh && fresh.items.length > 0) {
+        setItems(fresh.items);
+      }
+    });
+  }, []);
 
   return (
-    <SiteSettingsProvider value={resolvedCompany}>
+    <>
       <PageHeader
-        title="Realizacje"
-        subtitle="Przykładowe realizacje pokazujące nasz zakres kompetencji dla przemysłu i budownictwa."
-        backgroundImage="https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&q=80&w=2000"
+        badge="Doświadczenie w praktyce"
+        title="Przykładowe realizacje"
+        subtitle="Przekrój realizowanych przez nas prac dźwigowych, relokacyjnych, spawalniczych, instalacyjnych oraz serwisowych UDT."
       />
 
       <section className="page-section">
         <div className="page-container">
-          <div className="max-w-4xl mx-auto text-center mb-14">
-            <p className="text-xl text-gray-300 leading-relaxed">
-              Rozbudowujemy sekcję portfolio o pełne case studies. Poniżej prezentujemy zakres typowych realizacji,
-              które wykonujemy dla naszych klientów.
+          <div className="max-w-3xl mx-auto text-center mb-12 md:mb-14">
+            <h2 className="section-title mb-4">
+              Kompetencje potwierdzone <span className="text-industrial-accent">na obiektach</span>
+            </h2>
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+              Realizujemy zadania dla zakładów produkcyjnych, centrów logistycznych oraz generalnych
+              wykonawców w całej Polsce i w Europie.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-14">
-            {categories.map((category) => (
-              <article key={category.title} className="offer-card">
-                <h2 className="text-2xl font-bold text-white mb-4">{category.title}</h2>
-                <ul className="space-y-3 text-gray-300">
-                  {category.items.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="mt-1 w-2 h-2 rounded-full bg-industrial-accent" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-14">
+            {items.map((item) => (
+              <article
+                key={item.id}
+                className="offer-card flex flex-col justify-between overflow-hidden"
+              >
+                <div>
+                  {item.imageUrl ? (
+                    <div className="-mx-6 -mt-6 sm:-mx-8 sm:-mt-8 mb-6 h-52 overflow-hidden border-b border-gray-800">
+                      <img
+                        src={item.imageUrl}
+                        alt={item.title}
+                        className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : null}
+
+                  <div className="mb-3.5 flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider">
+                    <span className="rounded-lg bg-industrial-accent/15 border border-industrial-accent/30 px-3 py-1 text-industrial-accent">
+                      {item.category}
+                    </span>
+                    {item.location ? (
+                      <span className="inline-flex items-center gap-1 rounded-lg border border-gray-800 bg-industrial-950/80 px-3 py-1 text-gray-300">
+                        <MapPin size={12} className="text-industrial-accent" />
+                        <span>{item.location}</span>
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <h3 className="card-title mb-3">{item.title}</h3>
+                  {item.description ? (
+                    <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-5">
+                      {item.description}
+                    </p>
+                  ) : null}
+
+                  <ul className="space-y-2.5 text-sm sm:text-base text-gray-200">
+                    {item.items.map((point) => (
+                      <li key={point} className="flex items-start gap-2.5">
+                        <CheckMarkIcon
+                          size={16}
+                          className="text-industrial-accent shrink-0 mt-1"
+                        />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </article>
             ))}
           </div>
 
-          <div className="offer-cta mb-10">
-            <h3 className="text-2xl font-bold text-white mb-4">Sekcja do uzupełnienia z klientem</h3>
-            <ul className="space-y-3 text-gray-300">
-              <li>• Zdjęcia i galerie realizacji dla każdej kategorii usług</li>
-              <li>• Krótkie case studies: zakres, rezultat, czas realizacji</li>
-              <li>• Informacja o zasięgu realizacji (lokalnie/PL/zagranica)</li>
-            </ul>
-          </div>
-
-          <div className="text-center">
-            <a
-              href={`${basePath}/kontakt`}
-              className="inline-flex items-center justify-center bg-industrial-accent text-industrial-900 px-8 py-4 rounded-lg font-bold hover:bg-industrial-accentHover transition-colors"
-            >
-              Zapytaj o podobną realizację
-            </a>
-          </div>
+          <ServiceInquiryCta
+            title="Planujesz podobne zadanie w swoim zakładzie?"
+            description="Opisz swój projekt, wymagany sprzęt lub zakres prac instalacyjno-relokacyjnych. Przedstawimy referencyjne podejście i przygotujemy dopasowaną wycenę."
+            contactLabel="Zapytaj o wycenę realizacji"
+          />
         </div>
       </section>
+    </>
+  );
+};
+
+export const PortfolioPage: React.FC<PortfolioPageProps> = ({
+  companyData,
+  portfolioItems = defaultPortfolioItems,
+}) => {
+  const resolvedCompany = companyData ?? company;
+
+  return (
+    <SiteSettingsProvider value={resolvedCompany}>
+      <PortfolioContent initialItems={portfolioItems} />
     </SiteSettingsProvider>
   );
 };

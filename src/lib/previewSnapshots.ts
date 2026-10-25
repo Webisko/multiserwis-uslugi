@@ -1,8 +1,13 @@
-import { readFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
-
 export async function readJsonSnapshot<T>(relativePath: string): Promise<T | null> {
+  if (!import.meta.env.SSR) {
+    return null;
+  }
+
   try {
+    const [{ readFile }, { resolve }] = await Promise.all([
+      import('node:fs/promises'),
+      import('node:path'),
+    ]);
     const fullPath = resolve(process.cwd(), relativePath);
     const raw = await readFile(fullPath, 'utf-8');
 

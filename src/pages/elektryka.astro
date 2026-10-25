@@ -10,14 +10,14 @@ const companyData = (await getSiteSettings())?.company ?? defaultCompany;
 ---
 
 <Layout
-  title="Usługi Elektryczne | Multiserwis Kutno"
-  description="Pomiary, uruchomienia i instalacje elektryczne na obiektach przemysłowych."
+  title="Usługi Elektryczne, Pomiary i Rozruch Instalacji (nn, SN, WN) | Multiserwis Kutno"
+  description="Prace kontrolno-pomiarowe, uruchomienia rozdzielnic nn i SN, integracja AKPiA (Profibus, Profinet, Modbus) oraz wykonawstwo instalacji elektrycznych w przemyśle."
 >
   <div>
     <Navbar client:load companyData={companyData} />
-    <main class="flex-grow pt-[80px]">
-      <Screen companyData={companyData} />
+    <main class="flex-grow">
+      <Screen client:load companyData={companyData} />
     </main>
-    <Footer companyData={companyData} />
+    <Footer client:visible companyData={companyData} />
   </div>
 </Layout>

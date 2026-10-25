@@ -10,14 +10,14 @@ const companyData = (await getSiteSettings())?.company ?? defaultCompany;
 ---
 
 <Layout
-  title="Relokacja Maszyn | Multiserwis Kutno"
-  description="Bezpieczne przenoszenie parku maszynowego i linii produkcyjnych."
+  title="Relokacja Maszyn i Linii Produkcyjnych | Multiserwis Kutno"
+  description="Kompleksowa relokacja maszyn i linii technologicznych w Polsce i Europie: demontaż, wyprowadzenie (VersaLift, żurawie do 90t), transport, montaż, poziomowanie i rozruch."
 >
   <div>
     <Navbar client:load companyData={companyData} />
-    <main class="flex-grow pt-[80px]">
-      <Screen companyData={companyData} />
+    <main class="flex-grow">
+      <Screen client:load companyData={companyData} />
     </main>
-    <Footer companyData={companyData} />
+    <Footer client:visible companyData={companyData} />
   </div>
 </Layout>

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\FaqItem;
+use App\Models\PortfolioItem;
 use App\Models\ServiceOffering;
 use App\Models\SiteSetting;
 use App\Observers\ContentSyncObserver;
@@ -27,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         FaqItem::observe(ContentSyncObserver::class);
+        PortfolioItem::observe(ContentSyncObserver::class);
         ServiceOffering::observe(ContentSyncObserver::class);
         SiteSetting::observe(ContentSyncObserver::class);
     }

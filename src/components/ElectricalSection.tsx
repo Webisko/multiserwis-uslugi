@@ -1,112 +1,172 @@
 import React from 'react';
-import { Zap, Activity, Cable, CheckCircle2, GraduationCap, ArrowRight } from 'lucide-react';
+import { Activity, Cable, ArrowRight, ExternalLink } from 'lucide-react';
 import { useCompanyData } from '../data/company';
+import {
+  SwitchgearPowerIcon,
+  CheckMarkIcon,
+  TechnicalCertIcon,
+} from './icons/IndustrialIcons';
 
 export const ElectricalSection: React.FC = () => {
   const company = useCompanyData();
+  const basePath = company.links.basePath;
 
   return (
-    <section id="elektryka" className="py-24 bg-industrial-800 border-t border-gray-700">
-      <div className="container mx-auto px-4">
-        <div className="mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-industrial-accent/20 rounded-full text-industrial-accent text-base font-bold mb-6">
-            <Zap size={20} />
-            <span>Energetyka i Automatyka</span>
+    <section id="elektryka" className="page-section border-b border-gray-800/80">
+      <div className="page-container">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+          <div>
+            <div className="mb-4">
+              <span className="section-badge">
+                <SwitchgearPowerIcon size={15} />
+                <span>Energetyka przemysłowa i AKPiA</span>
+              </span>
+            </div>
+            <h2 className="section-title mb-4">
+              Usługi <span className="text-industrial-accent">elektryczne i rozruchowe</span>
+            </h2>
+            <p className="section-lead">
+              Specjalizujemy się w pracach na czynnych obiektach przemysłowych. Realizujemy
+              kompleksowe uruchomienia, pomiary odbiorcze i okresowe oraz montaże instalacji nn, SN
+              i WN bez zatrzymywania produkcji.
+            </p>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-white mb-8">
-            Usługi <span className="text-industrial-accent">Elektryczne</span>
-          </h2>
-          <p className="text-gray-300 max-w-3xl text-xl leading-relaxed">
-            Specjalizujemy się w pracach na czynnych obiektach przemysłowych. 
-            Oferujemy kompleksowe uruchomienia, prace kontrolno-pomiarowe oraz montaże instalacji nn, SN i WN.
-          </p>
+
+          <a
+            href={`${basePath}/elektryka`}
+            className="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-industrial-accent hover:text-white transition-colors shrink-0 group"
+          >
+            <span>Pełny zakres usług elektrycznych</span>
+            <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+          </a>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Column 1: Commissioning */}
-          <div className="bg-industrial-900 p-10 rounded-2xl border border-gray-800 hover:border-industrial-accent/30 transition-colors">
-            <div className="flex items-center gap-6 mb-8">
-              <div className="p-4 bg-industrial-800 rounded-xl text-industrial-accent">
-                <Activity size={40} />
+          <div className="offer-card">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-12 w-12 shrink-0 bg-industrial-800 rounded-xl flex items-center justify-center text-industrial-accent border border-gray-700/80">
+                <Activity size={24} />
               </div>
-              <h3 className="text-3xl font-display font-bold text-white">Uruchomienia i Rozruch</h3>
+              <h3 className="card-title">Uruchomienia, pomiary i rozruch</h3>
             </div>
-            
-            <div className="space-y-8">
+
+            <div className="space-y-6">
               <div>
-                <h4 className="text-white text-xl font-bold mb-4 border-l-4 border-industrial-accent pl-4">Prace kontrolno-pomiarowe</h4>
-                <ul className="space-y-3 text-gray-300 text-base md:text-lg">
-                   <li className="flex gap-3"><CheckCircle2 size={24} className="text-industrial-accent shrink-0 mt-0.5"/> Parametryzacja urządzeń i nadzory nad montażami</li>
-                   <li className="flex gap-3"><CheckCircle2 size={24} className="text-industrial-accent shrink-0 mt-0.5"/> Testy i uruchomienia rozdzielnic nn oraz SN</li>
-                   <li className="flex gap-3"><CheckCircle2 size={24} className="text-industrial-accent shrink-0 mt-0.5"/> Pomiary transformatorów, silników, kabli i ochrony p-porażeniowej</li>
-                   <li className="flex gap-3"><CheckCircle2 size={24} className="text-industrial-accent shrink-0 mt-0.5"/> Testy UPS-ów, baterii, szynoprzewodów</li>
-                   <li className="flex gap-3"><CheckCircle2 size={24} className="text-industrial-accent shrink-0 mt-0.5"/> Analiza jakości energii</li>
+                <h4 className="text-white text-base sm:text-lg font-bold mb-3 border-l-4 border-industrial-accent pl-3">
+                  Prace kontrolno-pomiarowe
+                </h4>
+                <ul className="space-y-2.5 text-gray-300 text-sm sm:text-base">
+                  <li className="flex items-start gap-2.5">
+                    <CheckMarkIcon size={17} className="text-industrial-accent shrink-0 mt-1" />
+                    <span>Parametryzacja urządzeń i nadzory nad montażem aparatury</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <CheckMarkIcon size={17} className="text-industrial-accent shrink-0 mt-1" />
+                    <span>Testy i uruchomienia rozdzielnic nn oraz SN</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <CheckMarkIcon size={17} className="text-industrial-accent shrink-0 mt-1" />
+                    <span>
+                      Pomiary transformatorów, silników, kabli i ochrony przeciwporażeniowej
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <CheckMarkIcon size={17} className="text-industrial-accent shrink-0 mt-1" />
+                    <span>Testy zasilaczy UPS, baterii kondensatorów i szynoprzewodów</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <CheckMarkIcon size={17} className="text-industrial-accent shrink-0 mt-1" />
+                    <span>Rejestracja i analiza parametrów jakości energii elektrycznej</span>
+                  </li>
                 </ul>
               </div>
 
               <div>
-                 <h4 className="text-white text-xl font-bold mb-4 border-l-4 border-industrial-accent pl-4">Integracja i Automatyka</h4>
-                 <ul className="space-y-3 text-gray-300 text-base md:text-lg">
-                   <li className="flex gap-3"><CheckCircle2 size={24} className="text-industrial-accent shrink-0 mt-0.5"/> Konfiguracja protokołów: Profibus, Profinet, Modbus, IEC 61850</li>
-                   <li className="flex gap-3"><CheckCircle2 size={24} className="text-industrial-accent shrink-0 mt-0.5"/> Testy sygnałowe AKPiA</li>
-                   <li className="flex gap-3"><CheckCircle2 size={24} className="text-industrial-accent shrink-0 mt-0.5"/> Udział w podaniu napięcia i ruch próbny</li>
-                 </ul>
+                <h4 className="text-white text-base sm:text-lg font-bold mb-3 border-l-4 border-industrial-accent pl-3">
+                  Integracja i automatyka przemysłowa
+                </h4>
+                <ul className="space-y-2.5 text-gray-300 text-sm sm:text-base">
+                  <li className="flex items-start gap-2.5">
+                    <CheckMarkIcon size={17} className="text-industrial-accent shrink-0 mt-1" />
+                    <span>
+                      Konfiguracja protokołów: Profibus, Profinet, Modbus RTU/TCP, IEC 61850
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <CheckMarkIcon size={17} className="text-industrial-accent shrink-0 mt-1" />
+                    <span>Testy sygnałowe dla urządzeń elektrycznych i aparatury AKPiA</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <CheckMarkIcon size={17} className="text-industrial-accent shrink-0 mt-1" />
+                    <span>Udział w podaniu napięcia, ruch próbny i protokoły odbiorowe</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
 
           {/* Column 2: Installation */}
-          <div className="bg-industrial-900 p-10 rounded-2xl border border-gray-800 hover:border-industrial-accent/30 transition-colors">
-             <div className="flex items-center gap-6 mb-8">
-              <div className="p-4 bg-industrial-800 rounded-xl text-industrial-accent">
-                <Cable size={40} />
+          <div className="offer-card flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="h-12 w-12 shrink-0 bg-industrial-800 rounded-xl flex items-center justify-center text-industrial-accent border border-gray-700/80">
+                  <Cable size={24} />
+                </div>
+                <h3 className="card-title">Prace elektroinstalacyjne na obiektach</h3>
               </div>
-              <h3 className="text-3xl font-display font-bold text-white">Prace Elektroinstalacyjne</h3>
+
+              <p className="text-gray-300 text-sm sm:text-base mb-6 leading-relaxed">
+                Realizujemy montaże na nowych obiektach oraz modernizacje istniejącej infrastruktury
+                w Polsce i za granicą (w tym w Wielkiej Brytanii). Pracujemy w systemie zmianowym,
+                aby zachować pełną ciągłość zasilania i produkcji.
+              </p>
+
+              <ul className="space-y-3">
+                {[
+                  'Montaż tras kablowych (stal nierdzewna, ocynk ogniowy, tworzywa)',
+                  'Systemy kablowe WN, SN i nn wraz z mufowaniem i głowicami',
+                  'Instalacje uziemienia, odgromowe i połączeń wyrównawczych',
+                  'Kompletne instalacje oświetlenia podstawowego i awaryjnego',
+                  'Instalacje słaboprądowe, sterownicze i pomiarowe',
+                  'Dokumentacja powykonawcza i pomiary odbiorcze',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-gray-300 text-sm sm:text-base">
+                    <CheckMarkIcon size={17} className="text-industrial-accent shrink-0 mt-1" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="space-y-8">
-               <p className="text-gray-300 text-lg md:text-xl mb-6 leading-relaxed">
-                 Realizacje na nowych obiektach oraz modernizacje istniejącej infrastruktury (również zagranicą). 
-                 Praca w systemie zmianowym w celu zachowania ciągłości produkcji.
-               </p>
-
-               <ul className="space-y-4">
-                 {[
-                   "Montaż tras kablowych (stal nierdzewna, ocynk, tworzywa)",
-                   "Systemy kablowe WN, SN i nn",
-                   "Instalacje uziemienia, odgromowe i połączeń wyrównawczych",
-                   "Kompletne instalacje oświetlenia (użytkowe, awaryjne)",
-                   "Instalacje słaboprądowe",
-                   "Dokumentacja powykonawcza w bazie danych"
-                 ].map((item, i) => (
-                   <li key={i} className="flex items-start text-gray-300 text-base md:text-lg">
-                      <span className="w-2 h-2 bg-gray-500 rounded-full mt-2.5 mr-4 flex-shrink-0" />
-                      {item}
-                   </li>
-                 ))}
-               </ul>
+            {/* SEP Training Box inside column */}
+            <div className="mt-8 pt-6 border-t border-gray-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 shrink-0 rounded-lg bg-industrial-accent/15 flex items-center justify-center text-industrial-accent">
+                  <TechnicalCertIcon size={20} />
+                </div>
+                <div>
+                  <h4 className="text-white font-bold text-sm sm:text-base">
+                    Potrzebujesz uprawnień SEP?
+                  </h4>
+                  <p className="text-gray-400 text-xs sm:text-sm">
+                    Kursy i egzaminy: G1 (elektryczne), G2 (energetyczne), G3 (gazowe).
+                  </p>
+                </div>
+              </div>
+              <a
+                href={company.links.trainingSiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Zobacz ofertę szkoleń SEP dla instalatorów i operatorów"
+                className="inline-flex items-center gap-1.5 text-sm font-bold text-industrial-accent hover:text-white transition-colors whitespace-nowrap"
+              >
+                <span>Szkolenia SEP</span>
+                <ExternalLink size={15} />
+              </a>
             </div>
           </div>
-
         </div>
-
-        {/* SEP Training CTA */}
-        <div className="mt-12 bg-industrial-900/50 border border-dashed border-gray-700 rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-8">
-           <div className="flex items-center gap-6">
-              <div className="p-4 bg-industrial-accent/10 rounded-full text-industrial-accent">
-                 <GraduationCap size={32} />
-              </div>
-              <div>
-                 <h3 className="text-white font-bold text-2xl">Potrzebujesz uprawnień SEP?</h3>
-                 <p className="text-gray-300 text-lg">Organizujemy kursy: G1 (Elektryczne), G2 (Energetyczne), G3 (Gazowe).</p>
-              </div>
-           </div>
-            <a href={company.links.trainingSiteUrl} target="_blank" rel="noopener noreferrer" aria-label="Zobacz ofertę szkoleń SEP dla instalatorów i operatorów" className="px-8 py-4 bg-industrial-800 hover:bg-industrial-accent hover:text-industrial-900 text-white font-bold rounded-lg text-lg transition-colors flex items-center gap-3 whitespace-nowrap shadow-lg">
-              Zobacz szkolenia SEP <ArrowRight size={20} />
-           </a>
-        </div>
-
       </div>
     </section>
   );

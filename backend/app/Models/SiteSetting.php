@@ -11,6 +11,39 @@ class SiteSetting extends Model
 {
     use HasFactory;
 
+    protected static function booted(): void
+    {
+        static::saving(function (self $setting): void {
+            if ($setting->isDirty('services_phone_value') && ! $setting->isDirty('services_phone_href')) {
+                $setting->services_phone_href = static::formatPhoneHref($setting->services_phone_value);
+            }
+
+            if ($setting->isDirty('services_secondary_phone_value') && ! $setting->isDirty('services_secondary_phone_href')) {
+                $setting->services_secondary_phone_href = filled($setting->services_secondary_phone_value)
+                    ? static::formatPhoneHref($setting->services_secondary_phone_value)
+                    : null;
+            }
+
+            if ($setting->isDirty('training_phone_value') && ! $setting->isDirty('training_phone_href')) {
+                $setting->training_phone_href = static::formatPhoneHref($setting->training_phone_value);
+            }
+        });
+    }
+
+    public static function formatPhoneHref(?string $phone): string
+    {
+        $digits = preg_replace('/\D+/', '', (string) $phone) ?: '';
+        if ($digits === '') {
+            return '';
+        }
+
+        if (strlen($digits) === 9) {
+            return 'tel:+48'.$digits;
+        }
+
+        return 'tel:+'.ltrim($digits, '+');
+    }
+
     protected $fillable = [
         'site_name',
         'brand_mark',

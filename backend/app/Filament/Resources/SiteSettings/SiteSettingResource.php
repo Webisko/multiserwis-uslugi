@@ -8,7 +8,6 @@ use App\Filament\Resources\SiteSettings\Schemas\SiteSettingForm;
 use App\Filament\Resources\SiteSettings\Tables\SiteSettingsTable;
 use App\Models\SiteSetting;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -20,19 +19,17 @@ class SiteSettingResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'site_name';
 
-    protected static ?string $modelLabel = 'ustawienia strony';
+    protected static ?string $modelLabel = 'ustawienia';
 
-    protected static ?string $pluralModelLabel = 'Ustawienia strony';
+    protected static ?string $pluralModelLabel = 'Ustawienia';
 
-    protected static ?string $navigationLabel = 'Ustawienia strony';
+    protected static ?string $navigationLabel = 'Ustawienia';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Konfiguracja';
-
-    protected static ?int $navigationSort = 20;
+    protected static ?int $navigationSort = 40;
 
     protected static ?string $slug = 'settings';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
 
     public static function form(Schema $schema): Schema
     {
@@ -46,9 +43,7 @@ class SiteSettingResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getNavigationUrl(): string

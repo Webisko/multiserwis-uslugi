@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
+import { useCompanyData } from '../data/company';
 
 const PREVIEW_SUCCESS_MESSAGE =
-  'Formularz działa poprawnie w trybie podglądu. Produkcyjna wysyłka zostanie aktywowana po wdrożeniu backendu Laravel i panelu Filament.';
+  'Dziękujemy! Twoje zapytanie zostało zarejestrowane. Skontaktujemy się z Tobą w ciągu 24 godzin w dni robocze.';
 const API_FALLBACK_ERROR_MESSAGE =
-  'Nie udało się wysłać zapytania. Spróbuj ponownie za chwilę lub skontaktuj się telefonicznie.';
+  'Nie udało się wysłać zapytania. Spróbuj ponownie za chwilę lub skontaktuj się z nami telefonicznie.';
 const contactApiUrl = import.meta.env.PUBLIC_CONTACT_API_URL?.trim();
 const RENTAL_SERVICE_LABEL = 'Wynajem Maszyn';
 
 const fallbackServiceOptions = [
   'Wynajem Maszyn',
-  'Usługi Spawalnicze',
   'Relokacja Maszyn',
   'Konserwacja i UDT',
-  'Usługi Elektryczne',
+  'Usługi Spawalnicze',
   'Hydraulika i Montaż',
+  'Usługi Elektryczne',
   'Szkolenia',
   'Inne',
 ];
@@ -88,7 +89,10 @@ type SubmitResult = {
 };
 
 function isRentalInquiry(state: Pick<FormState, 'service'>) {
-  return state.service === RENTAL_SERVICE_LABEL;
+  return (
+    state.service === RENTAL_SERVICE_LABEL ||
+    state.service.toLowerCase().includes('wynajem')
+  );
 }
 
 function validateForm(state: FormState): FormErrors {
@@ -104,14 +108,15 @@ function validateForm(state: FormState): FormErrors {
   if (isRentalInquiry(state) && state.rentalEquipment.trim().length < 2) {
     errors.rentalEquipment = 'Wskaż potrzebny sprzęt lub maszynę.';
   }
-  if (state.message.trim().length < 20) errors.message = 'Wiadomość powinna mieć co najmniej 20 znaków.';
+  if (state.message.trim().length < 20)
+    errors.message = 'Wiadomość powinna mieć co najmniej 20 znaków.';
   if (!state.consent) errors.consent = 'Zgoda na przetwarzanie danych jest wymagana.';
 
   return errors;
 }
 
 async function submitPreviewLead(): Promise<string> {
-  await new Promise((resolve) => setTimeout(resolve, 700));
+  await new Promise((resolve) => setTimeout(resolve, 600));
   return PREVIEW_SUCCESS_MESSAGE;
 }
 
@@ -123,14 +128,22 @@ function buildMessageContent(formState: FormState) {
   const rentalDetails = [
     `Sprzęt / maszyna: ${formState.rentalEquipment.trim() || 'nie podano'}`,
     formState.rentalLocation.trim() ? `Lokalizacja: ${formState.rentalLocation.trim()}` : null,
-    formState.rentalStartDate ? `Planowana data rozpoczęcia: ${formState.rentalStartDate}` : null,
-    formState.rentalDuration.trim() ? `Przewidywany czas wynajmu: ${formState.rentalDuration.trim()}` : null,
+    formState.rentalStartDate
+      ? `Planowana data rozpoczęcia: ${formState.rentalStartDate}`
+      : null,
+    formState.rentalDuration.trim()
+      ? `Przewidywany czas wynajmu: ${formState.rentalDuration.trim()}`
+      : null,
     formState.rentalOperator ? `Operator: ${formState.rentalOperator}` : null,
   ].filter(Boolean);
 
-  return ['Zapytanie dotyczące wynajmu maszyn.', ...rentalDetails, '', 'Krótki opis prac:', formState.message.trim()].join(
-    '\n'
-  );
+  return [
+    'Zapytanie dotyczące wynajmu maszyn.',
+    ...rentalDetails,
+    '',
+    'Krótki opis prac:',
+    formState.message.trim(),
+  ].join('\n');
 }
 
 function buildLeadPayload(formState: FormState, contextLabel: string): LeadPayload {
@@ -228,7 +241,8 @@ async function submitLead(payload: LeadPayload): Promise<SubmitResult> {
   return {
     ok: true,
     message:
-      responseBody?.message || 'Zapytanie zostało zapisane. Skontaktujemy się możliwie szybko.',
+      responseBody?.message ||
+      'Zapytanie zostało zapisane. Skontaktujemy się z Tobą możliwie szybko.',
   };
 }
 
@@ -237,13 +251,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   cardClassName,
   fieldClassName,
   submitButtonClassName,
-  titleClassName = 'text-3xl font-display font-bold text-white mb-8',
+  titleClassName = 'font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-white mb-6',
   contextLabel,
   compact = false,
   serviceOptions = fallbackServiceOptions,
 }) => {
-  const isPreviewMode = !contactApiUrl;
-  const resolvedServiceOptions = serviceOptions.length > 0 ? serviceOptions : fallbackServiceOptions;
+  const companyData = useCompanyData();
+  const basePath = companyData.links.basePath;
+  const resolvedServiceOptions =
+    serviceOptions.length > 0 ? serviceOptions : fallbackServiceOptions;
   const [formState, setFormState] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<FormErrors>({});
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -254,13 +270,18 @@ export const ContactForm: React.FC<ContactFormProps> = ({
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value, type } = event.target;
-    const nextValue = type === 'checkbox' ? (event.target as HTMLInputElement).checked : value;
+    const nextValue =
+      type === 'checkbox' ? (event.target as HTMLInputElement).checked : value;
 
     setFormState((current) => {
-      if (name === 'service' && nextValue !== RENTAL_SERVICE_LABEL) {
+      if (
+        name === 'service' &&
+        typeof nextValue === 'string' &&
+        !isRentalInquiry({ service: nextValue })
+      ) {
         return {
           ...current,
-          service: nextValue as string,
+          service: nextValue,
           rentalEquipment: '',
           rentalLocation: '',
           rentalStartDate: '',
@@ -295,11 +316,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
     setErrors({});
     setStatus('submitting');
-    setFeedback(
-      isPreviewMode
-        ? `Trwa przygotowanie zapytania z sekcji: ${contextLabel}.`
-        : 'Trwa wysyłka zapytania do systemu obsługi leadów.'
-    );
+    setFeedback('Trwa wysyłanie zapytania...');
 
     try {
       const payload = buildLeadPayload(formState, contextLabel);
@@ -322,13 +339,17 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   };
 
   const fieldClasses = (fieldName: keyof FormState) =>
-    `${fieldClassName} ${errors[fieldName] ? 'border-red-400 focus:border-red-400' : 'border-gray-700 focus:border-industrial-accent'}`;
+    `${fieldClassName} ${
+      errors[fieldName]
+        ? 'border-red-400 focus:border-red-400'
+        : 'border-gray-700/90 focus:border-industrial-accent'
+    }`;
 
   return (
     <div className={cardClassName}>
       <h3 className={titleClassName}>{title}</h3>
       <form
-        className="space-y-6"
+        className="space-y-5"
         onSubmit={handleSubmit}
         noValidate
         // @ts-ignore - WebMCP declarative attributes for AI agent browsing
@@ -336,17 +357,25 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         tooldescription="Wyślij zapytanie ofertowe dotyczące usług przemysłowych (wynajem maszyn, relokacja, UDT, spawalnictwo, montaż, instalacje elektryczne) do Multiserwis Kutno"
         toolautosubmit="true"
       >
-        {isPreviewMode && (
-          <div className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-3 text-sm leading-relaxed text-amber-100">
-            Tryb podglądu: formularz pokazuje pełny przebieg walidacji, ale nie zapisuje jeszcze leada w backendzie.
-          </div>
-        )}
+        <input
+          type="text"
+          name="website"
+          value={formState.website}
+          onChange={handleFieldChange}
+          tabIndex={-1}
+          autoComplete="off"
+          className="hidden"
+          aria-hidden="true"
+        />
 
-        <input type="text" name="website" value={formState.website} onChange={handleFieldChange} tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
-
-        <div className={`grid grid-cols-1 ${compact ? 'md:grid-cols-2 gap-4' : 'md:grid-cols-2 gap-6'}`}>
+        <div className={`grid grid-cols-1 ${compact ? 'md:grid-cols-2 gap-4' : 'md:grid-cols-2 gap-5'}`}>
           <div>
-            <label htmlFor={`${contextLabel}-fullName`} className="mb-2 block text-sm font-medium text-gray-300">Imię i nazwisko *</label>
+            <label
+              htmlFor={`${contextLabel}-fullName`}
+              className="mb-1.5 block text-sm font-medium text-gray-300"
+            >
+              Imię i nazwisko *
+            </label>
             <input
               id={`${contextLabel}-fullName`}
               name="fullName"
@@ -359,11 +388,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               aria-invalid={Boolean(errors.fullName)}
               aria-required="true"
             />
-            {errors.fullName && <p className="mt-2 text-sm text-red-300">{errors.fullName}</p>}
+            {errors.fullName && <p className="mt-1.5 text-xs text-red-300">{errors.fullName}</p>}
           </div>
 
           <div>
-            <label htmlFor={compact ? `${contextLabel}-phone` : `${contextLabel}-company`} className="mb-2 block text-sm font-medium text-gray-300">
+            <label
+              htmlFor={compact ? `${contextLabel}-phone` : `${contextLabel}-company`}
+              className="mb-1.5 block text-sm font-medium text-gray-300"
+            >
               {compact ? 'Telefon *' : 'Firma (opcjonalnie)'}
             </label>
             {compact ? (
@@ -377,11 +409,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   inputMode="tel"
                   autoComplete="tel"
                   className={fieldClasses('phone')}
-                  placeholder="123 456 789"
+                  placeholder="+48 730 101 000"
                   aria-invalid={Boolean(errors.phone)}
                   aria-required="true"
                 />
-                {errors.phone && <p className="mt-2 text-sm text-red-300">{errors.phone}</p>}
+                {errors.phone && <p className="mt-1.5 text-xs text-red-300">{errors.phone}</p>}
               </>
             ) : (
               <input
@@ -392,7 +424,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 type="text"
                 autoComplete="organization"
                 className={fieldClasses('company')}
-                placeholder="Nazwa firmy"
+                placeholder="Nazwa zakładu lub firmy"
               />
             )}
           </div>
@@ -400,7 +432,12 @@ export const ContactForm: React.FC<ContactFormProps> = ({
 
         {compact ? (
           <div>
-            <label htmlFor={`${contextLabel}-email`} className="mb-2 block text-sm font-medium text-gray-300">E-mail *</label>
+            <label
+              htmlFor={`${contextLabel}-email`}
+              className="mb-1.5 block text-sm font-medium text-gray-300"
+            >
+              Adres e-mail *
+            </label>
             <input
               id={`${contextLabel}-email`}
               name="email"
@@ -409,16 +446,21 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               type="email"
               autoComplete="email"
               className={fieldClasses('email')}
-              placeholder="adres@email.com"
+              placeholder="kontakt@firma.pl"
               aria-invalid={Boolean(errors.email)}
               aria-required="true"
             />
-            {errors.email && <p className="mt-2 text-sm text-red-300">{errors.email}</p>}
+            {errors.email && <p className="mt-1.5 text-xs text-red-300">{errors.email}</p>}
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
             <div>
-              <label htmlFor={`${contextLabel}-phone`} className="mb-2 block text-sm font-medium text-gray-300">Telefon *</label>
+              <label
+                htmlFor={`${contextLabel}-phone`}
+                className="mb-1.5 block text-sm font-medium text-gray-300"
+              >
+                Telefon *
+              </label>
               <input
                 id={`${contextLabel}-phone`}
                 name="phone"
@@ -432,10 +474,15 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 aria-invalid={Boolean(errors.phone)}
                 aria-required="true"
               />
-              {errors.phone && <p className="mt-2 text-sm text-red-300">{errors.phone}</p>}
+              {errors.phone && <p className="mt-1.5 text-xs text-red-300">{errors.phone}</p>}
             </div>
             <div>
-              <label htmlFor={`${contextLabel}-email`} className="mb-2 block text-sm font-medium text-gray-300">E-mail *</label>
+              <label
+                htmlFor={`${contextLabel}-email`}
+                className="mb-1.5 block text-sm font-medium text-gray-300"
+              >
+                Adres e-mail *
+              </label>
               <input
                 id={`${contextLabel}-email`}
                 name="email"
@@ -448,14 +495,17 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 aria-invalid={Boolean(errors.email)}
                 aria-required="true"
               />
-              {errors.email && <p className="mt-2 text-sm text-red-300">{errors.email}</p>}
+              {errors.email && <p className="mt-1.5 text-xs text-red-300">{errors.email}</p>}
             </div>
           </div>
         )}
 
         <div>
-          <label htmlFor={`${contextLabel}-service`} className="mb-2 block text-sm font-medium text-gray-300">
-            {compact ? 'Temat' : 'Interesująca usługa *'}
+          <label
+            htmlFor={`${contextLabel}-service`}
+            className="mb-1.5 block text-sm font-medium text-gray-300"
+          >
+            Interesująca usługa *
           </label>
           <select
             id={`${contextLabel}-service`}
@@ -464,21 +514,28 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             onChange={handleFieldChange}
             className={fieldClasses('service')}
             aria-invalid={Boolean(errors.service)}
-            aria-label={compact ? 'Wybierz temat zapytania' : 'Wybierz interesującą usługę'}
+            aria-label="Wybierz interesującą usługę"
             aria-required="true"
           >
-            <option value="">{compact ? 'Wybierz temat...' : 'Wybierz usługę...'}</option>
+            <option value="">Wybierz obszar usługi...</option>
             {resolvedServiceOptions.map((option) => (
-              <option key={option} value={option}>{option}</option>
+              <option key={option} value={option}>
+                {option}
+              </option>
             ))}
           </select>
-          {errors.service && <p className="mt-2 text-sm text-red-300">{errors.service}</p>}
+          {errors.service && <p className="mt-1.5 text-xs text-red-300">{errors.service}</p>}
         </div>
 
         {isRentalSelected && (
-          <div className={`grid grid-cols-1 ${compact ? 'gap-4' : 'gap-6 md:grid-cols-2'}`}>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 p-4 rounded-xl bg-industrial-950/70 border border-gray-800">
             <div>
-              <label htmlFor={`${contextLabel}-rentalEquipment`} className="mb-2 block text-sm font-medium text-gray-300">Sprzęt lub maszyna *</label>
+              <label
+                htmlFor={`${contextLabel}-rentalEquipment`}
+                className="mb-1.5 block text-sm font-medium text-gray-300"
+              >
+                Sprzęt lub maszyna *
+              </label>
               <input
                 id={`${contextLabel}-rentalEquipment`}
                 name="rentalEquipment"
@@ -486,15 +543,22 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 onChange={handleFieldChange}
                 type="text"
                 className={fieldClasses('rentalEquipment')}
-                placeholder="Np. żuraw 45t, podest nożycowy, wózek widłowy"
+                placeholder="Np. żuraw 45 t, podest nożycowy 18 m"
                 aria-invalid={Boolean(errors.rentalEquipment)}
                 aria-required="true"
               />
-              {errors.rentalEquipment && <p className="mt-2 text-sm text-red-300">{errors.rentalEquipment}</p>}
+              {errors.rentalEquipment && (
+                <p className="mt-1.5 text-xs text-red-300">{errors.rentalEquipment}</p>
+              )}
             </div>
 
             <div>
-              <label htmlFor={`${contextLabel}-rentalLocation`} className="mb-2 block text-sm font-medium text-gray-300">Lokalizacja realizacji</label>
+              <label
+                htmlFor={`${contextLabel}-rentalLocation`}
+                className="mb-1.5 block text-sm font-medium text-gray-300"
+              >
+                Lokalizacja realizacji
+              </label>
               <input
                 id={`${contextLabel}-rentalLocation`}
                 name="rentalLocation"
@@ -502,12 +566,17 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 onChange={handleFieldChange}
                 type="text"
                 className={fieldClasses('rentalLocation')}
-                placeholder="Miasto / zakład / adres"
+                placeholder="Miasto / zakład przemysłowy"
               />
             </div>
 
             <div>
-              <label htmlFor={`${contextLabel}-rentalStartDate`} className="mb-2 block text-sm font-medium text-gray-300">Planowana data rozpoczęcia</label>
+              <label
+                htmlFor={`${contextLabel}-rentalStartDate`}
+                className="mb-1.5 block text-sm font-medium text-gray-300"
+              >
+                Planowana data rozpoczęcia
+              </label>
               <input
                 id={`${contextLabel}-rentalStartDate`}
                 name="rentalStartDate"
@@ -519,7 +588,12 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             </div>
 
             <div>
-              <label htmlFor={`${contextLabel}-rentalDuration`} className="mb-2 block text-sm font-medium text-gray-300">Przewidywany czas wynajmu</label>
+              <label
+                htmlFor={`${contextLabel}-rentalDuration`}
+                className="mb-1.5 block text-sm font-medium text-gray-300"
+              >
+                Przewidywany czas wynajmu
+              </label>
               <input
                 id={`${contextLabel}-rentalDuration`}
                 name="rentalDuration"
@@ -531,8 +605,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               />
             </div>
 
-            <div className={compact ? '' : 'md:col-span-2'}>
-              <label htmlFor={`${contextLabel}-rentalOperator`} className="mb-2 block text-sm font-medium text-gray-300">Czy z operatorem?</label>
+            <div className="md:col-span-2">
+              <label
+                htmlFor={`${contextLabel}-rentalOperator`}
+                className="mb-1.5 block text-sm font-medium text-gray-300"
+              >
+                Model wynajmu (z operatorem / bez operatora)
+              </label>
               <select
                 id={`${contextLabel}-rentalOperator`}
                 name="rentalOperator"
@@ -545,16 +624,20 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 <option value="Z operatorem">Z operatorem</option>
                 <option value="Bez operatora">Bez operatora</option>
               </select>
-              <p className="mt-2 text-xs text-gray-400">
-                Pole dotyczy wybranych grup sprzętu, np. żurawi i podnośników. Ostateczny model realizacji potwierdzimy po analizie zapytania.
+              <p className="mt-1.5 text-xs text-gray-400">
+                Podnośniki koszowe, żurawie samochodowe i ładowarki teleskopowe wynajmujemy z
+                uprawnionym operatorem. Wózki widłowe i podesty dostępne w obu wariantach.
               </p>
             </div>
           </div>
         )}
 
         <div>
-          <label htmlFor={`${contextLabel}-message`} className="mb-2 block text-sm font-medium text-gray-300">
-            {isRentalSelected ? 'Krótki opis prac *' : 'Wiadomość *'}
+          <label
+            htmlFor={`${contextLabel}-message`}
+            className="mb-1.5 block text-sm font-medium text-gray-300"
+          >
+            {isRentalSelected ? 'Krótki opis prac *' : 'Opis zapytania / zakres prac *'}
           </label>
           <textarea
             id={`${contextLabel}-message`}
@@ -563,28 +646,67 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             onChange={handleFieldChange}
             rows={4}
             className={fieldClasses('message')}
-            placeholder={isRentalSelected ? 'Np. wysokość pracy, waga ładunku, zasięg podania, warunki na obiekcie.' : compact ? 'Opisz, czego potrzebujesz...' : 'Opisz swoje potrzeby, termin i lokalizację.'}
+            placeholder={
+              isRentalSelected
+                ? 'Np. wysokość pracy, masa podnoszonego elementu, wysięg, warunki na obiekcie.'
+                : 'Opisz krótko zakres prac, lokalizację zakładu oraz preferowany termin realizacji.'
+            }
             aria-invalid={Boolean(errors.message)}
             aria-required="true"
           />
-          {errors.message && <p className="mt-2 text-sm text-red-300">{errors.message}</p>}
+          {errors.message && <p className="mt-1.5 text-xs text-red-300">{errors.message}</p>}
         </div>
 
-        <div className="space-y-2">
-          <div className="flex items-start gap-3 rounded-lg border border-transparent p-1">
-            <input id={`consent-${contextLabel}`} name="consent" checked={formState.consent} onChange={handleFieldChange} type="checkbox" className="mt-1.5 h-5 w-5 shrink-0 rounded accent-industrial-accent" aria-required="true" />
-            <label htmlFor={`consent-${contextLabel}`} className="flex-1 cursor-pointer text-sm leading-snug text-gray-300">Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania. *</label>
+        <div className="space-y-1.5">
+          <div className="flex items-start gap-3 rounded-lg p-0.5">
+            <input
+              id={`consent-${contextLabel}`}
+              name="consent"
+              checked={formState.consent}
+              onChange={handleFieldChange}
+              type="checkbox"
+              className="mt-1 h-4 w-4 shrink-0 rounded accent-industrial-accent cursor-pointer"
+              aria-required="true"
+            />
+            <label
+              htmlFor={`consent-${contextLabel}`}
+              className="flex-1 cursor-pointer text-xs sm:text-sm leading-snug text-gray-300"
+            >
+              Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania i
+              przygotowania oferty zgodnie z{' '}
+              <a
+                href={`${basePath}/polityka-prywatnosci`}
+                className="text-industrial-accent underline hover:text-white"
+              >
+                Polityką prywatności
+              </a>
+              . *
+            </label>
           </div>
-          {errors.consent && <p className="text-sm text-red-300">{errors.consent}</p>}
+          {errors.consent && <p className="text-xs text-red-300">{errors.consent}</p>}
         </div>
 
         {feedback && (
-          <div className={`rounded-lg border px-4 py-3 text-sm leading-relaxed ${status === 'success' ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-100' : status === 'error' ? 'border-red-500/40 bg-red-500/10 text-red-100' : 'border-gray-600 bg-industrial-950/60 text-gray-300'}`}>
+          <div
+            className={`rounded-lg border px-4 py-3 text-sm leading-relaxed ${
+              status === 'success'
+                ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-100'
+                : status === 'error'
+                  ? 'border-red-500/40 bg-red-500/10 text-red-100'
+                  : 'border-gray-700 bg-industrial-950/60 text-gray-300'
+            }`}
+          >
             {feedback}
           </div>
         )}
 
-        <button type="submit" disabled={status === 'submitting'} className={`${submitButtonClassName} ${status === 'submitting' ? 'cursor-not-allowed opacity-80' : ''}`}>
+        <button
+          type="submit"
+          disabled={status === 'submitting'}
+          className={`${submitButtonClassName} cursor-pointer ${
+            status === 'submitting' ? 'cursor-not-allowed opacity-80' : ''
+          }`}
+        >
           {status === 'submitting' ? 'Wysyłanie...' : 'Wyślij zapytanie'}
         </button>
       </form>

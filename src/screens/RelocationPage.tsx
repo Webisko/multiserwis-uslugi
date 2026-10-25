@@ -3,105 +3,167 @@ import { PageHeader } from '../components/PageHeader';
 import { ArrowRight } from 'lucide-react';
 import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
 import { ServiceInquiryCta } from '../components/ServiceInquiryCta';
+import {
+  MachineRelocationIcon,
+  CraneTruckIcon,
+  CheckMarkIcon,
+} from '../components/icons/IndustrialIcons';
 
 type RelocationPageProps = {
   companyData?: CompanyData;
 };
 
 export const RelocationPage: React.FC<RelocationPageProps> = ({ companyData }) => {
-   const resolvedCompany = companyData ?? company;
-   const basePath = resolvedCompany.links.basePath;
+  const resolvedCompany = companyData ?? company;
+  const basePath = resolvedCompany.links.basePath;
+
   const steps = [
-    { title: 'Demontaż', desc: 'Fachowy demontaż maszyn z zachowaniem procedur bezpieczeństwa.' },
-    { title: 'Załadunek', desc: 'Wykorzystujemy własny sprzęt dźwigowy i wózki.' },
-    { title: 'Transport', desc: 'Bezpieczny przewóz na terenie zakładu lub do nowej lokalizacji.' },
-    { title: 'Rozładunek', desc: 'Precyzyjne ustawienie maszyn w miejscu docelowym.' },
-    { title: 'Montaż', desc: 'Ponowne złożenie i podłączenie mediów.' },
-    { title: 'Rozruch', desc: 'Uruchomienie technologiczne i testy poprawności działania.' },
+    {
+      title: 'Demontaż i odłączenie',
+      desc: 'Bezpieczny demontaż mechaniczny, odłączenie instalacji elektrycznych, hydrauliki i mediów technologicznych.',
+    },
+    {
+      title: 'Wyprowadzenie i załadunek',
+      desc: 'Przemieszczanie gabarytów na hali z użyciem systemu VersaLift, rolek transportowych, trawersów i własnych żurawi.',
+    },
+    {
+      title: 'Transport specjalistyczny',
+      desc: 'Bezpieczny przewóz maszyn wewnątrz zakładu lub transport drogowy do nowej lokalizacji w Polsce i Europie.',
+    },
+    {
+      title: 'Rozładunek i wprowadzenie',
+      desc: 'Precyzyjne operacje dźwigowe i ustawienie urządzeń na stanowiskach docelowych zgodnie z layoutem technologicznym.',
+    },
+    {
+      title: 'Montaż i poziomowanie',
+      desc: 'Kotwienie, precyzyjne wypoziomowanie linii, ponowny montaż podzespołów oraz podłączenie instalacji zasilających.',
+    },
+    {
+      title: 'Rozruch technologiczny',
+      desc: 'Pomiary elektryczne, weryfikacja układów sterowania i bezpieczeństwa oraz udział w uruchomieniu produkcyjnym.',
+    },
+  ];
+
+  const advantages = [
+    'Własny park maszynowy (żurawie do 90 t, VersaLift, podesty, wózki) – brak pośredników',
+    'Własny zespół elektryków, automatyków, spawaczy i monterów rurociągów',
+    'Pełne uprawnienia UDT i SEP oraz certyfikowany system jakości ISO 9001:2015',
+    'Realizacja prac w oknach serwisowych, weekendy i w systemie zmianowym',
   ];
 
   return (
-      <SiteSettingsProvider value={resolvedCompany}>
-      <PageHeader 
-        title="Relokacja Maszyn" 
-        subtitle="Bezpieczne przenoszenie parku maszynowego. Od pojedynczych urządzeń po całe linie produkcyjne."
+    <SiteSettingsProvider value={resolvedCompany}>
+      <PageHeader
+        badge="Kompleksowa logistyka technologiczna"
+        title="Relokacja maszyn i linii produkcyjnych"
+        subtitle="Bezpieczne przenoszenie parku maszynowego – od pojedynczych centrów obróbczych i pras po kompletne linie technologiczne."
       />
 
-      <section className="py-20 bg-industrial-950">
-        <div className="container mx-auto px-4">
-          
-          <div className="max-w-4xl mx-auto mb-20 text-center">
-             <p className="text-xl text-gray-300 leading-relaxed">
-               Zapewniamy kompleksową obsługę relokacji – zarówno wewnątrz zakładu, jak i przy zmianie lokalizacji fabryki. 
-               Dzięki własnemu zapleczu (dźwigi, podnośniki, elektrycy, mechanicy) działamy sprawnie i terminowo.
-             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
-             {steps.map((step, index) => (
-                <div key={index} className="bg-industrial-900 border border-gray-800 p-6 rounded-xl hover:border-industrial-accent/30 transition-colors">
-                   <div className="text-4xl font-display font-bold text-industrial-800 mb-4">{index + 1}</div>
-                   <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                   <p className="text-gray-400 text-sm">{step.desc}</p>
-                </div>
-             ))}
-          </div>
-
-          <div className="bg-industrial-900 rounded-2xl p-8 border border-gray-800 flex flex-col md:flex-row items-center gap-8">
-             <div className="md:w-1/2">
-                <h3 className="text-2xl font-bold text-white mb-4">Dlaczego my?</h3>
-                <ul className="space-y-4">
-                   <li className="flex items-center gap-3 text-gray-300">
-                      <div className="w-8 h-8 rounded bg-industrial-800 flex items-center justify-center text-industrial-accent font-bold">✓</div>
-                      <span>Własny sprzęt dźwigowy – brak pośredników</span>
-                   </li>
-                   <li className="flex items-center gap-3 text-gray-300">
-                      <div className="w-8 h-8 rounded bg-industrial-800 flex items-center justify-center text-industrial-accent font-bold">✓</div>
-                      <span>Zespół elektryków do odłączenia i podłączenia maszyn</span>
-                   </li>
-                   <li className="flex items-center gap-3 text-gray-300">
-                      <div className="w-8 h-8 rounded bg-industrial-800 flex items-center justify-center text-industrial-accent font-bold">✓</div>
-                      <span>Uprawnienia UDT do obsługi urządzeń transportowych</span>
-                   </li>
-                </ul>
-             </div>
-             <div className="md:w-1/2 flex justify-center">
-                        <a href={`${basePath}/kontakt`} className="bg-industrial-accent text-industrial-900 px-8 py-4 rounded-lg font-bold hover:bg-industrial-accentHover transition-colors shadow-lg shadow-industrial-accent/20">
-                   Wyceń relokację
-                </a>
-             </div>
-          </div>
-
-          {/* Rentals CTA */}
-          <div className="mt-12 bg-industrial-900/50 p-8 rounded-xl border border-dashed border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="max-w-2xl text-left">
-              <h4 className="text-xl font-bold text-industrial-accent mb-2 flex items-center gap-2">
-                🏗️ Potrzebujesz samego sprzętu?
-              </h4>
-              <p className="text-gray-300 text-sm">
-                Dysponujemy bogatym, własnym parkiem maszynowym (żurawie do 90t, podesty nożycowe, ładowarki, wózki). 
-                Możesz wynająć u nas maszyny również jako osobną usługę – na życzenie z operatorem.
-              </p>
+      <section className="page-section">
+        <div className="page-container">
+          <div className="max-w-3xl mx-auto mb-14 text-center">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-industrial-900 border border-gray-800 text-industrial-accent">
+              <MachineRelocationIcon size={28} />
             </div>
-            <a 
-              href={`${basePath}/wynajem`}
-              className="inline-flex items-center gap-2 bg-industrial-800 hover:bg-industrial-700 text-white font-medium px-6 py-3 rounded transition-colors group shrink-0 border border-gray-700 hover:border-industrial-accent"
-            >
-              Zobacz ofertę wynajmu
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </a>
+            <h2 className="section-title mb-4">
+              Pełny proces relokacji <span className="text-industrial-accent">w 6 etapach</span>
+            </h2>
+            <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+              Realizujemy przemieszczenia wewnątrzzakładowe oraz relokacje fabryk w Polsce i w
+              Europie (w tym w Wielkiej Brytanii). Dzięki połączeniu własnego sprzętu ciężkiego i
+              wielobranżowych brygad technicznych bierzemy odpowiedzialność za cały proces.
+            </p>
           </div>
 
-               <div className="mt-10">
-                  <ServiceInquiryCta
-                     title="Planujesz relokację linii, maszyny albo całego obszaru produkcyjnego?"
-                     description="Prześlij zakres prac, lokalizację i oczekiwany termin. Przygotujemy plan działań, dobór sprzętu i wycenę relokacji z uwzględnieniem demontażu, transportu i rozruchu."
-                     contactLabel="Poproś o wycenę relokacji"
-                  />
-               </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {steps.map((step, index) => (
+              <div
+                key={index}
+                className="offer-card group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-industrial-950 border border-gray-800 font-display text-xl font-bold text-industrial-accent group-hover:bg-industrial-accent group-hover:text-industrial-950 transition-colors">
+                      0{index + 1}
+                    </span>
+                    <span className="text-xs font-bold uppercase tracking-widest text-gray-500">
+                      Etap {index + 1}
+                    </span>
+                  </div>
+                  <h3 className="card-title mb-2.5 group-hover:text-industrial-accent transition-colors">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-300 text-sm sm:text-base leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
 
+          {/* Why Us + Rentals Cross-link */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+            <div className="lg:col-span-7 offer-card flex flex-col justify-between">
+              <div>
+                <h2 className="font-display text-2xl sm:text-3xl font-bold uppercase tracking-tight text-white mb-5">
+                  Dlaczego warto powierzyć relokację nam?
+                </h2>
+                <ul className="space-y-3.5">
+                  {advantages.map((adv, idx) => (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-3 text-gray-200 text-sm sm:text-base"
+                    >
+                      <span className="h-6 w-6 rounded-md bg-industrial-950 border border-gray-800 flex items-center justify-center text-industrial-accent shrink-0 mt-0.5">
+                        <CheckMarkIcon size={15} />
+                      </span>
+                      <span>{adv}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-7 pt-6 border-t border-gray-800 flex flex-wrap items-center justify-between gap-4">
+                <p className="text-sm text-gray-400">
+                  Przygotowujemy harmonogram minimalizujący przestoje produkcyjne.
+                </p>
+                <a
+                  href={`${basePath}/kontakt`}
+                  className="bg-industrial-accent text-industrial-950 px-6 py-3 rounded-lg font-bold text-sm sm:text-base hover:bg-industrial-accentHover transition-colors"
+                >
+                  Wyceń relokację
+                </a>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 rounded-2xl border border-gray-800 bg-industrial-900/70 p-6 sm:p-8 flex flex-col justify-between">
+              <div>
+                <div className="mb-3 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.18em] text-industrial-accent">
+                  <CraneTruckIcon size={18} />
+                  <span>Zaplecze sprzętowe</span>
+                </div>
+                <h3 className="card-title mb-3">Potrzebujesz samego sprzętu dźwigowego?</h3>
+                <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
+                  Dysponujemy własnym parkiem maszynowym: żurawiami samochodowymi do 90 t,
+                  specjalistycznym wózkiem VersaLift, podestami ruchomymi, ładowarkami i wózkami
+                  widłowymi. Możesz wynająć u nas sprzęt również jako osobną usługę.
+                </p>
+              </div>
+              <a
+                href={`${basePath}/wynajem`}
+                className="inline-flex items-center justify-center gap-2 bg-industrial-950 hover:bg-industrial-800 text-white font-bold px-6 py-3.5 rounded-lg transition-colors group border border-gray-700 hover:border-industrial-accent text-sm sm:text-base w-full sm:w-fit"
+              >
+                <span>Zobacz ofertę wynajmu maszyn</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </div>
+
+          <ServiceInquiryCta
+            title="Planujesz relokację maszyny, prasy albo całej linii produkcyjnej?"
+            description="Prześlij wykaz urządzeń, orientacyjne gabaryty, lokalizację oraz planowany termin. Przygotujemy technologię przemieszczenia, dobór sprzętu i kompleksową wycenę."
+            contactLabel="Poproś o wycenę relokacji"
+          />
         </div>
       </section>
-      </SiteSettingsProvider>
+    </SiteSettingsProvider>
   );
 };

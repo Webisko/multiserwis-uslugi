@@ -9,6 +9,11 @@ class EditSiteSetting extends EditRecord
 {
     protected static string $resource = SiteSettingResource::class;
 
+    public function getTitle(): string
+    {
+        return 'Ustawienia';
+    }
+
     protected function getHeaderActions(): array
     {
         return [];

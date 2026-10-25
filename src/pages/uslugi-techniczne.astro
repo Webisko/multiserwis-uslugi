@@ -2,66 +2,120 @@
 import Layout from "../layouts/Layout.astro";
 import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
+import { PageHeader } from "../components/PageHeader";
 import { ServiceInquiryCta } from "../components/ServiceInquiryCta";
+import {
+  WeldingTorchIcon,
+  UdtHookShieldIcon,
+  MachineRelocationIcon,
+  IndustrialPipelineIcon,
+  SwitchgearPowerIcon,
+  CraneTruckIcon,
+} from "../components/icons/IndustrialIcons";
+import { ArrowRight } from "lucide-react";
 import { defaultCompany } from "../data/company";
 import { getSiteSettings } from "../lib/siteSettings";
 
 const companyData = (await getSiteSettings())?.company ?? defaultCompany;
 const basePath = companyData.links.basePath;
+
+const techServices = [
+  {
+    title: "Usługi spawalnicze i konstrukcje",
+    desc: "Mobilne naprawy bieżące maszyn i zbiorników oraz prefabrykacja i montaż konstrukcji stalowych, antresol, podestów i suwnic.",
+    href: `${basePath}/spawanie`,
+    slug: "spawanie",
+  },
+  {
+    title: "Konserwacja, serwis i obsługa UDT",
+    desc: "Rejestracja urządzeń (również bez dokumentacji), obliczanie resursu, przeglądy konserwatorskie oraz naprawa hydrauliki siłowej i sterowania.",
+    href: `${basePath}/udt`,
+    slug: "udt",
+  },
+  {
+    title: "Relokacja maszyn i linii produkcyjnych",
+    desc: "Kompleksowe przenoszenie parku maszynowego: demontaż, wyprowadzenie (VersaLift, rolki, żurawie), transport, ustawienie i rozruch.",
+    href: `${basePath}/relokacja`,
+    slug: "relokacja",
+  },
+  {
+    title: "Hydraulika i montaż przemysłowy",
+    desc: "Modernizacja i budowa rurociągów przemysłowych, wymiana armatury, izolacje termiczne oraz konstrukcje wsporcze pod nowe maszyny.",
+    href: `${basePath}/budownictwo`,
+    slug: "budownictwo",
+  },
+  {
+    title: "Usługi elektryczne i rozruchowe",
+    desc: "Pomiary odbiorcze i okresowe, uruchomienia rozdzielnic nn i SN, integracja AKPiA oraz wykonawstwo tras i linii kablowych.",
+    href: `${basePath}/elektryka`,
+    slug: "elektryka",
+  },
+  {
+    title: "Wynajem maszyn i dźwigów",
+    desc: "Własne żurawie samochodowe (35t–90t), podesty ruchome nożycowe i koszowe, ładowarki teleskopowe oraz wózki widłowe.",
+    href: `${basePath}/wynajem`,
+    slug: "wynajem",
+  },
+];
 ---
 
 <Layout
-  title="Usługi Techniczne | Multiserwis Kutno"
-  description="Przegląd usług technicznych: spawalnictwo, relokacja, konserwacja UDT."
+  title="Usługi Techniczne dla Przemysłu – Spawanie, UDT, Relokacje | Multiserwis Kutno"
+  description="Kompleksowe usługi techniczne dla zakładów przemysłowych: spawalnictwo i konstrukcje stalowe, relokacja maszyn, konserwacja UDT, hydraulika przemysłowa i elektryka."
 >
   <div>
     <Navbar client:load companyData={companyData} />
-    <main class="flex-grow pt-[80px] bg-industrial-950 min-h-screen py-20">
-      <div class="container mx-auto px-4">
-        <div class="mb-12 max-w-3xl">
-          <p class="mb-4 text-sm font-bold uppercase tracking-[0.22em] text-industrial-accent">Zakres usług</p>
-          <h1 class="mb-6 text-4xl font-bold text-white md:text-5xl">Usługi Techniczne</h1>
-          <p class="text-lg leading-relaxed text-gray-300">
-            W jednym miejscu łączymy spawalnictwo, relokacje maszyn i obsługę UDT. Dzięki temu klient nie musi koordynować kilku wykonawców osobno dla prac mechanicznych, formalnych i transportowych.
-          </p>
-        </div>
+    <main class="flex-grow">
+      <PageHeader
+        badge="Kompleksowe utrzymanie ruchu i inwestycje"
+        title="Usługi techniczne dla przemysłu"
+        subtitle="W jednym miejscu łączymy spawalnictwo, relokacje maszyn, obsługę UDT, rurociągi przemysłowe i elektrykę z własnym zapleczem dźwigowym."
+      />
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <a
-            href={`${basePath}/spawanie`}
-            class="block rounded-2xl border border-gray-800 bg-industrial-900 p-8 transition-colors hover:border-industrial-accent"
-          >
-            <h2 class="mb-3 text-2xl font-bold text-white">Spawalnictwo</h2>
-            <p class="text-gray-400">Naprawy, konstrukcje stalowe i realizacje niestandardowe dla zakładów i inwestycji przemysłowych.</p>
-          </a>
-          <a
-            href={`${basePath}/udt`}
-            class="block rounded-2xl border border-gray-800 bg-industrial-900 p-8 transition-colors hover:border-industrial-accent"
-          >
-            <h2 class="mb-3 text-2xl font-bold text-white">Konserwacja UDT</h2>
-            <p class="text-gray-400">Rejestracja, formalności, badania techniczne i bieżąca obsługa urządzeń pod dozorem.</p>
-          </a>
-          <a
-            href={`${basePath}/relokacja`}
-            class="block rounded-2xl border border-gray-800 bg-industrial-900 p-8 transition-colors hover:border-industrial-accent"
-          >
-            <h2 class="mb-3 text-2xl font-bold text-white">Relokacja Maszyn</h2>
-            <p class="text-gray-400">Demontaż, transport, ustawienie i rozruch pojedynczych maszyn oraz całych linii produkcyjnych.</p>
-          </a>
-        </div>
+      <section class="page-section">
+        <div class="page-container">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-14">
+            {techServices.map((item) => (
+              <a
+                href={item.href}
+                class="group offer-card flex flex-col justify-between hover:-translate-y-1"
+              >
+                <div>
+                  <div class="w-12 h-12 rounded-xl bg-industrial-950 border border-gray-800 flex items-center justify-center text-industrial-accent mb-5 group-hover:bg-industrial-accent group-hover:text-industrial-950 transition-colors">
+                    {item.slug === "spawanie" && <WeldingTorchIcon size={24} />}
+                    {item.slug === "udt" && <UdtHookShieldIcon size={24} />}
+                    {item.slug === "relokacja" && <MachineRelocationIcon size={24} />}
+                    {item.slug === "budownictwo" && <IndustrialPipelineIcon size={24} />}
+                    {item.slug === "elektryka" && <SwitchgearPowerIcon size={24} />}
+                    {item.slug === "wynajem" && <CraneTruckIcon size={24} />}
+                  </div>
+                  <h2 class="card-title mb-3 group-hover:text-industrial-accent transition-colors">
+                    {item.title}
+                  </h2>
+                  <p class="text-sm sm:text-base text-gray-300 leading-relaxed mb-6">
+                    {item.desc}
+                  </p>
+                </div>
+                <div class="pt-4 border-t border-gray-800/70 flex items-center justify-between text-sm font-bold text-industrial-accent group-hover:text-white transition-colors">
+                  <span>Przejdź do szczegółów</span>
+                  <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" />
+                </div>
+              </a>
+            ))}
+          </div>
 
-        <div class="mt-10">
           <ServiceInquiryCta
+            client:visible
             title="Potrzebujesz wsparcia technicznego dopasowanego do konkretnego zadania?"
             description="Napisz, czy chodzi o relokację, spawanie, przygotowanie urządzeń do UDT albo pakiet kilku usług jednocześnie. Przygotujemy właściwy zakres prac i skierujemy zapytanie do odpowiedniego zespołu."
             contactLabel="Skonsultuj zakres prac"
-            trainingTitle="Szkolenia branżowe"
-            trainingDescription="W obszarach UDT, spawalnictwa i SEP prowadzimy także szkolenia na osobnej stronie, jeśli potrzebujesz podnieść kwalifikacje zespołu."
+            trainingTitle="Szkolenia branżowe UDT, SEP i spawalnicze"
+            trainingDescription="W obszarach UDT, spawalnictwa i energetyki SEP prowadzimy także certyfikowane szkolenia dla pracowników na osobnej domenie szkoleniowej."
             companyData={companyData}
           />
         </div>
-      </div>
+      </section>
     </main>
-    <Footer companyData={companyData} />
+    <Footer client:visible companyData={companyData} />
   </div>
 </Layout>

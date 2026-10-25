@@ -8,7 +8,6 @@ use App\Filament\Resources\Leads\Schemas\LeadForm;
 use App\Filament\Resources\Leads\Tables\LeadsTable;
 use App\Models\Lead;
 use BackedEnum;
-use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -20,17 +19,30 @@ class LeadResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'full_name';
 
-    protected static ?string $modelLabel = 'lead';
+    protected static ?string $modelLabel = 'zapytanie';
 
-    protected static ?string $pluralModelLabel = 'Leady';
+    protected static ?string $pluralModelLabel = 'Zapytania';
 
-    protected static ?string $navigationLabel = 'Leady';
-
-    protected static string|UnitEnum|null $navigationGroup = 'Operacje';
+    protected static ?string $navigationLabel = 'Zapytania';
 
     protected static ?int $navigationSort = 10;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedInboxArrowDown;
+
+    public static function getNavigationBadge(): ?string
+    {
+        $newCount = static::getModel()::query()
+            ->where('status', 'new')
+            ->where('is_spam', false)
+            ->count();
+
+        return $newCount > 0 ? (string) $newCount : null;
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return 'warning';
+    }
 
     public static function form(Schema $schema): Schema
     {
@@ -44,9 +56,7 @@ class LeadResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

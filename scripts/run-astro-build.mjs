@@ -16,7 +16,7 @@ if (!env.PUBLIC_SITE_URL) {
   if (isStaging) {
     env.PUBLIC_SITE_URL = 'https://multiserwis-uslugi.webisko.pl';
   } else if (isProduction) {
-    env.PUBLIC_SITE_URL = 'https://multiserwis.example.invalid';
+    env.PUBLIC_SITE_URL = 'https://multiserwis.tech';
   } else {
     env.PUBLIC_SITE_URL = 'https://webisko.github.io';
   }
@@ -24,6 +24,37 @@ if (!env.PUBLIC_SITE_URL) {
 
 if (!env.PUBLIC_SITE_BASE_PATH) {
   env.PUBLIC_SITE_BASE_PATH = isStaging || isProduction ? '/' : '/multiserwis-uslugi';
+}
+
+if (isProduction) {
+  const apiBase = env.PUBLIC_BACKEND_ORIGIN?.trim() || 'https://panel.multiserwis.tech';
+  if (!env.PUBLIC_CONTACT_API_URL) {
+    env.PUBLIC_CONTACT_API_URL = `${apiBase}/api/v1/leads`;
+  }
+  if (!env.SITE_SETTINGS_API_URL) {
+    env.SITE_SETTINGS_API_URL = `${apiBase}/api/v1/site-settings`;
+  }
+  if (!env.PUBLIC_SITE_SETTINGS_API_URL) {
+    env.PUBLIC_SITE_SETTINGS_API_URL = `${apiBase}/api/v1/site-settings`;
+  }
+  if (!env.FAQS_API_URL) {
+    env.FAQS_API_URL = `${apiBase}/api/v1/faqs`;
+  }
+  if (!env.PUBLIC_FAQS_API_URL) {
+    env.PUBLIC_FAQS_API_URL = `${apiBase}/api/v1/faqs`;
+  }
+  if (!env.SERVICE_OFFERINGS_API_URL) {
+    env.SERVICE_OFFERINGS_API_URL = `${apiBase}/api/v1/service-offerings`;
+  }
+  if (!env.PUBLIC_SERVICE_OFFERINGS_API_URL) {
+    env.PUBLIC_SERVICE_OFFERINGS_API_URL = `${apiBase}/api/v1/service-offerings`;
+  }
+  if (!env.PORTFOLIO_ITEMS_API_URL) {
+    env.PORTFOLIO_ITEMS_API_URL = `${apiBase}/api/v1/portfolio-items`;
+  }
+  if (!env.PUBLIC_PORTFOLIO_ITEMS_API_URL) {
+    env.PUBLIC_PORTFOLIO_ITEMS_API_URL = `${apiBase}/api/v1/portfolio-items`;
+  }
 }
 
 const astroCliCandidates = [

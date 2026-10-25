@@ -5,19 +5,21 @@ import { Footer } from "../components/Footer";
 import { PortfolioPage as Screen } from "../screens/PortfolioPage";
 import { defaultCompany } from "../data/company";
 import { getSiteSettings } from "../lib/siteSettings";
+import { getSiteContent } from "../lib/siteContent";
 
-const companyData = (await getSiteSettings())?.company ?? defaultCompany;
+const [siteSettings, siteContent] = await Promise.all([getSiteSettings(), getSiteContent()]);
+const companyData = siteSettings?.company ?? defaultCompany;
 ---
 
 <Layout
-  title="Realizacje | Multiserwis Kutno"
-  description="Portfolio realizacji: wynajem maszyn, relokacje, UDT, spawalnictwo i usługi techniczne."
+  title="Realizacje Przemysłowe i Referencyjne Zakresy Prac | Multiserwis Kutno"
+  description="Przykładowe realizacje Multiserwis Kutno: obsługa dźwigowa i podnośnikowa, relokacje linii produkcyjnych, konserwacja UDT, spawalnictwo i rurociągi przemysłowe."
 >
   <div>
     <Navbar client:load companyData={companyData} />
-    <main class="flex-grow pt-[80px]">
-      <Screen companyData={companyData} />
+    <main class="flex-grow">
+      <Screen client:load companyData={companyData} portfolioItems={siteContent.portfolio.items} />
     </main>
-    <Footer companyData={companyData} />
+    <Footer client:load companyData={companyData} />
   </div>
 </Layout>

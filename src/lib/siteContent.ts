@@ -34,6 +34,19 @@ export type ServiceOfferingPayload = {
   sortOrder: number;
 };
 
+export type PortfolioItemPayload = {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  location?: string | null;
+  description?: string | null;
+  items: string[];
+  imageUrl?: string | null;
+  isFeatured: boolean;
+  sortOrder: number;
+};
+
 export type SiteContentData = {
   faqs: {
     items: FaqItemPayload[];
@@ -44,6 +57,9 @@ export type SiteContentData = {
     items: ServiceOfferingPayload[];
     contactOptions: string[];
   };
+  portfolio: {
+    items: PortfolioItemPayload[];
+  };
 };
 
 const defaultFaqItems: FaqItemPayload[] = [
@@ -51,7 +67,7 @@ const defaultFaqItems: FaqItemPayload[] = [
     id: 'faq-1',
     question: 'Na jakim obszarze działacie?',
     answer:
-      'Realizujemy zlecenia na terenie całej Polski oraz na obszarze Europy (w tym m.in. w Wielkiej Brytanii, gdzie regularnie realizujemy projekty instalacyjne i relokacje maszyn).',
+      'Realizujemy zlecenia na terenie całej Polski oraz na obszarze Europy (w tym m.in. w Wielkiej Brytanii, gdzie regularnie prowadzimy projekty instalacyjne i relokacje maszyn).',
     category: 'Ogólne',
     sortOrder: 10,
     isFeatured: true,
@@ -60,7 +76,7 @@ const defaultFaqItems: FaqItemPayload[] = [
     id: 'faq-2',
     question: 'Czy obsługujecie klientów indywidualnych?',
     answer:
-      'Tak, obsługujemy zarówno duże zakłady przemysłowe, jak i mniejsze firmy oraz klientów indywidualnych.',
+      'Tak, obsługujemy zarówno duże zakłady przemysłowe i generalnych wykonawców, jak i mniejsze firmy oraz klientów indywidualnych.',
     category: 'Ogólne',
     sortOrder: 20,
     isFeatured: true,
@@ -69,7 +85,7 @@ const defaultFaqItems: FaqItemPayload[] = [
     id: 'faq-3',
     question: 'Czy sprzęt można wynająć z operatorem?',
     answer:
-      'Tak, podnośniki koszowe, żurawie i ładowarki teleskopowe wynajmujemy z doświadczonym operatorem. Wózki widłowe również na życzenie klienta.',
+      'Tak, podnośniki koszowe, żurawie samochodowe i ładowarki teleskopowe wynajmujemy z doświadczonym operatorem. Wózki widłowe udostępniamy również z operatorem na życzenie klienta.',
     category: 'Wynajem',
     sortOrder: 30,
     isFeatured: true,
@@ -78,7 +94,7 @@ const defaultFaqItems: FaqItemPayload[] = [
     id: 'faq-4',
     question: 'Czy transport sprzętu jest w cenie?',
     answer:
-      'Koszt transportu ustalany jest indywidualnie w zależności od odległości i gabarytów maszyny.',
+      'Koszt transportu kalkulujemy indywidualnie w zależności od odległości, gabarytów maszyny i czasu trwania najmu.',
     category: 'Wynajem',
     sortOrder: 40,
     isFeatured: true,
@@ -87,16 +103,16 @@ const defaultFaqItems: FaqItemPayload[] = [
     id: 'faq-5',
     question: 'Czy pomożecie w rejestracji urządzenia w UDT bez dokumentacji?',
     answer:
-      'Tak. Oferujemy odtworzenie dokumentacji i pełną obsługę formalną, aż do uzyskania decyzji zezwalającej na eksploatację.',
+      'Tak. Oferujemy odtworzenie dokumentacji techniczno-ruchowej, wykonanie resursu i pełną obsługę formalną aż do uzyskania decyzji zezwalającej na eksploatację.',
     category: 'UDT',
     sortOrder: 50,
     isFeatured: true,
   },
   {
     id: 'faq-6',
-    question: 'Jak często trzeba robić przeglądy UDT?',
+    question: 'Jak często trzeba wykonywać przeglądy UDT?',
     answer:
-      'Częstotliwość przeglądów zależy od rodzaju urządzenia i jest określona przez UDT. Najlepiej weryfikować ją dla konkretnego typu urządzenia i sposobu eksploatacji.',
+      'Częstotliwość przeglądów konserwacyjnych i badań okresowych zależy od rodzaju urządzenia i jest ściśle określona przepisami UDT. Weryfikujemy harmonogram indywidualnie dla konkretnego typu maszyny i trybu jej eksploatacji.',
     category: 'UDT',
     sortOrder: 60,
     isFeatured: true,
@@ -105,17 +121,17 @@ const defaultFaqItems: FaqItemPayload[] = [
     id: 'faq-7',
     question: 'Czy wykonujecie prace na czynnych obiektach?',
     answer:
-      'Tak, specjalizujemy się w pracach na ruchu. Możemy pracować zmianowo, aby ograniczyć wpływ na produkcję.',
-    category: 'Elektryka i Spawanie',
+      'Tak, specjalizujemy się w pracach na ruchu. Pracujemy również w systemie zmianowym lub podczas okien serwisowych, aby ograniczyć wpływ robót na ciągłość produkcji.',
+    category: 'Elektryka i spawanie',
     sortOrder: 70,
     isFeatured: true,
   },
   {
     id: 'faq-8',
-    question: 'Czy spawacie u klienta?',
+    question: 'Czy spawacie bezpośrednio u klienta?',
     answer:
-      'Tak, posiadamy mobilny sprzęt spawalniczy i wykonujemy prace bezpośrednio na terenie zakładu klienta.',
-    category: 'Elektryka i Spawanie',
+      'Tak, dysponujemy mobilnym zapleczem spawalniczym i wykonujemy naprawy oraz montaże bezpośrednio na terenie zakładu klienta.',
+    category: 'Elektryka i spawanie',
     sortOrder: 80,
     isFeatured: true,
   },
@@ -123,7 +139,7 @@ const defaultFaqItems: FaqItemPayload[] = [
     id: 'faq-9',
     question: 'Czy realizujecie relokacje tylko wewnątrz zakładu?',
     answer:
-      'Nie. Obsługujemy zarówno przemieszczenia wewnątrzzakładowe, jak i relokacje do nowych lokalizacji, wraz z demontażem, transportem i rozruchem.',
+      'Nie. Obsługujemy zarówno przemieszczenia wewnątrzzakładowe, jak i relokacje całych linii do nowych lokalizacji w Polsce i za granicą, wraz z demontażem, transportem i rozruchem.',
     category: 'Relokacja',
     sortOrder: 90,
     isFeatured: false,
@@ -132,8 +148,8 @@ const defaultFaqItems: FaqItemPayload[] = [
     id: 'faq-10',
     question: 'Czy wykonujecie prace hydrauliczne i montażowo-konstrukcyjne w czynnych zakładach?',
     answer:
-      'Tak. Realizujemy modernizacje rurociągów, wymianę armatury, konstrukcje wsporcze i prace montażowe przy urządzeniach również na czynnych obiektach przemysłowych.',
-    category: 'Hydraulika i Montaż',
+      'Tak. Realizujemy modernizacje rurociągów, wymianę armatury przemysłowej, konstrukcje wsporcze i prace montażowe przy urządzeniach również na czynnych instalacjach.',
+    category: 'Hydraulika i montaż',
     sortOrder: 100,
     isFeatured: false,
   },
@@ -141,7 +157,7 @@ const defaultFaqItems: FaqItemPayload[] = [
     id: 'faq-11',
     question: 'Jak szybko odpowiadacie na zapytania?',
     answer:
-      'Odpowiadamy na zapytania w ciągu 24 godzin w dni robocze. W pilnych sprawach prosimy o kontakt telefoniczny.',
+      'Odpowiadamy na zapytania w ciągu 24 godzin w dni robocze. W pilnych sprawach awaryjnych lub sprzętowych prosimy o bezpośredni kontakt telefoniczny.',
     category: 'Kontakt',
     sortOrder: 110,
     isFeatured: false,
@@ -151,34 +167,15 @@ const defaultFaqItems: FaqItemPayload[] = [
 const defaultServiceItems: ServiceOfferingPayload[] = [
   {
     id: 'service-1',
-    slug: 'relokacja',
-    title: 'Relokacja Maszyn',
-    description: 'Kompleksowe przenoszenie linii produkcyjnych z własnym zapleczem sprzętowym.',
-    items: [
-      'Demontaż maszyn i urządzeń',
-      'Załadunek i transport specjalistyczny',
-      'Relokacje wspierane własnym sprzętem dźwigowym i transportowym',
-      'Relokacje na terenie zakładu i zewnętrzne',
-      'Ponowny montaż i poziomowanie',
-      'Rozruch technologiczny po relokacji',
-    ],
-    pagePath: '/relokacja',
-    contactLabel: 'Relokacja Maszyn',
-    training: null,
-    isFeatured: true,
-    sortOrder: 10,
-  },
-  {
-    id: 'service-2',
     slug: 'wynajem',
-    title: 'Wynajem Maszyn',
-    description: 'Sprzęt dobierany do konkretnego zadania, z opcją operatora dla wybranych grup maszyn.',
+    title: 'Wynajem maszyn i dźwigów',
+    description: 'Własny park maszynowy dobierany do zadania, z obsługą operatorską dla żurawi i podnośników.',
     items: [
       'Podesty nożycowe do 18 m oraz podnośniki koszowe na pojeździe',
-      'Żurawie samochodowe (35t, 45t, 60t, 90t)',
+      'Żurawie samochodowe o udźwigu 35 t, 45 t, 60 t oraz 90 t',
       'Ładowarki teleskopowe i wózki widłowe',
-      'Specjalistyczny sprzęt (np. VersaLift)',
-      'Osprzęt pomocniczy dobierany do zakresu usługi',
+      'Sprzęt specjalistyczny do relokacji (m.in. VersaLift)',
+      'Osprzęt pomocniczy: trawersy, rolki transportowe, przedłużki wideł',
     ],
     pagePath: '/wynajem',
     contactLabel: 'Wynajem Maszyn',
@@ -187,82 +184,177 @@ const defaultServiceItems: ServiceOfferingPayload[] = [
       linkText: 'Oferta szkoleń UDT',
     },
     isFeatured: true,
+    sortOrder: 10,
+  },
+  {
+    id: 'service-2',
+    slug: 'relokacja',
+    title: 'Relokacja maszyn i linii',
+    description: 'Kompleksowe przenoszenie pojedynczych maszyn i całych linii technologicznych z własnym zapleczem dźwigowym.',
+    items: [
+      'Demontaż mechaniczny, elektryczny i odłączenie mediów',
+      'Wyprowadzenie gabarytów z użyciem sprzętu VersaLift i rolek',
+      'Załadunek dźwigowy i bezpieczny transport specjalistyczny',
+      'Relokacje wewnątrzzakładowe oraz międzylokalizacyjne',
+      'Ponowny montaż, kotwienie, poziomowanie i rozruch',
+    ],
+    pagePath: '/relokacja',
+    contactLabel: 'Relokacja Maszyn',
+    training: null,
+    isFeatured: true,
     sortOrder: 20,
   },
   {
     id: 'service-3',
-    slug: 'spawanie',
-    title: 'Usługi Spawalnicze',
-    description: 'Naprawy bieżące, konstrukcje stalowe i wykonawstwo specjalistyczne.',
+    slug: 'udt',
+    title: 'Konserwacja, serwis i UDT',
+    description: 'Pełna obsługa formalna, przeglądy konserwacyjne oraz diagnostyka i naprawa urządzeń transportu bliskiego.',
     items: [
-      'Naprawy maszyn, zbiorników, rurociągów i kontenerów',
-      'Antresole, podesty serwisowe, hale i wiaty',
-      'Suwnice, uchwyty, ramy oraz wsporniki',
-      'Ramy pod wentylatory, kanały i rurociągi',
-      'Spawanie wszystkich gatunków stali i dobór technologii',
+      'Kompleksowa organizacja badań UDT i asysta inspektorska',
+      'Rejestracja urządzeń oraz odtwarzanie dokumentacji i resursu',
+      'Cykliczne przeglądy konserwacyjne i prowadzenie dzienników',
+      'Diagnostyka i naprawa układów hydrauliki siłowej oraz sterowania',
+      'Usuwanie awarii, regeneracja siłowników i wymiana podzespołów',
     ],
-    pagePath: '/spawanie',
-    contactLabel: 'Usługi Spawalnicze',
+    pagePath: '/udt',
+    contactLabel: 'Konserwacja i UDT',
     training: {
-      text: 'Szkolimy spawaczy (MIG/MAG, TIG).',
-      linkText: 'Kursy spawalnicze',
+      text: 'Szkolimy operatorów i konserwatorów urządzeń UDT oraz IMBiGS.',
+      linkText: 'Szkolenia UDT',
     },
     isFeatured: true,
     sortOrder: 30,
   },
   {
     id: 'service-4',
-    slug: 'budownictwo',
-    title: 'Usługi Hydrauliczne i Montażowo-Konstrukcyjne',
-    description: 'Rurociągi przemysłowe, armatura i konstrukcje wsporcze dla zakładów przemysłowych.',
+    slug: 'spawanie',
+    title: 'Usługi spawalnicze i konstrukcje',
+    description: 'Prefabrykacja i montaż konstrukcji stalowych oraz mobilne naprawy spawalnicze bezpośrednio na zakładzie.',
     items: [
-      'Modernizacja i naprawa rurociągów przemysłowych',
-      'Montaż konstrukcji wsporczych i tras rurociągowych',
-      'Wymiana armatury oraz przebudowy pod nowe urządzenia',
-      'Konstrukcje stalowe pod maszyny, pompy i wentylatory',
-      'Prace montażowo-konstrukcyjne na czynnych obiektach',
+      'Naprawy maszyn, zbiorników, silosów, rurociągów i kontenerów',
+      'Antresole magazynowe, podesty serwisowe, hale i wiaty',
+      'Suwnice, belki podsuwnicowe, uchwyty, ramy i wsporniki',
+      'Konstrukcje pod wentylatory, kanały, rurociągi i zabudowy akustyczne',
+      'Spawanie metodami TIG, MIG/MAG i MMA wszystkich gatunków stali',
     ],
-    pagePath: '/budownictwo',
-    contactLabel: 'Hydraulika i Montaż',
-    training: null,
+    pagePath: '/spawanie',
+    contactLabel: 'Usługi Spawalnicze',
+    training: {
+      text: 'Prowadzimy certyfikowane kursy spawalnicze TIG, MIG/MAG i MMA.',
+      linkText: 'Kursy spawalnicze',
+    },
     isFeatured: true,
     sortOrder: 40,
   },
   {
     id: 'service-5',
-    slug: 'udt',
-    title: 'Konserwacja i UDT',
-    description: 'Konserwacja, diagnostyka i formalności dla urządzeń objętych dozorem.',
+    slug: 'budownictwo',
+    title: 'Hydraulika i montaż przemysłowy',
+    description: 'Instalacje rurociągowe, wymiana armatury przemysłowej i konstrukcje wsporcze pod nowe urządzenia.',
     items: [
-      'Kompleksowa organizacja badań UDT',
-      'Rejestracja urządzeń i odtwarzanie dokumentacji',
-      'Przeglądy konserwacyjne i dokumentacja',
-      'Serwis, diagnostyka i usuwanie awarii',
-      'Doradztwo techniczne i analiza obowiązków dozoru',
+      'Modernizacja i naprawa rurociągów spawanych, zgrzewanych i skręcanych',
+      'Montaż konstrukcji wsporczych i tras rurociągowych',
+      'Wymiana armatury przemysłowej (zawory, zasuwy, przepustnice)',
+      'Konstrukcje stalowe pod maszyny, pompy i wentylatory',
+      'Przebudowy instalacji i izolacje termiczne na czynnych obiektach',
     ],
-    pagePath: '/udt',
-    contactLabel: 'Konserwacja i UDT',
+    pagePath: '/budownictwo',
+    contactLabel: 'Hydraulika i Montaż',
     training: null,
-    isFeatured: false,
+    isFeatured: true,
     sortOrder: 50,
   },
   {
     id: 'service-6',
     slug: 'elektryka',
-    title: 'Usługi Elektryczne',
-    description: 'Uruchomienia, pomiary i wykonawstwo instalacji elektrycznych.',
+    title: 'Usługi elektryczne i AKPiA',
+    description: 'Uruchomienia, pomiary odbiorcze i okresowe oraz wykonawstwo instalacji nn, SN i WN na czynnych obiektach.',
     items: [
-      'Pomiary transformatorów, silników i kabli',
-      'Testy rozdzielnic nn oraz SN',
-      'Instalacje kablowe i trasy kablowe',
-      'Oświetlenie i instalacje słaboprądowe',
-      'Wsparcie rozruchowe na obiektach przemysłowych',
+      'Pomiary transformatorów, silników, kabli i ochrony przeciwporażeniowej',
+      'Testy, parametryzacja i uruchomienia rozdzielnic nn oraz SN',
+      'Integracja automatyki: Profibus, Profinet, Modbus, IEC 61850',
+      'Montaż tras kablowych, oświetlenia i instalacji odgromowych',
+      'Kompletne protokoły pomiarowe i dokumentacja powykonawcza',
     ],
     pagePath: '/elektryka',
     contactLabel: 'Usługi Elektryczne',
-    training: null,
-    isFeatured: false,
+    training: {
+      text: 'Organizujemy kursy i egzaminy energetyczne SEP G1, G2 i G3.',
+      linkText: 'Szkolenia SEP',
+    },
+    isFeatured: true,
     sortOrder: 60,
+  },
+];
+
+const defaultPortfolioItems: PortfolioItemPayload[] = [
+  {
+    id: 'portfolio-1',
+    slug: 'wynajem-zurawi-i-podestow-przemyslowych',
+    title: 'Wynajem maszyn i sprzętu dźwigowego',
+    category: 'Wynajem maszyn',
+    location: 'Kutno i centralna Polska',
+    description:
+      'Obsługa dźwigowa i podnośnikowa prac montażowych oraz serwisowych na czynnych zakładach przemysłowych.',
+    items: [
+      'Projekty wsparcia prac na wysokości i transportu ciężkiego',
+      'Wynajem żurawi samochodowych (35 t – 90 t) i podestów z operatorem',
+      'Podesty nożycowe i przegubowe do prac instalacyjnych na halach',
+    ],
+    imageUrl: null,
+    isFeatured: true,
+    sortOrder: 10,
+  },
+  {
+    id: 'portfolio-2',
+    slug: 'relokacja-linii-i-maszyn-produkcyjnych',
+    title: 'Relokacje maszyn i linii produkcyjnych',
+    category: 'Relokacja maszyn',
+    location: 'Zakłady produkcyjne (Polska i Europa)',
+    description:
+      'Kompleksowe przeniesienie parku maszynowego z zachowaniem ciągłości technologicznej zakładu.',
+    items: [
+      'Demontaż, transport specjalistyczny i ponowny montaż urządzeń',
+      'Wprowadzanie gabarytów na halę z użyciem sprzętu VersaLift i rolek',
+      'Poziomowanie, podłączenie mediów i uruchomienia po relokacji',
+    ],
+    imageUrl: null,
+    isFeatured: true,
+    sortOrder: 20,
+  },
+  {
+    id: 'portfolio-3',
+    slug: 'konserwacja-i-odbiory-udt',
+    title: 'Obsługa UDT i przeglądy konserwacyjne',
+    category: 'UDT i serwis',
+    location: 'Woj. łódzkie i mazowieckie',
+    description:
+      'Stały nadzór konserwatorski nad flotą wózków, podestów ruchomych i suwnic wraz z udziałem w badaniach UDT.',
+    items: [
+      'Kompleksowa obsługa formalna rejestracji urządzeń w UDT',
+      'Okresowe przeglądy konserwacyjne i wpisy do dzienników konserwacji',
+      'Przygotowanie techniczne maszyn i asysta podczas odbiorów inspektorskich',
+    ],
+    imageUrl: null,
+    isFeatured: true,
+    sortOrder: 30,
+  },
+  {
+    id: 'portfolio-4',
+    slug: 'spawalnictwo-i-konstrukcje-stalowe',
+    title: 'Spawalnictwo i konstrukcje przemysłowe',
+    category: 'Spawalnictwo i montaż',
+    location: 'Obiekty przemysłowe i logistyczne',
+    description:
+      'Prefabrykacja oraz montaż konstrukcji stalowych, podestów obsługowych i rurociągów technologicznych.',
+    items: [
+      'Naprawy bieżące i modernizacje elementów stalowych na zakładach',
+      'Wykonawstwo konstrukcji wsporczych, suwnic, antresol i barier ochronnych',
+      'Spawanie rurociągów i zbiorników metodami TIG oraz MIG/MAG',
+    ],
+    imageUrl: null,
+    isFeatured: true,
+    sortOrder: 40,
   },
 ];
 
@@ -312,6 +404,9 @@ function buildDefaultContent(): SiteContentData {
       items: defaultServiceItems,
       contactOptions,
     },
+    portfolio: {
+      items: defaultPortfolioItems,
+    },
   };
 }
 
@@ -323,6 +418,13 @@ function getServiceOfferingsApiUrl() {
   return (
     import.meta.env.SERVICE_OFFERINGS_API_URL?.trim() ||
     import.meta.env.PUBLIC_SERVICE_OFFERINGS_API_URL?.trim()
+  );
+}
+
+function getPortfolioItemsApiUrl() {
+  return (
+    import.meta.env.PORTFOLIO_ITEMS_API_URL?.trim() ||
+    import.meta.env.PUBLIC_PORTFOLIO_ITEMS_API_URL?.trim()
   );
 }
 
@@ -359,6 +461,17 @@ function isServiceOfferingPayload(value: unknown): value is ServiceOfferingPaylo
   );
 }
 
+function isPortfolioItemPayload(value: unknown): value is PortfolioItemPayload {
+  return Boolean(
+    value &&
+      typeof value === 'object' &&
+      'id' in value &&
+      'title' in value &&
+      'items' in value &&
+      Array.isArray((value as PortfolioItemPayload).items)
+  );
+}
+
 async function fetchJson(url: string | undefined): Promise<{ data?: unknown } | null> {
   if (!url) {
     return null;
@@ -381,16 +494,16 @@ async function fetchJson(url: string | undefined): Promise<{ data?: unknown } | 
   }
 }
 
-function normalizeFaqContent(payload: { data?: unknown } | null): SiteContentData['faqs'] | null {
+function normalizeFaqContent(payload: { data?: unknown } | null, allowEmpty = false): SiteContentData['faqs'] | null {
   const data = payload?.data;
 
-  if (!data || typeof data !== 'object') {
+  if (!data || typeof data !== 'object' || !('items' in data) || !Array.isArray(data.items)) {
     return null;
   }
 
-  const items = 'items' in data && Array.isArray(data.items) ? data.items.filter(isFaqItemPayload) : [];
+  const items = data.items.filter(isFaqItemPayload);
 
-  if (items.length === 0) {
+  if (!allowEmpty && items.length === 0) {
     return null;
   }
 
@@ -413,16 +526,16 @@ function normalizeFaqContent(payload: { data?: unknown } | null): SiteContentDat
   };
 }
 
-function normalizeServiceContent(payload: { data?: unknown } | null): SiteContentData['services'] | null {
+function normalizeServiceContent(payload: { data?: unknown } | null, allowEmpty = false): SiteContentData['services'] | null {
   const data = payload?.data;
 
-  if (!data || typeof data !== 'object') {
+  if (!data || typeof data !== 'object' || !('items' in data) || !Array.isArray(data.items)) {
     return null;
   }
 
-  const items = 'items' in data && Array.isArray(data.items) ? data.items.filter(isServiceOfferingPayload) : [];
+  const items = data.items.filter(isServiceOfferingPayload);
 
-  if (items.length === 0) {
+  if (!allowEmpty && items.length === 0) {
     return null;
   }
 
@@ -437,21 +550,58 @@ function normalizeServiceContent(payload: { data?: unknown } | null): SiteConten
   };
 }
 
+function normalizePortfolioContent(
+  payload: { data?: unknown } | null,
+  allowEmpty = false
+): SiteContentData['portfolio'] | null {
+  const data = payload?.data;
+
+  if (!data || typeof data !== 'object' || !('items' in data) || !Array.isArray(data.items)) {
+    return null;
+  }
+
+  const items = data.items.filter(isPortfolioItemPayload);
+
+  if (!allowEmpty && items.length === 0) {
+    return null;
+  }
+
+  return { items };
+}
+
+export async function fetchLiveFaqs(): Promise<SiteContentData['faqs'] | null> {
+  const payload = await fetchJson(import.meta.env.PUBLIC_FAQS_API_URL?.trim());
+  return normalizeFaqContent(payload, true);
+}
+
+export async function fetchLiveServices(): Promise<SiteContentData['services'] | null> {
+  const payload = await fetchJson(import.meta.env.PUBLIC_SERVICE_OFFERINGS_API_URL?.trim());
+  return normalizeServiceContent(payload, true);
+}
+
+export async function fetchLivePortfolioItems(): Promise<SiteContentData['portfolio'] | null> {
+  const payload = await fetchJson(import.meta.env.PUBLIC_PORTFOLIO_ITEMS_API_URL?.trim());
+  return normalizePortfolioContent(payload, true);
+}
+
 export async function getSiteContent(): Promise<SiteContentData> {
   const fallback = buildDefaultContent();
 
-  const [faqPayload, servicePayload] = await Promise.all([
+  const [faqPayload, servicePayload, portfolioPayload] = await Promise.all([
     fetchJson(getFaqsApiUrl()),
     fetchJson(getServiceOfferingsApiUrl()),
+    fetchJson(getPortfolioItemsApiUrl()),
   ]);
 
   const snapshot = await readJsonSnapshot<SiteContentData>(siteContentSnapshotPath);
   const snapshotFaqs = normalizeFaqContent(snapshot ? { data: snapshot.faqs } : null);
   const snapshotServices = normalizeServiceContent(snapshot ? { data: snapshot.services } : null);
+  const snapshotPortfolio = normalizePortfolioContent(snapshot ? { data: snapshot.portfolio } : null);
 
   return {
-    faqs: normalizeFaqContent(faqPayload) ?? snapshotFaqs ?? fallback.faqs,
-    services: normalizeServiceContent(servicePayload) ?? snapshotServices ?? fallback.services,
+    faqs: normalizeFaqContent(faqPayload, true) ?? snapshotFaqs ?? fallback.faqs,
+    services: normalizeServiceContent(servicePayload, true) ?? snapshotServices ?? fallback.services,
+    portfolio: normalizePortfolioContent(portfolioPayload, true) ?? snapshotPortfolio ?? fallback.portfolio,
   };
 }
 

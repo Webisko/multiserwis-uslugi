@@ -13,7 +13,6 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use UnitEnum;
 
 class ServiceOfferingResource extends Resource
 {
@@ -27,11 +26,19 @@ class ServiceOfferingResource extends Resource
 
     protected static ?string $navigationLabel = 'Usługi';
 
-    protected static string|UnitEnum|null $navigationGroup = 'Treść';
+    protected static ?int $navigationSort = 20;
 
-    protected static ?int $navigationSort = 40;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedWrenchScrewdriver;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    public static function getNavigationBadge(): ?string
+    {
+        return (string) static::getModel()::query()->where('is_active', true)->count();
+    }
+
+    public static function getNavigationBadgeColor(): string|array|null
+    {
+        return 'gray';
+    }
 
     public static function form(Schema $schema): Schema
     {
@@ -45,9 +52,7 @@ class ServiceOfferingResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array

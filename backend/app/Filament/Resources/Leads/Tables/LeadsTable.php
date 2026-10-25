@@ -15,18 +15,16 @@ class LeadsTable
     {
         return $table
             ->columns([
-                TextColumn::make('public_id')
-                    ->label('ID')
-                    ->copyable()
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->searchable(),
+                TextColumn::make('created_at')
+                    ->label('Data zgłoszenia')
+                    ->dateTime('d.m.Y H:i')
+                    ->sortable(),
                 TextColumn::make('full_name')
-                    ->label('Kontakt')
+                    ->label('Klient')
+                    ->weight('bold')
                     ->sortable()
-                    ->searchable(),
-                TextColumn::make('company')
-                    ->label('Firma')
-                    ->searchable(),
+                    ->searchable()
+                    ->description(fn (\App\Models\Lead $record): ?string => $record->company),
                 TextColumn::make('phone')
                     ->label('Telefon')
                     ->copyable()
@@ -34,13 +32,23 @@ class LeadsTable
                 TextColumn::make('email')
                     ->label('E-mail')
                     ->copyable()
+                    ->placeholder('—')
                     ->searchable(),
                 TextColumn::make('service')
-                    ->label('Usługa')
+                    ->label('Obszar usługi')
+                    ->badge()
+                    ->color('gray')
                     ->searchable(),
                 TextColumn::make('status')
                     ->label('Status')
                     ->badge()
+                    ->formatStateUsing(fn (string $state): string => match ($state) {
+                        'new' => 'Nowy',
+                        'in_progress' => 'W realizacji',
+                        'done' => 'Zamknięty',
+                        'spam' => 'Spam',
+                        default => $state,
+                    })
                     ->color(fn (string $state): string => match ($state) {
                         'new' => 'warning',
                         'in_progress' => 'info',
@@ -49,50 +57,28 @@ class LeadsTable
                         default => 'gray',
                     })
                     ->searchable(),
-                IconColumn::make('is_spam')
-                    ->label('Spam')
-                    ->boolean(),
-                IconColumn::make('consent')
-                    ->label('Zgoda')
-                    ->boolean(),
-                TextColumn::make('source_page')
-                    ->label('Strona źródłowa')
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->searchable(),
-                TextColumn::make('source_context')
-                    ->label('Kontekst')
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->searchable(),
-                TextColumn::make('source_site')
-                    ->label('Serwis źródłowy')
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->searchable(),
-                TextColumn::make('locale')
-                    ->label('Locale')
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->searchable(),
-                TextColumn::make('ip_address')
-                    ->label('IP')
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->searchable(),
-                TextColumn::make('spam_reason')
-                    ->label('Powód spamu')
-                    ->toggleable(isToggledHiddenByDefault: true)
-                    ->searchable(),
-                TextColumn::make('created_at')
-                    ->label('Utworzono')
-                    ->dateTime()
+                TextColumn::make('assignedUser.name')
+                    ->label('Opiekun')
+                    ->placeholder('—')
                     ->sortable()
                     ->toggleable(),
-                TextColumn::make('updated_at')
-                    ->label('Zmieniono')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                IconColumn::make('consent')
+                    ->label('Zgoda RODO')
+                    ->boolean()
+                    ->toggleable(),
+                TextColumn::make('source_page')
+                    ->label('Podstrona źródłowa')
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->searchable(),
+                TextColumn::make('public_id')
+                    ->label('ID zgłoszenia')
+                    ->copyable()
+                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->searchable(),
             ])
             ->filters([
                 SelectFilter::make('status')
-                    ->label('Status')
+                    ->label('Status obsługi')
                     ->options([
                         'new' => 'Nowy',
                         'in_progress' => 'W realizacji',
@@ -100,11 +86,15 @@ class LeadsTable
                         'spam' => 'Spam',
                     ]),
                 TernaryFilter::make('is_spam')
-                    ->label('Spam'),
+                    ->label('Filtr spamu')
+                    ->default(false),
             ])
             ->recordActions([
-                EditAction::make(),
+                EditAction::make()
+                    ->label('Szczegóły'),
             ])
+            ->emptyStateHeading('Brak zapytań ofertowych')
+            ->emptyStateDescription('Wszystkie zapytania przesłane przez formularz kontaktowy na stronie multiserwis.tech pojawią się w tej tabeli.')
             ->defaultSort('created_at', 'desc');
     }
 }

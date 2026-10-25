@@ -48,28 +48,49 @@
 
 @layer components {
   .page-section {
-    @apply py-20 bg-industrial-950;
+    @apply py-16 md:py-24 bg-industrial-950;
+  }
+
+  .page-section-alt {
+    @apply py-16 md:py-24 bg-industrial-900;
   }
 
   .page-container {
-    @apply container mx-auto px-4;
+    @apply container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-industrial-accent/30 bg-industrial-accent/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-industrial-accent;
+  }
+
+  .section-title {
+    @apply font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold uppercase tracking-tight text-white leading-[1.12];
+  }
+
+  .section-lead {
+    @apply font-sans text-base sm:text-lg text-gray-300 leading-relaxed max-w-3xl;
+  }
+
+  .card-title {
+    @apply font-display text-xl sm:text-2xl font-bold text-white tracking-tight leading-snug;
   }
 
   .offer-card {
-    @apply bg-industrial-900 border border-gray-800 rounded-xl p-8 transition-colors hover:border-industrial-accent/40;
+    @apply bg-industrial-900 border border-gray-800/90 rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-industrial-accent/40;
   }
 
   .offer-card-soft {
-    @apply bg-industrial-900/50 border border-gray-800 rounded-xl p-8 transition-colors hover:border-industrial-accent/30;
+    @apply bg-industrial-900/60 border border-gray-800/80 rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:border-industrial-accent/30;
   }
 
   .offer-cta {
-    @apply bg-industrial-900 rounded-2xl border border-gray-800 p-8 md:p-12;
+    @apply bg-industrial-900 rounded-2xl border border-gray-800 p-6 sm:p-8 md:p-12;
   }
 }
 
 @media (max-width: 639px) {
-  .page-section {
+  .page-section,
+  .page-section-alt {
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
   }
@@ -83,23 +104,22 @@
   .offer-card-soft,
   .offer-cta {
     padding: 1.25rem;
-    border-radius: 0.75rem;
+    border-radius: 0.875rem;
   }
 
   .page-hero {
-    min-height: 38vh;
+    min-height: 36vh;
   }
 
   .page-hero-title {
-    font-size: 1.9rem;
+    font-size: 1.875rem;
     line-height: 1.1;
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.75rem;
   }
 
   .page-hero-subtitle {
-    font-size: 0.96rem;
-    line-height: 1.5;
-    padding: 0.65rem 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
   }
 
   input,

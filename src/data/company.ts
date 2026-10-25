@@ -1,4 +1,4 @@
-import { createContext, createElement, useContext, type ReactNode } from 'react';
+import { createContext, createElement, useContext, useEffect, useState, type ReactNode } from 'react';
 
 export const defaultCompany = {
   name: 'Multiserwis Kutno',
@@ -12,7 +12,7 @@ export const defaultCompany = {
     trainingSiteUrl: 'https://szkolenia-multiserwis.pl/',
   },
   address: {
-    street: 'ul. Przemysłowa 2',
+    street: 'ul. Henryka Siemiradzkiego 18',
     postalCode: '99-300',
     city: 'Kutno',
   },
@@ -32,16 +32,16 @@ export const defaultCompany = {
   },
   email: 'multiserwis.kutno@gmail.com',
   openingHours: {
-    days: 'Poniedziałek - Piątek',
-    details: '8:00 - 16:00',
+    days: 'Poniedziałek – Piątek',
+    details: '8:00 – 16:00',
   },
   emergencyNote: 'Serwis awaryjny 24/7 (dla stałych klientów)',
   map: {
-    query: 'Multiserwis Kutno, ul. Przemysłowa 2, 99-300 Kutno',
+    query: 'Multiserwis Kutno, ul. Henryka Siemiradzkiego 18, 99-300 Kutno',
     embedUrl:
-      'https://www.google.com/maps?q=Multiserwis%20Kutno%2C%20ul.%20Przemys%C5%82owa%202%2C%2099-300%20Kutno&output=embed',
+      'https://www.google.com/maps?q=Multiserwis%20Kutno%2C%20ul.%20Henryka%20Siemiradzkiego%2018%2C%2099-300%20Kutno&output=embed',
     directionsUrl:
-      'https://www.google.com/maps/search/?api=1&query=Multiserwis%20Kutno%2C%20ul.%20Przemys%C5%82owa%202%2C%2099-300%20Kutno',
+      'https://www.google.com/maps/search/?api=1&query=Multiserwis%20Kutno%2C%20ul.%20Henryka%20Siemiradzkiego%2018%2C%2099-300%20Kutno',
   },
 } as const;
 
@@ -77,17 +77,102 @@ export const company: CompanyData =
 
 const CompanyDataContext = createContext<CompanyData>(company);
 
+let cachedLiveCompany: CompanyData | null = null;
+let liveCompanyPromise: Promise<CompanyData | null> | null = null;
+
+function resolveEffectiveClientBasePath(fallback: string): string {
+  const envBase = import.meta.env.PUBLIC_SITE_BASE_PATH?.trim();
+  if (envBase !== undefined) {
+    return envBase === '/' || envBase === '' ? '' : `/${envBase.replace(/^\/+|\/+$/g, '')}`;
+  }
+  if (typeof window !== 'undefined' && !window.location.pathname.startsWith('/multiserwis-uslugi')) {
+    return '';
+  }
+  return fallback === '/' ? '' : fallback;
+}
+
+export async function fetchLiveCompanyData(): Promise<CompanyData | null> {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
+  if (cachedLiveCompany) {
+    return cachedLiveCompany;
+  }
+
+  if (liveCompanyPromise) {
+    return liveCompanyPromise;
+  }
+
+  const apiUrl = import.meta.env.PUBLIC_SITE_SETTINGS_API_URL?.trim();
+  if (!apiUrl) {
+    return null;
+  }
+
+  liveCompanyPromise = fetch(apiUrl, { headers: { Accept: 'application/json' } })
+    .then(async (res) => {
+      if (!res.ok) return null;
+      const json = (await res.json()) as { data?: { company?: CompanyData; seo?: SiteSeoData } };
+      const apiCompany = json?.data?.company;
+      if (!apiCompany || typeof apiCompany !== 'object') return null;
+      const normalized: CompanyData = {
+        ...apiCompany,
+        links: {
+          ...apiCompany.links,
+          basePath: resolveEffectiveClientBasePath(apiCompany.links?.basePath ?? ''),
+        },
+      };
+      cachedLiveCompany = normalized;
+      if (window.__MULTISERWIS_SITE_SETTINGS__) {
+        window.__MULTISERWIS_SITE_SETTINGS__.company = normalized;
+      }
+      window.dispatchEvent(new CustomEvent('multiserwis:company-updated', { detail: normalized }));
+      return normalized;
+    })
+    .catch(() => null);
+
+  return liveCompanyPromise;
+}
+
+export function useLiveCompanyData(initial?: CompanyData): CompanyData {
+  const ctxCompany = useContext(CompanyDataContext);
+  const [liveData, setLiveData] = useState<CompanyData>(
+    () => cachedLiveCompany ?? initial ?? ctxCompany ?? company
+  );
+
+  useEffect(() => {
+    const onUpdate = (event: Event) => {
+      const detail = (event as CustomEvent<CompanyData>).detail;
+      if (detail) {
+        setLiveData(detail);
+      }
+    };
+
+    window.addEventListener('multiserwis:company-updated', onUpdate);
+    void fetchLiveCompanyData().then((fresh) => {
+      if (fresh) {
+        setLiveData(fresh);
+      }
+    });
+
+    return () => window.removeEventListener('multiserwis:company-updated', onUpdate);
+  }, []);
+
+  return liveData;
+}
+
 type SiteSettingsProviderProps = {
   value?: CompanyData;
   children: ReactNode;
 };
 
 export function SiteSettingsProvider({ value, children }: SiteSettingsProviderProps) {
-  return createElement(CompanyDataContext.Provider, { value: value ?? company }, children);
+  const liveCompany = useLiveCompanyData(value);
+  return createElement(CompanyDataContext.Provider, { value: liveCompany }, children);
 }
 
 export function useCompanyData(): CompanyData {
-  return useContext(CompanyDataContext);
+  return useLiveCompanyData();
 }
 
 export function getWhatsAppUrl(phoneHref?: string, fallbackValue?: string): string | null {

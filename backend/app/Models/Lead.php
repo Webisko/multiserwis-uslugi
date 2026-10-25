@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Lead extends Model
 {
@@ -27,6 +28,7 @@ class Lead extends Model
         'user_agent',
         'ip_address',
         'status',
+        'assigned_user_id',
         'is_spam',
         'spam_reason',
         'notes',
@@ -38,5 +40,10 @@ class Lead extends Model
             'consent' => 'boolean',
             'is_spam' => 'boolean',
         ];
+    }
+
+    public function assignedUser(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'assigned_user_id');
     }
 }

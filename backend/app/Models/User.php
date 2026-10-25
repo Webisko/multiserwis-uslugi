@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['name', 'job_title', 'email', 'phone', 'role', 'is_active', 'receives_lead_notifications', 'password'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable implements FilamentUser
 {
@@ -29,6 +29,8 @@ class User extends Authenticatable implements FilamentUser
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_active' => 'boolean',
+            'receives_lead_notifications' => 'boolean',
         ];
     }
 
@@ -38,11 +40,10 @@ class User extends Authenticatable implements FilamentUser
             return false;
         }
 
-        $allowedEmails = array_filter(array_map(
-            static fn (string $email): string => trim($email),
-            explode(',', (string) env('FILAMENT_ADMIN_EMAILS', 'admin@multiserwis.local')),
-        ));
+        if ($this->is_active === false) {
+            return false;
+        }
 
-        return in_array((string) $this->email, $allowedEmails, true);
+        return true;
     }
 }

@@ -1,26 +1,29 @@
-# Multiserwis – Kompleksowe Usługi dla Przemysłu
+# Multiserwis – Kompleksowe usługi dla przemysłu i budownictwa
 
-> Multiserwis Kutno to profesjonalny partner przemysłowy z certyfikatem ISO 9001:2015. Oferujemy kompleksowe wsparcie zakładów produkcyjnych, fabryk i placów budowy w Polsce: wynajem specjalistycznych maszyn, relokację linii technologicznych, dozór UDT, spawalnictwo precyzyjne, hydraulikę siłową oraz instalacje elektryczne.
+> Multiserwis Kutno to partner przemysłowy z certyfikatem ISO 9001:2015. Oferujemy kompleksowe wsparcie zakładów produkcyjnych, fabryk i placów budowy w Polsce: wynajem specjalistycznych maszyn i dźwigów, relokację linii technologicznych, dozór i szkolenia UDT, spawalnictwo precyzyjne, hydraulikę siłową oraz instalacje elektryczne i AKPiA.
 
 ## Informacje podstawowe
-- Nazwa firmy: Multiserwis
-- Lokalizacja: ul. Sklęczkowska 16, 99-300 Kutno, Polska
-- Telefon główny: +48 602 123 456
-- E-mail: biuro@multiserwis.pl
-- Godziny pracy: Poniedziałek – Piątek, 08:00 – 16:00
-- Czas wyceny: Wycena i pierwszy kontakt do 24h w dni robocze
+- Nazwa firmy: Multiserwis Kutno
+- Lokalizacja: ul. Henryka Siemiradzkiego 18, 99-300 Kutno, Polska
+- Telefony kontaktowe (usługi): +48 730 101 000, +48 733 929 100
+- Telefon kontaktowy (szkolenia): +48 730 202 000
+- E-mail: multiserwis.kutno@gmail.com
+- Godziny pracy: Poniedziałek – Piątek, 08:00 – 16:00 (wsparcie awaryjne 24/7 dla stałych klientów)
+- Czas wyceny: Wycena i kontakt inżyniera w 24h w dni robocze
 - Certyfikat jakości: ISO 9001:2015 (Akredytacja PCA AC 136)
 
 ## Zakres usług (Katalog)
-- [Wynajem Maszyn i Podestów](/wynajem): Podnośniki nożycowe, koszowe, teleskopowe, żurawie samojezdne do 45t, wózki widłowe i ładowarki teleskopowe z operatorem lub bez.
-- [Relokacja Maszyn i Linii](/relokacja): Kompleksowy demontaż, transport ponadgabarytowy, ponowny montaż, pozycjonowanie laserowe i rozruch technologiczny ciągów produkcyjnych.
-- [Konserwacja i Dozór UDT](/udt): Przygotowanie maszyn do badań okresowych i odbiorczych UDT, resurs, przeglądy konserwacyjne, asysta inspektorska.
-- [Usługi Spawalnicze](/spawanie): Spawanie metodami TIG, MIG/MAG, MMA, prefabrykacja konstrukcji stalowych, rurociągi przemysłowe, regeneracja elementów maszyn.
-- [Hydraulika i Montaż Przemysłowy](/budownictwo): Montaż rurociągów technologicznych, armatury, hydrauliki siłowej oraz konstrukcji wsporczych.
-- [Instalacje i Pomiary Elektryczne](/elektryka): Pomiary odbiorcze i okresowe SEP, automatyka przemysłowa, szafy sterownicze, rozruch instalacji.
-- [O Firmie](/o-firmie): Historia, park maszynowy, certyfikat ISO 9001:2015.
-- [Centrum Pomocy FAQ](/faq): Baza wiedzy i odpowiedzi na najczęściej zadawane pytania techniczne.
-- [Kontakt i Wycena](/kontakt): Formularz zapytania ofertowego online z obsługą protokołu WebMCP.
+- [Pełny katalog usług technicznych](/uslugi-techniczne): Zbiorczy przegląd wszystkich 6 filarów usług inżynieryjnych i sprzętowych.
+- [Wynajem maszyn i dźwigów](/wynajem): Podnośniki nożycowe i koszowe, żurawie samojezdne do 45t, wózki widłowe i ładowarki teleskopowe z operatorem lub bez.
+- [Relokacja maszyn i linii](/relokacja): Kompleksowy demontaż, transport ponadgabarytowy, ponowny montaż, pozycjonowanie i rozruch technologiczny ciągów produkcyjnych.
+- [Konserwacja, serwis i szkolenia UDT](/udt): Przygotowanie maszyn do badań okresowych i odbiorczych UDT, resurs, przeglądy konserwacyjne oraz szkolenia operatorów.
+- [Usługi spawalnicze i konstrukcje](/spawanie): Spawanie metodami TIG, MIG/MAG, MMA, prefabrykacja konstrukcji stalowych, rurociągi przemysłowe, regeneracja elementów maszyn.
+- [Hydraulika i montaż przemysłowy](/budownictwo): Montaż rurociągów technologicznych, armatury, hydrauliki siłowej oraz konstrukcji wsporczych.
+- [Usługi elektryczne i AKPiA](/elektryka): Pomiary odbiorcze i okresowe SEP, automatyka przemysłowa, szafy sterownicze, szkolenia SEP (G1, G2, G3).
+- [Realizacje](/realizacje): Przykładowe wdrożenia i projekty zrealizowane dla zakładów przemysłowych.
+- [O firmie](/o-firmie): Standardy pracy, park maszynowy, certyfikat ISO 9001:2015.
+- [Centrum pomocy FAQ](/faq): Baza wiedzy i odpowiedzi na najczęściej zadawane pytania techniczne.
+- [Kontakt i wycena](/kontakt): Formularz zapytania ofertowego online z obsługą protokołu WebMCP.
 
 ## Narzędzia dla agentów (WebMCP)
 - Narzędzie zapytania ofertowego: `send_contact_inquiry`

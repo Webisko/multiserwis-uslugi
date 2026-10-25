@@ -1,65 +1,64 @@
 import React from 'react';
 import { PageHeader } from '../components/PageHeader';
+import { company } from '../data/company';
 
 export const TermsPage: React.FC = () => {
   return (
     <>
       <PageHeader
-        title="Regulamin"
-        subtitle="Zasady korzystania ze strony internetowej i kontaktu ofertowego."
-        backgroundImage="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=2000"
+        badge="Dokumenty formalne"
+        title="Regulamin serwisu"
+        subtitle="Zasady korzystania ze strony internetowej i formularza zapytań ofertowych."
+        backgroundImage="/images/page-headers/legal-header.webp"
       />
 
       <section className="page-section">
         <div className="page-container">
           <div className="max-w-4xl mx-auto bg-industrial-900 border border-gray-800 rounded-2xl p-8 md:p-10 space-y-8 text-gray-300 leading-relaxed">
-            <div className="bg-industrial-800 border border-gray-700 rounded-lg p-4 text-sm text-gray-300">
-              Wersja robocza. Treść wymaga finalnej akceptacji klienta i ewentualnej konsultacji prawnej.
-            </div>
-
             <article>
-              <h2 className="text-2xl font-bold text-white mb-3">1. Postanowienia ogólne</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-white mb-3">1. Postanowienia ogólne</h2>
               <p>
-                Strona ma charakter informacyjno-ofertowy i służy prezentacji usług firmy MULTISERWIS.
+                Strona internetowa ma charakter informacyjno-ofertowy i służy prezentacji usług przemysłowych świadczonych przez firmę {company.name} z siedzibą przy {company.address.street}, {company.address.postalCode} {company.address.city}.
               </p>
             </article>
 
             <article>
-              <h2 className="text-2xl font-bold text-white mb-3">2. Zakres informacji</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-white mb-3">2. Zakres informacji handlowych</h2>
               <p>
-                Informacje publikowane na stronie nie stanowią oferty handlowej w rozumieniu Kodeksu cywilnego,
-                a szczegółowe warunki współpracy ustalane są indywidualnie.
+                Informacje oraz parametry techniczne publikowane na stronie nie stanowią oferty handlowej w rozumieniu art. 66 § 1 Kodeksu cywilnego,
+                lecz zaproszenie do zawarcia umowy. Szczegółowe warunki współpracy, stawki wynajmu oraz harmonogramy prac ustalane są indywidualnie w oparciu o wycenę.
               </p>
             </article>
 
             <article>
-              <h2 className="text-2xl font-bold text-white mb-3">3. Formularz kontaktowy</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-white mb-3">3. Formularz zapytania ofertowego</h2>
               <p>
-                Użytkownik zobowiązuje się do podawania prawdziwych danych i niewysyłania treści bezprawnych.
-                Odpowiedź na zapytanie następuje w możliwie najkrótszym terminie.
+                Użytkownik korzystający z formularza kontaktowego zobowiązuje się do podawania prawdziwych danych kontaktowych oraz niewysyłania treści o charakterze bezprawnym.
+                Odpowiedź na zapytanie ofertowe następuje w dni robocze, zazwyczaj w ciągu 24 godzin.
               </p>
             </article>
 
             <article>
-              <h2 className="text-2xl font-bold text-white mb-3">4. Prawa autorskie</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-white mb-3">4. Prawa własności intelektualnej</h2>
               <p>
-                Treści, grafiki i materiały umieszczone na stronie podlegają ochronie prawnej i nie mogą być
-                kopiowane bez zgody właściciela, z wyjątkiem dozwolonego użytku.
+                Treści techniczne, zdjęcia realizacji, logotypy oraz elementy graficzne umieszczone w serwisie podlegają ochronie prawnej i nie mogą być
+                kopiowane ani rozpowszechniane bez pisemnej zgody właściciela serwisu, poza przypadkami dozwolonego użytku.
               </p>
             </article>
 
             <article>
-              <h2 className="text-2xl font-bold text-white mb-3">5. Odpowiedzialność</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-white mb-3">5. Odpowiedzialność techniczna</h2>
               <p>
-                Dokładamy należytej staranności, aby treści były aktualne, jednak zastrzegamy możliwość zmian
-                i aktualizacji bez wcześniejszego powiadomienia.
+                Dokładamy należytej staranności, aby opisy usług i specyfikacje sprzętowe były aktualne, jednak zastrzegamy prawo do modyfikacji parku maszynowego
+                oraz zakresu oferty bez wcześniejszego powiadomienia.
               </p>
             </article>
 
             <article>
-              <h2 className="text-2xl font-bold text-white mb-3">6. Kontakt</h2>
+              <h2 className="text-xl md:text-2xl font-bold text-white mb-3">6. Dane kontaktowe</h2>
               <p>
-                W sprawach formalnych skontaktuj się: multiserwis.kutno@gmail.com.
+                W sprawach formalnych i technicznych prosimy o kontakt pod adresem e-mail:{' '}
+                <a href={`mailto:${company.email}`} className="text-brand-yellow hover:underline">{company.email}</a>.
               </p>
             </article>
           </div>

@@ -123,4 +123,8 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'filament_admin_emails' => env('FILAMENT_ADMIN_EMAILS', 'admin@webisko.pl,admin@multiserwis.local'),
+
+    'lead_notification_email' => env('LEAD_NOTIFICATION_EMAIL'),
+
 ];

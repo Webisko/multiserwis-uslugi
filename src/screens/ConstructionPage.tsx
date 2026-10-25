@@ -1,8 +1,13 @@
 import React from 'react';
 import { PageHeader } from '../components/PageHeader';
-import { HardHat, Building2, Hammer, Ruler } from 'lucide-react';
 import { ServiceInquiryCta } from '../components/ServiceInquiryCta';
 import { company, type CompanyData, SiteSettingsProvider } from '../data/company';
+import {
+  IndustrialPipelineIcon,
+  SteelStructureIcon,
+  SynergyHubIcon,
+  CheckMarkIcon,
+} from '../components/icons/IndustrialIcons';
 
 type ConstructionPageProps = {
   companyData?: CompanyData;
@@ -14,68 +19,94 @@ export const ConstructionPage: React.FC<ConstructionPageProps> = ({ companyData 
     {
       title: 'Instalacje i rurociągi przemysłowe',
       description:
-        'Modernizujemy i naprawiamy instalacje rurociągowe oraz układy przesyłowe w zakładach przemysłowych.',
-      icon: <Hammer size={22} />,
-      items: ['modernizacja i naprawa rurociągów spawanych, zgrzewanych i skręcanych', 'montaż konstrukcji wsporczych i tras rurociągowych', 'wymiana armatury, przebudowy rurociągów i izolacje termiczne'],
+        'Modernizujemy, przebudowujemy i naprawiamy instalacje rurociągowe oraz układy przesyłowe w zakładach produkcyjnych.',
+      icon: <IndustrialPipelineIcon size={24} />,
+      items: [
+        'Modernizacja i naprawa rurociągów spawanych, zgrzewanych i skręcanych – w całości lub na wskazanych odcinkach',
+        'Montaż konstrukcji wsporczych, estakad i tras rurociągowych',
+        'Wymiana armatury przemysłowej (zawory, zasuwy, przepustnice) oraz odcinków rurociągów',
+        'Przebudowy instalacji rurociągowych pod nowe urządzenia i izolacje termiczne',
+      ],
     },
     {
       title: 'Prace konstrukcyjne pod maszyny i urządzenia',
       description:
-        'Wykonujemy konstrukcje stalowe i elementy wsporcze pod nowe lub modernizowane urządzenia.',
-      icon: <Ruler size={22} />,
-      items: ['konstrukcje pod maszyny, pompy, wentylatory i rurociągi', 'dostosowanie i montaż konstrukcji do wymiany maszyn', 'prace konstrukcyjne i mechaniczne przy montażu oraz modernizacji urządzeń'],
+        'Projektujemy, prefabrykujemy i montujemy konstrukcje stalowe oraz elementy wsporcze pod nowe lub modernizowane linie.',
+      icon: <SteelStructureIcon size={24} />,
+      items: [
+        'Wykonywanie konstrukcji stalowych pod maszyny i urządzenia technologiczne',
+        'Konstrukcje wsporcze pod silniki, pompy, wentylatory przemysłowe i rurociągi',
+        'Dostosowanie, wykonanie i montaż konstrukcji adaptacyjnych przy wymianie maszyn',
+        'Prace konstrukcyjne i mechaniczne przy montażu oraz modernizacji urządzeń',
+      ],
     },
     {
       title: 'Realizacja na czynnych obiektach przemysłowych',
       description:
-        'Dobieramy technologię i harmonogram do warunków zakładu, aby ograniczyć wpływ prac na produkcję.',
-      icon: <Building2 size={22} />,
-      items: ['prace na czynnych instalacjach i obiektach', 'koordynacja z relokacją, wymianą urządzeń i elektryką', 'zakres dopasowywany indywidualnie do obiektu i harmonogramu inwestycji'],
+        'Dobieramy materiały, technologię spawania i harmonogram robót do specyfiki zakładu, aby zachować ciągłość produkcji.',
+      icon: <SynergyHubIcon size={24} />,
+      items: [
+        'Bezpieczne prowadzenie prac na czynnych instalacjach i halach produkcyjnych',
+        'Pełna koordynacja z relokacją maszyn, pracami dźwigowymi i elektryką',
+        'Dobór gatunków stali, armatury i uszczelnień do medium technologicznego',
+        'Praca w oknach serwisowych, postoju technologicznym lub systemie zmianowym',
+      ],
     },
   ];
 
   return (
     <SiteSettingsProvider value={resolvedCompany}>
-      <PageHeader 
-        title="Usługi Hydrauliczne i Montażowo-Konstrukcyjne" 
-        subtitle="Rurociągi przemysłowe, armatura i konstrukcje wsporcze realizowane z myślą o pracy zakładów przemysłowych."
+      <PageHeader
+        badge="Instalacje technologiczne i konstrukcje"
+        title="Hydraulika i montaż przemysłowy"
+        subtitle="Rurociągi przemysłowe, armatura technologiczna oraz konstrukcje wsporcze pod maszyny realizowane na czynnych obiektach."
       />
 
-      <section className="py-20 bg-industrial-950">
-        <div className="container mx-auto px-4">
+      <section className="page-section">
+        <div className="page-container">
           <div className="mx-auto mb-14 max-w-3xl text-center">
-            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-industrial-900 text-industrial-accent">
-              <HardHat size={32} />
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-industrial-900 border border-gray-800 text-industrial-accent">
+              <IndustrialPipelineIcon size={28} />
             </div>
-            <h2 className="mb-4 text-3xl font-bold text-white">Zakres prac hydraulicznych i montażowo-konstrukcyjnych</h2>
-            <p className="text-lg leading-relaxed text-gray-300">
-              Obsługujemy modernizacje rurociągów, wymianę armatury, konstrukcje wsporcze oraz prace montażowe przy urządzeniach. Zakres każdorazowo dopasowujemy do obiektu, harmonogramu i wymagań inwestora.
+            <h2 className="section-title mb-4">
+              Zakres prac <span className="text-industrial-accent">rurociągowych i montażowych</span>
+            </h2>
+            <p className="text-base sm:text-lg leading-relaxed text-gray-300">
+              Obsługujemy przebudowy rurociągów technologicznych, wymianę armatury przemysłowej,
+              konstrukcje wsporcze oraz prace montażowe przy integracji nowych urządzeń.
             </p>
           </div>
 
-          <div className="mb-10 grid grid-cols-1 gap-8 lg:grid-cols-3">
+          <div className="mb-14 grid grid-cols-1 gap-6 lg:gap-8 lg:grid-cols-3">
             {constructionAreas.map((area) => (
-              <div key={area.title} className="rounded-2xl border border-gray-800 bg-industrial-900/70 p-8">
-                <div className="mb-5 inline-flex rounded-xl bg-industrial-800 p-3 text-industrial-accent">
-                  {area.icon}
+              <div key={area.title} className="offer-card flex flex-col justify-between">
+                <div>
+                  <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-industrial-950 border border-gray-800 text-industrial-accent">
+                    {area.icon}
+                  </div>
+                  <h3 className="card-title mb-3">{area.title}</h3>
+                  <p className="mb-5 text-sm sm:text-base leading-relaxed text-gray-300">
+                    {area.description}
+                  </p>
+                  <ul className="space-y-3 text-sm sm:text-base text-gray-200">
+                    {area.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2.5">
+                        <CheckMarkIcon
+                          size={17}
+                          className="text-industrial-accent shrink-0 mt-1"
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <h3 className="mb-3 text-xl font-bold text-white">{area.title}</h3>
-                <p className="mb-5 text-sm leading-relaxed text-gray-400">{area.description}</p>
-                <ul className="space-y-3 text-sm text-gray-300">
-                  {area.items.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-industrial-accent"></span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
               </div>
             ))}
           </div>
 
           <ServiceInquiryCta
-            title="Potrzebujesz przebudowy rurociągów, armatury albo konstrukcji pod nowe urządzenie?"
-            description="Opisz obiekt, rodzaj prac i termin realizacji. Ustalimy zakres hydrauliki przemysłowej i prac montażowo-konstrukcyjnych, także wtedy, gdy trzeba go skoordynować z relokacją lub elektryką."
+            title="Potrzebujesz przebudowy rurociągów, wymiany armatury albo konstrukcji pod nowe urządzenie?"
+            description="Opisz rodzaj instalacji, medium, warunki na obiekcie oraz planowany termin. Dobierzemy technologię wykonania i skoordynujemy montaż z pracami dźwigowymi lub relokacyjnymi."
             contactLabel="Skonsultuj hydraulikę i montaż"
           />
         </div>

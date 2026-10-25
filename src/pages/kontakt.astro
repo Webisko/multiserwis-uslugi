@@ -12,14 +12,14 @@ const companyData = siteSettings?.company ?? defaultCompany;
 ---
 
 <Layout
-  title="Kontakt | Multiserwis Kutno"
-  description="Skontaktuj się z nami. Dane kontaktowe, formularz, dojazd."
+  title="Kontakt i Szybka Wycena Usług Przemysłowych | Multiserwis Kutno"
+  description="Skontaktuj się z Multiserwis Kutno (ul. Henryka Siemiradzkiego 18). Szybka wycena w 24h: wynajem dźwigów i podnośników, relokacja maszyn, UDT, spawanie i elektryka."
 >
   <div>
     <Navbar client:load companyData={companyData} />
-    <main class="flex-grow pt-[80px]">
+    <main class="flex-grow">
       <Screen client:visible companyData={companyData} serviceOptions={siteContent.services.contactOptions} />
     </main>
-    <Footer companyData={companyData} />
+    <Footer client:visible companyData={companyData} />
   </div>
 </Layout>

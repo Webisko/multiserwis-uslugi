@@ -3,9 +3,11 @@
 namespace App\Services;
 
 use App\Models\FaqItem;
+use App\Models\PortfolioItem;
 use App\Models\ServiceOffering;
 use App\Models\SiteSetting;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Schema;
 use Throwable;
 
 class StaticPreviewSnapshotExporter
@@ -66,6 +68,7 @@ class StaticPreviewSnapshotExporter
     {
         FaqItem::ensureDefaultsExist();
         ServiceOffering::ensureDefaultsExist();
+        PortfolioItem::ensureDefaultsExist();
 
         $faqItems = FaqItem::query()
             ->active()
@@ -78,6 +81,14 @@ class StaticPreviewSnapshotExporter
             ->orderBy('sort_order')
             ->orderBy('id')
             ->get();
+
+        $portfolioItems = Schema::hasTable('portfolio_items')
+            ? PortfolioItem::query()
+                ->active()
+                ->orderBy('sort_order')
+                ->orderBy('id')
+                ->get()
+            : collect();
 
         $faqPayload = $faqItems
             ->map(fn (FaqItem $item): array => $item->toFrontendPayload())
@@ -117,6 +128,11 @@ class StaticPreviewSnapshotExporter
             'Inne',
         ];
 
+        $portfolioPayload = $portfolioItems
+            ->map(fn (PortfolioItem $item): array => $item->toFrontendPayload())
+            ->values()
+            ->all();
+
         return [
             'faqs' => [
                 'items' => $faqPayload,
@@ -126,6 +142,9 @@ class StaticPreviewSnapshotExporter
             'services' => [
                 'items' => $servicePayload,
                 'contactOptions' => array_values(array_unique($contactOptions)),
+            ],
+            'portfolio' => [
+                'items' => $portfolioPayload,
             ],
         ];
     }

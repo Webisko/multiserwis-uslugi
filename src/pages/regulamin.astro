@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
+import { PageHeader } from '../components/PageHeader';
 import { defaultCompany } from '../data/company';
 import { getSiteSettings } from '../lib/siteSettings';
 
@@ -9,88 +10,102 @@ const companyData = (await getSiteSettings())?.company ?? defaultCompany;
 ---
 
 <Layout
-  title="Regulamin | Multiserwis Kutno"
-  description="Podstawowe warunki korzystania z serwisu Multiserwis Kutno."
+  title="Regulamin Serwisu Internetowego | Multiserwis Kutno"
+  description="Warunki korzystania z serwisu informacyjno-ofertowego Multiserwis Kutno oraz zasady przesyłania zapytań ofertowych."
 >
   <div>
     <Navbar client:load companyData={companyData} />
-    <main class="flex-grow pt-[80px]">
-      <section class="bg-industrial-950 py-20">
-        <div class="container mx-auto max-w-4xl px-4">
-          <h1 class="mb-6 text-4xl font-display font-bold text-white md:text-5xl">Regulamin serwisu</h1>
-          <p class="mb-10 rounded-xl border border-amber-500/30 bg-amber-500/10 px-5 py-4 text-sm leading-relaxed text-amber-100">
-            Dokument ma charakter roboczy i powinien zostać dopracowany przed publikacją produkcyjną,
-            ale już teraz porządkuje podstawowe zasady korzystania z serwisu informacyjno-ofertowego.
-          </p>
+    <main class="flex-grow">
+      <PageHeader
+        badge="Informacje formalno-prawne"
+        title="Regulamin serwisu"
+        subtitle="Zasady korzystania ze strony internetowej oraz składania zapytań ofertowych w serwisie Multiserwis Kutno."
+      />
 
-          <div class="space-y-10 text-base leading-relaxed text-gray-300">
+      <section class="page-section">
+        <div class="page-container max-w-4xl">
+          <div class="offer-card space-y-8 text-sm sm:text-base leading-relaxed text-gray-300">
             <section>
-              <h2 class="mb-3 text-2xl font-bold text-white">1. Postanowienia ogólne</h2>
+              <h2 class="mb-3 font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
+                1. Postanowienia ogólne
+              </h2>
               <p>
-                Serwis ma charakter informacyjno-ofertowy i prezentuje zakres usług świadczonych przez
-                <strong class="text-white"> {companyData.name}</strong>.
+                Serwis ma charakter informacyjno-ofertowy i prezentuje zakres usług przemysłowych świadczonych przez{' '}
+                <strong class="text-white">{companyData.name}</strong> z siedzibą w Kutnie ({companyData.address.street}, {companyData.address.postalCode} {companyData.address.city}).
               </p>
             </section>
 
             <section>
-              <h2 class="mb-3 text-2xl font-bold text-white">2. Zakres działania serwisu</h2>
+              <h2 class="mb-3 font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
+                2. Zakres działania serwisu
+              </h2>
               <p>
                 Za pośrednictwem strony użytkownik może zapoznać się z ofertą firmy, skontaktować się w sprawie usług
-                oraz przesłać zapytanie ofertowe.
+                oraz przesłać bezpłatne zapytanie o wycenę.
               </p>
             </section>
 
             <section>
-              <h2 class="mb-3 text-2xl font-bold text-white">3. Zasady kontaktu i zapytań</h2>
+              <h2 class="mb-3 font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
+                3. Zasady kontaktu i zapytań ofertowych
+              </h2>
               <p>
-                Wysłanie formularza kontaktowego lub wiadomości e-mail nie oznacza automatycznego zawarcia umowy.
-                Odpowiedź na zapytanie i dalsze warunki współpracy są ustalane indywidualnie.
+                Informacje publikowane w serwisie mają charakter poglądowy i nie stanowią oferty w rozumieniu Kodeksu cywilnego.
+                Wysłanie formularza kontaktowego lub wiadomości e-mail nie oznacza automatycznego zawarcia umowy – ostateczny zakres i warunki współpracy są ustalane indywidualnie.
               </p>
             </section>
 
             <section>
-              <h2 class="mb-3 text-2xl font-bold text-white">4. Wymagania techniczne</h2>
+              <h2 class="mb-3 font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
+                4. Wymagania techniczne
+              </h2>
               <p>
                 Do prawidłowego korzystania z serwisu wymagane jest urządzenie z dostępem do internetu oraz aktualna
-                przeglądarka internetowa obsługująca nowoczesne standardy HTML, CSS i JavaScript.
+                przeglądarka internetowa obsługująca standardy HTML5, CSS3 i JavaScript.
               </p>
             </section>
 
             <section>
-              <h2 class="mb-3 text-2xl font-bold text-white">5. Odpowiedzialność</h2>
+              <h2 class="mb-3 font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
+                5. Odpowiedzialność
+              </h2>
               <p>
-                Administrator dokłada starań, aby informacje publikowane w serwisie były aktualne i rzetelne,
-                jednak zastrzega możliwość zmian oferty, zakresu usług oraz danych publikowanych na stronie.
+                Administrator dokłada należytej staranności, aby informacje publikowane w serwisie były aktualne i rzetelne,
+                jednak zastrzega możliwość wprowadzania zmian w ofercie, parku maszynowym oraz parametrach usług.
               </p>
             </section>
 
             <section>
-              <h2 class="mb-3 text-2xl font-bold text-white">6. Linki zewnętrzne i usługi powiązane</h2>
+              <h2 class="mb-3 font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
+                6. Linki zewnętrzne i usługi szkoleniowe
+              </h2>
               <p>
-                Serwis może zawierać odnośniki do zewnętrznych stron powiązanych z działalnością firmy, w szczególności
-                do serwisu szkoleniowego. Korzystanie z tych stron odbywa się zgodnie z zasadami obowiązującymi u ich operatorów.
+                Serwis zawiera odnośniki do zewnętrznej domeny szkoleniowej prowadzonej przez firmę. Korzystanie z serwisu szkoleniowego odbywa się zgodnie z zasadami opublikowanymi na tamtej stronie.
               </p>
             </section>
 
             <section>
-              <h2 class="mb-3 text-2xl font-bold text-white">7. Prawa autorskie</h2>
+              <h2 class="mb-3 font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
+                7. Prawa autorskie
+              </h2>
               <p>
-                Treści, układ strony oraz materiały graficzne publikowane w serwisie podlegają ochronie prawnej.
-                Ich wykorzystanie wymaga uprzedniej zgody właściciela serwisu lub uprawnionych podmiotów.
+                Treści, układ graficzny strony, ikony oraz materiały publikowane w serwisie podlegają ochronie prawnej.
+                Ich kopiowanie lub rozpowszechnianie wymaga uprzedniej zgody właściciela serwisu.
               </p>
             </section>
 
             <section>
-              <h2 class="mb-3 text-2xl font-bold text-white">8. Postanowienia końcowe</h2>
+              <h2 class="mb-3 font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
+                8. Postanowienia końcowe
+              </h2>
               <p>
-                Ostateczna wersja regulaminu powinna zostać dostosowana do docelowego sposobu działania formularzy,
-                backendu i polityki przetwarzania danych po wdrożeniu produkcyjnym.
+                W sprawach nieuregulowanych w niniejszym regulaminie zastosowanie mają odpowiednie przepisy prawa polskiego.
               </p>
             </section>
           </div>
         </div>
       </section>
     </main>
-    <Footer companyData={companyData} />
+    <Footer client:visible companyData={companyData} />
   </div>
 </Layout>

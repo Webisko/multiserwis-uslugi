@@ -10,14 +10,14 @@ const companyData = (await getSiteSettings())?.company ?? defaultCompany;
 ---
 
 <Layout
-  title="Usługi Spawalnicze | Multiserwis Kutno"
-  description="Profesjonalne spawanie (MIG/MAG, TIG), naprawy maszyn i konstrukcje stalowe."
+  title="Usługi Spawalnicze (TIG, MIG/MAG) i Konstrukcje Stalowe | Multiserwis Kutno"
+  description="Mobilne usługi spawalnicze u klienta oraz prefabrykacja i montaż konstrukcji stalowych: antresole, podesty serwisowe, suwnice, ramy, wsporniki i naprawy zbiorników."
 >
   <div>
     <Navbar client:load companyData={companyData} />
-    <main class="flex-grow pt-[80px]">
-      <Screen companyData={companyData} />
+    <main class="flex-grow">
+      <Screen client:load companyData={companyData} />
     </main>
-    <Footer companyData={companyData} />
+    <Footer client:visible companyData={companyData} />
   </div>
 </Layout>

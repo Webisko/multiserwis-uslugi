@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Filament\Resources\Leads\LeadResource;
 use App\Http\Requests\StoreLeadRequest;
 use App\Http\Controllers\Controller;
+use App\Mail\LeadReceivedMail;
 use App\Models\Lead;
+use App\Models\SiteSetting;
+use App\Models\User;
+use Filament\Actions\Action;
+use Filament\Notifications\Notification;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use Throwable;
 
 class LeadController extends Controller
 {
@@ -37,6 +46,44 @@ class LeadController extends Controller
             'spam_reason' => $isSpam ? 'honeypot' : null,
             'notes' => null,
         ]);
+
+        if (! $isSpam) {
+            try {
+                $recipient = (string) (config('app.lead_notification_email')
+                    ?: SiteSetting::query()->value('contact_email')
+                    ?: config('mail.from.address'));
+
+                if (filled($recipient)) {
+                    Mail::to($recipient)->send(new LeadReceivedMail($lead));
+                }
+            } catch (Throwable $exception) {
+                report($exception);
+            }
+
+            try {
+                if (Schema::hasTable('notifications') && Schema::hasTable('users')) {
+                    $notifiableUsers = User::query()
+                        ->when(Schema::hasColumn('users', 'is_active'), fn ($q) => $q->where('is_active', true))
+                        ->when(Schema::hasColumn('users', 'receives_lead_notifications'), fn ($q) => $q->where('receives_lead_notifications', true))
+                        ->get();
+
+                    if ($notifiableUsers->isNotEmpty()) {
+                        Notification::make()
+                            ->title('Nowe zapytanie: '.$lead->full_name)
+                            ->body($lead->service.' • tel. '.$lead->phone)
+                            ->warning()
+                            ->actions([
+                                Action::make('view')
+                                    ->label('Otwórz zapytanie')
+                                    ->url(LeadResource::getUrl('edit', ['record' => $lead])),
+                            ])
+                            ->sendToDatabase($notifiableUsers);
+                    }
+                }
+            } catch (Throwable $exception) {
+                report($exception);
+            }
+        }
 
         $responseStatus = $isSpam ? 202 : 201;
 

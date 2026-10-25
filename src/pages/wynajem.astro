@@ -10,14 +10,14 @@ const companyData = (await getSiteSettings())?.company ?? defaultCompany;
 ---
 
 <Layout
-  title="Wynajem Maszyn i Sprzętu | Multiserwis Kutno"
-  description="Wynajem podestów, żurawi, ładowarek teleskopowych, wózków widłowych i sprzętu specjalistycznego dla przemysłu."
+  title="Wynajem Maszyn, Żurawi (35t–90t) i Podnośników | Multiserwis Kutno"
+  description="Wynajem żurawi samochodowych (35t, 45t, 60t, 90t), podestów ruchomych do 18 m, podnośników koszowych, ładowarek teleskopowych i wózków widłowych w Kutnie i centralnej Polsce."
 >
   <div>
     <Navbar client:load companyData={companyData} />
-    <main class="flex-grow pt-[80px]">
-      <RentalsPage companyData={companyData} />
+    <main class="flex-grow">
+      <RentalsPage client:load companyData={companyData} />
     </main>
-    <Footer companyData={companyData} />
+    <Footer client:visible companyData={companyData} />
   </div>
 </Layout>

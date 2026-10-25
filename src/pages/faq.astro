@@ -9,15 +9,20 @@ import { getSiteContent } from "../lib/siteContent";
 
 const [siteSettings, siteContent] = await Promise.all([getSiteSettings(), getSiteContent()]);
 const companyData = siteSettings?.company ?? defaultCompany;
+const faqSchemaItems = siteContent.faqs.items.map((item) => ({
+  question: item.question,
+  answer: item.answer,
+}));
 ---
 
 <Layout
-  title="FAQ | Multiserwis Kutno"
-  description="Najczęściej zadawane pytania dotyczące naszych usług."
+  title="Często Zadawane Pytania (FAQ) – Wynajem, UDT, Relokacje | Multiserwis Kutno"
+  description="Odpowiedzi na najczęściej zadawane pytania dotyczące wynajmu żurawi i podestów z operatorem, rejestracji i przeglądów UDT, relokacji maszyn oraz prac spawalniczych."
+  faqItems={faqSchemaItems}
 >
   <div>
     <Navbar client:load companyData={companyData} />
-    <main class="flex-grow pt-[80px]">
+    <main class="flex-grow">
       <Screen
         client:visible
         companyData={companyData}
@@ -25,6 +30,6 @@ const companyData = siteSettings?.company ?? defaultCompany;
         categories={siteContent.faqs.categories}
       />
     </main>
-    <Footer companyData={companyData} />
+    <Footer client:visible companyData={companyData} />
   </div>
 </Layout>

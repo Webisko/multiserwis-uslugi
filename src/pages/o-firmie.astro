@@ -10,14 +10,14 @@ const companyData = (await getSiteSettings())?.company ?? defaultCompany;
 ---
 
 <Layout
-  title="O Firmie | Multiserwis Kutno"
-  description="Certyfikowana jakość (ISO 9001:2015). Poznaj naszą historię i wartości."
+  title="O Firmie i Certyfikat ISO 9001:2015 (PCA AC 136) | Multiserwis Kutno"
+  description="Poznaj Multiserwis Kutno: własny park maszynowy, wielobranżowe brygady techniczne i system zarządzania jakością ISO 9001:2015 potwierdzony akredytacją PCA AC 136."
 >
   <div>
     <Navbar client:load companyData={companyData} />
-    <main class="flex-grow pt-[80px]">
-      <Screen companyData={companyData} />
+    <main class="flex-grow">
+      <Screen client:load companyData={companyData} />
     </main>
-    <Footer companyData={companyData} />
+    <Footer client:visible companyData={companyData} />
   </div>
 </Layout>

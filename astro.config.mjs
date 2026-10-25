@@ -20,7 +20,7 @@ function normalizeBasePath(basePath) {
 const siteEnvironment = process.env.SITE_ENVIRONMENT?.trim() || 'preview';
 const siteUrl = normalizeSiteUrl(
   process.env.PUBLIC_SITE_URL?.trim() ||
-    (siteEnvironment === 'production' ? 'https://multiserwis.example.invalid' : 'https://webisko.github.io')
+    (siteEnvironment === 'production' ? 'https://multiserwis.tech' : 'https://webisko.github.io')
 );
 const basePath = normalizeBasePath(
   process.env.PUBLIC_SITE_BASE_PATH?.trim() ||

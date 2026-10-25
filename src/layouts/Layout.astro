@@ -1,15 +1,17 @@
 ---
-// We'll manage generic head here or per page
 import { defaultCompany } from '../data/company';
 import { getDefaultSeo, getSiteSettings, getEffectiveBasePath } from '../lib/siteSettings';
 import UmamiAnalytics from '../components/UmamiAnalytics.astro';
+import '../styles/global.css';
 
 interface Props {
   title: string;
   description?: string;
+  preloadHero?: boolean;
+  faqItems?: Array<{ question: string; answer: string }>;
 }
 
-const { title, description } = Astro.props;
+const { title, description, preloadHero = false, faqItems = [] } = Astro.props;
 const siteSettings = await getSiteSettings();
 const company = siteSettings?.company ?? {
   ...defaultCompany,
@@ -40,60 +42,73 @@ const websiteUrl = Astro.site
 const runtimeSettingsScript = siteSettings
   ? `window.__MULTISERWIS_SITE_SETTINGS__ = ${JSON.stringify(siteSettings)};`
   : '';
+
+const graphEntities: Record<string, unknown>[] = [
+  {
+    '@type': 'LocalBusiness',
+    '@id': `${websiteUrl}#organization`,
+    name: company.name,
+    url: websiteUrl,
+    email: company.email,
+    telephone: company.phones.services.href.replace('tel:', ''),
+    image: ogImageUrl,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: company.address.street,
+      postalCode: company.address.postalCode,
+      addressLocality: company.address.city,
+      addressCountry: 'PL',
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '08:00',
+        closes: '16:00',
+      },
+    ],
+    sameAs: [company.links.trainingSiteUrl],
+    areaServed: 'Polska',
+    description: pageDescription,
+  },
+  {
+    '@type': 'WebSite',
+    '@id': `${websiteUrl}#website`,
+    url: websiteUrl,
+    name: company.name,
+    description: seo.defaultDescription,
+    inLanguage: 'pl-PL',
+    publisher: {
+      '@id': `${websiteUrl}#organization`,
+    },
+  },
+];
+
+if (faqItems.length > 0) {
+  graphEntities.push({
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  });
+}
+
 const structuredData = {
   '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'LocalBusiness',
-      '@id': `${websiteUrl}#organization`,
-      name: company.name,
-      url: websiteUrl,
-      email: company.email,
-      telephone: company.phones.services.href.replace('tel:', ''),
-      image: ogImageUrl,
-      address: {
-        '@type': 'PostalAddress',
-        streetAddress: company.address.street,
-        postalCode: company.address.postalCode,
-        addressLocality: company.address.city,
-        addressCountry: 'PL',
-      },
-      openingHoursSpecification: [
-        {
-          '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-          opens: '08:00',
-          closes: '16:00',
-        },
-      ],
-      sameAs: [company.links.trainingSiteUrl],
-      areaServed: 'Polska',
-      description: pageDescription,
-    },
-    {
-      '@type': 'WebSite',
-      '@id': `${websiteUrl}#website`,
-      url: websiteUrl,
-      name: company.name,
-      description: seo.defaultDescription,
-      inLanguage: 'pl-PL',
-      publisher: {
-        '@id': `${websiteUrl}#organization`,
-      },
-    },
-  ],
+  '@graph': graphEntities,
 };
-import "../styles/global.css";
 ---
 
 <!doctype html>
 <html lang="pl" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content={pageDescription}
-    />
+    <meta name="description" content={pageDescription} />
     <meta name="robots" content="index, follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="canonical" href={canonicalUrl} />
@@ -127,7 +142,10 @@ import "../styles/global.css";
     <meta property="og:site_name" content={seo.siteName} />
     <meta property="og:image" content={ogImageUrl} />
     <meta property="og:image:secure_url" content={ogImageUrl} />
-    <meta property="og:image:type" content={ogImageUrl.endsWith('.svg') ? 'image/svg+xml' : 'image/png'} />
+    <meta
+      property="og:image:type"
+      content={ogImageUrl.endsWith('.svg') ? 'image/svg+xml' : 'image/png'}
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content={title} />
@@ -137,8 +155,26 @@ import "../styles/global.css";
     <meta name="twitter:image" content={ogImageUrl} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
     {runtimeSettingsScript ? <script is:inline set:html={runtimeSettingsScript}></script> : null}
-    <link rel="preload" as="image" href={`${company.links.basePath}/hero-bg-mobile.webp`} type="image/webp" media="(max-width: 640px)" fetchpriority="high" />
-    <link rel="preload" as="image" href={`${company.links.basePath}/hero-bg.webp`} type="image/webp" media="(min-width: 641px)" fetchpriority="high" />
+    {preloadHero ? (
+      <>
+        <link
+          rel="preload"
+          as="image"
+          href={`${company.links.basePath}/hero-bg-mobile.webp`}
+          type="image/webp"
+          media="(max-width: 640px)"
+          fetchpriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href={`${company.links.basePath}/hero-bg.webp`}
+          type="image/webp"
+          media="(min-width: 641px)"
+          fetchpriority="high"
+        />
+      </>
+    ) : null}
     <link rel="llms" href={`${company.links.basePath}/llms.txt`} />
     <meta name="webmcp-tools" content="send_contact_inquiry" />
     <link
@@ -194,7 +230,7 @@ import "../styles/global.css";
     <UmamiAnalytics />
   </head>
   <body
-    class="min-h-screen bg-industrial-900 text-gray-100 font-sans selection:bg-industrial-accent selection:text-industrial-900 flex flex-col"
+    class="min-h-screen bg-industrial-950 text-gray-100 font-sans selection:bg-industrial-accent selection:text-industrial-950 flex flex-col"
   >
     <slot />
 
@@ -206,7 +242,8 @@ import "../styles/global.css";
             try {
               await mc.registerTool({
                 name: 'send_contact_inquiry',
-                description: 'Wyślij zapytanie ofertowe dotyczące usług przemysłowych (wynajem maszyn, relokacja, UDT, spawanie, elektryka) do Multiserwis Kutno.',
+                description:
+                  'Wyślij zapytanie ofertowe dotyczące usług przemysłowych (wynajem maszyn, relokacja, UDT, spawanie, elektryka) do Multiserwis Kutno.',
                 inputSchema: {
                   type: 'object',
                   properties: {
@@ -214,10 +251,10 @@ import "../styles/global.css";
                     phone: { type: 'string', description: 'Numer telefonu' },
                     email: { type: 'string', description: 'Adres e-mail' },
                     service: { type: 'string', description: 'Wybrana usługa' },
-                    message: { type: 'string', description: 'Opis prac lub zapytania' }
+                    message: { type: 'string', description: 'Opis prac lub zapytania' },
                   },
-                  required: ['fullName', 'email', 'phone', 'message']
-                }
+                  required: ['fullName', 'email', 'phone', 'message'],
+                },
               });
             } catch (e) {
               console.debug('WebMCP registration:', e);
@@ -235,7 +272,6 @@ import "../styles/global.css";
 </html>
 
 <style is:global>
-  /* Global Styles usually in index.css */
   :root {
     color-scheme: dark;
   }

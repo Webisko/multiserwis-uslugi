@@ -18,6 +18,7 @@
     "build:staging": "node scripts/run-astro-build.mjs staging",
     "build:production": "node scripts/run-astro-build.mjs production",
     "deploy:staging": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/deploy-staging-seohost.ps1",
+    "deploy:production": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/deploy-production-seohost.ps1",
     "preview": "astro preview",
     "astro": "astro",
     "backend:serve": "node scripts/run-backend-php.mjs -S 127.0.0.1:8081 -t public",

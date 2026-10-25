@@ -10,14 +10,14 @@ const companyData = (await getSiteSettings())?.company ?? defaultCompany;
 ---
 
 <Layout
-  title="Hydraulika i Montaż Przemysłowy | Multiserwis Kutno"
-  description="Rurociągi przemysłowe, armatura, konstrukcje wsporcze i prace montażowo-konstrukcyjne dla przemysłu."
+  title="Hydraulika Przemysłowa, Rurociągi i Montaż Konstrukcji | Multiserwis Kutno"
+  description="Modernizacja i naprawa rurociągów przemysłowych, wymiana armatury, izolacje termiczne oraz konstrukcje wsporcze pod maszyny na czynnych obiektach przemysłowych."
 >
   <div>
     <Navbar client:load companyData={companyData} />
-    <main class="flex-grow pt-[80px]">
-      <Screen companyData={companyData} />
+    <main class="flex-grow">
+      <Screen client:load companyData={companyData} />
     </main>
-    <Footer companyData={companyData} />
+    <Footer client:visible companyData={companyData} />
   </div>
 </Layout>

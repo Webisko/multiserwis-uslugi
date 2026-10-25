@@ -17,7 +17,7 @@ function getSiteOrigin() {
 
   return normalizeSiteUrl(
     import.meta.env.PUBLIC_SITE_URL?.trim() ||
-      (siteEnvironment === 'production' ? 'https://multiserwis.example.invalid' : 'https://webisko.github.io')
+      (siteEnvironment === 'production' ? 'https://multiserwis.tech' : 'https://webisko.github.io')
   );
 }
 

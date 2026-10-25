@@ -1,11 +1,13 @@
 <?php
 
-$allowedOrigins = array_values(array_filter([
+$allowedOrigins = array_values(array_unique(array_filter([
     env('FRONTEND_URL', 'http://localhost:3000'),
+    'https://multiserwis.tech',
+    'https://www.multiserwis.tech',
     'http://127.0.0.1:3000',
     'http://localhost:4321',
     'http://127.0.0.1:4321',
-]));
+])));
 
 return [
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
