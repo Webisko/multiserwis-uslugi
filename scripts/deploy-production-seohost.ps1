@@ -89,6 +89,7 @@ ln -sfn ../backend/storage/app/public '${BackendDomainDir}/public_html/storage'
 
 if [ -f .env ]; then
   php artisan migrate --force
+  php artisan db:seed --force
   php artisan config:cache
   php artisan route:cache
   php artisan view:cache
