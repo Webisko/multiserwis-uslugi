@@ -9,7 +9,6 @@ export const PrivacyPolicyPage: React.FC = () => {
         badge="Dokumenty formalne"
         title="Polityka prywatności"
         subtitle="Informacje o przetwarzaniu danych osobowych i zasadach korzystania ze strony."
-        backgroundImage="/images/page-headers/legal-header.webp"
       />
 
       <section className="page-section">
@@ -18,9 +17,9 @@ export const PrivacyPolicyPage: React.FC = () => {
             <article>
               <h2 className="text-xl md:text-2xl font-bold text-white mb-3">1. Administrator danych</h2>
               <p>
-                Administratorem danych osobowych jest {company.name}, {company.address.street}, {company.address.postalCode} {company.address.city},
-                e-mail: <a href={`mailto:${company.email}`} className="text-brand-yellow hover:underline">{company.email}</a>,
-                tel.: <a href={company.phones.services.href} className="text-brand-yellow hover:underline">{company.phones.services.value}</a>.
+                Administratorem danych osobowych jest <strong>MULTISERWIS KUTNO SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ</strong> z siedzibą pod adresem: ul. Przemysłowa 2, 99-300 Kutno, wpisana do rejestru przedsiębiorców Krajowego Rejestru Sądowego (KRS) pod numerem: 0001160280, NIP: 7752676330, REGON: 541108550, kapitał zakładowy: 5 000,00 zł,
+                e-mail: <a href={`mailto:${company.email}`} className="text-industrial-accent hover:underline">{company.email}</a>,
+                tel.: <a href={company.phones.services.href} className="text-industrial-accent hover:underline">{company.phones.services.value}</a>.
               </p>
             </article>
 
@@ -58,7 +57,7 @@ export const PrivacyPolicyPage: React.FC = () => {
               <h2 className="text-xl md:text-2xl font-bold text-white mb-3">6. Kontakt w sprawach RODO</h2>
               <p>
                 W sprawach dotyczących ochrony danych osobowych prosimy o kontakt pod adresem e-mail:{' '}
-                <a href={`mailto:${company.email}`} className="text-brand-yellow hover:underline">{company.email}</a>.
+                <a href={`mailto:${company.email}`} className="text-industrial-accent hover:underline">{company.email}</a>.
               </p>
             </article>
           </div>

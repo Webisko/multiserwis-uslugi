@@ -2,6 +2,11 @@ import { createContext, createElement, useContext, useEffect, useState, type Rea
 
 export const defaultCompany = {
   name: 'Multiserwis Kutno',
+  legalName: 'MULTISERWIS KUTNO SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ',
+  nip: '7752676330',
+  regon: '541108550',
+  krs: '0001160280',
+  shareCapital: '5 000,00 zł',
   brand: {
     mark: 'MS',
     primary: 'MULTISERWIS',
@@ -9,10 +14,10 @@ export const defaultCompany = {
   },
   links: {
     basePath: '/multiserwis-uslugi',
-    trainingSiteUrl: 'https://szkolenia-multiserwis.pl/',
+    trainingSiteUrl: 'https://multiserwis.edu.pl',
   },
   address: {
-    street: 'ul. Henryka Siemiradzkiego 18',
+    street: 'ul. Przemysłowa 2',
     postalCode: '99-300',
     city: 'Kutno',
   },
@@ -26,8 +31,8 @@ export const defaultCompany = {
     },
     training: {
       label: 'Szkolenia',
-      value: '730 202 000',
-      href: 'tel:+48730202000',
+      value: '',
+      href: '',
     },
   },
   email: 'multiserwis.kutno@gmail.com',
@@ -37,11 +42,11 @@ export const defaultCompany = {
   },
   emergencyNote: 'Serwis awaryjny 24/7 (dla stałych klientów)',
   map: {
-    query: 'Multiserwis Kutno, ul. Henryka Siemiradzkiego 18, 99-300 Kutno',
+    query: 'Multiserwis Kutno, ul. Przemysłowa 2, 99-300 Kutno',
     embedUrl:
-      'https://www.google.com/maps?q=Multiserwis%20Kutno%2C%20ul.%20Henryka%20Siemiradzkiego%2018%2C%2099-300%20Kutno&output=embed',
+      'https://www.google.com/maps?q=Multiserwis%20Kutno%2C%20ul.%20Przemys%C5%82owa%202%2C%2099-300%20Kutno&output=embed',
     directionsUrl:
-      'https://www.google.com/maps/search/?api=1&query=Multiserwis%20Kutno%2C%20ul.%20Henryka%20Siemiradzkiego%2018%2C%2099-300%20Kutno',
+      'https://www.google.com/maps/search/?api=1&query=Multiserwis%20Kutno%2C%20ul.%20Przemys%C5%82owa%202%2C%2099-300%20Kutno',
   },
 } as const;
 

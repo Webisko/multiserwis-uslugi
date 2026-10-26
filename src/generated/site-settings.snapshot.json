@@ -1,6 +1,6 @@
 {
     "company": {
-        "name": "Multiserwis Kutno",
+        "name": "Multiserwis Industrial",
         "brand": {
             "mark": "MS",
             "primary": "MULTISERWIS",
@@ -8,10 +8,10 @@
         },
         "links": {
             "basePath": "/multiserwis-uslugi",
-            "trainingSiteUrl": "https://szkolenia-multiserwis.pl/"
+            "trainingSiteUrl": "https://multiserwis.edu.pl"
         },
         "address": {
-            "street": "ul. Henryka Siemiradzkiego 18",
+            "street": "ul. Przemysłowa 2",
             "postalCode": "99-300",
             "city": "Kutno"
         },
@@ -25,26 +25,26 @@
             },
             "training": {
                 "label": "Szkolenia",
-                "value": "730 202 000",
-                "href": "tel:+48730202000"
+                "value": "",
+                "href": ""
             }
         },
-        "email": "multiserwis.kutno@gmail.com",
+        "email": "kontakt@multiserwis.test",
         "openingHours": {
-            "days": "Poniedziałek – Piątek",
-            "details": "8:00 – 16:00"
+            "days": "Poniedziałek - Piątek",
+            "details": "8:00 - 16:00"
         },
         "emergencyNote": "Serwis awaryjny 24/7 (dla stałych klientów)",
         "map": {
-            "query": "Multiserwis Kutno, ul. Henryka Siemiradzkiego 18, 99-300 Kutno",
-            "embedUrl": "https://www.google.com/maps?q=Multiserwis%20Kutno%2C%20ul.%20Henryka%20Siemiradzkiego%2018%2C%2099-300%20Kutno&output=embed",
-            "directionsUrl": "https://www.google.com/maps/search/?api=1&query=Multiserwis%20Kutno%2C%20ul.%20Henryka%20Siemiradzkiego%2018%2C%2099-300%20Kutno"
+            "query": "Multiserwis Kutno, ul. Przemysłowa 2, 99-300 Kutno",
+            "embedUrl": "https://www.google.com/maps?q=Multiserwis%20Kutno%2C%20ul.%20Przemys%C5%82owa%202%2C%2099-300%20Kutno&output=embed",
+            "directionsUrl": "https://www.google.com/maps/search/?api=1&query=Multiserwis%20Kutno%2C%20ul.%20Przemys%C5%82owa%202%2C%2099-300%20Kutno"
         }
     },
     "seo": {
-        "defaultTitle": "Multiserwis – Kompleksowe Usługi dla Przemysłu | Kutno",
-        "defaultDescription": "Kompleksowe usługi dla przemysłu: wynajem maszyn, relokacje linii, dozór UDT, spawalnictwo, hydraulika i elektryka. Szybka wycena w 24h. Sprawdź ofertę Multiserwis Kutno!",
+        "defaultTitle": "Nowy tytuł SEO",
+        "defaultDescription": "Kompleksowe usługi dla przemysłu: wynajem maszyn, relokacje linii, dozór UDT, spawalnictwo i elektryka. Szybka wycena w 24h. Sprawdź ofertę Multiserwis Kutno!",
         "siteName": "Multiserwis Kutno",
-        "ogImageUrl": "/multiserwis-uslugi/og-image.png"
+        "ogImageUrl": "/og-image.png"
     }
 }

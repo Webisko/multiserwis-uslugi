@@ -245,11 +245,13 @@ export const Footer: React.FC<FooterProps> = ({ companyData }) => {
 
       {/* Bottom Sub-footer */}
       <div className="border-t border-gray-900 bg-black/50 py-6">
-        <div className="page-container flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-gray-400">
-          <div>
-            &copy; {currentYear} {resolvedCompany.name}. Wszelkie prawa zastrzeżone.
+        <div className="page-container flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-400">
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-center sm:text-left">
+            <span>&copy; {currentYear} MULTISERWIS KUTNO Sp. z o.o. Wszelkie prawa zastrzeżone.</span>
+            <span className="hidden sm:inline text-gray-700">•</span>
+            <span className="text-gray-400">NIP: 7752676330 • REGON: 541108550 • KRS: 0001160280</span>
           </div>
-          <div className="flex gap-6">
+          <div className="flex gap-6 shrink-0">
             <a
               href={`${basePath}/polityka-prywatnosci`}
               className="text-gray-400 hover:text-white transition-colors"
