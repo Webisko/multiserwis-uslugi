@@ -35,7 +35,14 @@ export const defaultCompany = {
       href: '',
     },
   },
-  email: 'multiserwis.kutno@gmail.com',
+  email: 'biuro@multiserwis.tech',
+  departmentEmails: {
+    biuro: 'biuro@multiserwis.tech',
+    wynajem: 'wynajem@multiserwis.tech',
+    automatyka: 'automatyka@multiserwis.tech',
+    technologia: 'technologia@multiserwis.tech',
+    szkolenia: 'szkolenia@multiserwis.tech',
+  },
   openingHours: {
     days: 'Poniedziałek – Piątek',
     details: '8:00 – 16:00',

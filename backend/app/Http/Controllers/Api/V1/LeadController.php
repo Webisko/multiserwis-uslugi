@@ -49,12 +49,21 @@ class LeadController extends Controller
 
         if (! $isSpam) {
             try {
-                $recipient = (string) (config('app.lead_notification_email')
-                    ?: SiteSetting::query()->value('contact_email')
-                    ?: config('mail.from.address'));
+                $recipient = static::resolveLeadRecipient((string) $lead->service);
+                $officeRecipient = (string) config('mail.department_addresses.biuro', 'biuro@multiserwis.tech');
 
                 if (filled($recipient)) {
-                    Mail::to($recipient)->send(new LeadReceivedMail($lead));
+                    $mailable = Mail::to($recipient);
+
+                    if (
+                        config('mail.department_addresses.always_cc_office', false)
+                        && filled($officeRecipient)
+                        && $recipient !== $officeRecipient
+                    ) {
+                        $mailable->cc($officeRecipient);
+                    }
+
+                    $mailable->send(new LeadReceivedMail($lead));
                 }
             } catch (Throwable $exception) {
                 report($exception);
@@ -95,5 +104,39 @@ class LeadController extends Controller
             ],
             'message' => 'Zapytanie zostało zapisane. Skontaktujemy się możliwie szybko.',
         ], $responseStatus);
+    }
+
+    public static function resolveLeadRecipient(string $service): string
+    {
+        $normalized = mb_strtolower(trim($service));
+
+        if (str_contains($normalized, 'wynajem')) {
+            return (string) config('mail.department_addresses.wynajem', 'wynajem@multiserwis.tech');
+        }
+
+        if (str_contains($normalized, 'elektrycz') || str_contains($normalized, 'automatyk')) {
+            return (string) config('mail.department_addresses.automatyka', 'automatyka@multiserwis.tech');
+        }
+
+        if (str_contains($normalized, 'szkolen')) {
+            return (string) config('mail.department_addresses.szkolenia', 'szkolenia@multiserwis.tech');
+        }
+
+        // Technologia (Łukasz) - konstrukcje stalowe, spawalnictwo, zlecenia ślusarskie/technologiczne
+        if (
+            str_contains($normalized, 'spawal')
+            || str_contains($normalized, 'konstrukc')
+            || str_contains($normalized, 'technolog')
+        ) {
+            return (string) config('mail.department_addresses.technologia', 'technologia@multiserwis.tech');
+        }
+
+        // Biuro - relokacja maszyn, montaż, udt, zapytania ogólne
+        $fallback = (string) (config('app.lead_notification_email')
+            ?: SiteSetting::query()->value('contact_email')
+            ?: config('mail.department_addresses.biuro', 'biuro@multiserwis.tech')
+            ?: config('mail.from.address'));
+
+        return filled($fallback) ? $fallback : 'biuro@multiserwis.tech';
     }
 }

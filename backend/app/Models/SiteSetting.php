@@ -104,7 +104,7 @@ class SiteSetting extends Model
             'training_phone_label' => 'Szkolenia',
             'training_phone_value' => '',
             'training_phone_href' => '',
-            'contact_email' => 'multiserwis.kutno@gmail.com',
+            'contact_email' => 'biuro@multiserwis.tech',
             'opening_days' => 'Poniedziałek - Piątek',
             'opening_details' => '8:00 - 16:00',
             'emergency_note' => 'Serwis awaryjny 24/7 (dla stałych klientów)',
@@ -152,6 +152,13 @@ class SiteSetting extends Model
                     ],
                 ],
                 'email' => $this->contact_email,
+                'departmentEmails' => [
+                    'biuro' => (string) config('mail.department_addresses.biuro', 'biuro@multiserwis.tech'),
+                    'wynajem' => (string) config('mail.department_addresses.wynajem', 'wynajem@multiserwis.tech'),
+                    'automatyka' => (string) config('mail.department_addresses.automatyka', 'automatyka@multiserwis.tech'),
+                    'technologia' => (string) config('mail.department_addresses.technologia', 'technologia@multiserwis.tech'),
+                    'szkolenia' => (string) config('mail.department_addresses.szkolenia', 'szkolenia@multiserwis.tech'),
+                ],
                 'openingHours' => [
                     'days' => $this->opening_days,
                     'details' => $this->opening_details,

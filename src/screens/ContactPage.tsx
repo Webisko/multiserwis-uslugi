@@ -150,9 +150,9 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   <div className="w-12 h-12 bg-industrial-950 border border-gray-800 rounded-xl flex items-center justify-center text-industrial-accent shrink-0">
                     <Mail size={22} />
                   </div>
-                  <div>
+                  <div className="w-full">
                     <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
-                      Adres e-mail
+                      Adres e-mail – Centrala, relokacja maszyn i montaż
                     </h3>
                     <a
                       href={`mailto:${resolvedCompany.email}`}
@@ -160,6 +160,40 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     >
                       {resolvedCompany.email}
                     </a>
+
+                    {resolvedCompany.departmentEmails ? (
+                      <div className="mt-3.5 pt-3 border-t border-gray-800/80 space-y-2 text-xs">
+                        <p className="text-gray-400 font-bold uppercase tracking-wider text-[11px]">
+                          Bezpośredni kontakt do działów:
+                        </p>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          <div className="p-2 rounded-lg bg-industrial-950/60 border border-gray-800/60">
+                            <span className="block text-gray-400 text-[11px] font-medium">Wynajem maszyn i sprzętu:</span>
+                            <a href={`mailto:${resolvedCompany.departmentEmails.wynajem}`} className="font-semibold text-white hover:text-industrial-accent break-all">
+                              {resolvedCompany.departmentEmails.wynajem}
+                            </a>
+                          </div>
+                          <div className="p-2 rounded-lg bg-industrial-950/60 border border-gray-800/60">
+                            <span className="block text-gray-400 text-[11px] font-medium">Konstrukcje & Spawalnictwo (Łukasz):</span>
+                            <a href={`mailto:${resolvedCompany.departmentEmails.technologia}`} className="font-semibold text-white hover:text-industrial-accent break-all">
+                              {resolvedCompany.departmentEmails.technologia}
+                            </a>
+                          </div>
+                          <div className="p-2 rounded-lg bg-industrial-950/60 border border-gray-800/60">
+                            <span className="block text-gray-400 text-[11px] font-medium">Automatyka & Elektryka:</span>
+                            <a href={`mailto:${resolvedCompany.departmentEmails.automatyka}`} className="font-semibold text-white hover:text-industrial-accent break-all">
+                              {resolvedCompany.departmentEmails.automatyka}
+                            </a>
+                          </div>
+                          <div className="p-2 rounded-lg bg-industrial-950/60 border border-gray-800/60">
+                            <span className="block text-gray-400 text-[11px] font-medium">Dział Szkoleń UDT/BHP:</span>
+                            <a href={`mailto:${resolvedCompany.departmentEmails.szkolenia}`} className="font-semibold text-white hover:text-industrial-accent break-all">
+                              {resolvedCompany.departmentEmails.szkolenia}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    ) : null}
                   </div>
                 </div>
 

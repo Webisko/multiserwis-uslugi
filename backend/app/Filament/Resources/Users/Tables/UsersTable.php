@@ -34,10 +34,16 @@ class UsersTable
                     ->badge()
                     ->formatStateUsing(fn (?string $state): string => match ($state) {
                         'admin' => 'Administrator',
+                        'manager' => 'Manager',
                         'staff' => 'Pracownik',
                         default => 'Administrator',
                     })
-                    ->color(fn (?string $state): string => $state === 'admin' ? 'warning' : 'gray'),
+                    ->color(fn (?string $state): string => match ($state) {
+                        'admin' => 'danger',
+                        'manager' => 'warning',
+                        'staff' => 'info',
+                        default => 'gray',
+                    }),
                 ToggleColumn::make('receives_lead_notifications')
                     ->label('Powiadomienia'),
                 ToggleColumn::make('is_active')

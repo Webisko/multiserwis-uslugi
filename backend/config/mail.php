@@ -111,8 +111,27 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
+        'address' => env('MAIL_FROM_ADDRESS', 'biuro@multiserwis.tech'),
+        'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Multiserwis Kutno')),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Multiserwis Department Email Addresses
+    |--------------------------------------------------------------------------
+    |
+    | Lead inquiries from the website contact forms are routed directly
+    | to the appropriate department mailboxes.
+    |
+    */
+
+    'department_addresses' => [
+        'biuro' => env('MAIL_DEPT_BIURO', 'biuro@multiserwis.tech'),
+        'wynajem' => env('MAIL_DEPT_WYNAJEM', 'wynajem@multiserwis.tech'),
+        'automatyka' => env('MAIL_DEPT_AUTOMATYKA', 'automatyka@multiserwis.tech'),
+        'technologia' => env('MAIL_DEPT_TECHNOLOGIA', 'technologia@multiserwis.tech'),
+        'szkolenia' => env('MAIL_DEPT_SZKOLENIA', 'szkolenia@multiserwis.tech'),
+        'always_cc_office' => env('MAIL_ALWAYS_CC_OFFICE', false),
     ],
 
 ];

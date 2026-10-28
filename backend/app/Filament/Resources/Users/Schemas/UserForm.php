@@ -60,6 +60,7 @@ class UserForm
                                     ->label('Rola w panelu')
                                     ->options([
                                         'admin' => 'Administrator',
+                                        'manager' => 'Manager',
                                         'staff' => 'Pracownik',
                                     ])
                                     ->default('staff')

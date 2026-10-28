@@ -19,7 +19,12 @@
         $displayName = filled($user?->name) && $user->name !== 'Administrator Multiserwis' ? $user->name : ($user?->email ?? 'admin@webisko.pl');
         $subtitle = filled($user?->job_title)
             ? $user->job_title
-            : (($user?->role ?? 'admin') === 'staff' ? 'Pracownik • Usługi' : 'Administrator • Usługi');
+            : match ($user?->role) {
+                'admin' => 'Administrator • Usługi',
+                'manager' => 'Manager • Usługi',
+                'staff' => 'Pracownik • Usługi',
+                default => 'Pracownik • Usługi',
+            };
         $initial = mb_strtoupper(mb_substr($displayName, 0, 1));
         $profileUrl = $user ? \App\Filament\Resources\Users\UserResource::getUrl('edit', ['record' => $user]) : '#';
     @endphp
