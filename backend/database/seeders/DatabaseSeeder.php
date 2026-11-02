@@ -6,6 +6,7 @@ use App\Models\SiteSetting;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,7 +24,6 @@ class DatabaseSeeder extends Seeder
                 'job_title' => 'Główny Administrator',
                 'phone' => '730 101 000',
                 'role' => 'admin',
-                'password' => 'MS-Webisko2026!#',
             ],
             [
                 'email' => 'kamil.kapruziak@multiserwis.tech',
@@ -31,7 +31,6 @@ class DatabaseSeeder extends Seeder
                 'job_title' => 'Właściciel / Nadzór techniczny',
                 'phone' => '730 101 000',
                 'role' => 'manager',
-                'password' => 'xy58GLdvgzxbMqYT5QQP',
             ],
             [
                 'email' => 'justyna.kapruziak@multiserwis.tech',
@@ -39,7 +38,6 @@ class DatabaseSeeder extends Seeder
                 'job_title' => 'Współwłaściciel / Administracja',
                 'phone' => '733 929 100',
                 'role' => 'manager',
-                'password' => 'Cv2wetZQ9pXfwAwM9jBU',
             ],
             [
                 'email' => 'izabela@multiserwis.tech',
@@ -47,7 +45,6 @@ class DatabaseSeeder extends Seeder
                 'job_title' => 'Obsługa Klienta / Biuro',
                 'phone' => '730 101 000',
                 'role' => 'staff',
-                'password' => 'KRpjPZPaAQKERcDADCmg',
             ],
             [
                 'email' => 'joanna@multiserwis.tech',
@@ -55,7 +52,6 @@ class DatabaseSeeder extends Seeder
                 'job_title' => 'Obsługa Klienta / Biuro',
                 'phone' => '730 101 000',
                 'role' => 'staff',
-                'password' => 'pr4xyZyKumHRRGVezxgd',
             ],
             [
                 'email' => 'technologia@multiserwis.tech',
@@ -63,33 +59,37 @@ class DatabaseSeeder extends Seeder
                 'job_title' => 'Dział Technologii – Konstrukcje i Spawalnictwo',
                 'phone' => '730 101 000',
                 'role' => 'staff',
-                'password' => 'GHtf3xTMMm2au8PVEwbz',
             ],
         ];
 
+        $initialPassword = config('app.admin_initial_password', env('ADMIN_INITIAL_PASSWORD'));
+
         foreach ($team as $member) {
-            User::updateOrCreate(
-                ['email' => $member['email']],
-                [
-                    'name' => $member['name'],
-                    'job_title' => $member['job_title'],
-                    'phone' => $member['phone'],
-                    'role' => $member['role'],
-                    'is_active' => true,
-                    'receives_lead_notifications' => true,
-                    'password' => bcrypt($member['password']),
-                    'email_verified_at' => now(),
-                ]
-            );
+            $user = User::firstOrNew(['email' => $member['email']]);
+            $isNew = ! $user->exists;
+
+            $user->name = $member['name'];
+            $user->job_title = $member['job_title'];
+            $user->phone = $member['phone'];
+            $user->role = $member['role'];
+            $user->is_active = true;
+            $user->receives_lead_notifications = true;
+
+            // Ustawiamy hasło wyłącznie przy tworzeniu nowego użytkownika,
+            // zapobiegając nadpisaniu haseł zmienionych przez pracowników w CMS.
+            if ($isNew) {
+                $rawPassword = filled($initialPassword)
+                    ? (string) $initialPassword
+                    : Str::random(24);
+
+                $user->password = bcrypt($rawPassword);
+                $user->email_verified_at = now();
+            }
+
+            $user->save();
         }
 
-        $settings = SiteSetting::current();
-        $settings->update([
-            'street' => 'ul. Przemysłowa 2',
-            'contact_email' => 'biuro@multiserwis.tech',
-            'training_site_url' => 'https://multiserwis.edu.pl',
-            'training_phone_value' => '',
-            'training_phone_href' => '',
-        ]);
+        // Zapewniamy istnienie domyślnych ustawień bez nadpisywania wprowadzonych w CMS
+        SiteSetting::current();
     }
 }

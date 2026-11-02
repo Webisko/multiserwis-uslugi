@@ -26,6 +26,8 @@ class UserResource extends Resource
 
     protected static ?string $navigationLabel = 'Zespół';
 
+    protected static ?string $slug = 'zespol';
+
     protected static ?int $navigationSort = 35;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUsers;

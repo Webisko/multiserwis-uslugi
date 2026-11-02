@@ -470,7 +470,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 inputMode="tel"
                 autoComplete="tel"
                 className={fieldClasses('phone')}
-                placeholder="+48 123 456 789"
+                placeholder="+48 730 101 000"
                 aria-invalid={Boolean(errors.phone)}
                 aria-required="true"
               />

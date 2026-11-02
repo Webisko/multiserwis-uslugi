@@ -27,6 +27,8 @@ class PortfolioItemResource extends Resource
 
     protected static ?string $navigationLabel = 'Realizacje';
 
+    protected static ?string $slug = 'realizacje';
+
     protected static ?int $navigationSort = 25;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBriefcase;

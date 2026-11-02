@@ -26,6 +26,8 @@ class ServiceOfferingResource extends Resource
 
     protected static ?string $navigationLabel = 'Usługi';
 
+    protected static ?string $slug = 'uslugi';
+
     protected static ?int $navigationSort = 20;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedWrenchScrewdriver;

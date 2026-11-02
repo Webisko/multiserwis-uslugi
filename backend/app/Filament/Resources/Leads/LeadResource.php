@@ -25,6 +25,8 @@ class LeadResource extends Resource
 
     protected static ?string $navigationLabel = 'Zapytania';
 
+    protected static ?string $slug = 'zapytania';
+
     protected static ?int $navigationSort = 10;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedInboxArrowDown;

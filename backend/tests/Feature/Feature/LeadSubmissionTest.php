@@ -194,4 +194,29 @@ class LeadSubmissionTest extends TestCase
 
         Mail::assertNothingSent();
     }
+
+    public function test_it_throttles_excessive_submissions(): void
+    {
+        Mail::fake();
+
+        $payload = [
+            'fullName' => 'Test User',
+            'phone' => '+48 730 202 000',
+            'email' => 'test@example.com',
+            'service' => 'Relokacja Maszyn',
+            'message' => 'Potrzebujemy relokacji dwóch linii produkcyjnych.',
+            'consent' => true,
+            'source' => [
+                'page' => '/kontakt',
+                'context' => 'contact-page',
+            ],
+        ];
+
+        for ($i = 0; $i < 15; $i++) {
+            $this->postJson('/api/v1/leads', $payload);
+        }
+
+        $response = $this->postJson('/api/v1/leads', $payload);
+        $response->assertStatus(429);
+    }
 }

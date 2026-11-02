@@ -26,6 +26,8 @@ class FaqItemResource extends Resource
 
     protected static ?string $navigationLabel = 'Pytania i odpowiedzi';
 
+    protected static ?string $slug = 'pytania-i-odpowiedzi';
+
     protected static ?int $navigationSort = 30;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedQuestionMarkCircle;

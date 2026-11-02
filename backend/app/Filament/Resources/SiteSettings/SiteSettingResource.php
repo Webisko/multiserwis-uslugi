@@ -27,7 +27,7 @@ class SiteSettingResource extends Resource
 
     protected static ?int $navigationSort = 40;
 
-    protected static ?string $slug = 'settings';
+    protected static ?string $slug = 'ustawienia';
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCog6Tooth;
 
