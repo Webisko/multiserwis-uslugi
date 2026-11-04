@@ -143,11 +143,11 @@ const PortfolioContent: React.FC<{ initialItems: PortfolioItemPayload[] }> = ({ 
                 >
                   <div>
                     {item.imageUrl ? (
-                      <div className="-mx-6 -mt-6 sm:-mx-8 sm:-mt-8 mb-6 h-60 sm:h-64 overflow-hidden border-b border-gray-800 bg-industrial-950">
+                      <div className="-mx-6 -mt-6 sm:-mx-8 sm:-mt-8 mb-6 h-80 sm:h-96 lg:h-[400px] overflow-hidden border-b border-gray-800 bg-industrial-950">
                         <img
                           src={item.imageUrl}
                           alt={item.title}
-                          className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                          className="h-full w-full object-cover object-center transition-transform duration-500 hover:scale-105"
                           loading="lazy"
                         />
                       </div>
