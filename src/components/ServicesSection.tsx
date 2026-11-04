@@ -23,14 +23,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
 
   useEffect(() => {
     void fetchLiveServices().then((fresh) => {
-      if (fresh && fresh.items.length > 0) {
+      if (fresh) {
         setLiveServices(fresh.items);
       }
     });
   }, []);
 
-  // Display all 6 core industrial services in a balanced 3x2 grid
-  const displayedServices = liveServices.length > 0 ? liveServices : services;
+  const displayedServices = liveServices;
 
   return (
     <section id="uslugi" className="page-section-alt relative border-b border-gray-800/80">
@@ -51,13 +50,14 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {displayedServices.map((service) => (
-            <article
-              key={service.id}
-              id={service.slug}
-              className="group relative flex flex-col justify-between p-6 sm:p-8 rounded-2xl bg-industrial-950/90 border border-gray-800 hover:border-industrial-accent/60 transition-all duration-300 hover:shadow-[0_12px_36px_-12px_rgba(245,158,11,0.16)] hover:-translate-y-1 overflow-hidden h-full"
-            >
+        {displayedServices.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {displayedServices.map((service) => (
+              <article
+                key={service.id}
+                id={service.slug}
+                className="group relative flex flex-col justify-between p-6 sm:p-8 rounded-2xl bg-industrial-950/90 border border-gray-800 hover:border-industrial-accent/60 transition-all duration-300 hover:shadow-[0_12px_36px_-12px_rgba(245,158,11,0.16)] hover:-translate-y-1 overflow-hidden h-full"
+              >
               {/* Hover Background Gradient */}
               <div
                 className="absolute inset-0 bg-gradient-to-br from-industrial-accent/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -115,6 +115,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({
             </article>
           ))}
         </div>
+        ) : (
+          <div className="text-center py-12 rounded-xl bg-industrial-950/70 border border-gray-800 text-gray-400">
+            Aktualnie trwa aktualizacja oferty usług. Skontaktuj się z nami bezpośrednio, aby uzyskać szczegóły.
+          </div>
+        )}
 
         {/* Unified Training Banner below the 3x2 grid */}
         <div className="mt-10 rounded-2xl border border-gray-800 bg-industrial-950/80 p-6 sm:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">

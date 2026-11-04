@@ -1,14 +1,18 @@
 # Multiserwis – Kompleksowe usługi dla przemysłu i budownictwa
 
-> Multiserwis Kutno to partner przemysłowy z certyfikatem ISO 9001:2015. Oferujemy kompleksowe wsparcie zakładów produkcyjnych, fabryk i placów budowy w Polsce: wynajem specjalistycznych maszyn i dźwigów, relokację linii technologicznych, dozór i szkolenia UDT, spawalnictwo precyzyjne, hydraulikę siłową oraz instalacje elektryczne i AKPiA.
+> Multiserwis Kutno to certyfikowany partner przemysłowy (ISO 9001:2015, Akredytacja PCA AC 136). Oferujemy kompleksowe wsparcie zakładów produkcyjnych, fabryk i placów budowy w Polsce: wynajem specjalistycznych maszyn i dźwigów, relokację linii technologicznych, dozór i serwis UDT, spawalnictwo precyzyjne, konstrukcje stalowe, rurociągi przemysłowe oraz instalacje elektryczne i AKPiA.
 
-## Informacje podstawowe
-- Nazwa firmy: Multiserwis Kutno
-- Lokalizacja: ul. Henryka Siemiradzkiego 18, 99-300 Kutno, Polska
+## Informacje podstawowe i rejestrowe
+- Nazwa firmy: MULTISERWIS KUTNO SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ (Multiserwis Kutno)
+- NIP: 7752676330
+- REGON: 541108550
+- KRS: 0001160280
+- Adres siedziby: ul. Przemysłowa 2, 99-300 Kutno, Polska
+- Serwis główny: https://multiserwis.tech
 - Telefony kontaktowe (usługi): +48 730 101 000, +48 733 929 100
-- Telefon kontaktowy (szkolenia): +48 730 202 000
-- E-mail: multiserwis.kutno@gmail.com
-- Godziny pracy: Poniedziałek – Piątek, 08:00 – 16:00 (wsparcie awaryjne 24/7 dla stałych klientów)
+- Szkolenia UDT i SEP: https://multiserwis.edu.pl
+- E-mail: biuro@multiserwis.tech
+- Godziny pracy biura: Poniedziałek – Piątek, 08:00 – 16:00 (serwis awaryjny 24/7 dla stałych klientów)
 - Czas wyceny: Wycena i kontakt inżyniera w 24h w dni robocze
 - Certyfikat jakości: ISO 9001:2015 (Akredytacja PCA AC 136)
 
@@ -16,10 +20,10 @@
 - [Pełny katalog usług technicznych](/uslugi-techniczne): Zbiorczy przegląd wszystkich 6 filarów usług inżynieryjnych i sprzętowych.
 - [Wynajem maszyn i dźwigów](/wynajem): Podnośniki nożycowe i koszowe, żurawie samojezdne do 45t, wózki widłowe i ładowarki teleskopowe z operatorem lub bez.
 - [Relokacja maszyn i linii](/relokacja): Kompleksowy demontaż, transport ponadgabarytowy, ponowny montaż, pozycjonowanie i rozruch technologiczny ciągów produkcyjnych.
-- [Konserwacja, serwis i szkolenia UDT](/udt): Przygotowanie maszyn do badań okresowych i odbiorczych UDT, resurs, przeglądy konserwacyjne oraz szkolenia operatorów.
+- [Konserwacja, serwis i UDT](/udt): Przygotowanie maszyn do badań okresowych i odbiorczych UDT, resurs, przeglądy konserwacyjne urządzeń dźwignicowych.
 - [Usługi spawalnicze i konstrukcje](/spawanie): Spawanie metodami TIG, MIG/MAG, MMA, prefabrykacja konstrukcji stalowych, rurociągi przemysłowe, regeneracja elementów maszyn.
 - [Hydraulika i montaż przemysłowy](/budownictwo): Montaż rurociągów technologicznych, armatury, hydrauliki siłowej oraz konstrukcji wsporczych.
-- [Usługi elektryczne i AKPiA](/elektryka): Pomiary odbiorcze i okresowe SEP, automatyka przemysłowa, szafy sterownicze, szkolenia SEP (G1, G2, G3).
+- [Usługi elektryczne i pomiary](/elektryka): Pomiary odbiorcze i okresowe SEP, automatyka przemysłowa, szafy sterownicze, instalacje halowe.
 - [Realizacje](/realizacje): Przykładowe wdrożenia i projekty zrealizowane dla zakładów przemysłowych.
 - [O firmie](/o-firmie): Standardy pracy, park maszynowy, certyfikat ISO 9001:2015.
 - [Centrum pomocy FAQ](/faq): Baza wiedzy i odpowiedzi na najczęściej zadawane pytania techniczne.

@@ -168,13 +168,26 @@ Główne tabele i modele (szczegóły w `.antigravity/schema.md`):
   * Sprawdzenie typów Astro (`astro check`): **59 plików, 0 błędów, 0 ostrzeżeń**.
   * Kompilacja produkcyjna Astro (`npm run build`): **15 podstron statycznych wygenerowanych pomyślnie**.
   * Wygenerowano plik schematu bazy danych `.antigravity/schema.md` oraz żywą dokumentację projektu `DOKUMENTACJA.md`.
-* **2026-11-02 — Wdrożenie poprawek poaudytowych:**
-  * **Bezpieczeństwo kont personelu:** Usunięto zahardkodowane hasła z `DatabaseSeeder.php`; hasło początkowe wczytywane z `ADMIN_INITIAL_PASSWORD` lub generowane losowo (zabezpieczenie przed resetowaniem haseł personelu w CMS).
-  * **Ochrona API (`Rate Limiting`):** Dodano middleware `throttle:15,1` na trasie `POST /api/v1/leads` oraz nowy automatyczny test Feature sprawdzający limit 429.
-  * **Strefa czasowa i lokalizacja:** Ustawiono `'timezone' => 'Europe/Warsaw'` oraz domyślne `locale` na `'pl'` w `config/app.php`.
-  * **Polonizacja Filament CMS:** Dodano polskie slugi we wszystkich zasobach: `/admin/ustawienia`, `/admin/zapytania`, `/admin/pytania-i-odpowiedzi`, `/admin/realizacje`, `/admin/uslugi`, `/admin/zespol`.
-  * **UX formularza:** Zastąpiono testowy placeholder telefonu wzorcem firmowym `+48 730 101 000` w `ContactForm.tsx`.
-  * **Wyniki testów końcowych:**
+* **2026-11-04 — 7-Stopniowy Audyt Produkcyjny (`project-audit-master`) i Implementacja Poprawek:**
+  * **Synchronizacja tożsamości marki i Agentic Web:** Zaktualizowano `public/llms.txt` oraz `public/llms-full.txt` do stanu w 100% spójnego z danymi rejestrowymi (adres `ul. Przemysłowa 2, 99-300 Kutno`, oficjalny e-mail `biuro@multiserwis.tech`, domena `https://multiserwis.tech`, NIP, REGON, KRS i usunięcie starego numeru telefonu do szkoleń).
+  * **Odporność na pusty katalog w CMS (`Empty Catalog Parity`):** Wyeliminowano antywzorzec blokujący aktualizację stanu przy zerowej liczbie rekordów w `FaqSection.tsx`, `ServicesSection.tsx`, `PortfolioPage.tsx` i `FaqPage.tsx`; dodano eleganckie komunikaty stanu pustego zamiast wyświetlania nieaktualnych danych ze statycznego fallbacku.
+  * **Ergonomia dotykowa i ochrona antyspamowa formularza (`ContactForm.tsx`):**
+    * Dodano mechanizm **Time-trap** (blokada botów wysyłających formularz w czasie < 1.0s z cichą odpowiedzią symulowanego sukcesu `Silent 200 OK`).
+    * Wdrożono płynne centrowanie widoku (`scrollIntoView({ behavior: 'smooth', block: 'center' })`) i focus na pierwszym błędnym polu przy nieudanej walidacji na smartfonach.
+    * Wprowadzono zbiorczy boks podsumowujący błędy walidacji z atrybutem `role="alert"` bezpośrednio nad przyciskiem CTA.
+    * Dodano powiązania `aria-describedby` łączące inputy z komunikatami błędów pod polami.
+  * **Cyberbezpieczeństwo i nagłówki HTTP (`.htaccess`):**
+    * Wdrożono nagłówki `X-Frame-Options: SAMEORIGIN`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin` oraz `Permissions-Policy`.
+    * Zablokowano dostęp do plików ukrytych i konfiguracyjnych (`.env`, `.sqlite`, `.db`, `.log`, `.git`, `composer.*`, `package*.json`, `tsconfig.json`).
+  * **Konfiguracja CMS i walidacji backendu:**
+    * Opublikowano `config/livewire.php` z limitem uploadu `51200` (50 MB) zapobiegającym błędom przy dodawaniu zdjęć w panelu Filament.
+    * Wprowadzono precyzyjną walidację domeny DNS e-mail (`email:rfc,dns` w produkcji / `email:rfc` w testach) w `StoreLeadRequest.php`.
+  * **Zgodność prawna RODO:** Utworzono komponent uśpionego banera RODO `src/components/DormantCookieBanner.astro` (Zero Dark Patterns, identyczna waga wizualna przycisków) i włączono go w `Layout.astro` (sterowany flagą `PUBLIC_ENABLE_COOKIE_BANNER`).
+  * **Architektura wizualna i copywriting:**
+    * Zamieniono korporacyjną kliszę AI *„Synergia działań technicznych”* na inżynieryjny konkret *„Jeden koordynator dla całego zadania”* w `HomePage.tsx`.
+    * Zaizolowano podświetlenia kart w `src/styles/global.css` wewnątrz reguły `@media (hover: hover) and (pointer: fine)` przeciwko efektowi „przyklejonego hovera” na ekranach dotykowych.
+  * **Wyniki twardej bramki testowej:**
     * PHPUnit: **21/21 testów zielonych (PASS)**, 60 asercji.
-    * Astro check: **59 plików, 0 błędów, 0 ostrzeżeń**.
-    * Astro build: **15 stron statycznych wygenerowanych w 1.9s**.
+    * Astro check: **60 plików, 0 błędów, 0 ostrzeżeń**.
+    * Astro build: **15 podstron statycznych wygenerowanych bezbłędnie (kod wyjścia 0)**.
+    * Spójność stron (`check-page-consistency.ps1`): **PASSED**.

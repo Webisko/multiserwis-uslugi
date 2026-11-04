@@ -53,7 +53,7 @@ export const WhyUsSection: React.FC = () => (
               </span>
             </div>
             <h3 className="card-title mb-3 group-hover:text-industrial-accent transition-colors">
-              Synergia działań technicznych
+              Jeden koordynator dla całego zadania
             </h3>
             <p className="text-sm sm:text-base text-gray-300 leading-relaxed">
               Łączymy wynajem sprzętu dźwigowego, relokację maszyn, obsługę UDT, spawalnictwo,

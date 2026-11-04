@@ -1,0 +1,77 @@
+---
+import { defaultCompany } from '../data/company';
+
+interface Props {
+  basePath?: string;
+}
+
+const { basePath = defaultCompany.links.basePath } = Astro.props;
+const isCookieBannerEnabled = import.meta.env.PUBLIC_ENABLE_COOKIE_BANNER === 'true';
+---
+
+{isCookieBannerEnabled ? (
+  <aside
+    id="dormant-cookie-banner"
+    role="dialog"
+    aria-modal="false"
+    aria-label="Prywatność i pliki cookies"
+    class="fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-xl rounded-2xl border border-gray-800 bg-industrial-950/95 p-5 shadow-2xl backdrop-blur-md text-gray-200 transition-all duration-300 hidden"
+  >
+    <div class="flex flex-col gap-4">
+      <div>
+        <h2 class="font-display text-lg font-bold uppercase tracking-tight text-white mb-1.5">
+          Prywatność i pliki cookies
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-300 leading-relaxed">
+          Nasz serwis domyślnie korzysta z bezciasteczkowej analityki Umami oraz niezbędnych plików technicznych.
+          Opcjonalne skrypty analityczne i marketingowe pomagają nam udoskonalać ofertę.
+          Szczegóły znajdziesz w naszej{' '}
+          <a
+            href={`${basePath}/polityka-prywatnosci`}
+            class="text-industrial-accent underline hover:text-white transition-colors"
+          >
+            Polityce prywatności
+          </a>.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 pt-1">
+        <button
+          type="button"
+          id="cookie-reject-btn"
+          class="inline-flex items-center justify-center rounded-lg border border-gray-700 bg-industrial-900 px-4 py-2.5 text-xs sm:text-sm font-semibold text-gray-200 hover:border-gray-500 hover:text-white transition-colors cursor-pointer"
+        >
+          Tylko niezbędne
+        </button>
+        <button
+          type="button"
+          id="cookie-accept-btn"
+          class="inline-flex items-center justify-center rounded-lg border border-gray-700 bg-industrial-900 px-4 py-2.5 text-xs sm:text-sm font-semibold text-gray-200 hover:border-gray-500 hover:text-white transition-colors cursor-pointer"
+        >
+          Zezwól na wszystkie
+        </button>
+      </div>
+    </div>
+
+    <script is:inline>
+      (() => {
+        const banner = document.getElementById('dormant-cookie-banner');
+        if (!banner) return;
+
+        const stored = localStorage.getItem('multiserwis_cookie_consent');
+        if (!stored) {
+          banner.classList.remove('hidden');
+        }
+
+        const closeWithChoice = (choice) => {
+          localStorage.setItem('multiserwis_cookie_consent', choice);
+          banner.classList.add('hidden');
+          window.dispatchEvent(new CustomEvent('multiserwis:cookie-consent', { detail: { consent: choice } }));
+        };
+
+        document.getElementById('cookie-reject-btn')?.addEventListener('click', () => closeWithChoice('essential'));
+        document.getElementById('cookie-accept-btn')?.addEventListener('click', () => closeWithChoice('all'));
+      })();
+    </script>
+  </aside>
+) : null}

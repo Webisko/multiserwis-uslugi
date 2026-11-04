@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useCompanyData } from '../data/company';
 
 const PREVIEW_SUCCESS_MESSAGE =
@@ -265,6 +265,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [feedback, setFeedback] = useState('');
   const isRentalSelected = isRentalInquiry(formState);
+  const mountedAtRef = useRef<number>(Date.now());
 
   const handleFieldChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -311,6 +312,26 @@ export const ContactForm: React.FC<ContactFormProps> = ({
       setErrors(validationErrors);
       setStatus('error');
       setFeedback('Popraw oznaczone pola i spróbuj ponownie.');
+
+      const firstErrorKey = Object.keys(validationErrors)[0];
+      const targetElement =
+        document.getElementById(`${contextLabel}-${firstErrorKey}`) ||
+        (document.querySelector(`[name="${firstErrorKey}"]`) as HTMLElement | null);
+
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetElement.focus({ preventScroll: true });
+      }
+      return;
+    }
+
+    // Time-trap: bot submitting form in under 1s
+    if (Date.now() - mountedAtRef.current < 1000) {
+      setStatus('submitting');
+      await new Promise((resolve) => setTimeout(resolve, 600));
+      setStatus('success');
+      setFeedback(PREVIEW_SUCCESS_MESSAGE);
+      setFormState(initialState);
       return;
     }
 
@@ -326,6 +347,17 @@ export const ContactForm: React.FC<ContactFormProps> = ({
         setErrors(result.fieldErrors || {});
         setStatus('error');
         setFeedback(result.message);
+
+        if (result.fieldErrors && Object.keys(result.fieldErrors).length > 0) {
+          const firstApiErrorKey = Object.keys(result.fieldErrors)[0];
+          const targetElement =
+            document.getElementById(`${contextLabel}-${firstApiErrorKey}`) ||
+            (document.querySelector(`[name="${firstApiErrorKey}"]`) as HTMLElement | null);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            targetElement.focus({ preventScroll: true });
+          }
+        }
         return;
       }
 
@@ -386,9 +418,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               className={fieldClasses('fullName')}
               placeholder="Jan Kowalski"
               aria-invalid={Boolean(errors.fullName)}
+              aria-describedby={errors.fullName ? `${contextLabel}-fullName-error` : undefined}
               aria-required="true"
             />
-            {errors.fullName && <p className="mt-1.5 text-xs text-red-300">{errors.fullName}</p>}
+            {errors.fullName && (
+              <p id={`${contextLabel}-fullName-error`} className="mt-1.5 text-xs text-red-300">
+                {errors.fullName}
+              </p>
+            )}
           </div>
 
           <div>
@@ -411,9 +448,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   className={fieldClasses('phone')}
                   placeholder="+48 730 101 000"
                   aria-invalid={Boolean(errors.phone)}
+                  aria-describedby={errors.phone ? `${contextLabel}-phone-error` : undefined}
                   aria-required="true"
                 />
-                {errors.phone && <p className="mt-1.5 text-xs text-red-300">{errors.phone}</p>}
+                {errors.phone && (
+                  <p id={`${contextLabel}-phone-error`} className="mt-1.5 text-xs text-red-300">
+                    {errors.phone}
+                  </p>
+                )}
               </>
             ) : (
               <input
@@ -448,9 +490,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               className={fieldClasses('email')}
               placeholder="kontakt@firma.pl"
               aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? `${contextLabel}-email-error` : undefined}
               aria-required="true"
             />
-            {errors.email && <p className="mt-1.5 text-xs text-red-300">{errors.email}</p>}
+            {errors.email && (
+              <p id={`${contextLabel}-email-error`} className="mt-1.5 text-xs text-red-300">
+                {errors.email}
+              </p>
+            )}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -472,9 +519,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 className={fieldClasses('phone')}
                 placeholder="+48 730 101 000"
                 aria-invalid={Boolean(errors.phone)}
+                aria-describedby={errors.phone ? `${contextLabel}-phone-error` : undefined}
                 aria-required="true"
               />
-              {errors.phone && <p className="mt-1.5 text-xs text-red-300">{errors.phone}</p>}
+              {errors.phone && (
+                <p id={`${contextLabel}-phone-error`} className="mt-1.5 text-xs text-red-300">
+                  {errors.phone}
+                </p>
+              )}
             </div>
             <div>
               <label
@@ -493,9 +545,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 className={fieldClasses('email')}
                 placeholder="email@firma.pl"
                 aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? `${contextLabel}-email-error` : undefined}
                 aria-required="true"
               />
-              {errors.email && <p className="mt-1.5 text-xs text-red-300">{errors.email}</p>}
+              {errors.email && (
+                <p id={`${contextLabel}-email-error`} className="mt-1.5 text-xs text-red-300">
+                  {errors.email}
+                </p>
+              )}
             </div>
           </div>
         )}
@@ -514,6 +571,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
             onChange={handleFieldChange}
             className={fieldClasses('service')}
             aria-invalid={Boolean(errors.service)}
+            aria-describedby={errors.service ? `${contextLabel}-service-error` : undefined}
             aria-label="Wybierz interesującą usługę"
             aria-required="true"
           >
@@ -524,7 +582,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               </option>
             ))}
           </select>
-          {errors.service && <p className="mt-1.5 text-xs text-red-300">{errors.service}</p>}
+          {errors.service && (
+            <p id={`${contextLabel}-service-error`} className="mt-1.5 text-xs text-red-300">
+              {errors.service}
+            </p>
+          )}
         </div>
 
         {isRentalSelected && (
@@ -545,10 +607,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 className={fieldClasses('rentalEquipment')}
                 placeholder="Np. żuraw 45 t, podest nożycowy 18 m"
                 aria-invalid={Boolean(errors.rentalEquipment)}
+                aria-describedby={errors.rentalEquipment ? `${contextLabel}-rentalEquipment-error` : undefined}
                 aria-required="true"
               />
               {errors.rentalEquipment && (
-                <p className="mt-1.5 text-xs text-red-300">{errors.rentalEquipment}</p>
+                <p id={`${contextLabel}-rentalEquipment-error`} className="mt-1.5 text-xs text-red-300">
+                  {errors.rentalEquipment}
+                </p>
               )}
             </div>
 
@@ -652,9 +717,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                 : 'Opisz krótko zakres prac, lokalizację zakładu oraz preferowany termin realizacji.'
             }
             aria-invalid={Boolean(errors.message)}
+            aria-describedby={errors.message ? `${contextLabel}-message-error` : undefined}
             aria-required="true"
           />
-          {errors.message && <p className="mt-1.5 text-xs text-red-300">{errors.message}</p>}
+          {errors.message && (
+            <p id={`${contextLabel}-message-error`} className="mt-1.5 text-xs text-red-300">
+              {errors.message}
+            </p>
+          )}
         </div>
 
         <div className="space-y-1.5">
@@ -666,6 +736,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               onChange={handleFieldChange}
               type="checkbox"
               className="mt-1 h-4 w-4 shrink-0 rounded accent-industrial-accent cursor-pointer"
+              aria-describedby={errors.consent ? `${contextLabel}-consent-error` : undefined}
               aria-required="true"
             />
             <label
@@ -683,11 +754,17 @@ export const ContactForm: React.FC<ContactFormProps> = ({
               . *
             </label>
           </div>
-          {errors.consent && <p className="text-xs text-red-300">{errors.consent}</p>}
+          {errors.consent && (
+            <p id={`${contextLabel}-consent-error`} className="text-xs text-red-300">
+              {errors.consent}
+            </p>
+          )}
         </div>
 
         {feedback && (
           <div
+            role={status === 'error' ? 'alert' : 'status'}
+            aria-live="polite"
             className={`rounded-lg border px-4 py-3 text-sm leading-relaxed ${
               status === 'success'
                 ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-100'
@@ -696,7 +773,14 @@ export const ContactForm: React.FC<ContactFormProps> = ({
                   : 'border-gray-700 bg-industrial-950/60 text-gray-300'
             }`}
           >
-            {feedback}
+            <p className="font-semibold">{feedback}</p>
+            {status === 'error' && Object.keys(errors).length > 0 && (
+              <ul className="mt-2 list-disc list-inside space-y-0.5 text-xs text-red-200">
+                {Object.entries(errors).map(([key, msg]) => (
+                  <li key={key}>{msg}</li>
+                ))}
+              </ul>
+            )}
           </div>
         )}
 

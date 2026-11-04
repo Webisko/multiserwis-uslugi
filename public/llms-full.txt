@@ -37,9 +37,12 @@
 - Szkolenia i egzaminy kwalifikacyjne SEP (grupy G1, G2, G3).
 
 ## 7. Kontakt i dane rejestrowe
-- Multiserwis Kutno
-- Adres: ul. Henryka Siemiradzkiego 18, 99-300 Kutno, Polska
+- MULTISERWIS KUTNO SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ (Multiserwis Kutno)
+- NIP: 7752676330
+- REGON: 541108550
+- KRS: 0001160280
+- Adres: ul. Przemysłowa 2, 99-300 Kutno, Polska
 - Telefony (usługi): +48 730 101 000, +48 733 929 100
-- Telefon (szkolenia): +48 730 202 000
-- E-mail: multiserwis.kutno@gmail.com
-- Web: https://multiserwis-uslugi.webisko.pl/
+- Szkolenia UDT i SEP: https://multiserwis.edu.pl
+- E-mail: biuro@multiserwis.tech
+- Serwis główny: https://multiserwis.tech

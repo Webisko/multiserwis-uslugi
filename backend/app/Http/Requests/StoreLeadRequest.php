@@ -33,7 +33,11 @@ class StoreLeadRequest extends FormRequest
                     }
                 },
             ],
-            'email' => ['required', 'email', 'max:160'],
+            'email' => [
+                'required',
+                app()->environment('testing') ? 'email:rfc' : 'email:rfc,dns',
+                'max:160',
+            ],
             'service' => [
                 'required',
                 'string',

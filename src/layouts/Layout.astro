@@ -2,6 +2,7 @@
 import { defaultCompany } from '../data/company';
 import { getDefaultSeo, getSiteSettings, getEffectiveBasePath } from '../lib/siteSettings';
 import UmamiAnalytics from '../components/UmamiAnalytics.astro';
+import DormantCookieBanner from '../components/DormantCookieBanner.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -236,6 +237,7 @@ const structuredData = {
     class="min-h-screen bg-industrial-950 text-gray-100 font-sans selection:bg-industrial-accent selection:text-industrial-950 flex flex-col"
   >
     <slot />
+    <DormantCookieBanner basePath={company.links.basePath} />
 
     <script is:inline>
       if (typeof window !== 'undefined') {

@@ -28,7 +28,7 @@ export const FaqPage: React.FC<FaqPageProps> = ({
 
   useEffect(() => {
     void fetchLiveFaqs().then((fresh) => {
-      if (fresh && fresh.items.length > 0) {
+      if (fresh) {
         setLiveItems(fresh.items);
         setLiveCategories(fresh.categories);
       }

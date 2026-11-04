@@ -76,7 +76,7 @@ export const FaqSection: React.FC<FaqSectionProps> = ({ faqGroups = fallbackFaqG
 
   useEffect(() => {
     void fetchLiveFaqs().then((fresh) => {
-      if (fresh && fresh.featuredGroups.length > 0) {
+      if (fresh) {
         setLiveGroups(fresh.featuredGroups);
       }
     });
