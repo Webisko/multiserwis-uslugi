@@ -210,4 +210,8 @@ Główne tabele i modele (szczegóły w `.antigravity/schema.md`):
       * Konstrukcje stalowe i spawalnictwo (2 zdjęcia).
     * Rozbudowano podstronę `/realizacje` (`PortfolioPage.tsx`):
       * Karty 4 głównych case studies z autentycznymi okładkami WebP.
+      * Zwiększono wysokość nagłówków zdjęć z `h-60 sm:h-64` (240–256px) do `h-80 sm:h-96 lg:h-[400px]` (do 400px), eliminując efekt spłaszczenia i zapewniając naturalne proporcje kadru maszyn.
       * Nowa sekcja interaktywnej galerii z filtrowaniem kategorii oraz powiększeniem Lightbox (wraz z obsługą klawisza ESC i blokadą scrolla).
+    * Bezpieczeństwo i SEO:
+      * Wymuszono stałe przekierowanie `301 Moved Permanently` z HTTP na HTTPS w `public/.htaccess`.
+      * Wdrożono certyfikat Wildcard Let's Encrypt `*.multiserwis.tech` i zoptymalizowano `og-image.png` (< 160 KB) pod WhatsApp.
