@@ -33,9 +33,14 @@ Options -Indexes
     </IfModule>
 </FilesMatch>
 
-# Redirect legacy / preview basePath requests to root
+# Redirect legacy / preview basePath requests to root & force HTTPS
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteCond %{REQUEST_URI} !^/\.well-known/acme-challenge/
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
     RewriteRule ^multiserwis-uslugi/(.*)$ /$1 [R=301,L]
 </IfModule>
 
