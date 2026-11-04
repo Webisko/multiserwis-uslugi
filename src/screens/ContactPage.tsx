@@ -87,23 +87,29 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     <Phone size={22} />
                   </div>
                   <div className="w-full">
-                    <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">
-                      Telefony – {resolvedCompany.phones.services.label}
+                    <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                      Infolinia ogólna i usługi
                     </h3>
-                    <div className="flex flex-col gap-1">
-                      <a
-                        href={resolvedCompany.phones.services.href}
-                        className="font-display text-2xl font-bold text-white hover:text-industrial-accent transition-colors"
-                      >
-                        {resolvedCompany.phones.services.value}
-                      </a>
-                      {hasSecondaryServicePhone ? (
+                    <div className="flex flex-col gap-2">
+                      <div>
+                        <span className="text-xs text-industrial-accent font-semibold block mb-0.5">Infolinia ogólna:</span>
                         <a
-                          href={resolvedCompany.phones.services.secondaryHref}
-                          className="font-display text-xl font-bold text-gray-200 hover:text-industrial-accent transition-colors"
+                          href={resolvedCompany.phones.services.href}
+                          className="font-display text-xl sm:text-2xl font-bold text-white hover:text-industrial-accent transition-colors"
                         >
-                          {resolvedCompany.phones.services.secondaryValue}
+                          {resolvedCompany.phones.services.value}
                         </a>
+                      </div>
+                      {hasSecondaryServicePhone ? (
+                        <div>
+                          <span className="text-xs text-gray-400 font-semibold block mb-0.5">Dział usług i wynajmu maszyn:</span>
+                          <a
+                            href={resolvedCompany.phones.services.secondaryHref}
+                            className="font-display text-lg sm:text-xl font-bold text-gray-200 hover:text-industrial-accent transition-colors"
+                          >
+                            {resolvedCompany.phones.services.secondaryValue}
+                          </a>
+                        </div>
                       ) : null}
                       <span className="text-xs text-gray-400 mt-1">
                         Obsługa zapytań dostępna również przez WhatsApp.

@@ -197,3 +197,17 @@ Główne tabele i modele (szczegóły w `.antigravity/schema.md`):
     * Astro check: **60 plików, 0 błędów, 0 ostrzeżeń**.
     * Astro build: **15 podstron statycznych wygenerowanych bezbłędnie (kod wyjścia 0)**.
     * Spójność stron (`check-page-consistency.ps1`): **PASSED**.
+  * **Oficjalne numery telefonów i wdrożenie galerii realizacji (Listopad 2026):**
+    * Wdrożono oficjalną strukturę numerów telefonów:
+      * **Infolinia ogólna:** `+48 730 101 000` (główny numer firmy / biura).
+      * **Dział usług i wynajmu maszyn:** `+48 733 929 100` (bezpośredni kontakt do koordynacji sprzętu i zleceń).
+      * **Dział szkoleń (UDT / SEP / Spawalnictwo):** `+48 570 403 806` (z bezpośrednim przekierowaniem do portalu `https://multiserwis.edu.pl`).
+      * Prywatny numer właściciela (`730 202 000`) pozostawiono jako ukryty przed publikacją.
+    * Wyodrębniono i zintegrowano 32 autentyczne fotografie realizacji ze starego serwisu (`public/images/realizacje/`):
+      * Dźwigi i wynajem sprzętu (16 zdjęć).
+      * Dozór techniczny i konserwacja UTB / UDT (8 zdjęć).
+      * Montaż przemysłowy i instalacje technologiczne (6 zdjęć).
+      * Konstrukcje stalowe i spawalnictwo (2 zdjęcia).
+    * Rozbudowano podstronę `/realizacje` (`PortfolioPage.tsx`):
+      * Karty 4 głównych case studies z autentycznymi okładkami WebP.
+      * Nowa sekcja interaktywnej galerii z filtrowaniem kategorii oraz powiększeniem Lightbox (wraz z obsługą klawisza ESC i blokadą scrolla).

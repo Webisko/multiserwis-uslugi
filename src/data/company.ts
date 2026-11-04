@@ -31,8 +31,8 @@ export const defaultCompany = {
     },
     training: {
       label: 'Szkolenia',
-      value: '',
-      href: '',
+      value: '570 403 806',
+      href: 'tel:+48570403806',
     },
   },
   email: 'biuro@multiserwis.tech',
