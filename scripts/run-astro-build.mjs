@@ -55,6 +55,18 @@ if (isProduction) {
   if (!env.PUBLIC_PORTFOLIO_ITEMS_API_URL) {
     env.PUBLIC_PORTFOLIO_ITEMS_API_URL = `${apiBase}/api/v1/portfolio-items`;
   }
+  if (!env.PUBLIC_ENABLE_ANALYTICS) {
+    env.PUBLIC_ENABLE_ANALYTICS = 'true';
+  }
+  if (!env.PUBLIC_UMAMI_SCRIPT_URL) {
+    env.PUBLIC_UMAMI_SCRIPT_URL = 'https://stats.multiserwis.tech/script.js';
+  }
+  if (!env.PUBLIC_UMAMI_WEBSITE_ID) {
+    env.PUBLIC_UMAMI_WEBSITE_ID = 'd8f4510b-b152-47d5-8664-92e106d8713a';
+  }
+  if (!env.PUBLIC_UMAMI_DOMAINS) {
+    env.PUBLIC_UMAMI_DOMAINS = 'multiserwis.tech';
+  }
 }
 
 const astroCliCandidates = [

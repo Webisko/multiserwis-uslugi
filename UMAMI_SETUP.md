@@ -1,87 +1,41 @@
-# Umami Analytics - Instrukcja Wdrożenia
+# Umami Analytics - Self-Hosted na serwerze SEOHost
 
-## Czym jest Umami?
+## 1. Architektura i Konfiguracja Produkcyjna
 
-Umami to **open-source** narzędzie analityczne, które:
+W projekcie **Multiserwis** analityka Umami działa w modelu **Self-Hosted** bezpośrednio na serwerze SEOHost (`h108.seohost.pl`) pod dedykowaną subdomeną:
 
-- ✅ Nie wymaga zgody na ciasteczka (RODO-friendly)
-- ✅ Szanuje prywatność użytkowników
-- ✅ Daje pełną kontrolę nad danymi
-- ✅ Jest lekkie i szybkie
+- **Adres panelu i skryptu:** `https://stats.multiserwis.tech`
+- **Adres trackera:** `https://stats.multiserwis.tech/script.js`
+- **Website ID (multiserwis.tech):** `d8f4510b-b152-47d5-8664-92e106d8713a`
+- **Baza danych:** MariaDB 11.4 (`srv127364_uslugi` na `localhost:3306`)
+- **Środowisko uruchomieniowe:** CloudLinux NodeJS Selector v20 + Phusion Passenger / LiteSpeed
 
-## Rekomendowany wariant
+---
 
-W tym projekcie rekomendowany jest wariant **self-hosted**, zgodny z założeniem pełnej kontroli nad infrastrukturą i danymi.
+## 2. Kluczowe zalety dla klienta
 
-### Self-hosted Umami (rekomendacja)
+- ✅ **100% Cookieless i RODO:** Zero ciasteczek profilujących, zero banera cookies na starcie.
+- ✅ **Pełna suwerenność danych:** Wszystkie dane o wizytach trafiają do bazy MariaDB klienta na SEOHost.
+- ✅ **Brak limitu odsłon:** Brak ograniczeń SaaS (np. 10 000 zdarzeń/miesiąc).
+- ✅ **Prestiżowy adres:** Skrypt analityczny ładuje się z własnej subdomeny `stats.multiserwis.tech`.
 
-Wymaga: VPS (np. Hetzner, DigitalOcean) + Docker
+---
 
-```bash
-# 1. Sklonuj repozytorium
-git clone https://github.com/umami-software/umami.git
-cd umami
+## 3. Parametry Środowiskowe Frontendu (Astro)
 
-# 2. Skopiuj przykładowy plik env
-cp .env.example .env
-
-# 3. Edytuj .env i ustaw DATABASE_URL (PostgreSQL)
-nano .env
-
-# 4. Uruchom z Docker Compose
-docker-compose up -d
-
-# 5. Otwórz http://twoj-serwer:3000
-# Login: admin / umami
-```
-
-## Aktywacja na stronie
-
-Repo zawiera teraz przykładowe zmienne środowiskowe w `.env.example`:
-
-- `PUBLIC_ENABLE_ANALYTICS`
-- `PUBLIC_CONTACT_API_URL`
-- `PUBLIC_UMAMI_SCRIPT_URL`
-- `PUBLIC_UMAMI_WEBSITE_ID`
-
-Przykład dla self-hosted:
+Podczas produkcyjnego buildu (`npm.cmd run build:production`) zmienne są automatycznie wstrzykiwane przez `scripts/run-astro-build.mjs`:
 
 ```env
 PUBLIC_ENABLE_ANALYTICS=true
-PUBLIC_UMAMI_SCRIPT_URL=https://analytics.twoja-domena.pl/script.js
-PUBLIC_UMAMI_WEBSITE_ID=abc123-twoje-id
+PUBLIC_UMAMI_SCRIPT_URL=https://stats.multiserwis.tech/script.js
+PUBLIC_UMAMI_WEBSITE_ID=d8f4510b-b152-47d5-8664-92e106d8713a
+PUBLIC_UMAMI_DOMAINS=multiserwis.tech
 ```
 
-Mechanizm aktywacji jest już w repo i działa tylko wtedy, gdy:
+---
 
-- `PUBLIC_ENABLE_ANALYTICS=true`
-- ustawione są oba parametry Umami
+## 4. Dostęp do Panelu Administracyjnego Umami
 
-Rekomendacja środowiskowa:
-
-- preview / GitHub Pages: `PUBLIC_ENABLE_ANALYTICS=false`
-- produkcja: `PUBLIC_ENABLE_ANALYTICS=true`
-
-Dzięki temu nie zbierasz przypadkowo ruchu testowego z preview.
-
-## Weryfikacja
-
-1. Uruchom stronę: `npm.cmd run dev`
-2. Otwórz w przeglądarce
-3. Sprawdź panel Umami - powinieneś zobaczyć wizytę w czasie rzeczywistym
-
-## Zalety vs Google Analytics
-
-| Cecha           | Umami self-hosted     | Google Analytics  |
-| --------------- | --------------------- | ----------------- |
-| Prywatność      | ✅ Pełna              | ❌ Dane u Google  |
-| RODO            | ✅ Prostsze wdrożenie | ⚠️ Wymaga analizy bannera |
-| Szybkość        | ✅ Lekki skrypt       | ❌ Cięższy skrypt |
-| Własność danych | ✅ Twoje              | ❌ Google         |
-| Koszty          | ✅ W ramach VPS       | ✅ Darmowe        |
-
-
-## Wsparcie
-
-- Dokumentacja: https://umami.is/docs
-- GitHub: https://github.com/umami-software/umami
+- **URL:** `https://stats.multiserwis.tech`
+- **Domyślny login:** `admin`
+- **Domyślne hasło:** `umami` (zalecana zmiana w profilu po pierwszym logowaniu)

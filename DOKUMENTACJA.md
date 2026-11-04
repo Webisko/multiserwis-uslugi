@@ -26,7 +26,7 @@ Kompleksowa dokumentacja systemu dla serwisu marketingowego i ofertowego **Multi
   * **Środowisko:** PHP 8.3+ / 8.4+
   * **Baza danych:** SQLite (lokalnie/preview) / MySQL (produkcyjnie)
 * **Analityka i zgodność prawna:**
-  * **Analityka:** Umami Analytics (cookieless, zgodne z RODO, zero zewnętrznych skryptów śledzących)
+  * **Analityka:** Self-hosted Umami Analytics (`https://stats.multiserwis.tech/script.js`, ID witryny: `d8f4510b-b152-47d5-8664-92e106d8713a`, baza MariaDB `srv127364_uslugi`, cookieless, zgodne z RODO, zero zewnętrznych skryptów śledzących)
   * **Prawodawstwo:** Zgodność z wymogami UE/PL, RODO, brak dark patterns, pełne dane rejestrowe w stopce.
 
 ---
@@ -183,6 +183,12 @@ Główne tabele i modele (szczegóły w `.antigravity/schema.md`):
     * Opublikowano `config/livewire.php` z limitem uploadu `51200` (50 MB) zapobiegającym błędom przy dodawaniu zdjęć w panelu Filament.
     * Wprowadzono precyzyjną walidację domeny DNS e-mail (`email:rfc,dns` w produkcji / `email:rfc` w testach) w `StoreLeadRequest.php`.
   * **Zgodność prawna RODO:** Utworzono komponent uśpionego banera RODO `src/components/DormantCookieBanner.astro` (Zero Dark Patterns, identyczna waga wizualna przycisków) i włączono go w `Layout.astro` (sterowany flagą `PUBLIC_ENABLE_COOKIE_BANNER`).
+  * **2026-11-04 — Wdrożenie Self-Hosted Umami Analytics (`stats.multiserwis.tech`):**
+    * Zainstalowano i skompilowano produkcyjne wydanie **Umami v2.14.0** (Next.js standalone) w `/home/srv127364/domains/stats.multiserwis.tech/app` na serwerze SEOHost (`h108.seohost.pl`).
+    * Zmigrowano schemat bazy Prisma do silnika MariaDB 11.4 (`srv127364_uslugi`, 7 migracji).
+    * Skonfigurowano aplikację w CloudLinux NodeJS Selector (Node.js v20 + Phusion Passenger pod LiteSpeed).
+    * Utworzono rekord witryny `Multiserwis Kutno` (`d8f4510b-b152-47d5-8664-92e106d8713a`) z domeną `multiserwis.tech`.
+    * Zintegrowano frontend Astro przez `src/components/UmamiAnalytics.astro` oraz `scripts/run-astro-build.mjs` z automatycznym wstrzykiwaniem zmiennych analitycznych w buildzie produkcyjnym.
   * **Architektura wizualna i copywriting:**
     * Zamieniono korporacyjną kliszę AI *„Synergia działań technicznych”* na inżynieryjny konkret *„Jeden koordynator dla całego zadania”* w `HomePage.tsx`.
     * Zaizolowano podświetlenia kart w `src/styles/global.css` wewnątrz reguły `@media (hover: hover) and (pointer: fine)` przeciwko efektowi „przyklejonego hovera” na ekranach dotykowych.
