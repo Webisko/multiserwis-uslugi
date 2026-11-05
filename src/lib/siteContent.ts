@@ -171,8 +171,8 @@ const defaultServiceItems: ServiceOfferingPayload[] = [
     title: 'Wynajem maszyn i dźwigów',
     description: 'Własny park maszynowy dobierany do zadania, z obsługą operatorską dla żurawi i podnośników.',
     items: [
-      'Podesty nożycowe do 18 m oraz podnośniki koszowe na pojeździe',
-      'Żurawie samochodowe o udźwigu 35 t, 45 t, 60 t oraz 90 t',
+      'Podesty nożycowe, przegubowe oraz podnośniki koszowe na pojeździe',
+      'Żurawie samochodowe o udźwigu od 30 t do 500 t',
       'Ładowarki teleskopowe i wózki widłowe',
       'Sprzęt specjalistyczny do relokacji (m.in. VersaLift)',
       'Osprzęt pomocniczy: trawersy, rolki transportowe, przedłużki wideł',
@@ -212,9 +212,10 @@ const defaultServiceItems: ServiceOfferingPayload[] = [
     items: [
       'Kompleksowa organizacja badań UDT i asysta inspektorska',
       'Rejestracja urządzeń oraz odtwarzanie dokumentacji i resursu',
+      'Wykonywanie Przeglądu Specjalnego urządzeń transportu bliskiego',
+      'Badania nieniszczące NDT konstrukcji i spoin w pełnym zakresie',
       'Cykliczne przeglądy konserwacyjne i prowadzenie dzienników',
       'Diagnostyka i naprawa układów hydrauliki siłowej oraz sterowania',
-      'Usuwanie awarii, regeneracja siłowników i wymiana podzespołów',
     ],
     pagePath: '/udt',
     contactLabel: 'Konserwacja i UDT',
@@ -298,7 +299,7 @@ const defaultPortfolioItems: PortfolioItemPayload[] = [
       'Obsługa dźwigowa i podnośnikowa prac montażowych oraz serwisowych na czynnych zakładach przemysłowych.',
     items: [
       'Projekty wsparcia prac na wysokości i transportu ciężkiego',
-      'Wynajem żurawi samochodowych (35 t – 90 t) i podestów z operatorem',
+      'Wynajem żurawi samochodowych (od 30 t do 500 t) i podestów z operatorem',
       'Podesty nożycowe i przegubowe do prac instalacyjnych na halach',
     ],
     imageUrl: '/images/realizacje/wynajem/20190802_184815.webp',

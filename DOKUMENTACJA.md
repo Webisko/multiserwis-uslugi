@@ -215,3 +215,7 @@ Główne tabele i modele (szczegóły w `.antigravity/schema.md`):
     * Bezpieczeństwo i SEO:
       * Wymuszono stałe przekierowanie `301 Moved Permanently` z HTTP na HTTPS w `public/.htaccess`.
       * Wdrożono certyfikat Wildcard Let's Encrypt `*.multiserwis.tech` i zoptymalizowano `og-image.png` (< 160 KB) pod WhatsApp.
+  * **Aktualizacja parametrów parku maszynowego i zakresu UDT (Listopad 2026):**
+    * **Żurawie samochodowe:** Zaktualizowano zakres udźwigu na pełne spektrum **od 30 t do 500 t** (zastępując zawężający zapis 35t–90t we wszystkich warstwach: Astro, React, Filament Eloquent defaults, snapshotach JSON i plikach LLM).
+    * **Podesty ruchome:** Usunięto sztuczne ograniczenie wysokościowe `(do 18m)` – podesty nożycowe, przegubowe i teleskopowe prezentowane są w pełnym zakresie roboczym.
+    * **Rozszerzenie zakresu UDT:** Wprowadzono do oferty formalne usługi **wykonywania Przeglądów Specjalnych UTB** (obowiązkowych po wyczerpaniu resursu maszyny) oraz **badań nieniszczących NDT w pełnym zakresie (VT, MT, PT, UT)** konstrukcji nośnych i spoin, synchronizując sekcję główną `UdtSection.tsx` oraz podstronę `/udt`.

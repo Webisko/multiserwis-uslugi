@@ -1,9 +1,9 @@
 # Multiserwis – Pełna specyfikacja usług i parku maszynowego
 
 ## 1. Wynajem maszyn i urządzeń dźwigowych
-- Podnośniki nożycowe: elektryczne (do prac wewnątrz hal) i spalinowe 4x4 (na trudny teren budowy), wysokość robocza od 8 m do 18 m.
-- Podnośniki teleskopowo-przegubowe: spalinowe i elektryczne, zasięg boczny do 16 m, wysokość do 26 m.
-- Żurawie samojezdne: udźwig do 45 ton, osprzęt hakowy, wysięgniki teleskopowe, obsługa przez uprawnionych operatorów.
+- Podnośniki nożycowe: elektryczne (do prac wewnątrz hal) i spalinowe 4x4 (na trudny teren budowy).
+- Podnośniki teleskopowo-przegubowe: spalinowe i elektryczne, wysięgniki przegubowe i teleskopowe do prac instalacyjnych.
+- Żurawie samochodowe i samojezdne: udźwig od 30 t do 500 ton, osprzęt hakowy, wysięgniki teleskopowe, obsługa przez certyfikowanych operatorów.
 - Ładowarki teleskopowe: udźwig do 4 ton, osprzęt widłowy, koszowy i wciągarka.
 - Wózki widłowe przemysłowe: udźwig od 2,5 t do 7 t, zasilanie LPG, elektryczne lub diesel.
 
@@ -17,6 +17,8 @@
 ## 3. Konserwacja, serwis, dozór i szkolenia UDT
 - Obsługiwane kategorie: wózki jezdniowe (WJO), podesty ruchome (IP/IIP), suwnice i żurawie (IIS/IS), wciągniki i wciągarki.
 - Prowadzenie dzienników konserwacji, obliczanie stopnia wykorzystania resursu maszyny.
+- Wykonywanie Przeglądów Specjalnych UTB po wyczerpaniu resursu lub braku historii eksploatacji.
+- Badania nieniszczące NDT w pełnym zakresie (metody VT, MT, PT, UT konstrukcji nośnych i spoin).
 - Pomiary rezystancji izolacji i skuteczności ochrony przeciwporażeniowej dla urządzeń UDT.
 - Przygotowanie dokumentacji techniczno-ruchowej (DTR), uczestnictwo w badaniach z inspektorem UDT oraz szkolenia na uprawnienia UDT.
 

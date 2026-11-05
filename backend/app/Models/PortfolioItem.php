@@ -66,7 +66,7 @@ class PortfolioItem extends Model
                 'short_description' => 'Obsługa dźwigowa i podnośnikowa prac montażowych oraz serwisowych na czynnych zakładach przemysłowych.',
                 'highlights' => [
                     'Projekty wsparcia prac na wysokości i transportu ciężkiego',
-                    'Wynajem żurawi samochodowych (35t–90t) i podestów z operatorem',
+                    'Wynajem żurawi samochodowych (od 30 t do 500 t) i podestów z operatorem',
                     'Podesty nożycowe i przegubowe do prac instalacyjnych na halach',
                 ],
                 'image_url' => null,

@@ -189,8 +189,8 @@
                 "title": "Wynajem Maszyn",
                 "description": "Profesjonalny sprzęt z możliwością wynajmu z operatorem.",
                 "items": [
-                    "Podesty: nożycowe (do 18m), przegubowe, teleskopowe",
-                    "Żurawie samochodowe (35t, 45t, 60t, 90t)",
+                    "Podesty: nożycowe, przegubowe, teleskopowe",
+                    "Żurawie samochodowe (od 30 t do 500 t)",
                     "Ładowarki teleskopowe i wózki widłowe",
                     "Specjalistyczny sprzęt (np. VersaLift)",
                     "Podnośniki koszowe na pojazdach"
@@ -249,11 +249,11 @@
                 "title": "Konserwacja i UDT",
                 "description": "Konserwacja, formalności i przygotowanie urządzeń do badań.",
                 "items": [
-                    "Rejestracja urządzeń w UDT",
-                    "Obsługa formalności i dokumentacji",
-                    "Konserwacja UTB",
-                    "Przygotowanie do badań i odbiorów",
-                    "Doradztwo techniczne"
+                    "Rejestracja urządzeń w UDT i odtwarzanie DTR",
+                    "Wykonywanie Przeglądu Specjalnego i resursu",
+                    "Badania NDT w pełnym zakresie (spoiny i konstrukcje)",
+                    "Konserwacja UTB i prowadzenie dzienników",
+                    "Przygotowanie do badań i odbiorów UDT"
                 ],
                 "pagePath": "/udt",
                 "contactLabel": "Konserwacja i UDT",
@@ -302,10 +302,10 @@
                 "description": "Obsługa dźwigowa i podnośnikowa prac montażowych oraz serwisowych na czynnych zakładach przemysłowych.",
                 "items": [
                     "Projekty wsparcia prac na wysokości i transportu ciężkiego",
-                    "Wynajem żurawi samochodowych (35t–90t) i podestów z operatorem",
+                    "Wynajem żurawi samochodowych (od 30 t do 500 t) i podestów z operatorem",
                     "Podesty nożycowe i przegubowe do prac instalacyjnych na halach"
                 ],
-                "imageUrl": "/images/realizacje/wynajem/20190802_184815.webp",
+                "imageUrl": null,
                 "isFeatured": true,
                 "sortOrder": 10
             },
@@ -321,7 +321,7 @@
                     "Wprowadzanie gabarytów na halę z użyciem sprzętu VersaLift i rolek",
                     "Poziomowanie, podłączenie mediów i uruchomienia po relokacji"
                 ],
-                "imageUrl": "/images/realizacje/instalacje-montaz/20190612_133513.webp",
+                "imageUrl": null,
                 "isFeatured": true,
                 "sortOrder": 20
             },
@@ -337,7 +337,7 @@
                     "Okresowe przeglądy konserwacyjne i wpisy do dzienników konserwacji",
                     "Przygotowanie techniczne maszyn i asysta podczas odbiorów inspektorskich"
                 ],
-                "imageUrl": "/images/realizacje/konserwacja-utb/20200516_093813.webp",
+                "imageUrl": null,
                 "isFeatured": true,
                 "sortOrder": 30
             },
@@ -353,7 +353,7 @@
                     "Wykonawstwo konstrukcji wsporczych, antresol i barier ochronnych",
                     "Spawanie rurociągów i zbiorników metodami TIG oraz MIG/MAG"
                 ],
-                "imageUrl": "/images/realizacje/spawalnictwo/20190608_123445.webp",
+                "imageUrl": null,
                 "isFeatured": true,
                 "sortOrder": 40
             }

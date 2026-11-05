@@ -45,7 +45,7 @@ export const RelocationPage: React.FC<RelocationPageProps> = ({ companyData }) =
   ];
 
   const advantages = [
-    'Własny park maszynowy (żurawie do 90 t, VersaLift, podesty, wózki) – brak pośredników',
+    'Własny park maszynowy (żurawie do 500 t, VersaLift, podesty, wózki) – brak pośredników',
     'Własny zespół elektryków, automatyków, spawaczy i monterów rurociągów',
     'Pełne uprawnienia UDT i SEP oraz certyfikowany system jakości ISO 9001:2015',
     'Realizacja prac w oknach serwisowych, weekendy i w systemie zmianowym',
@@ -142,7 +142,7 @@ export const RelocationPage: React.FC<RelocationPageProps> = ({ companyData }) =
                 </div>
                 <h3 className="card-title mb-3">Potrzebujesz samego sprzętu dźwigowego?</h3>
                 <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-6">
-                  Dysponujemy własnym parkiem maszynowym: żurawiami samochodowymi do 90 t,
+                  Dysponujemy własnym parkiem maszynowym: żurawiami samochodowymi o udźwigu do 500 t,
                   specjalistycznym wózkiem VersaLift, podestami ruchomymi, ładowarkami i wózkami
                   widłowymi. Możesz wynająć u nas sprzęt również jako osobną usługę.
                 </p>

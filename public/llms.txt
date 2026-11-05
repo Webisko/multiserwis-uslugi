@@ -18,9 +18,9 @@
 
 ## Zakres usług (Katalog)
 - [Pełny katalog usług technicznych](/uslugi-techniczne): Zbiorczy przegląd wszystkich 6 filarów usług inżynieryjnych i sprzętowych.
-- [Wynajem maszyn i dźwigów](/wynajem): Podnośniki nożycowe i koszowe, żurawie samojezdne do 45t, wózki widłowe i ładowarki teleskopowe z operatorem lub bez.
+- [Wynajem maszyn i dźwigów](/wynajem): Podnośniki nożycowe i koszowe, żurawie samochodowe od 30 t do 500 t, wózki widłowe i ładowarki teleskopowe z operatorem lub bez.
 - [Relokacja maszyn i linii](/relokacja): Kompleksowy demontaż, transport ponadgabarytowy, ponowny montaż, pozycjonowanie i rozruch technologiczny ciągów produkcyjnych.
-- [Konserwacja, serwis i UDT](/udt): Przygotowanie maszyn do badań okresowych i odbiorczych UDT, resurs, przeglądy konserwacyjne urządzeń dźwignicowych.
+- [Konserwacja, serwis i UDT](/udt): Przygotowanie maszyn do badań okresowych i odbiorczych UDT, resurs, wykonywanie Przeglądów Specjalnych UTB, badania NDT w pełnym zakresie, przeglądy konserwacyjne urządzeń dźwignicowych.
 - [Usługi spawalnicze i konstrukcje](/spawanie): Spawanie metodami TIG, MIG/MAG, MMA, prefabrykacja konstrukcji stalowych, rurociągi przemysłowe, regeneracja elementów maszyn.
 - [Hydraulika i montaż przemysłowy](/budownictwo): Montaż rurociągów technologicznych, armatury, hydrauliki siłowej oraz konstrukcji wsporczych.
 - [Usługi elektryczne i pomiary](/elektryka): Pomiary odbiorcze i okresowe SEP, automatyka przemysłowa, szafy sterownicze, instalacje halowe.

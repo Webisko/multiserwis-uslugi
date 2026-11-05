@@ -90,7 +90,9 @@ export const UdtPage: React.FC<UdtPageProps> = ({ companyData }) => {
                 {[
                   'Obsługa urządzeń zarejestrowanych oraz rejestracja nowych',
                   'Pełna obsługa formalna w przypadku braku dokumentacji',
-                  'Wykonywanie resursu i odtwarzanie DTR urządzeń',
+                  'Wykonywanie resursu oraz odtwarzanie DTR urządzeń',
+                  'Wykonywanie Przeglądu Specjalnego (po wyczerpaniu resursu)',
+                  'Badania nieniszczące NDT w pełnym zakresie (spoiny i konstrukcje)',
                   'Przygotowanie techniczne maszyn i asysta podczas badań UDT',
                 ].map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2.5">

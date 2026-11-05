@@ -21,9 +21,9 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({ companyData }) => {
   const basePath = resolvedCompany.links.basePath;
 
   const popularEquipment = [
-    { label: 'Podesty nożycowe do 18 m', href: '#podesty', icon: <ScissorLiftIcon size={20} /> },
+    { label: 'Podesty nożycowe', href: '#podesty', icon: <ScissorLiftIcon size={20} /> },
     { label: 'Podnośniki koszowe na pojeździe', href: '#podesty', icon: <ScissorLiftIcon size={20} /> },
-    { label: 'Żurawie 35 t, 45 t, 60 t, 90 t', href: '#zurawie', icon: <CraneTruckIcon size={20} /> },
+    { label: 'Żurawie samochodowe 30–500 t', href: '#zurawie', icon: <CraneTruckIcon size={20} /> },
     { label: 'Ładowarki teleskopowe', href: '#ladowarki', icon: <ForkliftTelehandlerIcon size={20} /> },
     { label: 'Wózki widłowe i VersaLift', href: '#specjalistyczne', icon: <RiggingGearIcon size={20} /> },
   ];
@@ -34,7 +34,7 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({ companyData }) => {
       title: 'Podesty ruchome i podnośniki',
       icon: <ScissorLiftIcon size={26} />,
       items: [
-        'Podesty nożycowe do 18 m wysokości roboczej',
+        'Podesty nożycowe elektryczne i spalinowe',
         'Podnośniki przegubowe elektryczne i spalinowe',
         'Podesty teleskopowe elektryczne i spalinowe',
         'Podnośniki koszowe (podesty montowane na pojeździe)',
@@ -47,10 +47,10 @@ export const RentalsPage: React.FC<RentalsPageProps> = ({ companyData }) => {
       title: 'Żurawie (dźwigi samochodowe)',
       icon: <CraneTruckIcon size={26} />,
       items: [
-        'Żuraw samochodowy o udźwigu 35 t',
-        'Żuraw samochodowy o udźwigu 45 t',
-        'Żuraw samochodowy o udźwigu 60 t',
-        'Żuraw samochodowy o udźwigu 90 t',
+        'Żurawie samochodowe i samojezdne o udźwigu od 30 t do 500 t',
+        'Zróżnicowane konfiguracje wysięgnika dopasowane do specyfiki zadania',
+        'Wynajem z doświadczoną, certyfikowaną obsługą operatorską',
+        'Asysta przy planowaniu operacji podnoszenia i doborze osprzętu',
       ],
       description:
         'Wszechstronne żurawie samojezdne z doświadczoną obsługą operatorską do ciężkich prac budowlanych, montażowych i przeładunkowych.',
